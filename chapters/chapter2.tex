@@ -13,11 +13,11 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\end{equation}
 	where $M_n$ is a martingale and $A_n$ a continuous process of bounded variation, with
 	\begin{equation} \label{def An}
-	\An{s} = \int_{0}^{s} a_n(u)du
+	\An{t} = \int_{0}^{t} a_n(s)ds - t
 	\end{equation}
 	and
 	\begin{equation} \label{def an}
-	a_n(u)du = P(\text{A new edge appears in} \enspace [u, u+du] \cond \Zn{v}, \enspace v \leq u).
+	a_n(s)ds = P(\text{A new edge appears in} \enspace [s, s+ds] \cond \Zn{u}, \enspace u \leq s).
 	\end{equation}
 	\todo{Make text in P() not cursive?}	
 \end{lemma}
