@@ -1,0 +1,50 @@
+%%%%% Document class. %%%%
+\documentclass [11 pt,	a4paper, notitlepage]{report}
+
+%%%% Packages used. %%%%
+% Math packages.
+\usepackage{amsfonts}
+\usepackage{amsmath} 
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% Language packages.
+\usepackage[english, german]{babel}
+\usepackage[ansinew]{inputenc}
+
+% Other packages.
+\usepackage{lipsum}
+\usepackage{xcolor}
+
+% Select style of todonotes.
+\usepackage[disable]{todonotes} % notes not showed
+%\usepackage[draft]{todonotes}   % notes showed
+
+
+%%%% Cosmetics %%%%
+% Set the style of chapter-headers: No "Chapter", only the number
+\usepackage{titlesec}
+\titleformat{\chapter}
+{\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+\titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+
+%%%% Theorems, Lemmas etc. %%%%
+% All Theorems numbered by chapter
+
+
+%%%% Commands %%%%
+% n{1,3} -> n^{1/3}]
+\newcommand{\n}[2]
+	{n^{#1 / #2}}
+% Expected value, regular brackets
+\newcommand{\Exp}[1]
+	{\mathbb{E}[#1]}
+% Expected value, big fitted brackets
+\newcommand{\ExpBig}[1]
+	{\mathbb{E} \left[ #1 \right]}
+% Ceiling
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+% Floor
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}

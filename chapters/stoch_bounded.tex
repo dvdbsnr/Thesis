@@ -1,0 +1,84 @@
+\include{preamble}
+\begin{document}
+	
+	We need to show that 
+	$ \n{-1}{3} \sup_{s \leq \n{-2}{3} s_0} | Z_n(s) | \rightarrow_p 0 $.
+	For that, we will prove the stronger result that 
+	$ n^{-2/3} \sup_{s\leq n^{-1/3} s_0} |Z_n(s)| $ 
+	is stochastically bounded as 
+	$ n \rightarrow \infty $,
+	i.e. for any 
+	$ \epsilon > 0 $ 
+	there is a
+	$ K > 0 $
+	such that for $n$ sufficiently big 
+	$$ P\left( n^{-1/3} \sup_{s\leq n^{2/3} s_0} |Z_n(s)| > K \right) < \epsilon. $$
+	
+	Let
+	$T^*_n$
+	be the first time
+	$\n{-1}{3}|Z_n(s)|$
+	surpasses $K$
+	and 
+	$T_n := T^*_n$ 
+	if 
+	$T^*_n \leq \n{2}{3}s_0$
+	or else
+	$\n{2}{3}s_0:$
+	\begin{align*}
+	T_n &:= \min \lbrace T^*_n, \n{2}{3}s_0 \rbrace , \\
+	T^*_n &:= \min \lbrace s: |Z_n(s)| > K \n{1}{3} \rbrace .
+	\end{align*}
+	
+	Thus 
+	\begin{align*}
+	P( n^{-1/3} \sup_{s\leq n^{2/3} s_0} |Z_n(s)| > K ) &= P ( |Z_n(T_n)| > K\n{1}{3} ) \\
+	&\leq \frac{\Exp{|Z_n(T_n)}}{K}
+	\end{align*} 
+	by Markov's inequality.
+	To analyse
+	$ \Exp{|Z_n(T_n)|} $
+	we will use the previously established decompositions
+	$Z_n = M_n + A_n$
+	and
+	$M^2_n = Q_n + B_n$, 
+	starting with the latter:
+	
+	Since $Q_n$ is a martingale, by the optional sampling theorem
+	$\Exp{Q_n(s)} = 0$ 
+	for all
+	$s \geq 0$
+	and
+	\begin{align*}
+	\ExpBig{M^2_n(T_n)} &= \ExpBig{B_n(T_n)} \\
+	&= \Exp{ \int_{0}^{T_n} a_n(s)ds } \\
+	&= \int_{0}^{T_n} \Exp{a_n(s)} ds.
+	\end{align*} 
+	By definition
+	\begin{align*}
+	 a_n(s) &= (n - \nu_n(s)) \frac{p(n)}{1 - (s - \floor{s})p(n)} \\
+	 &\leq \frac{n p(n)}{1 - (s - \floor{s})p(n)}
+	\end{align*}
+	which is a deterministic function of $s$. So
+	$ \Exp{a_n(s)} \leq \frac{n p(n)}{1 - (s - \floor{s})p(n)} $
+	and
+	\begin{align*}
+	\int_{0}^{T_n} \Exp{a_n(s)} ds &\leq  \int_{0}^{T_n }\frac{n p(n)}{1 - (s - \floor{s})p(n)} \\
+	&\leq \int_{0}^{\n{2}{3}s_0}\frac{n p(n)}{1 - (s - \floor{s})p(n)} \\
+	&\leq 2\n{2}{3}s_0,
+	\end{align*}
+	where the last inequality holds for $n$ sufficiently large, since 
+	$\frac{n p(n)}{1 - (s - \floor{s})p(n)} \rightarrow 1$
+	as
+	$n \rightarrow \infty$.
+	We conclude
+	\begin{equation}
+	\Exp{M_n(T_n)} \leq (2s_0)^{1/2}\n{1}{3}
+	\end{equation}
+	and move to $A_n$.
+	
+	
+	
+	
+	
+\end{document}
