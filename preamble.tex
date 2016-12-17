@@ -22,22 +22,34 @@
 %\usepackage[draft]{todonotes}   % notes showed
 
 
-%%%% Cosmetics %%%%
-% Set the style of chapter-headers: No "Chapter", only the number
+%%%% Cosmetics. %%%%
+% Set the style of chapter-headers: No "Chapter", only the number.
 \usepackage{titlesec}
 \titleformat{\chapter}
 {\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
 \titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
 
+\todo{Add Proof-QED style}
+
 
 %%%% Theorems, Lemmas etc. %%%%
-% All Theorems numbered by chapter
+% All Theorems numbered by chapter.
+% Theorem.
+\newtheorem{theorem}{Theorem}[chapter]
+% Lemma.
+\newtheorem{lemma}{Lemma}[chapter]
+% Definition.
+\newtheorem{definition}{Definition}[chapter]
+
 
 
 %%%% Commands %%%%
 % n{1,3} -> n^{1/3}]
 \newcommand{\n}[2]
 	{n^{#1 / #2}}
+% Zn -> Z_n()
+\newcommand{\Zn}[1]
+	{Z_n(#1)}
 % Expected value, regular brackets
 \newcommand{\Exp}[1]
 	{\mathbb{E}[#1]}
