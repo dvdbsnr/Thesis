@@ -317,11 +317,6 @@ We will now prove some asymptotic properties of the processes $A_n$, $B_n$ and $
     P( \sup_{s\leq n^{2/3} s_0} |Z_n(s)| > K \n{1}{3} ) \leq \frac{\alpha}{K} + \frac{4s_0}{\n{1}{3}}
     \end{equation}
     which proves \ref{equ stoch bounded}.
-    
-    
-    
-	
-	
 \end{proof}
 
 \begin{lemma} \label{lemma asymptotic Bn}
@@ -332,18 +327,31 @@ We will now prove some asymptotic properties of the processes $A_n$, $B_n$ and $
 \end{lemma}
 \begin{proof} \label{proof asymptotic Bn}
 	From its definition in Lemma \ref{lemma decomp Mn}, $\Bn{s} = \An{s} + s$, which allows us to rewrite \ref{equ asymptotic Bn} as
-	\begin{equation}
-	\begin{aligned}
-	\n{2}{3} \An{\n{-2}{3}s_0} &\rightarrow_p 0 \\
-	\iff \n{-1}{3} \left( \n{-1}{3} \An{\n{-2}{3}s_0} + c \right) &\rightarrow_p 0,
-	\end{aligned}
+	\begin{equation} \label{equ asymptotic Bn An}
+	\n{-2}{3} \An{\n{-2}{3}s_0} \rightarrow_p 0.
 	\end{equation}
-	for some constant $c \in \Real$.
+	We will show that
+	\begin{equation} \label{equ asymptotic Bn An + c}
+	\n{-1}{3} \An{\n{-2}{3}s_0} + \frac{1}{2}s_0^2 - s_0t \longrightarrow_p 0,
+	\end{equation}
+	where again $t$ denotes the probability parameter. 
+	\todo{Change "probability parameter"}
+	This implies
+	\begin{equation*}
+	\n{-1}{3} \left( \n{-1}{3} \An{\n{-2}{3}s_0} + \frac{1}{2}s_0^2 - s_0t \right) \longrightarrow_p 0
+	\end{equation*}
+	which, since $\frac{1}{2}s_0^2 - s_0t$ is a constant in $n$, proves \ref{equ asymptotic Bn An}.
 	
+	Let the function $\phi$ be defined by $\phi(s) = \frac{1}{2}\n{-4}{3}s^2 - \n{-2}{3}st$.	
+	Now $\phi(\n{2}{3}s_0) = \frac{1}{2}s_0^2 - s_0t$ and
 	\begin{align*}
-	
+	\left| \n{-1}{3} \An{\n{-2}{3}s_0} + \frac{1}{2}s_0^2 - s_0t \right| 
+	&= \left| \n{-1}{3} \An{\n{-2}{3}s_0} + \phi(\n{2}{3}s_0) \right| \\
+	&\leq \supns \left| \n{-1}{3} \An{s} + \phi(s) \right| \\
+	&= \n{-1}{3} \supns \left| \An{s} + n^{-1}\frac{s^2}{2} - \n{-1}{3}st \right| \\
+	&\longrightarrow_p 0,
 	\end{align*}
-	
+	as $n \rightarrow \infty$ from Lemma \ref{lemma asymptotic An}. This gives \ref{equ asymptotic Bn An + c} and completes the proof.
 \end{proof}
 
 
