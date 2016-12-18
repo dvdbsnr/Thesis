@@ -2,7 +2,7 @@
 % Contains The proof for Theorem 3 (Z -> W)
 
 \chapter{The breadth-first-walk on the random graph}
-\todo{Update title}
+\todo{Update title.}
 
 For ease of notation, we will drop the superscript $t$ from all random variables.
 
@@ -21,14 +21,12 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\end{equation}	
 \end{lemma}
 \todo{Make text in P() not cursive?}
-
-\begin{note}
-	$A_n$ is a continous process of bounded variation, so jumps of $M_n$ are the same as jumps of $Z_n$. Since $Z_n$ and $A_n$ are of bounded variation, $M_n$ is a cadlaq process of bounded variation.	
+\begin{note} \label{note decomp Zn}
+	$A_n$ is a continuous process of bounded variation, so jumps of $M_n$ are the same as jumps of $Z_n$. Since $Z_n$ and $A_n$ are of bounded variation, $M_n$ is a cadlaq process of bounded variation.	
 \end{note}
-\todo{Proof An of bounded variation}
-\todo{Proof Mn cadlaq}
-
-\begin{proof}
+\todo{Proof that An is of bounded variation.}
+\todo{Proof that Mn is cadlaq.}
+\begin{proof} \label{proof decomp Zn}
 	We will prove that, for $A_n$ defined in \ref{def An} and \ref{def an},
 	$Z_n - A_n$
 	is a martingale by showing that
@@ -62,8 +60,8 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\quad \text{since} \enspace \F{s} \subseteq \F{t} \enspace \forall s \in [t,t+u] \\
 	&= \Exp{\text{Number of new edges appearing in} \enspace [t, t+u] \cond \F{t}} - u.
 	\end{align*}
-	\todo{Fs in Ft or Ft in Fs?}
-	\todo{Number of new edges more detailed.}
+	\todo{Fs \in Ft or Ft \in Fs? Use "tower property".}
+	\todo{Explain "Number of new edges"="\int P" more detailed.}
 	
 	This proves $M_n$ to be a martingale. 	
 \end{proof}
@@ -79,10 +77,10 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\end{equation}
 	with $a_n$ defined in \ref{def an}.
 \end{lemma}
-\begin{note}
+\begin{note} \label{note decomp Mn}
 	$B_n$ is a continuous process.
 \end{note}
-\begin{proof}
+\begin{proof} \label{proof decomp Mn}
 	We will prove that
 	$M_n^2 - B_n$
 	is a martingale.
@@ -90,7 +88,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\begin{equation*} \label{def quadratic variation}
 	[M]_t := \limsup \sum (M_{t_i} - M_{t_{i-1}})^2
 	\end{equation*}
-	\todo{Add definition of quadratic variation}
+	\todo{Add definition of quadratic variation.}
 	is
 	\begin{equation} \label{quadratic variation Mn}
 	\Mnq{t} = \sum_{0 \leq s \leq t} (\Delta \Mn{s})^2,
@@ -98,12 +96,12 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	where
 	$\Delta \Mn{s} := \Mn{s} - \Mn{s-}$ 
 	can take one of two values: $1$ if there is a jump of $1$ at time $s$, 0 otherwise.
-	\todo{Other word for "take"}
+	\todo{Other word for "take".}
 	We refer to [EK] to see that
 	$M_n^2 - [M_n]$
 	is a martingale.
-	\todo{Add reference}
-	\todo{Nicer sentence}
+	\todo{Add reference from [EK]}
+	\todo{Nicer sentence.}
 	Thus
 	\begin{equation}
 	M_n^2 - B_n = (\underbrace{M_n^2 - [M_n]}_{\text{martingale}}) + ([M_n] - B_n)
@@ -127,6 +125,30 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	
 \end{proof}
 
+\begin{lemma} \label{lemma formula an}
+	For $a_n$ as in the Lemmas above,
+	\begin{equation}
+		\an{s} = (n - s - \Zeta{\ceil{s}} - \Zn{s}) \ps .
+	\end{equation}
+\end{lemma}
+\todo{Update/change Zeta-symbol if needed.}
+\todo{Add explanation of Zeta if needed.}
+\begin{proof} \label{proof formula an}
+	proof.
+\end{proof}
+\todo{Add proof.}
+
+We will now prove some asymptotic properties of the processes $A_n$, $B_n$ and $M_n$ with the goal of using the functional central limit theorem for martingales.
+\todo{Update text.}
+
+\begin{lemma} \label{lemma asymptotic An}
+	For $A_n$ defined as in the previous Lemmas and a fix $s_0 \geq 0$,
+	\begin{equation}
+	\n{-1}{3} \supns \left| \An{s} + n^{-1}\frac{s^2}{2} - \n{-1}{3}st \right| \rightarrow_p 0,
+	\end{equation}
+	where $t$ is the fix probability parameter of the random graph.	
+\end{lemma}
+\todo{Change/remove explanation of t: "probability parameter"}
 
 
 
