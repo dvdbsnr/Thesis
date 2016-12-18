@@ -23,8 +23,8 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\begin{equation} \label{def an}
 	a_n(s)ds = P(\text{A new edge appears in} \enspace [s, s+ds] \cond \Zn{u}, \enspace u \leq s).
 	\end{equation}	
+	\todo{Make text in P() not cursive?}
 \end{lemma}
-\todo{Make text in P() not cursive?}
 \begin{note} \label{note decomp Zn}
 	$A_n$ is a continuous process of bounded variation, so jumps of $M_n$ are the same as jumps of $Z_n$. Since $Z_n$ and $A_n$ are of bounded variation, $M_n$ is a cadlaq process of bounded variation.	
 \end{note}
@@ -153,10 +153,10 @@ We will now prove some asymptotic properties of the processes $A_n$, $B_n$ and $
 	\begin{equation} \label{equ asymptotic An}
 	\n{-1}{3} \supns \left| \An{s} + n^{-1}\frac{s^2}{2} - \n{-1}{3}st \right| \rightarrow_p 0,
 	\end{equation}
-	where $t$ is the fix probability parameter of the random graph.	
+	where $t$ is the fixed probability parameter of the random graph.	
 \end{lemma}
 \todo{Change/remove explanation of t: "probability parameter"}
-\begin{proof}
+\begin{proof} \label{proof asymptotic An}
 	We define $\amn{s}$ as
 	\begin{equation}
 		\amn{s} := (n - s - \Zeta{\ceil{s}} - \Zn{s}) p(n),
@@ -301,8 +301,8 @@ We will now prove some asymptotic properties of the processes $A_n$, $B_n$ and $
     	&\qquad + \int_{0}^{T_n} |\amn{s} - 1 + \frac{s}{n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}}|
     } \\
     &\leq \n{2}{3}s_0 \BigO{\frac{1}{n}} + \n{2}{3}s_0 \BigO{\frac{|t|}{\n{1}{3}}} \\
-    &\qquad +  \n{2}{3}s_0 \left( \frac{4s}{n} \max_{u \leq T_n}|\Zn{u}| + \BigO{\frac{s}{n}}\right) \\
-    &\leq 4 s_0 K + \BigO{s_0|t|\n{1}{3}} + \BigO{\frac{s_0}{\n{1}{3}}} + \BigO{\frac{s_0s}{\n{1}{3}}},
+    &\qquad +  \n{2}{3}s_0 \left( \frac{4s}{n} \max_{u \leq T_n}|\Zn{u}| + \BigO{\frac{T_n}{n}}\right) \\
+    &\leq 4 s_0 K + s_0|t|\BigO{\n{1}{3}} + s_0^2\BigO{\n{1}{3}} + s_0\BigO{\frac{1}{\n{1}{3}}},
     \end{align*}
     \todo{Fix BigO-Notation (Sapozhnikov?)}
     since, by definition of $T_n$, $|\Zn{T_n}| < K\n{1}{3}.$
