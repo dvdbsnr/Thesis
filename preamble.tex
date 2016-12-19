@@ -18,9 +18,17 @@
 \usepackage{xcolor}
 %\usepackage{showkeys}
 
+
 % Select style of todonotes.
 \usepackage[disable]{todonotes} % notes not showed
 %\usepackage[draft]{todonotes}   % notes showed
+
+
+
+%%%% BibLaTeX %%%%
+% Set citestyle
+%\usepackage[citestyle=authoryear]{biblatex}
+
 
 
 %%%% Cosmetics. %%%%
@@ -29,6 +37,7 @@
 \titleformat{\chapter}
 {\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
 \titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
 
 
 %%%% Theorems, Lemmas etc. %%%%
@@ -84,6 +93,9 @@
 % Ft filtration
 \newcommand{\F}[1]
 	{\mathcal{F}_{#1}}
+% Ft filtration
+\newcommand{\Fn}[1]
+	{\mathcal{F}^n_{#1}}
 
 % Zeta = C^-1_n()
 \newcommand{\Zeta}[1]
