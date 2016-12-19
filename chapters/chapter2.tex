@@ -10,17 +10,17 @@
 
 For ease of notation, we will drop the superscript $t$ from all random variables.
 
-\begin{lemma} \label{lemma decomp Zn}
+\begin{lemma} \label{L: decomp Zn}
 	The decomposition 
 	\begin{equation} \label{decomp Zn}
 	Z_n = M_n + A_n
 	\end{equation}
 	holds, where $M_n$ is a martingale and $A_n$ is defined by
-	\begin{equation} \label{def An}
+	\begin{equation} \label{D: An}
 	\An{t} = \int_{0}^{t} a_n(s)ds - t
 	\end{equation}
 	and
-	\begin{equation} \label{def an}
+	\begin{equation} \label{D: an}
 	a_n(s)ds = P(\text{A new edge appears in} \enspace [s, s+ds] \cond \Zn{u}, \enspace u \leq s).
 	\end{equation}	
 	\todo{Make text in P() not cursive?}
@@ -31,7 +31,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\todo{Proof that Mn is cadlaq.}	
 \end{note}
 \begin{proof} \label{proof decomp Zn}
-	We will prove that, for $A_n$ defined in \ref{def An} and \ref{def an},
+	We will prove that, for $A_n$ defined in \ref{D: An} and \ref{D: an},
 	$Z_n - A_n$
 	is a martingale by showing that
 	\begin{equation} \label{Mn martingale}
@@ -70,16 +70,16 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	This proves $M_n$ to be a martingale. 	
 \end{proof}
 
-\begin{lemma} \label{lemma decomp Mn}
+\begin{lemma} \label{L: decomp Mn}
 	The decomposition
 	\begin{equation} \label{decomp Mn}
 	M_n^2 = Q_n + B_n
 	\end{equation}
 	holds where $Q_n$ is a martingale and $B_n$ is defined by 
-	\begin{equation} \label{def An}
+	\begin{equation} \label{D: An}
 	\Bn{t} = \int_{0}^{t} a_n(s)ds = A_n(t) + t
 	\end{equation}
-	with $a_n$ defined in \ref{def an}.
+	with $a_n$ defined in \ref{D: an}.
 \end{lemma}
 \begin{note} \label{note decomp Mn}
 	$B_n$ is a continuous process.
@@ -89,7 +89,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	$M_n^2 - B_n$
 	is a martingale.
 	Since $M_n$ is a right-continuous process of bounded variation, its quadratic variation
-	\begin{equation*} \label{def quadratic variation}
+	\begin{equation*} \label{D: quadratic variation}
 	[M]_t := \limsup \sum (M_{t_i} - M_{t_{i-1}})^2
 	\end{equation*}
 	\todo{Add definition of quadratic variation.}
@@ -125,11 +125,11 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	&= (\text{Number of jumps of} \enspace Z_n \enspace \text{in} \enspace [0,t] - t) - \An{t} \\
 	&= \Zn{t} - \An{t}
 	\end{align*}
-	which is a martingale from Lemma \ref{lemma decomp Zn}.
+	which is a martingale from Lemma \ref{L: decomp Zn}.
 	
 \end{proof}
 
-\begin{lemma} \label{lemma formula an}
+\begin{lemma} \label{L: formula an}
 	For $a_n$ as in the Lemmas above,
 	\begin{equation}
 		\an{s} = (n - s - \Zeta{\ceil{s}} - \Zn{s}) \ps .
@@ -148,9 +148,9 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 We will now prove some asymptotic properties of the processes $A_n$, $B_n$ and $M_n$ with the goal of using the functional central limit theorem for martingales.
 \todo{Update text.}
 
-\begin{lemma} \label{lemma asymptotic An}
+\begin{lemma} \label{L: asymptotic An}
 	For $A_n$ defined as in the previous Lemmas and a fix $s_0 \geq 0$,
-	\begin{equation} \label{equ asymptotic An}
+	\begin{equation} \label{E: asymptotic An}
 	\n{-1}{3} \supns \left| \An{s} + n^{-1}\frac{s^2}{2} - \n{-1}{3}st \right| \rightarrow_p 0,
 	\end{equation}
 	where $t$ is the fixed probability parameter of the random graph.
@@ -176,7 +176,7 @@ We will now prove some asymptotic properties of the processes $A_n$, $B_n$ and $
 	&\quad - \left( \Zeta{\ceil{s}} + \Zn{s} \right) \left( n^{-1} + t\n{-4}{3} \right) -1 .
 	\end{align*}
 	Thus
-	\begin{equation} \label{equ (27)} 
+	\begin{equation} \label{E: (27)} 
 	\begin{aligned}
 	\left| \amn{s} - 1 + \frac{s}{n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}} \right|
 	&= \left| \frac{\Zeta{\ceil{s}} + \Zn{s}}{n} \left( 1 + \frac{t}{\n{1}{3}} \right) \right| \\
@@ -192,7 +192,7 @@ We will now prove some asymptotic properties of the processes $A_n$, $B_n$ and $
 	&= \int_{0}^{s} \amn{u} - 1 du + \frac{s^2}{2n} - \frac{st}{\n{1}{3}} + \frac{s^2t}{2\n{4}{3}} \\
 	&\xrightarrow{n \rightarrow \infty} \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}} + \frac{s^2t}{2\n{4}{3}},
 	\end{align*}
-	Using \ref{lemma zeta(i)}, the following inequalities hold for sufficiently large $n$:
+	Using \ref{L: zeta(i)}, the following inequalities hold for sufficiently large $n$:
 	\todo{Add reference to lemma.}
     \begin{align*}
     \left| \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}  + \frac{s^2t}{2\n{4}{3}}  \right| 
@@ -219,7 +219,7 @@ We will now prove some asymptotic properties of the processes $A_n$, $B_n$ and $
     &\leq 4 s_0 \n{-2}{3} \supns |\Zn{s}| \\
     &\longrightarrow_p 0 
     \end{align*}
-    will suffice to prove \ref{equ asymptotic An}.
+    will suffice to prove \ref{E: asymptotic An}.
     For that, we will prove the stronger result 
     \begin{equation}
     n^{-2/3} \sup_{s\leq n^{-1/3} s_0} |Z_n(s)| 
@@ -230,7 +230,7 @@ We will now prove some asymptotic properties of the processes $A_n$, $B_n$ and $
     there is a
     $ K > 0 $
     such that for $n$ sufficiently big 
-    \begin{equation} \label{equ stoch bounded}
+    \begin{equation} \label{E: stoch bounded}
     P\left( n^{-1/3} \sup_{s\leq n^{2/3} s_0} |Z_n(s)| > K \right) < \epsilon. 
     \end{equation}
     
@@ -246,7 +246,7 @@ We will now prove some asymptotic properties of the processes $A_n$, $B_n$ and $
     \end{align*}
     \todo{Define Tn, T*n nicer.}
     Thus 
-    \begin{equation} \label{equ stoch bounded 2}
+    \begin{equation} \label{E: stoch bounded 2}
     \begin{aligned}
     P( \sup_{s\leq n^{2/3} s_0} |Z_n(s)| > K \n{1}{3} ) &= P ( |Z_n(T_n)| > K\n{1}{3} ) \\
     &\leq \frac{\Exp{|Z_n(T_n)}}{K}
@@ -282,12 +282,12 @@ We will now prove some asymptotic properties of the processes $A_n$, $B_n$ and $
     $\frac{n p(n)}{1 - (s - \floor{s})p(n)} \rightarrow 1$
     as $n \rightarrow \infty$.
     We conclude
-    \begin{equation} \label{equ exp Mn}
+    \begin{equation} \label{E: exp Mn}
     \Exp{M_n(T_n)} \leq (2s_0)^{1/2}\n{1}{3}
     \end{equation}
     and move to $A_n$.
     
-    Using \ref{equ (27)} and \ref{lemma zeta(i)} we obtain
+    Using \ref{E: (27)} and \ref{L: zeta(i)} we obtain
     \begin{align*}
     \Exp{|\An{T_n}|} &\leq \Exp{\int_{0}^{T_n} |\an{s}-1|ds} \\
     &\leq \Exp{\int_{0}^{\n{2}{3}s_0} |\an{s}-1|ds} \\
@@ -307,31 +307,31 @@ We will now prove some asymptotic properties of the processes $A_n$, $B_n$ and $
     \todo{Fix BigO-Notation (Sapozhnikov?)}
     since, by definition of $T_n$, $|\Zn{T_n}| < K\n{1}{3}.$
     
-    This and \ref{equ exp Mn} lead to a bound for large $n$:
-    \begin{equation} \label{equ bound Zn}
+    This and \ref{E: exp Mn} lead to a bound for large $n$:
+    \begin{equation} \label{E: bound Zn}
     \Exp{|\Zn{T_n}|} \leq \alpha\n{1}{3} + 4s_0K,
     \end{equation}
     where $\alpha = \alpha(s_0,t)$ but not dependent on $n$ and $K$. 
-    Substituting $\Exp{|\Zn{T_n}|}$ in \ref{equ stoch bounded 2} we arrive at
+    Substituting $\Exp{|\Zn{T_n}|}$ in \ref{E: stoch bounded 2} we arrive at
     \begin{equation}
     P( \sup_{s\leq n^{2/3} s_0} |Z_n(s)| > K \n{1}{3} ) \leq \frac{\alpha}{K} + \frac{4s_0}{\n{1}{3}}
     \end{equation}
-    which proves \ref{equ stoch bounded}.
+    which proves \ref{E: stoch bounded}.
 \end{proof}
 
-\begin{lemma} \label{lemma asymptotic Bn}
+\begin{lemma} \label{L: asymptotic Bn}
 	For $B_n$ defined as in the previous Lemmas and a fix $s_0 \geq 0$,
-	\begin{equation} \label{equ asymptotic Bn}
+	\begin{equation} \label{E: asymptotic Bn}
 	\n{-2}{3} \Bn{\n{2}{3}s_0} \rightarrow_p s_0.
 	\end{equation}
 \end{lemma}
 \begin{proof} \label{proof asymptotic Bn}
-	From its definition in Lemma \ref{lemma decomp Mn}, $\Bn{s} = \An{s} + s$, which allows us to rewrite \ref{equ asymptotic Bn} as
-	\begin{equation} \label{equ asymptotic Bn An}
+	From its definition in Lemma \ref{L: decomp Mn}, $\Bn{s} = \An{s} + s$, which allows us to rewrite \ref{E: asymptotic Bn} as
+	\begin{equation} \label{E: asymptotic Bn An}
 	\n{-2}{3} \An{\n{-2}{3}s_0} \rightarrow_p 0.
 	\end{equation}
 	We will show that
-	\begin{equation} \label{equ asymptotic Bn An + c}
+	\begin{equation} \label{E: asymptotic Bn An + c}
 	\n{-1}{3} \An{\n{-2}{3}s_0} + \frac{1}{2}s_0^2 - s_0t \longrightarrow_p 0,
 	\end{equation}
 	where again $t$ denotes the probability parameter. 
@@ -340,7 +340,7 @@ We will now prove some asymptotic properties of the processes $A_n$, $B_n$ and $
 	\begin{equation*}
 	\n{-1}{3} \left( \n{-1}{3} \An{\n{-2}{3}s_0} + \frac{1}{2}s_0^2 - s_0t \right) \longrightarrow_p 0
 	\end{equation*}
-	which, since $\frac{1}{2}s_0^2 - s_0t$ is a constant in $n$, proves \ref{equ asymptotic Bn An}.
+	which, since $\frac{1}{2}s_0^2 - s_0t$ is a constant in $n$, proves \ref{E: asymptotic Bn An}.
 	
 	Let the function $\phi$ be defined by $\phi(s) = \frac{1}{2}\n{-4}{3}s^2 - \n{-2}{3}st$.	
 	Now $\phi(\n{2}{3}s_0) = \frac{1}{2}s_0^2 - s_0t$ and
@@ -351,7 +351,7 @@ We will now prove some asymptotic properties of the processes $A_n$, $B_n$ and $
 	&= \n{-1}{3} \supns \left| \An{s} + n^{-1}\frac{s^2}{2} - \n{-1}{3}st \right| \\
 	&\longrightarrow_p 0,
 	\end{align*}
-	as $n \rightarrow \infty$ from Lemma \ref{lemma asymptotic An}. This gives \ref{equ asymptotic Bn An + c} and completes the proof.
+	as $n \rightarrow \infty$ from Lemma \ref{L: asymptotic An}. This gives \ref{E: asymptotic Bn An + c} and completes the proof.
 \end{proof}
 
 
