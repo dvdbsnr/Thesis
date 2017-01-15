@@ -18,6 +18,19 @@
 \usepackage{xcolor}
 %\usepackage{showkeys}
 
+% PGFPlot and TikZ.
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{positioning,intersections,calc}
+
+% Definition of node styles.
+\tikzset{
+	plain/.style={draw,circle, fill=white},
+	explored/.style = {circle, fill=gray, draw=black, very thick},
+	discovered/.style = {circle, draw=black},
+	neutral/.style = {circle, draw=black, minimum width=0.5em, minimum height=0.5em}
+}
+
 
 % Select style of todonotes.
 \usepackage[disable]{todonotes} % notes not showed
