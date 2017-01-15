@@ -1,0 +1,61 @@
+\begin{tikzpicture}[level distance = 30mm, scale = 0.5]
+	\tikzstyle{level 1}=[sibling distance=24mm]
+	\tikzstyle{level 2}=[sibling distance=16mm]
+	\tikzstyle{level 3}=[sibling distance=16mm]
+	
+	\node [plain] (1) {1} [grow=up]
+	child { node [plain] {3}
+		child { node [plain] {5}
+		}
+		child { node [plain] {4}
+		}
+	}
+	child { node [plain] {2}
+	}
+	;
+	\node [plain] [right=2.5cm of 1] (6) {6} [grow=up]
+	child { node [plain] {9}
+		child { node [plain] {13}
+		}
+		child { node [plain] {12}
+		}
+		child { node [plain] {11}
+		}
+	}
+	child { node [plain] (8) {8}
+	}
+	child { node [plain] {7}
+		child { node [plain] (10) {10}
+		}
+	}
+	;
+	\node [plain] [right=2cm of 6] (14) {14} [grow=up]
+	child { node [plain] {15}
+	}
+	;
+	\node [plain] [right=1cm of 14] (16) {16} [grow=up]
+	child { node [plain] {18}
+	}
+	child { node [plain] {17}
+	}
+	;
+	\node [plain] [right=1cm of 16] (19) {19}
+	;
+	\node [plain] [right=1cm of 19] (20) {20} [grow=up]
+	child { node [plain] {22}
+	}
+	child { node [plain] {21}
+		child { node [plain] {23}
+			child { node [plain] {27}
+			}
+			child { node [plain] {26}
+			}
+			child { node [plain] {25}
+			}
+			child { node [plain] {24}
+			}
+		}
+	}
+	;
+	\draw [dashed] (10) -- (8);
+\end{tikzpicture}
