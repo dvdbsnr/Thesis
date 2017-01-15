@@ -1,4 +1,5 @@
 \begin{tikzpicture}
+
 \begin{axis}[
 axis x line=bottom,
 axis y line=left,
@@ -10,7 +11,9 @@ xmax=28,
 ymax = 2,
 ymin  = -7,
 xlabel={$i$},
+x label style = {at={(axis description cs:1.04,0.785)},anchor=east},
 ylabel={$Z_n(i)$},
+y label style = {at={(axis description cs:0,1.11)},anchor=north},
 xtick={5,10,15,20,25},
 minor xtick = {1,...,27},
 ytick={-6,...,1},
