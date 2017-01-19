@@ -22,7 +22,12 @@
 % Subfig, for figures.
 \usepackage{subfig}
 
-% PGFPlot and TikZ.
+% Select style of todonotes.
+\usepackage[disable]{todonotes} % notes not showed
+%\usepackage[draft]{todonotes}   % notes showed
+
+
+%%% PGFPlot and TikZ. %%%%
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usetikzlibrary{positioning,intersections,calc, fit}
@@ -32,13 +37,9 @@
 	plain/.style={draw,circle, fill=white},
 	explored/.style = {circle, fill=gray, draw=black, very thick},
 	discovered/.style = {circle, draw=black},
-	neutral/.style = {circle, draw=black, minimum width=0.5em, minimum height=0.5em}
+	neutral/.style = {circle, draw=black, minimum width=0.8em, inner sep=0},
+	neutrallegend/.style = {circle, draw=black, minimum width=0.5em, inner sep=0}
 }
-
-
-% Select style of todonotes.
-\usepackage[disable]{todonotes} % notes not showed
-%\usepackage[draft]{todonotes}   % notes showed
 
 
 

@@ -1,4 +1,4 @@
-\begin{tikzpicture}[level distance = 25mm, scale = 1]
+\begin{tikzpicture}[level distance = 25mm]
 % GRAPH
 \tikzstyle{level 1}=[sibling distance=22mm]
 \tikzstyle{level 2}=[sibling distance=9mm]
@@ -34,8 +34,9 @@
 \node[anchor=west](Legend-E-Text) at (10,2.5){Explored}; 
 \node [discovered, anchor=east](Legend-D-Node) at (10,1.5){};  
 \node[anchor=west](Legend-D-Text) at (10,1.5){Discovered}; 
-\node [neutral, anchor=east](Legend-N-Node) at (10,0.5){};  
+\node [neutrallegend, anchor=east](Legend-N-Node) at (9.9,0.5){};  
 \node[anchor=west](Legend-N-Text) at (10,0.5){Neutral}; 
+\todo{Fix node sizes}
 % LEGEND LINES
 \draw (9.6,-1) -- (10.05,-1); 
 \node[anchor=west](Legend-F-Text) at (10,-1){Edge found}; 
