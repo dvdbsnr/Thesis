@@ -1,0 +1,148 @@
+\include{preamble_notes}
+
+
+\begin{document}
+\begin{lemma}
+Let $f:[0, \infty) \rightarrow \Real$ be a continuous function. 
+Let $\Sigma$ be the set of non-empty intervals 
+$e=(l,r) \subset \Real$
+such that
+\begin{equation} \label{E: cond 1}
+f(r) = f(l) = \min_{s \leq l} f(s),
+\end{equation}
+\begin{equation} \label{E: cond 2}
+f(l) < f(s) \quad \forall l < s < r.
+\end{equation}
+Define $\Xi := \lbrace (l, r-l) | (l, r) \in \Sigma \rbrace$.
+
+Suppose that for intervals $e_1, e_2 \in \Sigma$ we have 
+\begin{equation}
+f(l_1) > f(l_2)
+\end{equation}
+and the complement of $\cup_{e \in \Sigma} (l,r)$ has Lebesgue measure zero.
+
+Let $f_n \rightarrow f$ as $n \rightarrow \infty$ uniformly on bounded intervals.
+Suppose $(\tn{i}, i \geq 1)$ satisfy the following conditions:
+\begin{align}
+&0 = \tn{1} < \tn{2} < ... \; \text{and} \; \lim_{i \rightarrow \infty} \tn{i} = \infty, \label{E: cond 3} \\ 
+&f_n(\tn{i}) = \min_{u \leq \tn{i}}f_n(u), \label{E: cond 4} \\ 
+&\max_{i: \tn{i} \leq s_0}(f_n(\tn{i}) - f_n(\tn{i+1})) \rightarrow 0 \; \text{as} \; n \rightarrow \infty, \; \text{for all} \; s_0 \leq \infty. \label{E: cond 5}
+\end{align}
+Define $\Xin := \lbrace (\tn{i}, \tn{i+1} - \tn{i}) | i \geq 1 \rbrace$.
+Then $\Xin \rightarrow \Xi$ as $n \rightarrow \infty$.
+\end{lemma}
+
+
+\begin{proof}
+We need to proof that
+\begin{equation}
+\begin{aligned}
+\lim_{n \rightarrow \infty} \Xin 
+&:= \lbrace x \in \Real^2 | \lim_{n \rightarrow \infty} \mathbbm{1}_{\Xin}(x) = 1 \rbrace \\ 
+&= \Xi.
+\end{aligned}
+\end{equation}
+\begin{description} %TWO PARTS
+% FIRST PART
+\item[First: $\lim_{n \rightarrow \infty} \Xin \supseteq \Xi$.] 
+Let $(l, r-l) \in \Xi$ and thus $(l, r) \in \Sigma$.
+We show that $(l,r)$ satisfy conditions \ref{E: cond 3} to \ref{E: cond 5} for all $n$ greater than some $N_0 \in \Nat$.
+
+\begin{description} % CONDITIONS 1-3
+	\item[\ref{E: cond 3}:] 
+Since the interval is non-empty, $l < r$ 
+and, since the complement of $\cup_{e \in \Sigma} (l,r)$ has Lebesgue measure zero,
+for all $K \in \Real$ there is $(l,r) \in \Sigma$ such that $r > K$.
+	\item[\ref{E: cond 4}:]
+Let $x < l$. Thus $f(x) \geq f(l)$. 
+Suppose $\forall N_0 \; \exists n \geq N_0$ such that
+$f_n(x) < f_n(l)$.
+Then $f_n(x) \nrightarrow f(x)$, 
+which is a contradiction to the uniform convergence.
+Thus $\exists N_0$ such that $\forall n \geq N_0$: 
+$f_n(x) \geq f_n(l)$, so
+$f_n(l) = \min_{u \leq l}f_n(u)$.
+	\item[\ref{E: cond 5}:]
+Define $M:=\lbrace x \in \Real | x=l \; \text{or} \; x=r \; \text{for some} \; (l,r) \in \Sigma \rbrace$.
+We will show that $\exists N_0$ such that $\forall n \geq N_0$:
+\begin{equation*}
+\max_{x_i, \xip \in M, x_i, \xip \leq s_0} (f_n(x_i) - f_n(\xip)) \rightarrow 0
+\end{equation*}
+when $M$ is ordered by size and $x_i, \xip \leq s_0$ are two consecutive elements.
+Since $f_n \rightarrow f$ uniformly on bounded intervals, 
+$|f_n(x) - f(x)| < \epsilon$ for all $x \leq s_0$ and $n \geq N_0$.
+So for $x_i, \xip \leq s_0$:
+\begin{equation}
+\begin{aligned}
+f_n(x_i) - f_n(\xip) 
+&\leq f(x_i) + |f_n(x_i) - f(x_i)| \\
+&\quad - f(\xip) + |f_n(\xip) -f(\xip)| \\
+&\leq f(x_i) - f(\xip) + 2\epsilon.
+\end{aligned} 
+\end{equation}
+Now $f(x_i) - f(\xip) = 0$ for both $x_i = l$, $\xip = r$ 
+and $x_i = r_1$, $\xip = l_2$. 
+The former since $f(l) = f(r)$ for $(l,r) \in \Sigma$,
+the latter since $\mu \left(\cup_{e \in \Sigma} (l,r)\right) = 0$
+thus $\mu \left( (r_1, l_2) \right) = 0$.
+
+So $f_n(x_i) - f_n(\xip) \rightarrow 0$ for all $x_i, \xip$ and thus 
+\begin{equation*}
+\max_{x_i, \xip \in M, x_i, \xip \leq s_0} (f_n(x_i) - f_n(\xip)) \rightarrow 0.
+\end{equation*}
+\end{description} % CONDITIONS 1-3
+Now $l$ and $r$ are elements of $(\tn{i}, i \geq 1) =: S_n$ for all sufficiently large $n$.
+We show that there can be no other element between them, 
+so $(l, r-l) = (\tn{i}, \tn{i+1} - \tn{i}) \in \Xin$.
+Suppose there exists $t \in S_n$ such that $l < t < r$.
+For \ref{E: cond 2} $f(t) > f(l) = f(r)$, so
+\begin{equation*}
+f_n(t) > f_n(l) >= \min_{u \leq l} f_n(u) >= \min_{u \leq t} f_n(u)
+\end{equation*}
+for sufficiently large $n$. So $t$ can not be an element of $S_n$.
+
+% SECOND PART
+\item[Second: $\lim_{n \rightarrow \infty} \Xin \subseteq \Xi$.]
+Let $(t_i, \tip - t_i) \in \Xin$ and $(t_i, \tip) \in S_n$
+for all $n$ greater than some $N_0$.
+We will show that
+\begin{equation}
+(t_i, \tip ) = (l,r),
+\end{equation}
+for some $(l,r) \in \Sigma$,
+by proving that $(t_i, \tip)$ satisfies conditions \ref{E: cond 1} and \ref{E: cond 2}.
+
+
+\begin{description} % CONDITIONS 1 & 2
+	\item[\ref{E: cond 1}:]
+\begin{equation}
+\begin{aligned}
+f(t_i) - f(\tip) 
+&\leq f_n(t_i) + |f(t_i) - f_n(t_i)| \\
+&\quad- f_n(\tip) + |f(\tip) - f_n(\tip)| \\
+&\leq f_n(t_i) - f_n(\tip) + 2\epsilon \\
+&\leq 3\epsilon,
+\end{aligned}
+\end{equation}
+by the uniform convergence $f_n \rightarrow f$ and condition \ref{E: cond 5}.
+So
+\begin{equation}
+f(t_i) = f(\tip).
+\end{equation}
+
+	\item[\ref{E: cond 2}:]
+Suppose there exists $t_i < s < \tip$ such that
+$f(s) < f(t_i)$
+then
+\begin{equation*}
+f_n(\tip) = f_n(t_i) > f_n(s) \geq \min_{u \leq \tip}f_n(u),
+\end{equation*}
+for sufficiently large $n$, which is a contradiction to \ref{E: cond 4}.
+
+Suppose $f(s) = f(t_i)$. Then $s \in S_n$ for all $n \geq N_0$.
+But since $t_i < s < \tip$ now $(t_i, \tip - t_i) \notin \Xin$,
+since only $(t_i, s - t_i)$ and $(s, \tip - s)$ are elements of $\Xin$.
+\end{description} % CONDITIONS 1 & 2
+\end{description} % TWO PARTS
+\end{proof}
+\end{document}
