@@ -55,7 +55,7 @@ We need to proof that
 % FIRST PART
 \item[$\lim_{n \rightarrow \infty} \Xin \supseteq \Xi$:] 
 Let $(l, r-l) \in \Xi$ and thus $(l, r) \in \mathcal{E}$.
-We show that $(l,r)$ satisfy conditions \eqref{E: cond 3} to \eqref{E: cond 5} for all $n$ greater than some $N_0 \in \Nat$.
+We show that $(l,r)$ satisfies conditions \eqref{E: cond 3} to \eqref{E: cond 5} for all $n$ greater than some $N_0 \in \Nat$.
 
 \begin{description} % CONDITIONS 1-3
 	\item[\eqref{E: cond 3}:] 
@@ -67,7 +67,7 @@ since $f(0) = min_{u \leq 0}f(u)$
 and otherwise there would be an $l>0$ such that $f$ is decreasing monotonically on $[0,l]$,
 which is a contradiction to \eqref{E: complement zero}.
 	\item[\eqref{E: cond 4}:]
-Let $x < l$. Thus $f(x) \geq f(l)$. 
+Let $x < l$. Thus $f(x) \geq f(l)$ by \ref{E: cond 1}. 
 Suppose $\forall N_0 \; \exists n \geq N_0$ such that
 $f_n(x) < f_n(l)$.
 Then $f_n(x) \nrightarrow f(x)$, 
@@ -99,7 +99,7 @@ The former since $f(l) = f(r)$ for $(l,r) \in \mathcal{E}$,
 the latter since $\mu \left(\cup_{e \in \mathcal{E}} (l,r)\right) = 0$
 thus $\mu \left( (r_1, l_2) \right) = 0$.
 
-So $f_n(x_i) - f_n(\xip) \rightarrow 0$ for all $x_i, \xip$ and thus 
+So $f_n(x_i) - f_n(\xip) \rightarrow 0$ for all $x_i, \xip$ which implies 
 \begin{equation*}
 \max_{\substack{x_i, \xip \in M, \\ x_i, \xip \leq s_0}} (f_n(x_i) - f_n(\xip)) \rightarrow 0.
 \end{equation*}
@@ -108,9 +108,9 @@ Now $l$ and $r$ are elements of $(\tn{i}, i \geq 1) =: S_n$ for all sufficiently
 We show that there can be no other element between them, 
 so $(l, r-l) = (\tn{i}, \tn{i+1} - \tn{i}) \in \Xin$.
 Suppose there exists $t \in S_n$ such that $l < t < r$.
-For \eqref{E: cond 2} $f(t) > f(l) = f(r)$, so
+By \eqref{E: cond 2}, $f(t) > f(l) = f(r)$, so
 \begin{equation*}
-f_n(t) > f_n(l) >= \min_{u \leq l} f_n(u) >= \min_{u \leq t} f_n(u)
+f_n(t) > f_n(l) = \min_{u \leq l} f_n(u) >= \min_{u \leq t} f_n(u)
 \end{equation*}
 for sufficiently large $n$. So $t$ can not be an element of $S_n$.
 
