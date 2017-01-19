@@ -5,7 +5,7 @@
 \begin{lemma}
 Let $f:[0, \infty) \rightarrow \Real$ be a continuous function. 
 Let $\Sigma$ be the set of non-empty intervals 
-$e=(l,r) \subset \Real$
+$e=(l,r) \subset \Real_{\geq 0}$
 such that
 \begin{equation} \label{E: cond 1}
 f(r) = f(l) = \min_{s \leq l} f(s),
@@ -16,10 +16,13 @@ f(l) < f(s) \quad \forall l < s < r.
 Define $\Xi := \lbrace (l, r-l) | (l, r) \in \Sigma \rbrace$.
 
 Suppose that for intervals $e_1, e_2 \in \Sigma$ we have 
-\begin{equation}
+\begin{equation} \label{E: f(l1) > f(l2)}
 f(l_1) > f(l_2)
 \end{equation}
-and the complement of $\cup_{e \in \Sigma} (l,r)$ has Lebesgue measure zero.
+and the complement of $\cup_{e \in \Sigma} (l,r)$ has Lebesgue measure zero,
+\begin{equation} \label{E: complement zero}
+\mu \left( \left( \cup_{e \in \Sigma} (l,r) \right)^c\right) = 0.
+\end{equation}
 
 Let $f_n \rightarrow f$ as $n \rightarrow \infty$ uniformly on bounded intervals.
 Suppose $(\tn{i}, i \geq 1)$ satisfy the following conditions:
@@ -46,14 +49,18 @@ We need to proof that
 % FIRST PART
 \item[First: $\lim_{n \rightarrow \infty} \Xin \supseteq \Xi$.] 
 Let $(l, r-l) \in \Xi$ and thus $(l, r) \in \Sigma$.
-We show that $(l,r)$ satisfy conditions \ref{E: cond 3} to \ref{E: cond 5} for all $n$ greater than some $N_0 \in \Nat$.
+We show that $(l,r)$ satisfy conditions \eqref{E: cond 3} to \eqref{E: cond 5} for all $n$ greater than some $N_0 \in \Nat$.
 
 \begin{description} % CONDITIONS 1-3
-	\item[\ref{E: cond 3}:] 
-Since the interval is non-empty, $l < r$ 
-and, since the complement of $\cup_{e \in \Sigma} (l,r)$ has Lebesgue measure zero,
+	\item[\eqref{E: cond 3}:] 
+Since the interval is non-empty, $l < r$ holds
+and, by conditions \eqref{E: complement zero},
 for all $K \in \Real$ there is $(l,r) \in \Sigma$ such that $r > K$.
-	\item[\ref{E: cond 4}:]
+The interval $(0,r)$ is an element of $\Sigma$ for some $r>0$, 
+since $f(0) = min_{u \leq 0}f(u)$
+and otherwise there would be an $l>0$ such that $f$ is decreasing monotonically on $[0,l]$,
+which is a contradiction to \eqref{E: complement zero}.
+	\item[\eqref{E: cond 4}:]
 Let $x < l$. Thus $f(x) \geq f(l)$. 
 Suppose $\forall N_0 \; \exists n \geq N_0$ such that
 $f_n(x) < f_n(l)$.
@@ -62,13 +69,13 @@ which is a contradiction to the uniform convergence.
 Thus $\exists N_0$ such that $\forall n \geq N_0$: 
 $f_n(x) \geq f_n(l)$, so
 $f_n(l) = \min_{u \leq l}f_n(u)$.
-	\item[\ref{E: cond 5}:]
+	\item[\eqref{E: cond 5}:]
 Define $M:=\lbrace x \in \Real | x=l \; \text{or} \; x=r \; \text{for some} \; (l,r) \in \Sigma \rbrace$.
 We will show that $\exists N_0$ such that $\forall n \geq N_0$:
 \begin{equation*}
-\max_{x_i, \xip \in M, x_i, \xip \leq s_0} (f_n(x_i) - f_n(\xip)) \rightarrow 0
+\max_{\substack{x_i, \xip \in M, \\ x_i, \xip \leq s_0}} (f_n(x_i) - f_n(\xip)) \rightarrow 0
 \end{equation*}
-when $M$ is ordered by size and $x_i, \xip \leq s_0$ are two consecutive elements.
+where $\xip$ is the smallest element in $M$ greater than $x_i$.
 Since $f_n \rightarrow f$ uniformly on bounded intervals, 
 $|f_n(x) - f(x)| < \epsilon$ for all $x \leq s_0$ and $n \geq N_0$.
 So for $x_i, \xip \leq s_0$:
@@ -88,14 +95,14 @@ thus $\mu \left( (r_1, l_2) \right) = 0$.
 
 So $f_n(x_i) - f_n(\xip) \rightarrow 0$ for all $x_i, \xip$ and thus 
 \begin{equation*}
-\max_{x_i, \xip \in M, x_i, \xip \leq s_0} (f_n(x_i) - f_n(\xip)) \rightarrow 0.
+\max_{\substack{x_i, \xip \in M, \\ x_i, \xip \leq s_0}} (f_n(x_i) - f_n(\xip)) \rightarrow 0.
 \end{equation*}
 \end{description} % CONDITIONS 1-3
 Now $l$ and $r$ are elements of $(\tn{i}, i \geq 1) =: S_n$ for all sufficiently large $n$.
 We show that there can be no other element between them, 
 so $(l, r-l) = (\tn{i}, \tn{i+1} - \tn{i}) \in \Xin$.
 Suppose there exists $t \in S_n$ such that $l < t < r$.
-For \ref{E: cond 2} $f(t) > f(l) = f(r)$, so
+For \eqref{E: cond 2} $f(t) > f(l) = f(r)$, so
 \begin{equation*}
 f_n(t) > f_n(l) >= \min_{u \leq l} f_n(u) >= \min_{u \leq t} f_n(u)
 \end{equation*}
@@ -110,11 +117,11 @@ We will show that
 (t_i, \tip ) = (l,r),
 \end{equation}
 for some $(l,r) \in \Sigma$,
-by proving that $(t_i, \tip)$ satisfies conditions \ref{E: cond 1} and \ref{E: cond 2}.
+by proving that $(t_i, \tip)$ satisfies conditions \eqref{E: cond 1} and \eqref{E: cond 2}.
 
 
 \begin{description} % CONDITIONS 1 & 2
-	\item[\ref{E: cond 1}:]
+	\item[\eqref{E: cond 1}:]
 \begin{equation}
 \begin{aligned}
 f(t_i) - f(\tip) 
@@ -124,20 +131,20 @@ f(t_i) - f(\tip)
 &\leq 3\epsilon,
 \end{aligned}
 \end{equation}
-by the uniform convergence $f_n \rightarrow f$ and condition \ref{E: cond 5}.
+by the uniform convergence $f_n \rightarrow f$ and condition \eqref{E: cond 5}.
 So
 \begin{equation}
 f(t_i) = f(\tip).
 \end{equation}
 
-	\item[\ref{E: cond 2}:]
+	\item[\eqref{E: cond 2}:]
 Suppose there exists $t_i < s < \tip$ such that
 $f(s) < f(t_i)$
 then
 \begin{equation*}
 f_n(\tip) = f_n(t_i) > f_n(s) \geq \min_{u \leq \tip}f_n(u),
 \end{equation*}
-for sufficiently large $n$, which is a contradiction to \ref{E: cond 4}.
+for sufficiently large $n$, which is a contradiction to \eqref{E: cond 4}.
 
 Suppose $f(s) = f(t_i)$. Then $s \in S_n$ for all $n \geq N_0$.
 But since $t_i < s < \tip$ now $(t_i, \tip - t_i) \notin \Xin$,
