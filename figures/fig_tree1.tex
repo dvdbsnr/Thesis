@@ -1,7 +1,7 @@
 \begin{tikzpicture}[level distance = 25mm, scale = 1]
 % GRAPH
 \tikzstyle{level 1}=[sibling distance=22mm]
-\tikzstyle{level 2}=[sibling distance=8mm]
+\tikzstyle{level 2}=[sibling distance=9mm]
 \tikzstyle{level 3}=[sibling distance=4mm]
 \node (A) [explored] {$v_1$} [grow=right]
 	child { node [discovered] {$v_4$}
@@ -42,5 +42,5 @@
 \draw [dotted] (9.6,-2) -- (10.05,-2); 
 \node[anchor=west](Legend-NF-Text) at (10,-2){Edge not yet found}; 
 % LEGEND BOX
-\node[draw,fit=(Legend-E-Node)(Legend-N-Text)(Legend-D-Text)(Legend-NF-Text)] {};
+\node[draw, fit=(Legend-E-Node)(Legend-N-Text)(Legend-D-Text)(Legend-NF-Text)] {};
 \end{tikzpicture}
