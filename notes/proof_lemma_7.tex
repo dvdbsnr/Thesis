@@ -26,11 +26,17 @@ and the complement of $\cup_{e \in \mathcal{E}} (l,r)$ has Lebesgue measure zero
 
 Let $f_n \rightarrow f$ as $n \rightarrow \infty$ uniformly on bounded intervals.
 Suppose $(\tn{i}, i \geq 1)$ satisfy the following conditions:
-\begin{align}
-&0 = \tn{1} < \tn{2} < ... \; \text{and} \; \lim_{i \rightarrow \infty} \tn{i} = \infty, \label{E: cond 3} \\ 
-&f_n(\tn{i}) = \min_{u \leq \tn{i}}f_n(u), \label{E: cond 4} \\ 
-&\max_{i: \tn{i} \leq s_0}(f_n(\tn{i}) - f_n(\tn{i+1})) \rightarrow 0 \; \text{as} \; n \rightarrow \infty, \; \text{for all} \; s_0 \leq \infty. \label{E: cond 5}
-\end{align}
+
+\begin{equation} \label{E: cond 3}
+0 = \tn{1} < \tn{2} < ... \; \text{and} \; \lim_{i \rightarrow \infty} \tn{i} = \infty,
+\end{equation}
+\begin{equation} \label{E: cond 4}
+f_n(\tn{i}) = \min_{u \leq \tn{i}}f_n(u), 
+\end{equation}
+\begin{equation} \label{E: cond 5}
+\max_{i: \tn{i} \leq s_0}(f_n(\tn{i}) - f_n(\tn{i+1})) \rightarrow 0 \; \text{as} \; n \rightarrow \infty, \; \text{for all} \; s_0 \leq \infty.
+\end{equation}
+
 Define $\Xin := \lbrace (\tn{i}, \tn{i+1} - \tn{i}) \; | \; i \geq 1 \rbrace$.
 Then $\Xin \rightarrow \Xi$ as $n \rightarrow \infty$.
 \end{lemma}
