@@ -1,0 +1,90 @@
+%%%% Commands %%%%
+% BigO notation
+\newcommand{\BigO}[1]
+	{O\left(#1\right)}
+\newcommand{\Smallo}[1]
+	{o\left(#1\right)}
+\newcommand{\OrderO}[1]
+	{\Theta \left(#1\right)}
+
+% n{1,3} -> n^{1/3}]
+\newcommand{\n}[2]
+	{n^{#1 / #2}}
+	
+% Zn -> Z_n()
+\newcommand{\Zn}[1]
+	{Z_n(#1)}
+% An -> A_n()
+\newcommand{\An}[1]
+	{A_n(#1)}
+% Bn -> B_n()
+\newcommand{\Bn}[1]
+	{B_n(#1)}
+% Mn -> M_n()
+\newcommand{\Mn}[1]
+	{M_n(#1)}
+% Quadratic variation of Mn: [Mn]t
+\newcommand{\Mnq}[1]
+	{[M_n]_{#1}}
+% an -> a_n()
+\newcommand{\an}[1]
+	{a_n(#1)}
+% amn -> a'_n() (a mark n)
+\newcommand{\amn}[1]
+	{a'_n(#1)}
+% Ft filtration
+\newcommand{\F}[1]
+	{\mathcal{F}_{#1}}
+% Ft filtration
+\newcommand{\Fn}[1]
+	{\mathcal{F}^n_{#1}}
+
+% Z, M, A, Q, B bar
+\newcommand{\Zbar}[1]
+    {\bar{Z}_n(#1)}
+\newcommand{\Abar}[1]
+    {\bar{A}_n(#1)}
+\newcommand{\Mbar}[1]
+    {\bar{M}_n(#1)}
+\newcommand{\Bbar}[1]
+    {\bar{B}_n(#1)}
+    
+
+% Zeta = C^-1_n()
+\newcommand{\Zeta}[1]
+	{\zeta^{-1}_n(#1)}
+	
+% E_s,ds, event of new edge
+\newcommand{\Esds}
+	{\mathcal{E}_{[s,s+ds]}	}
+% \ps = p(n)/(1-(s-s)p(n))
+\newcommand{\ps}
+	{\frac{p(n)}{1-(s-\floor{s})p(n)}}
+% \psx{x} = xp(n)/(1-(s-s)p(n))
+\newcommand{\psx}[1]
+	{\frac{#1 p(n)}{1-(s-\floor{s})p(n)}}
+	
+% \supns sup_{s<=n^2/3s0}
+\newcommand{\supns}
+	{\sup_{s \leq \n{2}{3} s_0 } }
+	
+% Condition in Expected Value, adds line and spaces.
+\newcommand{\cond}
+	{\: | \:}
+% Expected value, regular brackets
+\newcommand{\Exp}[1]
+	{\mathbb{E}[#1]}
+% Expected value, big fitted brackets
+\newcommand{\ExpBig}[1]
+	{\mathbb{E} \left[ #1 \right]}
+% Ceiling
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+% Floor
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+% Real numbers
+\newcommand{\Real}
+    {\mathbb{R}}
+% Natural numbers
+\newcommand{\Nat}
+    {\mathbb{N}}
