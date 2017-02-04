@@ -1,39 +1,156 @@
-% Chapter x
-% Contains the proof for Theorem 3 (Z -> W)
+% Chapter 2: The breadth-first walk
+% Contains:
+%   The definition of the breadth-first walk
+%   The continuous version
+%   The proof of Zn -> W
 
 \chapter{The breadth-first walk}
 \todo{Update title.}
 
-
 \section{The discrete breadth-first walk}
 \todo{Update title}
 
-\todo{Add all text.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We start by describing the deterministic construction of the breadth-first walk.
+\todo{More free from paper}
+Consider an arbitrary graph $\mathcal{G}$ on the set of vertices 
+$\{1, \dots , n\} $.
+We will define the breadth-first ordering
+$(v(1), \dots v(n))$
+of the vertices along with an integer-valued sequence
+$(z(i), \; 1 \leq i \leq n)$
+which we call the breadth-first walk on
+$\mathcal{G}$.
 
-\begin{figure}[ht]
-	\input{figures/fig_forest.tex}
-	\input{figures/fig_bf-walk.tex}
-	\caption{A breadth-first walk on a random graph}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of breadth-first order
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The breadth-first order follow an algorithmic construction as follows:
+Let $\Ci{1}, \Ci{2}, \dots$ be the components of $\mathcal{G}$ in order, such that
+$w_1, w_2, \dots$, the vertices with the smallest label in the corresponding component,
+are ordered $w_1 > w_2 > \dots$. 
+Call $w_i$ the root of $\Ci{i}$.
+Now order by levels (distance from the root) and within levels order by original vertex label.
+See Figure \ref{F: bf-walk} for an example of the new ordering.
+
+For a more mathematically concise definition,
+consider the set of vertices $\{ v(1),\dots, v(i) \}$
+and define the \emph{neighbour set} $\Ni{i}$ as the vertices outside of
+\todo{Add emphasis when needed}
+$\{ v(1),\dots, v(i) \}$ 
+that are neighbours to some vertex in 
+$\{ v(1),\dots, v(i) \}$:
+\begin{equation}
+\Ni{i} := 
+\left\lbrace v \in \{1, \dots, n\} \backslash \{ v(1),\dots, v(i) \} 
+\; | \; 
+\left(v(j), v\right) \in S \; \text{for some} \; 1 \leq j \leq i \right\rbrace
+\end{equation}
+\todo{Remove equation? Unnecessary?}
+\todo{Fix \text in braces: Space \; or \quad}
+This allows us to define the set of children of some vertex $v(i)$ as
+$\Ni{i} \backslash \Ni{i-1}$.
+First order the components as described above. 
+Now consider only the first component $\Ci{1}$.
+Define $v(1) := w_1$, the root of $\Ci{1}$ and define
+$v(2), \dots , v(1 + |\Ni{1}|)$ 
+as the neighbours of $v(1)$,
+in increasing order of vertex label. 
+Define the new label for all 
+$i = 2, \dots, |\Ci{1}|$,
+that is all vertices in the first component,
+inductively by listing all children (if any exist) of $v(i)$
+in increasing order as 
+$ v(i + |\Ni{i-1}|), \dots, v(i + |\Ni{i}|) $.
+After labeling the last vertex in $\Ci{1}$, set
+$v(|\Ci{1}| + 1) := w_2$, 
+the root of $\Ci{2}$, and continue the construction as above.
+Traverse all components this way.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definitions of breadth-first walk
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+For the number of children of $v(i)$ write 
+$c(i) = |\Ni{i} \backslash\Ni{i-1}|$.
+Now define the breadth-first walk 
+$(z(i), \; 1 \leq i \leq n)$
+by
+\begin{equation} \label{E: def bf-walk z+c}
+\begin{aligned}
+z(0) &:= 0, \\
+z(i) &:= z(i-1) + c(i) -1, \quad i=1, \dots , n.
+\end{aligned}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Explanation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+An explanation:
+\todo{Change this}
+The process divides the vertex-set into three parts: 
+Explored, discovered and neutral vertices. Every vertex starts as neutral.
+At step $1$, we traverse vertex $v(1)$ and mark it as explored.
+We search for neighbours of $v(1)$, and mark these as discovered.
+The next vertex to explore is the vertex already discovered with the smallest label,
+and each vertex switches from neutral to discovered once it gets assigned a new label.
+Once it's neighbours are explored, it switches to explored.
+\todo{This whole paragraph}
+Note that after traversing every vertex of one component, 
+there are no discovered vertices left.
+The walk $z$ decreases by $1$ for each vertex traversed
+and increases by the number of new neighbours explored in each step.
+
+
+\begin{figure}[H]
 	\label{F: bf-walk}
-\end{figure}
-
-\section{The continous breadth-first walk}
-
-
-\begin{figure}%
+	
 	\centering
-	\subfloat[$W(s)$]{\input{figures/fig_bm.tex}}%
-	\quad
-	\subfloat[$W^{t_1}(s)$]{\input{figures/fig_bm_drift_pos.tex}}%
-	\quad
-	\subfloat[$B^{t_1}(s)$]{\input{figures/fig_bm_drift_ref_pos.tex}}%
-	\quad
-	\subfloat[$W^{t_2}(s)$]{\input{figures/fig_bm_drift_neg.tex}}%
-	\quad
-	\subfloat[$B^{t_2}(s)$]{\input{figures/fig_bm_drift_ref_neg.tex}}%
-	\caption{A sample Brownian motion, Brownian motion with drift and with reflection for $t_1>0$ and $t_2<0$.}%
-	\label{F: BM}%
-\end{figure}
+	\subfloat[Original vertex labels]
+	{\input{figures/fig_forest_oldlabels.tex}}\\
+	
+	\centering
+	\subfloat[New vertex labels]
+	{\input{figures/fig_forest_newlabels.tex}}\\
+	
+	\centering
+	\subfloat[Resulting breadth-first walk]
+	{\input{figures/fig_bf-walk.tex}}
+	
+	\caption{A breadth-first walk on a random graph}
+\end{figure} 
+\todo{Fix random walk: Error around node 9!}
+\todo{Fix centering of figure captions}
+\todo{Add lines indicating end of components in fig_bf-walk}
+\todo{Add more vertex labels in original ordering?}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Equivalent definition
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We write
+\begin{align}
+\zeta(j) &:= |\Ci{1}| + \dots + |\Ci{j}|, \label{E: zeta}\\ 
+\zeta^{-1}(i) &:= \min{j \; | \; \zeta(j) \geq i }, \label{E: zeta-1}
+\end{align}
+for the index of the last vertex in the $j$-th component (that's \eqref{E: zeta})
+and \eqref{E: zeta-1}, the index of the component containing $v(i)$.
+\todo{This sentence is a test for labeling of align-equs. Fix!}
+Now we can provide a definition of the breadth-first walk equivalent to \eqref{E: def bf-walk z+c}:
+\begin{equation}  \label{E: def bf-walk N+zeta}
+\begin{aligned}
+z(0) &:= 0, \\
+z(i) &:= |\Ni{i}| - \zeta^{-1}(i), \quad i=1, \dots , n.
+\end{aligned}
+\end{equation}
+
+
+
+\section{The continuous breadth-first walk}
+
+
 
 \section{Decompositions of $Z_n$}
 \todo{Update title}
@@ -477,7 +594,7 @@ We are now ready to prove Theorem \ref{T: convergence Zn}.
 
 
 
-
+\listoftodos
 
 
 
