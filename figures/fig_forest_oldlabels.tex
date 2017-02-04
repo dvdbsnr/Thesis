@@ -1,0 +1,61 @@
+\begin{tikzpicture}[level distance = 11mm, scale = 1]
+	\tikzstyle{level 1}=[sibling distance=8mm]
+	\tikzstyle{level 2}=[sibling distance=8mm]
+	\tikzstyle{level 3}=[sibling distance=8mm]
+	
+	\node [plain] (1) {1} [grow=up]
+	child { node [plain] {\phantom{0}}
+		child { node [plain] {\phantom{0}}
+		}
+		child { node [plain] {\phantom{0}}
+		}
+	}
+	child { node [plain] {\phantom{0}}
+	}
+	;
+	\node [plain] [right=2.5cm of 1] (6) {2} [grow=up]
+	child { node [plain] {\phantom{0}}
+		child { node [plain] {6}
+		}
+		child { node [plain] {\phantom{0}}
+		}
+		child { node [plain] {\phantom{0}}
+		}
+	}
+	child { node [plain] (8) {\phantom{0}}
+	}
+	child { node [plain] {\phantom{0}}
+		child { node [plain] (10) {\phantom{0}}
+		}
+	}
+	;
+	\node [plain] [right=2cm of 6] (14) {3} [grow=up]
+	child { node [plain] {\phantom{0}}
+	}
+	;
+	\node [plain] [right=1cm of 14] (16) {4} [grow=up]
+	child { node [plain] {\phantom{0}}
+	}
+	child { node [plain] {\phantom{0}}
+	}
+	;
+	\node [plain] [right=1cm of 16] (19) {5}
+	;
+	\node [plain] [right=1cm of 19] (20) {7} [grow=up]
+	child { node [plain] {\phantom{0}}
+	}
+	child { node [plain] {\phantom{0}}
+		child { node [plain] {\phantom{0}}
+			child { node [plain] {\phantom{0}}
+			}
+			child { node [plain] {\phantom{0}}
+			}
+			child { node [plain] {\phantom{0}}
+			}
+			child { node [plain] {\phantom{0}}
+			}
+		}
+	}
+	;
+	\draw (10) -- (8);
+\end{tikzpicture}
