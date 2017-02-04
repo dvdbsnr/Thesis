@@ -1,5 +1,13 @@
-% Chapter x
-% Contains an introduction to the random graph model.
+% Chapter 1: Introduction
+% Contains:
+%   An introduction to random graph theory
+%   Basic results on the size of random graph components
+%   Basic results on the critical window
+%   The main theorem:
+%      Motivation
+%      The Brownian motion
+%      Complete statement
+%   Overview of coming proof
 
 \chapter{Introduction}
 \todo{Update title.}
@@ -7,6 +15,50 @@
 A brief introduction.
 \lipsum[100]
 
-\lipsum[100]
+\section{Definitions}
 
-\lipsum[100]
+\section{General results on component sizes}
+
+\section{Main statements of this thesis}
+
+\begin{figure}%
+	\centering
+	\subfloat[$W(s)$]{\input{figures/fig_bm.tex}}%
+	\quad
+	\subfloat[$W^{t_1}(s)$]{\input{figures/fig_bm_drift_pos.tex}}%
+	\quad
+	\subfloat[$B^{t_1}(s)$]{\input{figures/fig_bm_drift_ref_pos.tex}}%
+	\quad
+	\subfloat[$W^{t_2}(s)$]{\input{figures/fig_bm_drift_neg.tex}}%
+	\quad
+	\subfloat[$B^{t_2}(s)$]{\input{figures/fig_bm_drift_ref_neg.tex}}%
+	\caption{A sample Brownian motion, Brownian motion with drift and with reflection for $t_1>0$ and $t_2<0$.}%
+	\label{F: BM}%
+\end{figure}
+
+We will now state the main theorem of this thesis, which we will prove gradually in the following chapters.
+\begin{theorem}[Main theorem]
+	Let 
+	$\Cnt(1) \geq \Cnt(2) \geq ... $ 
+	be the ordered component sizes of 
+	$\Gcal \in \Gnt$
+	and let
+	$\sigmant(j)$ 
+	be the surplus of the corresponding component.
+	Then, as $n \longrightarrow \infty$,
+	\begin{equation}
+	( \n{-2}{3} ( \Cnt(j), \sigmant(j) ), \; j \geq 1 ) 
+	\longrightarrow_p
+	( (\Ct(j), \sigmat), \; j \geq 1 )
+	= ( \Ctbold, \sigmatbold ),
+	\end{equation}
+	where the convergence 
+	$\n{-2}{3} \Cntbold \rightarrow_p \Ctbold$
+	holds with respect to the $\ld$ topology.
+	
+	The limit
+	$\left( ( \Ct(j), \sigmat(j) ), \; j \geq 1 \right)$
+	is distributed as the sequence
+	$ \left( (|\gamma_j|, \mu(\gamma_j)), j \geq 1  \right) $
+	of lengths and mark-counts of excursions of $\mathcal{B}^t$.
+\end{theorem}
