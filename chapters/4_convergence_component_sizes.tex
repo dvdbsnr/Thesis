@@ -2,6 +2,7 @@
 % Contains:
 %   Explanation on what's still missing
 %   The deterministic lemma (Lemma 7)
+%   Girsanov Theorem
 %   Applying Lemma 7 (Lemma 8)
 %   Graph theory approach:
 %     Lemma 9
@@ -64,6 +65,33 @@
 \begin{proof}
 	This is the proof of Lemma \ref{L: Deterministic Lemma}. 
 \end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Girsanov Theorem
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We state the theorem as in \cite[Theorem 5.2.3]{Shreve2004}
+\begin{theorem}[Girsanov] \label{T: Girsanov}
+	Let $W(t), 0 \leq t \leq T$, be a Brownian motion on a probability space
+	$(\Omega, \mathcal{F}, \mathbb{P})$.
+	Define
+	\begin{align}
+		\tilde{W}(t) &:= W(t) + \int_0^t \Theta(u)du, \\
+		Z(t) &:= \exp \left\{ -\int_{0}^{t} \Theta(u) dW(u) - \frac{1}{2} \int_0^t \Theta^2(u)du \right\}.
+	\end{align}
+	Assume that
+	\begin{equation}
+		\ExpBig{ \int_{0}^{T} \Theta^2(u) Z^2(u)du  } < \infty.
+	\end{equation}
+	Then $\Exp{Z(T)} = 1$ and $\mathbb{Q}$, defined by
+	\begin{equation}
+		\mathbb{Q}(A) := \int_A Z(\omega) d\mathbb{P}(\omega), \; \text{for all} \; A \in \mathcal{F},
+	\end{equation}
+	is a probability measure under which the process 
+	$\tilde{W}(t)$, $0 \leq t \leq T$, 
+	is a standard Brownian motion.
+\end{theorem}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
