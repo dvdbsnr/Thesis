@@ -89,6 +89,29 @@ Let $\Ci{n,i}$ be the size of the $i$-th component.
 \end{lemma}
 \todo{Try not to repeat the same sentence twice here.}
 \begin{proof}
+	By the definition of $\Bt$, 
+	$\Xi$ is the $\Xi$ in Lemma \ref{L: Deterministic Lemma} with $f = \Wt$.
+	Taking $f_n$ to be $\bar{Z}_n$ and defining $\tn{i} = \n{-2}{3} \gamma(n,i)$,
+	$\Xin$ is the $\Xin$ in Lemma \ref{L: Deterministic Lemma}.
+	
+	By Theorem \ref{T: Z -> W} we know $\bar{Z}_n \rightarrow_d \Wt$.
+	\todo{Add this Theorem}
+	By the Skorohod representation theorem,
+	see \cite{Billingsley2009}, 
+	\todo{Add reference.}
+	\todo{Explain Skorohod.}
+	we know there exist a probability space $(\Omega, F, P)$ such that
+	\todo{Add real probability space.}
+	$\bar{Z}_n \rightarrow_{a.s} \Wt$ on $(\Omega, F, P)$.
+	By Egorov's theorem, \cite{Someting},
+	\todo{Add citation}
+	$\bar{Z}_n$ converges to $\Wt$ uniformly on bounded intervals .
+	\todo{Is that true? Ask Sapoznikov}
+	We still need to show that conditions \eqref{E: f cond 1} to \eqref{E: f cond complement zero} hold for $\Wt$
+	and conditions \eqref{E: fn cond 3} to \eqref{E: fn cond 5} hold for the breadth-first walk.
+	
+	
+	
 \end{proof}
 
 
