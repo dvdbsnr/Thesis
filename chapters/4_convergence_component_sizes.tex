@@ -14,6 +14,99 @@
 \chapter{Convergence of component sizes}
 \todo{Update title.}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% What's still missing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deterministic Lemma 7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{lemma} \label{L: Deterministic Lemma}
+	Let $f:[0, \infty) \rightarrow \Real$ be a continuous function. 
+	Let $\mathcal{E}$ be the set of non-empty intervals 
+	$e=(l,r) \subset \Real_{\geq 0}$
+	such that
+	\begin{equation} \label{E: f cond 1}
+	f(r) = f(l) = \min_{s \leq l} f(s),
+	\end{equation}
+	\begin{equation} \label{E: f cond 2}
+	f(l) < f(s) \quad \forall l < s < r.
+	\end{equation}
+	Define $\Xi := \lbrace (l, r-l) \; | \; (l, r) \in \mathcal{E} \rbrace$.
+	
+	Suppose that for intervals $e_1, e_2 \in \mathcal{E}$ we have 
+	\begin{equation} \label{E: f cond f(l1) > f(l2)}
+	f(l_1) > f(l_2)
+	\end{equation}
+	and the complement of $\cup_{e \in \mathcal{E}} (l,r)$ has Lebesgue measure zero,
+	\begin{equation} \label{E: f cond complement zero}
+	\mu \left( \left( \cup_{e \in \mathcal{E}} (l,r) \right)^c\right) = 0.
+	\end{equation}
+	
+	Let $f_n \rightarrow f$ as $n \rightarrow \infty$ uniformly on bounded intervals.
+	Suppose $(\tn{i}, i \geq 1)$ satisfy the following conditions:
+	
+	\begin{equation} \label{E: fn cond 3}
+	0 = \tn{1} < \tn{2} < ... \; \text{and} \; \lim_{i \rightarrow \infty} \tn{i} = \infty,
+	\end{equation}
+	\begin{equation} \label{E: fn cond 4}
+	f_n(\tn{i}) = \min_{u \leq \tn{i}}f_n(u), 
+	\end{equation}
+	\begin{equation} \label{E: fn cond 5}
+	\max_{i: \tn{i} \leq s_0}(f_n(\tn{i}) - f_n(\tn{i+1})) \rightarrow 0 \; \text{as} \; n \rightarrow \infty, \; \text{for all} \; s_0 \leq \infty.
+	\end{equation}
+	
+	Define $\Xin := \lbrace (\tn{i}, \tn{i+1} - \tn{i}) \; | \; i \geq 1 \rbrace$.
+	Then $\Xin \rightarrow \Xi$ as $n \rightarrow \infty$.
+\end{lemma}
+\todo{Conditions in Lemma -> Ask Sapozhnikov}
+\begin{proof}
+	This is the proof of Lemma \ref{L: Deterministic Lemma}. 
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma 8: Applying Lemma 7 to Wt and Z_n
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The following Lemma will now link $Z_n$ and $\Wt$ in the language of Lemma \ref{L: Deterministic Lemma}
+Define $\gamma (n, i) \in \{1, \dots, n\}$ to be the index that makes
+$v(\gamma(n,i))$ is the last vertex of the $i-1$-st component encountered by the breadth-first walk $Z_n$.
+\todo{Text clunky here.}
+Let $\Ci{n,i}$ be the size of the $i$-th component.
+\todo{Fix i indices}
+
+\begin{lemma} \label{L: Lemma 8}
+	Let $\Xi$ be the point process with points corresponding to excursions of $\Bt$,
+	\begin{equation}
+	\Xi := \{ (l(\gamma), |\gamma|) \; | \; \gamma \; \text{excursion of} \; \Bt \}.
+	\end{equation}
+	Let $\Xin$ be the point process with points corresponding to excursions of the breadth-first walk
+	\begin{equation}
+	\Xin := \{ ( \n{-2}{3} \gamma(n,i), \n{-2}{3} \Ci{n,i} ) \; | \; i \geq 1 \}.
+	\end{equation}
+	Then $\Xin \rightarrow \Xi$ as $n \rightarrow \infty$.
+\end{lemma}
+\todo{Try not to repeat the same sentence twice here.}
+\begin{proof}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Graph-theory approach}
 
 \section{$l^2$-approach}
