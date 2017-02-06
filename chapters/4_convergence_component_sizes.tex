@@ -13,7 +13,7 @@
 %     Applying Prop 15 to the bf-walk
 
 \chapter{Convergence of component sizes}
-\todo{Update title.}
+\fxnote{Update title.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % What's still missing
@@ -61,7 +61,7 @@
 	Define $\Xin := \lbrace (\tn{i}, \tn{i+1} - \tn{i}) \; | \; i \geq 1 \rbrace$.
 	Then $\Xin \rightarrow \Xi$ as $n \rightarrow \infty$.
 \end{lemma}
-\todo{Conditions in Lemma -> Ask Sapozhnikov}
+\fxnote{Conditions in Lemma -> Ask Sapozhnikov}
 \begin{proof}
 	This is the proof of Lemma \ref{L: Deterministic Lemma}. 
 \end{proof}
@@ -100,9 +100,9 @@ We state the theorem as in \cite[Theorem 5.2.3]{Shreve2004}
 The following Lemma will now link $Z_n$ and $\Wt$ in the language of Lemma \ref{L: Deterministic Lemma}
 Define $\gamma (n, i) \in \{1, \dots, n\}$ to be the index that makes
 $v(\gamma(n,i))$ is the last vertex of the $i-1$-st component encountered by the breadth-first walk $Z_n$.
-\todo{Text clunky here.}
+\fxnote{Text clunky here.}
 Let $\Ci{n,i}$ be the size of the $i$-th component.
-\todo{Fix i indices}
+\fxnote{Fix i indices}
 
 \begin{lemma} \label{L: Lemma 8}
 	Let $\Xi$ be the point process with points corresponding to excursions of $\Bt$,
@@ -115,7 +115,7 @@ Let $\Ci{n,i}$ be the size of the $i$-th component.
 	\end{equation}
 	Then $\Xin \rightarrow \Xi$ as $n \rightarrow \infty$.
 \end{lemma}
-\todo{Try not to repeat the same sentence twice here.}
+\fxnote{Try not to repeat the same sentence twice here.}
 \begin{proof}
 	By the definition of $\Bt$, 
 	$\Xi$ is the $\Xi$ in Lemma \ref{L: Deterministic Lemma} with $f = \Wt$.
@@ -123,18 +123,18 @@ Let $\Ci{n,i}$ be the size of the $i$-th component.
 	$\Xin$ is the $\Xin$ in Lemma \ref{L: Deterministic Lemma}.
 	
 	By Theorem \ref{T: Z -> W} we know $\bar{Z}_n \rightarrow_d \Wt$.
-	\todo{Add this Theorem}
+	\fxnote{Add this Theorem}
 	By the Skorohod representation theorem,
 	see \cite{Billingsley2009}, 
-	\todo{Add reference.}
-	\todo{Explain Skorohod.}
+	\fxnote{Add reference.}
+	\fxnote{Explain Skorohod.}
 	we know there exist a probability space $(\Omega, F, P)$ such that
-	\todo{Add real probability space.}
+	\fxnote{Add real probability space.}
 	$\bar{Z}_n \rightarrow_{a.s} \Wt$ on $(\Omega, F, P)$.
 	By Egorov's theorem, \cite{Someting},
-	\todo{Add citation}
+	\fxnote{Add citation}
 	$\bar{Z}_n$ converges to $\Wt$ uniformly on bounded intervals .
-	\todo{Is that true? Ask Sapoznikov}
+	\fxnote{Is that true? Ask Sapoznikov}
 	We still need to show that conditions \eqref{E: f cond 1} to \eqref{E: f cond complement zero} hold for $\Wt$
 	and conditions \eqref{E: fn cond 3} to \eqref{E: fn cond 5} hold for the breadth-first walk.
 	
