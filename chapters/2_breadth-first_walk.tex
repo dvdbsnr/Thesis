@@ -7,6 +7,9 @@
 \chapter{The breadth-first walk}
 \fxnote{Update title.}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: The discrete breadth-first walk
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The discrete breadth-first walk}
 \fxnote{Update title}
 
@@ -23,6 +26,7 @@ of the vertices along with an integer-valued sequence
 $(z(i), \; 1 \leq i \leq n)$
 which we call the breadth-first walk on
 $\mathcal{G}$.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Definition of breadth-first order
@@ -69,6 +73,7 @@ $v(|\Ci{1}| + 1) := w_2$,
 the root of $\Ci{2}$, and continue the construction as above.
 Traverse all components this way.
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Definitions of breadth-first walk
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -84,10 +89,10 @@ z(i) &:= z(i-1) + c(i) -1, \quad i=1, \dots , n.
 \end{aligned}
 \end{equation}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Explanation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 An explanation:
 \fxnote{Change this}
 The process divides the vertex-set into three parts: 
@@ -148,16 +153,26 @@ z(i) &:= |\Ni{i}| - \zeta^{-1}(i), \quad i=1, \dots , n.
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: The continuous breadth-first walk
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The continuous breadth-first walk}
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: Decompositions of $Z_n$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Decompositions of $Z_n$}
-\fxnote{Update title}
+\fxfatal{Update title}
 \fxnote{Add introductory text}
 
 For ease of notation, we will drop the superscript $t$ from all random variables.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma Decompositions 1: Statement
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: decomp Zn}
 	The decomposition 
 	\begin{equation} \label{E: decomp Zn}
@@ -178,6 +193,11 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\fxnote{Proof that An is of bounded variation.}
 	\fxnote{Proof that Mn is cadlaq.}	
 \end{note}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma Decompositions: Proof
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: decomp Zn}
 	We will prove that, for $A_n$ defined in \ref{D: An} and \ref{D: an},
 	$Z_n - A_n$
@@ -218,6 +238,10 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	This proves $M_n$ to be a martingale. 	
 \end{proof}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma Decompositions 1: Statement
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: decomp Mn}
 	The decomposition
 	\begin{equation} \label{E: decomp Mn}
@@ -232,6 +256,11 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 \begin{note} \label{N: decomp Mn}
 	$B_n$ is a continuous process.
 \end{note}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma Decompositions 1: Proof
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: decomp Mn}
 	We will prove that
 	$M_n^2 - B_n$
@@ -277,6 +306,10 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	
 \end{proof}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma Formula An: Statement
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: formula an}
 	For $a_n$ as in the Lemmas above,
 	\begin{equation}
@@ -285,17 +318,30 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\fxnote{Update/change Zeta-symbol if needed.}
 	\fxnote{Add explanation of Zeta if needed.}
 \end{lemma}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma Formula An: Proof
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: formula an}
 	proof.
 	\fxnote{Add proof.}
 \end{proof}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: Asymptotics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Asymptotics}
-\fxnote{Update title.}
+\fxfatal{Update title.}
 
 We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ with the goal of using the functional central limit theorem for martingales.
 \fxnote{Update text.}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma Limit An: Statement
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: limit An}
 	For $A_n$ defined as in the previous Lemmas and a fix $s_0 \geq 0$,
 	\begin{equation} \label{E: limit An}
@@ -304,6 +350,11 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	where $t$ is the fixed probability parameter of the random graph.
 	\fxnote{Change/remove explanation of t: "probability parameter"}	
 \end{lemma}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma Limit An: Proof
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: limit An}
 	We define $\amn{s}$ as
 	\begin{equation}
@@ -467,6 +518,10 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
     which proves \ref{E: stoch bounded}.
 \end{proof}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma Limit Bn: Statement
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: limit Bn}
 	For $B_n$ defined as in the previous Lemmas and a fix $s_0 \geq 0$,
 	\begin{equation} \label{E: limit Bn}
@@ -474,6 +529,11 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	\end{equation}
 	as $n \longrightarrow \infty$.
 \end{lemma}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma Limit Bn: Proof
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: limit Bn}
 	From its definition in Lemma \ref{L: decomp Mn}, $\Bn{s} = \An{s} + s$, which allows us to rewrite \ref{E: limit Bn} as
 	\begin{equation} \label{E: limit Bn An}
@@ -503,6 +563,10 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	as $n \rightarrow \infty$ from Lemma \ref{L: limit An}. This gives \ref{E: limit Bn An + c} and completes the proof.
 \end{proof}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma Limit Mn: Statement and Proof
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: limit Mn}
 	For $M_n$ defined as in the previous Lemmas and a fix $s_0 \geq 0$,
 	\begin{equation} \label{E: limit Mn}
@@ -510,13 +574,22 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	\end{equation}
 	as $n\longrightarrow \infty$.
 \end{lemma}
+
 \begin{proof} \label{P: limit Mn}
 	As previously discussed in the proof of Lemma \ref{L: decomp Mn}, the jumps of $M_n$ are exactly the jumps of $Z_n$ and thus have size $1$. The lemma follows immediately.
 \end{proof}
 
-\section{The central limit theorem for martingales}
-\fxnote{Update title}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: The central limit theorem for martingales
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The central limit theorem for martingales}
+\fxfatal{Update title}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definitions: Rescaled process
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We now define the rescaled processes 
 $\bar{M}_n(s) = \n{-1}{3}\Mn{\n{2}{3}s}$, 
 $\bar{A}_n(s) = \n{-1}{3}\An{\n{2}{3}s}$, 
@@ -545,6 +618,10 @@ We now use the central limit theorem for martingales to prove te convergence of 
 We state the theorem here, without proof, as it appears in \cite[p. 339 f.]{N.Ethier1986},
 omitting one of two equivalent conditions and all references to higher dimensional processes to focus on the one-dimensional case we will need for our proof.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Central limit theorem for martingales: Statement
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{theorem}[Central limit theorem for martingales] \label{T: functional CLT martingales}
 	Let $\{\Fn{t}\}$ be a filtration and $M_n$ a $\{\Fn{t}\}$-local martingale with sample paths in $D_{\Real}[0,\infty)$ and $\Mn{0}=0$.
 	Let $B_n$ be a process with sample paths in $D_{\Real}[0,\infty)$, increasing in $t$, such that $M_n^2 - B_n$ is an $\{\Fn{t}\}$-local martingale.
@@ -568,6 +645,10 @@ omitting one of two equivalent conditions and all references to higher dimension
 	Then $M_n \longrightarrow_d X$ where $x$ is a process with sample paths in $C_{\Real}[0,\infty)$ and independent Gaussian increments.
 \end{theorem}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorem Convergence Z_n: Proof
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We are now ready to prove Theorem \ref{T: convergence Zn}.
 
 \begin{proof}[Proof of Theorem \ref{T: convergence Zn}]
@@ -586,9 +667,6 @@ We are now ready to prove Theorem \ref{T: convergence Zn}.
 	\begin{equation*}
 	\Zbar{s} = \Mbar{s} + \Abar{s} \rightarrow_d W(s) + \rho (s) = W^t(s).
 	\end{equation*}
-	
-	
-		
+			
 \end{proof}
-
 
