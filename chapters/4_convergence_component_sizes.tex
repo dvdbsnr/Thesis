@@ -68,55 +68,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Girsanov Theorem
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We state the theorem as in \cite[Theorem 5.2.3]{Shreve2004}
-\begin{theorem}[Girsanov] \label{T: Girsanov}
-	Let $W(t), 0 \leq t \leq T$, be a Brownian motion on a probability space
-	$(\Omega, \mathcal{F}, \mathbb{P})$.
-	Define
-	\begin{align}
-		\tilde{W}(t) &:= W(t) + \int_0^t \Theta(u)du, \label{E: Girsanov def W tilde} \\ 
-		Z(t) &:= \exp \left\{ -\int_{0}^{t} \Theta(u) dW(u) - \frac{1}{2} \int_0^t \Theta^2(u)du \right\}. \label{E: Girsanov def Z}
-	\end{align}
-	Assume that
-	\begin{equation} \label{E: Girsanov cond Theta}
-		\ExpBig{ \int_{0}^{T} \Theta^2(u) Z^2(u)du  } < \infty.
-	\end{equation}
-	Set the random variable $Z=Z(T)$. Then $\Exp{Z(T)} = 1$ and $\mathbb{Q}$, defined by
-	\begin{equation} \label{E: Girsanov def Q}
-		\mathbb{Q}(A) := \int_A Z(\omega) d\mathbb{P}(\omega), \; \text{for all} \; A \in \mathcal{F},
-	\end{equation}
-	is a probability measure under which the process 
-	$\tilde{W}(t)$, $0 \leq t \leq T$, 
-	is a standard Brownian motion.
-\end{theorem}
-\fxfatal{Check definition of Z=Z(T) in other references!}
-\fxfatal{Brownian Motion -> Brownian motion in whole document!}
-
-We can apply this Theorem to the Brownian motion with drift $W^t$ as follows:
-$\Wt(s) = W(s) + ts - \frac{1}{2} s^2 = W(s) + \int_0^s (t-u)du $.
-Since $\Theta(u) = t-u$ obviously satisfies \ref{E: Girsanov cond Theta} for $T < \infty$,
-$\Wt$ is a standard Brownian motion under the probability measure $\mathbb{Q}$, 
-as defined in \eqref{E: Girsanov def Q}. 
-From it's definition in \eqref{E: Girsanov def Z}, $Z(T) > 0$ with probability $1$.
-Thus, for all sets $A \in \mathcal{F}$,
-\begin{equation}
-\mathbb{P}(A) = 0 \iff \mathbb{Q}(A) = 0.
-\end{equation}
-This means, that events that happen with probability $0$ under the measure $\mathbb{Q}$ also happen with probability $0$ under $\mathbb{P}$.
-\fxerror{That's literally what it means. Some more interpretation might be nice.}
-We will use this result to proof certain properties of the Brownian motion with drift,
-by showing that these properties hold for the standard Brownian motion with probability $1$ and changing the measure.
-\fxerror{Explain: "Changing the measure." Or fix this sentence after proof is complete.}
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Lemma 8: Applying Lemma 7 to Wt and Z_n
+% Lemma 8: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The following Lemma will now link $Z_n$ and $\Wt$ in the language of Lemma \ref{L: Deterministic Lemma}
 Define $\gamma (n, i) \in \{1, \dots, n\}$ to be the index that makes
@@ -137,7 +89,59 @@ Let $\Ci{n,i}$ be the size of the $i$-th component.
 	Then $\Xin \rightarrow \Xi$ as $n \rightarrow \infty$.
 \end{lemma}
 \fxnote{Try not to repeat the same sentence twice here.}
-\begin{proof}
+
+Before proving this Lemma, we need to state Girsanov's Theorem, 
+which will enable us to prove certain properties of the Brownian motion with drift.
+\fxnote{Explanation here or at the end?}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Girsanov Theorem
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We state the theorem as in \cite[Theorem 5.2.3]{Shreve2004}
+\begin{theorem}[Girsanov] \label{T: Girsanov}
+	Let $W(t), 0 \leq t \leq T$, be a Brownian motion on a probability space
+	$(\Omega, \mathcal{F}, \mathbb{P})$.
+	Define
+	\begin{align}
+	\tilde{W}(t) &:= W(t) + \int_0^t \Theta(u)du, \label{E: Girsanov def W tilde} \\ 
+	Z(t) &:= \exp \left\{ -\int_{0}^{t} \Theta(u) dW(u) - \frac{1}{2} \int_0^t \Theta^2(u)du \right\}. \label{E: Girsanov def Z}
+	\end{align}
+	Assume that
+	\begin{equation} \label{E: Girsanov cond Theta}
+	\ExpBig{ \int_{0}^{T} \Theta^2(u) Z^2(u)du  } < \infty.
+	\end{equation}
+	Set the random variable $Z=Z(T)$. Then $\Exp{Z(T)} = 1$ and $\mathbb{Q}$, defined by
+	\begin{equation} \label{E: Girsanov def Q}
+	\mathbb{Q}(A) := \int_A Z(\omega) d\mathbb{P}(\omega), \; \text{for all} \; A \in \mathcal{F},
+	\end{equation}
+	is a probability measure under which the process 
+	$\tilde{W}(t)$, $0 \leq t \leq T$, 
+	is a standard Brownian motion.
+\end{theorem}
+\fxerror{Check definition of Z=Z(T) in other references!}
+\fxfatal{Brownian Motion -> Brownian motion in whole document!}
+
+We can apply this Theorem to the Brownian motion with drift $W^t$ as follows:
+$\Wt(s) = W(s) + ts - \frac{1}{2} s^2 = W(s) + \int_0^s (t-u)du $.
+Since $\Theta(u) = t-u$ obviously satisfies \ref{E: Girsanov cond Theta} for $T < \infty$,
+$\Wt$ is a standard Brownian motion under the probability measure $\mathbb{Q}$, 
+as defined in \eqref{E: Girsanov def Q}. 
+From it's definition in \eqref{E: Girsanov def Z}, $Z(T) > 0$ with probability $1$.
+Thus, for all sets $A \in \mathcal{F}$,
+\begin{equation}
+\mathbb{P}(A) = 0 \iff \mathbb{Q}(A) = 0.
+\end{equation}
+This means, that events that happen with probability $0$ under the measure $\mathbb{Q}$ also happen with probability $0$ under $\mathbb{P}$.
+\fxerror{That's literally what it means. Some more interpretation might be nice.}
+We will use this result to proof certain properties of the Brownian motion with drift,
+by showing that these properties hold for the standard Brownian motion with probability $1$ and changing the measure.
+\fxerror{Explain: "Changing the measure." Or fix this sentence after proof is complete.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma 8: Proof
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{proof}[Proof of Lemma \ref{L: Lemma 8}]
 	By the definition of $\Bt$, 
 	$\Xi$ is the $\Xi$ in Lemma \ref{L: Deterministic Lemma} with $f = \Wt$.
 	Taking $f_n$ to be $\bar{Z}_n$ and defining $\tn{i} = \n{-2}{3} \gamma(n,i)$,
