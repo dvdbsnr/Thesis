@@ -20,6 +20,33 @@
 
 \todo{Introductory text.}
 \todo{Definition weak convergence}
+\begin{definition}[Weak convergence]
+	Let $S$ be a metric space and $\mathcal{S}$ it's class of Borel sets.
+	Let $P, P_1, P_2, \dots$ be probability measures on defined on $S$.
+	We say $P_n$ converges weakly to $P$, $P_n \Rightarrow P$, if
+	\begin{equation} 
+	\int_S fdP_n \xrightarrow{n \rightarrow \infty} \int_S fdP
+	\end{equation}
+	holds for all continuous, bounded functions $f: S \rightarrow \Real$.
+\end{definition}
+
+This definition now applies to convergence in distribution of random variables as follows:
+Let $X, X_1, X_2, \dots$ be random variables on some probability space $S$.
+Let $P, P_1, P_2, \dots$ be the corresponding distributions. 
+
+\begin{definition}[Tightness]
+	Inhalt...
+\end{definition}
+
+\begin{definition}[Relative compactness]
+	Inhalt...
+\end{definition}
+
+\begin{theorem}[Prohorov's theorem]
+	Let $P_n$ be a series of probability measures on some metric space $S$. If $P_n$ is tight, then it is relatively compact.
+\end{theorem}
+
+
 
 We will prove weak convergence by showing that
 \begin{equation}
