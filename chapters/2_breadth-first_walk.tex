@@ -154,12 +154,64 @@ z^*(i) &:= |\Ni{i}| - \zeta^{-1}(i), \quad i=1, \dots , n.
 We verify the equivalence by induction.
 We show that, for $i \geq 2$, increments of both functions are equal,
 so
-\begin{equation}
-\begin{aligned}
-z(i) - z(i-1) &= z^*(i)  -z^*(i-1) \\
-\iff |\Ni{i}| - |\Ni{i-1}| &= c(i) + \ZetaMinus{i} - \ZetaMinus{i-1}.
+\begin{equation} \label{E: equality z z*}
+\begin{aligned} 
+&\hspace{35pt} z(i) - z(i-1) = z^*(i)  -z^*(i-1) \\
+&\iff c(i) - 1 = |\Ni{i}| - \ZetaMinus{i} - |\Ni{i-1}| + \ZetaMinus{i-1} \\
+&\iff |\Ni{i}| - |\Ni{i-1}| = c(i) + \ZetaMinus{i} - \ZetaMinus{i-1}
 \end{aligned}
 \end{equation}
+\fxnote{This equation does not look nice. Delete 1./2. row? Delete iffs?}
+\fxnote{This has to hold for i >= 1, or fix the indices.}
+
+We divide the proof into two cases.
+First, assume $v(i-1)$ is not the last vertex in it's component.
+Then $v(i)$ belongs to the same component and
+$\ZetaMinus{i} = \ZetaMinus{i-1}$.
+Vertex $v(i)$ has already been assigned a new label at step $i-1$,
+so $v(i) \in \Ni{i-1}$.
+Going from $i-1$ to $i$,
+$\Ni{*}$ increases by the number of new neighbours of $v(i)$
+and decreases by $v(i)$ itself.
+So
+\begin{equation}
+|\Ni{i}| - |\Ni{i-1}| = c(i) - 1,
+\end{equation}
+which proves the equivalence.
+
+In the second case, if $v(i-1)$ is the last vertex of it's component,
+then $\ZetaMinus{i} = \ZetaMinus{i-1} + 1$
+and $|\Ni{i-1}| = 0$.
+Equality \eqref{E: equality z z*} reduces to
+$ |\Ni{i}| = c(i)$,
+which holds since
+$c(i) = |\Ni{i} \backslash \Ni{i-1}| = |\Ni{i}|$.
+
+Since $|\Ni{i}| = 0$ only if $v(i)$ is the last vertex in its component,
+\fxnote{Have we shown this? Maybe add a sentence.}
+\fxnote{its or it's? Fix in whole document!}
+\eqref{E: zeta} and \eqref{E: def bf-walk z*} imply
+\begin{equation}
+	z(\zeta (j)) = -j
+\end{equation}
+and 
+\begin{equation}
+	z(i) \geq -j \quad \text{for all} \enspace \zeta(j) < i < \zeta(j+1).
+\end{equation}
+
+So, for vertices in the $j$-th component,
+the random walk takes values greater or equal to $-(j-1)$,
+until the last vertex, for which $z$ reaches a new minimum at $-j$.
+\fxnote{There are a lot of commas in this sentence.}
+Knowing this we can reconstruct sizes and indices of components via
+\begin{align}
+\zeta(j) &= \min \{ i \; | \; z(i) = -j \}, \\
+|\Ci{j}| &= \zeta(j) - \zeta(j-1), \\
+\ZetaMinus{i} &= 1 - \min_{j \leq i-1}z(j).
+\end{align}
+\fxnote{Maybe add some more explanation on where these formulas come from.}
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
