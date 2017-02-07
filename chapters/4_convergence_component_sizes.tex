@@ -79,11 +79,11 @@ Let $\Ci{n,i}$ be the size of the $i$-th component.
 
 \begin{lemma} \label{L: Lemma 8}
 	Let $\Xi$ be the point process with points corresponding to excursions of $\Bt$,
-	\begin{equation}
+	\begin{equation} \label{E: Lemma 8 def Xi}
 	\Xi := \{ (l(\gamma), |\gamma|) \; | \; \gamma \; \text{excursion of} \; \Bt \}.
 	\end{equation}
 	Let $\Xin$ be the point process with points corresponding to excursions of the breadth-first walk
-	\begin{equation}
+	\begin{equation} \label{E: Lemma 8 def Xin}
 	\Xin := \{ ( \n{-2}{3} \gamma(n,i), \n{-2}{3} \Ci{n,i} ) \; | \; i \geq 1 \}.
 	\end{equation}
 	Then $\Xin \rightarrow \Xi$ as $n \rightarrow \infty$.
@@ -93,6 +93,7 @@ Let $\Ci{n,i}$ be the size of the $i$-th component.
 Before proving this Lemma, we need to state Girsanov's Theorem, 
 which will enable us to prove certain properties of the Brownian motion with drift.
 \fxnote{Explanation here or at the end?}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Girsanov Theorem
@@ -120,6 +121,8 @@ We state the theorem as in \cite[Theorem 5.2.3]{Shreve2004}
 \end{theorem}
 \fxerror{Check definition of Z=Z(T) in other references!}
 \fxfatal{Brownian Motion -> Brownian motion in whole document!}
+\fxerror{Q are already the rational numbers.}
+\fxfatal{E(Z) = 1 is not a result, but a condition!}
 
 We can apply this Theorem to the Brownian motion with drift $W^t$ as follows:
 $\Wt(s) = W(s) + ts - \frac{1}{2} s^2 = W(s) + \int_0^s (t-u)du $.
@@ -128,7 +131,7 @@ $\Wt$ is a standard Brownian motion under the probability measure $\mathbb{Q}$,
 as defined in \eqref{E: Girsanov def Q}. 
 From it's definition in \eqref{E: Girsanov def Z}, $Z(T) > 0$ with probability $1$.
 Thus, for all sets $A \in \mathcal{F}$,
-\begin{equation}
+\begin{equation} \label{E: P0 = Q0}
 \mathbb{P}(A) = 0 \iff \mathbb{Q}(A) = 0.
 \end{equation}
 This means, that events that happen with probability $0$ under the measure $\mathbb{Q}$ also happen with probability $0$ under $\mathbb{P}$.
@@ -164,7 +167,63 @@ by showing that these properties hold for the standard Brownian motion with prob
 	and conditions \eqref{E: fn cond 3} to \eqref{E: fn cond 5} hold for the breadth-first walk.
 	
 	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Conditions on BM
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	We start with the former. 
+	We first define the set $\mathcal{E}$ for the Brownian motion.
+	Consider the set of positive rational numbers.
+	For every $q \in \Rat^+$, 
+	set $l(q) := \sup( \underset{s \leq q}{\argmin} \Wt(s) ) $ 
+	and $r(q) := \inf( {s \in \Real \; | \; \Wt(s) = l(q)} ) $.
+	\fxerror{In this definition, if q is a minimum, l(q) = r(q) = q}
+	Now every rational number belongs to one excursion $(l(q), r(q))$,
+	while one excursion contains multiple rational numbers.
+	We define the set of excursions
+	\begin{equation}
+	\mathcal{E} := \bigcup_{q \in \Rat^+} \{ (l(q), r(q)) \}
+	\end{equation}
+	and note that it is countable.
+	\fxnote{When do we need countability? For the set definition?}
+	The following properties will be proven on the standard Brownian motion $W$,
+	we later take the step to $\Wt$.
+	\fxnote{"Take the step" - Lame!}
 	
+	We first make sure that every interval $[l_i, r_i]$ is in fact non-trivial and condition \ref{E: f cond 2} is met,
+	since the definition above permits the case $l(q) = r(q) = q$.
+	\fxerror{OR: Fix the definition. -> Talk to Sapozhnikov?}
+	\fxerror{Here goes the proof of that. Some stuff about rational numbers.}
+	
+	The complement of all excursion is the set of intervals,
+	on which the Brownian motion is monotonously decreasing.
+	But, see \cite[Theorem 1.22]{Peres2008}, with probability $1$,
+	$W$ is not monotonous on any interval $[a,b]$ with $0 < a < b < \infty$.
+	\fxerror{Is that enough to prove that there is no monotonous interval?}
+	
+	These properties hold with probability $1$ for the standard Brownian motion.
+	So they hold with probability $1$ for $\Wt$ under $\mathbb{Q}$
+	and, by \eqref{E: P0 = Q0}, 
+	almost surely for $\Wt$ under the original measure $\mathbb{P}$.
+	\fxnote{"probability 1" - looks weird!}
+	
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Conditions on Zn
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	We now show that conditions 
+	\eqref{E: fn cond 3} to \eqref{E: fn cond 5}
+	hold for the random walk $Z_n$ and $\Xin$
+	as defined in \eqref{E: Lemma 8 def Xin}.
+	
+	\fxfatal{Add this after the alternative definition random walk.
+	For the real references.}
+
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Finishing the proof
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	We can now apply Lemma \ref{L: Lemma 8} and obtain the vague convergence
+	$ \Xin \rightarrow_d \Xi $.
 \end{proof}
 
 
