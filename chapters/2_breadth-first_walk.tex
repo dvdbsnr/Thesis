@@ -138,7 +138,7 @@ and increases by the number of new neighbours explored in each step.
 We write
 \begin{align}
 \zeta(j) &:= |\Ci{1}| + \dots + |\Ci{j}|, \label{E: zeta}\\ 
-\zeta^{-1}(i) &:= \min \{ j \; | \; \zeta(j) \geq i \}, \label{E: zeta-1}
+\ZetaMinus{i} &:= \min \{ j \; | \; \zeta(j) \geq i \}, \label{E: zeta-1}
 \end{align}
 for the index of the last vertex in the $j$-th component (that's \eqref{E: zeta})
 and \eqref{E: zeta-1}, the index of the component containing $v(i)$.
@@ -152,12 +152,12 @@ z^*(i) &:= |\Ni{i}| - \zeta^{-1}(i), \quad i=1, \dots , n.
 \end{equation}
 
 We verify the equivalence by induction.
-We show that increments of both functions are equal,
-which means, for $i \geq 2$,
+We show that, for $i \geq 2$, increments of both functions are equal,
+so
 \begin{equation}
 \begin{aligned}
 z(i) - z(i-1) &= z^*(i)  -z^*(i-1) \\
-\iff |\Ni{i}| - |\Ni{i-1}| &= c(i) + \Zeta{1}
+\iff |\Ni{i}| - |\Ni{i-1}| &= c(i) + \ZetaMinus{i} - \ZetaMinus{i-1}.
 \end{aligned}
 \end{equation}
 
@@ -322,7 +322,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 \begin{lemma} \label{L: formula an}
 	For $a_n$ as in the Lemmas above,
 	\begin{equation}
-		\an{s} = (n - s - \Zeta{\ceil{s}} - \Zn{s}) \ps .
+		\an{s} = (n - s - \Zetan{\ceil{s}} - \Zn{s}) \ps .
 	\end{equation}
 	\fxnote{Update/change Zeta-symbol if needed.}
 	\fxnote{Add explanation of Zeta if needed.}
@@ -367,7 +367,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 \begin{proof} \label{P: limit An}
 	We define $\amn{s}$ as
 	\begin{equation}
-		\amn{s} := (n - s - \Zeta{\ceil{s}} - \Zn{s}) p(n),
+		\amn{s} := (n - s - \Zetan{\ceil{s}} - \Zn{s}) p(n),
 	\end{equation}
 	which is $a_n$ without the denominator.
 	\fxnote{Change "without the denominator"}
@@ -379,20 +379,20 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	Now we use the definition of $p(n)$ to expand
 	\begin{align*}
 	\amn{s} - 1 
-	&= \left( n - s - \Zeta{\ceil{s}} - \Zn{s} \right) \left( n^{-1} + t\n{-4}{3} \right) - 1 \\
+	&= \left( n - s - \Zetan{\ceil{s}} - \Zn{s} \right) \left( n^{-1} + t\n{-4}{3} \right) - 1 \\
 	&= 1 + t\n{-1}{3} - sn^{-1} - st\n{-4}{3} \\
-	&\quad - \left( \Zeta{\ceil{s}} + \Zn{s} \right) \left( n^{-1} + t\n{-4}{3} \right) -1 .
+	&\quad - \left( \Zetan{\ceil{s}} + \Zn{s} \right) \left( n^{-1} + t\n{-4}{3} \right) -1 .
 	\end{align*}
 	Thus
 	\begin{equation} \label{E: (27)} 
 	\begin{aligned}
 	\left| \amn{s} - 1 + \frac{s}{n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}} \right|
-	&= \left| \frac{\Zeta{\ceil{s}} + \Zn{s}}{n} \left( 1 + \frac{t}{\n{1}{3}} \right) \right| \\
-	&\leq 2 \left| \frac{\Zeta{\ceil{s}} + \Zn{s}}{n} \right| \\
-	&\leq 2 \frac{\Zeta{\ceil{s}} + |\Zn{s}|}{n} ,  
+	&= \left| \frac{\Zetan{\ceil{s}} + \Zn{s}}{n} \left( 1 + \frac{t}{\n{1}{3}} \right) \right| \\
+	&\leq 2 \left| \frac{\Zetan{\ceil{s}} + \Zn{s}}{n} \right| \\
+	&\leq 2 \frac{\Zetan{\ceil{s}} + |\Zn{s}|}{n} ,  
 	\end{aligned}
 	\end{equation}
-	for $\n{1}{3} \geq |t|$. Note that $\Zeta{\ceil{s}} \geq 0$ for all $s \geq 0$.
+	for $\n{1}{3} \geq |t|$. Note that $\Zetan{\ceil{s}} \geq 0$ for all $s \geq 0$.
 	Integrating the inner part of the left-hand side over $s$ yields
 	\fxnote{Make clear: We integrate the inner part of the LHS from 0 to s.}
 	\begin{align*}
@@ -406,7 +406,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
     \left| \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}  + \frac{s^2t}{2\n{4}{3}}  \right| 
     &= \left| \int_{0}^{s} \amn{u} - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}} du \right| \\
     &\leq \int_{0}^{s} \left|\amn{u} - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}} \right| du \\
-    &\leq \int_{0}^{s} 2 \frac{\Zeta{\ceil{u}} + |\Zn{u}|}{n} du \\
+    &\leq \int_{0}^{s} 2 \frac{\Zetan{\ceil{u}} + |\Zn{u}|}{n} du \\
     &= \frac{2}{n}  \int_{0}^{s} 1-\min_{w \leq \ceil{u}-1} \Zn{w}  + |\Zn{u}| du \\
     &= \frac{2}{n}  \int_{0}^{s} |\Zn{u}| - \min_{w \leq \ceil{u}-1} \Zn{w} du + \BigO{\frac{s}{n}} \\
     &\leq \frac{4}{n} \max_{u \leq s} |\Zn{u}| + \BigO{\frac{s}{n}},
