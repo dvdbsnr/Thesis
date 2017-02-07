@@ -82,7 +82,7 @@ $c(i) = |\Ni{i} \backslash\Ni{i-1}|$.
 Now define the breadth-first walk 
 $(z(i), \; 1 \leq i \leq n)$
 by
-\begin{equation} \label{E: def bf-walk z+c}
+\begin{equation} \label{E: def bf-walk z}
 \begin{aligned}
 z(0) &:= 0, \\
 z(i) &:= z(i-1) + c(i) -1, \quad i=1, \dots , n.
@@ -138,19 +138,28 @@ and increases by the number of new neighbours explored in each step.
 We write
 \begin{align}
 \zeta(j) &:= |\Ci{1}| + \dots + |\Ci{j}|, \label{E: zeta}\\ 
-\zeta^{-1}(i) &:= \min{j \; | \; \zeta(j) \geq i }, \label{E: zeta-1}
+\zeta^{-1}(i) &:= \min \{ j \; | \; \zeta(j) \geq i \}, \label{E: zeta-1}
 \end{align}
 for the index of the last vertex in the $j$-th component (that's \eqref{E: zeta})
 and \eqref{E: zeta-1}, the index of the component containing $v(i)$.
 \fxnote{This sentence is a test for labeling of align-equs. Fix!}
-Now we can provide a definition of the breadth-first walk equivalent to \eqref{E: def bf-walk z+c}:
-\begin{equation}  \label{E: def bf-walk N+zeta}
+Now we can provide a definition of the breadth-first walk equivalent to \eqref{E: def bf-walk z}:
+\begin{equation}  \label{E: def bf-walk z*}
 \begin{aligned}
-z(0) &:= 0, \\
-z(i) &:= |\Ni{i}| - \zeta^{-1}(i), \quad i=1, \dots , n.
+z^*(0) &:= 0, \\
+z^*(i) &:= |\Ni{i}| - \zeta^{-1}(i), \quad i=1, \dots , n.
 \end{aligned}
 \end{equation}
 
+We verify the equivalence by induction.
+We show that increments of both functions are equal,
+which means, for $i \geq 2$,
+\begin{equation}
+\begin{aligned}
+z(i) - z(i-1) &= z^*(i)  -z^*(i-1) \\
+\iff |\Ni{i}| - |\Ni{i-1}| &= c(i) + \Zeta{1}
+\end{aligned}
+\end{equation}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
