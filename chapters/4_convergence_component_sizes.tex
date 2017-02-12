@@ -21,7 +21,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Deterministic Lemma 7
+% Deterministic Lemma 7: Statement and Note
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: Deterministic Lemma}
 	Let $f:[0, \infty) \rightarrow \Real$ be a continuous function. 
@@ -62,8 +62,126 @@
 	Then $\Xin \rightarrow \Xi$ as $n \rightarrow \infty$.
 \end{lemma}
 \fxnote{Conditions in Lemma -> Ask Sapozhnikov}
+
+\begin{note}
+	The convergence
+	$\Xin \rightarrow_d \Xi$
+	is to be interpreted as the vague convergence of counting measures,
+	which means that for all continuous functions
+	$f: \IntTimesInt \rightarrow \Real$
+	with compact support,
+	\begin{equation}
+		\Exp{f(\Xin)} \rightarrow \Exp{f(\Xi)}.
+	\end{equation}
+	By general theory,
+	see for example \cite{Kallenberg1990},
+	\fxnote{Add real reference here}
+	this is equivalent to the convergence
+	\begin{equation}
+	\Xin(C) \rightarrow \Xi(C)
+	\end{equation}
+	for all compact subsets of
+	$\IntTimesInt$,
+	where $\Xi(\partial C) = 0$.
+	In this case, a compact subset is a pair of closed intervals
+	$[T_1, T_2] \times [d_1, d_2]$,
+	with $T_1, T_2 \geq 0$
+	and $d_1, d_2 > 0$.
+	The condition on the measure of the boundary means,
+	that the limit process must not have any excursions starting exactly at
+	$T_1$ or $T_2$,
+	or any excursions of length exactly $d_1$ or $d_2$.
+	An exception is the case of $T_1=0$.
+	Since the domain of $f$ starts at $0$,
+	and the boundary condition is needed to prevent the case of points in $\Xin$ converging to some point on the boundary "from outside",
+	\fxnote{This is not really a boundary condition.}
+	\fxnote{Are "" around "from outside" needed?}
+	\fxnote{This is not a nice sentence in general.}
+	we do not need to consider $0$ as part of the boundary of any interval 
+	$[0, T_2] \times [d_1, d_2]$.
+\end{note}
+\fxnote{Does this fit in the note? 
+	General stuff about vague convergence should not be in the proof.
+	Maybe vague convergence before the Lemma, interval stuff in the note.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deterministic Lemma 7: Proof
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof}
-	This is the proof of Lemma \ref{L: Deterministic Lemma}. 
+%	Structure:
+%	- What does the definition of \Xi and \Xin mean?
+%	- Detail on \Xin and conditions
+%   First part: \Xi in \Xin
+%   (For every f exc, there is an fn exc)
+%	- Facts about f:
+%	 - It goes up to the left and right of l
+%	 - It goes down to the right of r? (Or later)
+%	 - eps/delta stuff
+%	- Arch of fn
+%	- Definition ln(x)
+%	- ln(x) in [l-e, l+e]
+%	- Definition rn(x)
+%	- rn(x) in [r-e, r+e]
+We begin by elaborating what the conditions
+\eqref{E: f cond 1} to \eqref{E: fn cond 5}
+mean for the points in
+$\Xi$ and $\Xin$.
+\fxfatal{Some stuff about excursions goes here.}
+
+To prove the Lemma, 
+we fix some bounded subset of
+$\IntTimesInt$,
+$C := [T_1, T_2] \times [d_1, d_2]$,
+and show that, for sufficiently high $n$,
+$\Xin(C) = \Xi(C)$,
+that is,
+there are exactly as many excursions of $f_n$ starting in
+$(T_1, T_2)$, 
+with length in $(d_1, d_2)$,
+as similar excursions of the limit function $f$.
+
+We will first show that every excursion of $f$ is eventually matched by some excursion of $f_n$,
+then show that there can not be any more excursion of $f_n$ of sufficient length.
+
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% \Xi(C) \subseteq \Xin(C)
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\subsubsection*{$\Xi(C) \subseteq \Xin(C)$:}
+	This is the proof of the first part. 
+	It goes on for a bit and then it's done and it stops.
+	How nice. Wow.
+	\lipsum[100]
+	
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% \Xin(C) \subseteq \Xi(C)
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\item[$\Xin(C) \subseteq \Xi(C)$:]
+	This is the proof of the second thing.
+	Again, this drags on for a bit,
+	maybe there'll be some pictures,
+	that would be nice.
+	
+	
+	
+	\begin{enumerate}[label={{Part} \arabic*.}, leftmargin=*]
+		\item This is part 1.
+		\lipsum[100]
+		\item This is part 2.
+		lipsum[100]
+		\item This is part 3.
+	\end{enumerate}
+
+\begin{proofpart}[$\Xin(C) \subseteq \Xi(C)$:]
+	\lipsum[100]
+\end{proofpart}
+
+
+
+
+	
 \end{proof}
 
 
