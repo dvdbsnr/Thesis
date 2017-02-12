@@ -145,41 +145,45 @@ We will first show that every excursion of $f$ is eventually matched by some exc
 then show that there can not be any more excursion of $f_n$ of sufficient length.
 
 
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% \Xi(C) \subseteq \Xin(C)
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsubsection*{$\Xi(C) \subseteq \Xin(C)$:}
-	This is the proof of the first part. 
-	It goes on for a bit and then it's done and it stops.
-	How nice. Wow.
-	\lipsum[100]
-	
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% \Xin(C) \subseteq \Xi(C)
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\item[$\Xin(C) \subseteq \Xi(C)$:]
-	This is the proof of the second thing.
-	Again, this drags on for a bit,
-	maybe there'll be some pictures,
-	that would be nice.
-	
-	
-	
-	\begin{enumerate}[label={{Part} \arabic*.}, leftmargin=*]
-		\item This is part 1.
-		\lipsum[100]
-		\item This is part 2.
-		lipsum[100]
-		\item This is part 3.
-	\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Proof Part 1: \Xi in \Xin
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{proofpart}[$\Xin(C) \subseteq \Xi(C)$]
 
-\begin{proofpart}[$\Xin(C) \subseteq \Xi(C)$:]
-	\lipsum[100]
+Let us first establish some facts about excursions of the limit function $f$.
+In the interval $[T_1, T_2]$,
+there can only be a finite number of excursion starting with length of at least $d_1$,
+at most $T_1/d_1$.
+\fxnote{Fix this sentence!}
+Let
+$ \mathcal{E}^* := \{ (l_i, r_i) \; | \; i=1, \dots, k \} $
+be the set of these excursions.
+Consider a fix
+$(l,r) \in \mathcal{E}^*$.
+\fxnote{Some figure showing an excusion goes here probably.}
+Since $l-r > d_1$,
+we can find an $\epsilon > 0$
+such that the length of the interval
+$[l+\epsilon, r-\epsilon]$
+is still greater than $d_1$.
+We can also find an $\epsilon > 0$ sufficiently small,
+so that for every
+$x \in [0, l-\epsilon] \cup [l+\epsilon, r-\epsilon]$,
+\begin{equation}
+f(x) > f(l) + \delta
+\end{equation}
+holds for some $\delta > 0$.
+	
+	
 \end{proofpart}
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Proof Part 2: \Xin in \Xi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{proofpart}[$\Xi(C) \subseteq \Xin(C)$]
+	\lipsum[100]
+\end{proofpart}
 
 	
 \end{proof}
