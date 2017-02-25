@@ -443,9 +443,129 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 % Lemma Formula An: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: formula an}
-	proof.
-	\fxfatal{Add proof.}
+	Consider the walk $Z_n$ at time $s\in[i-1, i]$.
+	Let $N$ be the number of vertices that, at time $i-1$, were eligible to be children of vertex $v(i)$.
+	That is, all vertices not yet explored or discovered, and excluding $v(i)$ itself.
+	To any eligible vertex $j$ we assign a random variable $\Uij$.
+	Let all $\Uij$ be independent and identically $\mathcal{U}(0,1)$ distributed.
+	Our understanding of the process of discovering children of $v(i)$ is as follows:
+	At time $i-1+\Uij$, the edge $(i,j)$ will open with probability $p(n)$ and
+	$Z_n$ will make a jump of size $1$.
+	We arrive at a characterisation of our breadth-first walk, 
+	equivalent to \eqref{E: def Zn continuous}:	
+	\begin{equation}
+	Z_n(i-1+u) = Z_n(i-1) - u + \sum_{j=1}^{N} \Ind{\{\Uij \leq u, \; (i,j) \; \text{open}\}}.
+	\end{equation}
+	
+	We define $\SigmaAlgebra_s := \sigma(\Zn{t}, t\leq s)$.
+	The goal of this proof is to find an expression for
+	$P(\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s)$.
+	To do this, we condition over a finer $\sigma$-algebra and use the law of total expectation to arrive at a general statement.
+	$\SigmaAlgebra_s$ tells us the history of the walk until time $s$. 
+	We know, how many vertices were eligible at time $i-1$ and how many open edges to $v(i)$ were found in $[\floor(s),s]$.
+	However it is unknown, exactly which vertices are now children of $v(i)$ and which vertices are still eligible.
+	\fxnote{Is this really important? Isn't it enough to have the finer s-algebra know about the k vertices?}
+	
+	Let 
+	\begin{equation}
+	\begin{split}
+	\SigmaAlgebra_s^k := \sigma(&\Zn{t}, t\leq s; \\
+	&\text{There are exactly $k$ children of $v(i)$ encountered thus far}, \\
+		&\text{and these are $j_1, \dots, j_k$}).
+	\end{split}
+	\end{equation}
+	\fxfatal{Definition Fsk: Fix this mess!}
+	
+	We know that $k$ of the $N$ edges eligible at time $i-1$ are already open 
+	and want to calculate the probability that one of the remaining $N-k$ edges opens in $[s, s+ds]$.
+	The probability of some edge opening is the sum of the probabilities for single edges opening
+	and some factor describing the, for small $ds$ increasingly slim, 
+	chance of two or more edges opening in the interval:
+	\fxnote{Increasingly slim is not a mathematical term.}
+	\begin{equation}
+	P(\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s^k) 
+	= \sum_{j \neq j_1, \dots j_k} P( \text{$(i,j)$ opens in $[s, s+ds]$} \cond \SigmaAlgebra_s^k ) + \Smallo{ds}.
+	\end{equation}
+	For the edge $(i,j)$, all relevant information contained in $\SigmaAlgebra_s^k$ is the fact that 
+	$(i,j)$ is not yet open, the event of opening has not happened in $[\floor{s}, s)$.
+	Since the opening itself, happening with probability $p(n)$,
+	and the uniformly distributed time of the event in $[i-1, i]$ are independent,
+	we see that
+	\begin{equation}
+	P(\text{$(i,j)$ opens in $[s, s+ds]$}) = P(\text{$(i,j)$ opens})P(\text{It happens in $[s, s+ds]$}) = pds.
+	\end{equation}
+	By the definition of conditional probability
+	\begin{equation}
+	\begin{aligned}
+	P( \text{$(i,j)$ opens in $[s, s+ds]$} \cond \text{$(i,j)$ did not open in $[\floor{s}, s]$} )
+	&= \frac{P( \text{$(i,j)$ opens in $[s, s+ds]$})}{P(\text{$(i,j)$ did not open in $[\floor{s}, s]$})} \\
+	&= \frac{pds}{1-p(s-\floor{s})},
+	\end{aligned}
+	\end{equation}
+	\fxnote{Fix the formatting here.}
+	and finally, omitting the $\Smallo{ds}$-term:
+	\begin{equation}
+	\begin{aligned}
+	P(\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s^k) 
+	&= \sum_{j \neq j_1, \dots j_k} \ps \\
+	&= (N-k) \frac{pds}{1-p(s-\floor{s})}.
+	\end{aligned}
+	\end{equation}
+	For any event $\mathcal{E}$,
+	$P(\mathcal{E}) = \Exp{\Ind{\mathcal{E}}}$ holds.
+	Seeing that $\SigmaAlgebra_s \subseteq \SigmaAlgebra_s^k$,
+	we apply the law of total expectation:
+	\begin{equation}
+	\begin{aligned}
+	P(\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s)
+	&= \Exp{\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s} \\
+	&= \Exp{ \Exp{\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s^k} \cond \SigmaAlgebra_s} \\
+	&= \Exp{ (N-k) \ps \cond \SigmaAlgebra_s}.
+	\end{aligned}
+	\end{equation}
+	Conditioning on $\SigmaAlgebra_s$,
+	the breadth-first walk $Z_n$ tells us exactly how many vertices connected to vertex $i$ until time $s$.
+	We denote by $\Ineligible{s}$ the number of vertices that are at time $s$ not eligible to be a child of $v(\ceil{s})$.
+	\fxnote{Its not the sum of verties. Its the sum of the amount of vertices.}
+	Then $N-k=n-\Ineligible{s}$ at time $s$ and
+	\begin{equation}
+	\an{s} = (n - \Ineligible{s}) \ps.
+	\end{equation}
+	Finally, we find a concise expression for $\Ineligible{s}$.
+	At time $i-1$, the ineligible vertices are the $i-1$ vertices already explored
+	and the set $\Ni{i-1}$ of vertices already discovered as children.
+	If $v(i-1)$ is the last vertex of its component,
+	$v(i)$ itself is not part of $\Ni{i-1}$, 
+	so we need to add a term that that equals $1$ if $v(i-1)$ is the last vertex of its component and $0$ otherwise.
+	Together, we arrive at
+	\begin{equation}
+	\Ineligible{i-1} = i-1 + |\Ni{i-1}| + (\ZetaMinus{i} - \ZetaMinus{i-1}).
+	\end{equation}
+	By \eqref{E: def bf-walk z*} this is equivalent to
+	\begin{equation}
+	\Ineligible{i-1} = i-1 + \ZetaMinus{i} + \Zn{i-1}.
+	\end{equation}
+	At time $i-1+u$, for $0<u<1$, 
+	new vertices were discovered as children of $v(i)$ and now add to $\Ineligible{i-1+u}$.
+	The number of ineligible vertices is now
+	\begin{equation}
+	\begin{aligned}
+	\Ineligible{i-1+u} 
+	&= i-1 + \ZetaMinus{i} + \Zn{i-1} + \sum_{j} \Ind{\Uij \leq u} \\
+	&= i-1+u + \ZetaMinus{i} + \Zn{i-1+u},
+	\end{aligned}
+	\end{equation} 
+	by our definition \eqref{E: def Z} of the continuous breadth-first walk.
+	So $\Ineligible{s} = s + \ZetaMinus{\ceil{s}} + \Zn{s}$ which concludes the proof.
 \end{proof}
+\fxfatal{Add proof of an formula!}
+
+
+
+
+
+
+
 
 
 \section{Asymptotics}
