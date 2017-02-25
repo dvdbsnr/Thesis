@@ -406,13 +406,24 @@ by showing that these properties hold for the standard Brownian motion with prob
 	see \cite{Billingsley2009}, 
 	\fxnote{Add reference.}
 	\fxnote{Explain Skorohod.}
-	we know there exist a probability space $(\Omega, F, P)$ such that
+	we can construct a probability space 
+	\fxnote{Can we construct one? Or does one just exist?}
+	$(\Omega, F, P)$ 
 	\fxnote{Add real probability space.}
-	$\bar{Z}_n \rightarrow_{a.s} \Wt$ on $(\Omega, F, P)$.
-	By Egorov's theorem, \cite{Someting},
-	\fxnote{Add citation}
-	$\bar{Z}_n$ converges to $\Wt$ uniformly on bounded intervals .
-	\fxnote{Is that true? Ask Sapoznikov}
+	on which exist random variables
+	$\bar{Y}_n$ and $V^t$,
+	distributed as 
+	$\bar{Z}_n$ and $\Wt$ respectively,
+	that converge almost surely.
+	Almost sure convergence implies that,
+	with probability $1$,
+	\begin{equation}
+	d(\bar{Y}_n, V^t) = \sup_{x \in \Real}|\bar{Y}_n(x) - V^t(x)| \rightarrow 0,
+	\end{equation}
+	as $n \rightarrow \infty$.
+	So $\bar{Y}_n(\omega)$ converges to $V^t(\omega)$ uniformly,
+	especially on bounded intervals.
+	\fxnote{Not "especially" on bounded intervals.}
 	We still need to show that conditions \eqref{E: f cond 1} to \eqref{E: f cond complement zero} hold for $\Wt$
 	and conditions \eqref{E: fn cond 3} to \eqref{E: fn cond 5} hold for the breadth-first walk.
 	
@@ -480,9 +491,164 @@ by showing that these properties hold for the standard Brownian motion with prob
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % What's still missing
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We have now shown that our main theorem holds for all excursions
+with starting times and lengths in compact intervals.
+To extend this statement to the general case,
+we must show that we can always find a compact subset,
+such that all relevant excursions happen inside this pair of intervals.
+
+We will show this using to approaches:
+On one hand, we can analyse the behaviour of the breadth-first walk $Z_n$
+after a certain stopping time.
+On the other hand, 
+we can consider the behaviour of components of the random graph
+and the distribution of vertices on them.
+\fxnote{This whole paragraph is a placeholder for something nicer.}
+
+Consider the functions
+\begin{align}
+T(y) &:= \min \{s \;|\; \Wt(s)=-y\}, \label{E: def T(y)}, \\
+T_n(y) &:= \min\{i \;|\; \Zn{i}=-\floor{y\n{1}{3}} \}. \label{E: def Tn(y)}.
+\end{align}
+Once the process $\Zn$ reaches step $T_n(y)$, 
+the walk has traversed at least all vertices labeled $\{1,2,\dots,\floor{y\n{1}{3}}\}$,
+since it encountered $\floor{y\n{1}{3}}$ individual components.
+\fxnote{More explanation of this process. Maybe write in German then translate.}
+By Theorem \ref{T: Z -> W}, $\n{-2}{3}T_n(y) \rightarrow_d T(y)$
+and since $T(y) \rightarrow \infty$ as $y\rightarrow\infty$,
+$T_n(y) \approx \n{2}{3}T(y) \rightarrow\infty$ as $y\rightarrow \infty$.
+This is important for some reason.
+\fxnote{Find out why Tn(y) is important.}
 
 
+\section{Late excursions of $Z_n$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: Late excursions of Z_n
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{lemma}
+	Let 
+	$P(\ExcursionEvent)$ 
+	\fxnote{Is A the right letter for this?}
+	be the probability that the breadth-first walk encounters an excursion $\gamma$ of length 
+	$|\gamma| > \delta\n{2}{3}$, starting after step $C\n{2}{3}$.
+	\fxnote{Excursions are not really encountered. Maybe traversed?}
+	Then for all $\epsilon>0$ exists $C>0$ such that $P(\ExcursionEvent) < \epsilon$. 
+\end{lemma}
+
+\begin{proof}
+	By the law of total expectation,
+	\begin{align*}
+	P(\ExcursionEvent) 
+	&\leq \Exp{ \text{Number of excursions $\gamma$, with $|\gamma| \geq C\n{2}{3}$ and $l(\gamma) \geq \delta\n{2}{3}$ } } \\
+	&= \Exp{ \sum_{\gamma: \; l(\gamma) \geq \delta\n{2}{3}} \Ind{\{|\gamma| \geq C\n{2}{3} \} } } \\
+	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\gamma: \; l(\gamma) \geq \delta\n{2}{3}}  |\gamma|^2 \Ind{\{|\gamma| \geq C\n{2}{3} \} }}.
+	\end{align*}
+	\fxnote{Fix the formatting and add equation number}
+	
+	Let $T$ be the time the last excursion starting before $C\n{2}{3}$ ends.
+	\fxnote{Maybe diagram goes here.}
+	The behaviour of the breadth-first walk after $T$ will be the same as the behaviour of a new walk on $\Gcal(n-T,p)$.
+	\fxnote{Some more explanation on this, please!}
+	Note that the notions of excursions of the breadth-first walk and components in the underlying graph are interchangeable.
+	\fxnote{Note that the notions...}
+	We write $\Ccal \in \Gcal$ to denote a component $\Ccal$ contained in the random graph $\Gcal$,
+	and $|\Ccal|$ for its size.
+	Then
+	\begin{equation} \label{E: P(ExcEvent) 2}
+	\begin{aligned}
+	P(\ExcursionEvent) 
+	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-T, p)}  |\Ccal|^2 \Ind{\{|\Ccal| \geq \delta\n{2}{3} \} }} \\
+	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, p)}  |\Ccal|^2 \Ind{\{|\Ccal| \geq \delta\n{2}{3} \} }} \\
+	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, p)}  |\Ccal|^2 }.
+	\end{aligned}
+	\end{equation}
+	For ease of notation,
+	let us now consider the graph $\Gcal(k,p)$.
+	\begin{equation} \label{E: P(ExcEvent) 3}
+	\begin{aligned}
+	\Exp{\sum_{\Ccal \in \Gcal(k, p)} |\Ccal|^2 } 
+	&= \Exp{ \sum_{\Ccal \in \Gcal(k, p)} |\Ccal| \sum_{v \in \Ccal} 1} \\
+	&= \Exp{ \sum_{\Ccal \in \Gcal(k, p)} |\Ccal| \sum_{v \in \Gcal(k,p)} \Ind{\{v \in \Ccal\}} } \\
+	&= \sum_{v \in \Gcal(k,p)} \Exp{ \underbrace{\sum_{\Ccal \in \Gcal(k, p)} \Ind{v \in \Ccal}}_{|\Ccal|} } \\ 
+	&= \sum_{v \in \Gcal(k,p)} \Exp{|\Ccal(v)|} \\
+	&= k \Exp{|\Ccal(1)|},
+	\end{aligned}
+	\end{equation}
+	where $\Ccal(v)$ denotes the component containing the vertex $v$ and the last inequality stems from the interchangeability of the vertex labels.
+	\fxnote{Is interchangeability of vertex labels a thing?}
+	We will bound the expectation of the size of this component from above by a suitable branching process.
+	Exploring the component in the language of a branching process $(Y_i, \; i\geq 0)$ works by starting at time $0$ with one vertex,
+	$Y_0 = 1$.
+	The number of children of this vertex is a $\Binom(k-1,p)$ distributed random variable, $Y_1$.
+	In the next step, each child-vertex will itself have children,
+	each Binomially distributed on the remaining set of vertices with probability $p$.
+	So 
+	\begin{align*}
+	Y_{2,1} &\sim \Binom(k-1-Y_1,p), \\ 
+	Y_{2,2} &\sim \Binom(k-1-Y_1-Y_{2,1},p), \\
+	&\dots \\
+	Y_{2,Y_1} &\sim \Binom(k-1-Y_1-Y_{2,1}-\dots-Y_{2,Y_1-1},p) \\
+	Y_2 &= \sum_{i=1}^{Y_1} Y_{2,i}.
+	\end{align*}
+	The size of the component will then be the amount of explored vertices,
+	or 
+	To provide an upper bound,
+	we consider the branching process where each number of children is $\Binom(k,p)$ distributed.
+	Define the process as follows,
+	\begin{equation}
+	\begin{aligned}
+	Z_0 &:= 1, \\
+	Z_j &:= \sum_{i=1}^{Z_{j-1}} Z_{j,i},
+	\end{aligned}
+	\end{equation}
+	 where $Z_{j,i} \sim\Binom(k,p)$ for all $i,j \geq 1$.
+	 Then the process $(Y_i, \; i\geq 0)$ is stochastically dominated by 
+	 $(Z_i, \; i\geq 0)$ and
+	 \begin{equation}
+	 |\Ccal(1)| \leq_{\text{st.}} Z_0 + Z_1 + Z_2 + \dots.
+	 \end{equation}
+	 For $m\geq0$,
+	 \begin{align*}
+	 \Exp{Z_m} 
+	 &= \Exp{Z_{m-1}}kp \\
+	 &\dots \\
+	 &= \Exp{Z_0}(kp)^m \\
+	 &= (kp)^m,
+	 \end{align*}
+	so
+	\begin{align*}
+	\Exp{|\Ccal(1)|} 
+	&\leq 1 + kp + (kp)^2 + \dots \\
+	&= \frac{1}{1-kp}.
+	\end{align*}
+	Substituting in \eqref{E: P(ExcEvent) 3} yields
+	\begin{equation}
+	\begin{aligned}
+	P(\ExcursionEvent) 
+	&\leq \frac{n-C\n{2}{3}}{\delta^2 \n{4}{3}} \frac{1}{1-(n-C\n{2}{3})p} \\
+	&= \frac{n-C\n{2}{3}}{\delta^2 \n{4}{3}} \frac{1}{1-(n-C\n{2}{3})(n^{-1} + t\n{-4}{3})} \\
+	&= \frac{n-C\n{2}{3}}{\delta^2 \n{4}{3}} \frac{\n{1}{3}}{C-t+Ct\n{-1}{3}} \\
+	&\leq \frac{n}{\delta^2 \n{4}{3}} \frac{\n{1}{3}}{C-t+Ct\n{-1}{3}} \\
+	&= \frac{1}{\delta^2} \frac{1}{C-t+Ct\n{-1}{3}}.
+	\end{aligned}
+	\end{equation}
+	For $n \rightarrow \infty$, 
+	this expression converges asymptotically to $\frac{1}{\delta^2} \frac{1}{C-t}$,
+	where $t$ and $\delta$ are fixed.
+	Thus, for all $\epsilon>0$ we can choose $C>0$ such that
+	$P(\ExcursionEvent) \leq \frac{1}{\delta^2} \frac{1}{C-t+Ct\n{-1}{3}} < \epsilon$,
+	which completes the proof.
+\end{proof}
+
+We have shown that with high probability there is no mass of large excursions wandering off to infinity.
+\fxnote{Correct use of "with high probability"?}
+\fxnote{"Mass of large excursions" needs clarification.}
+For all $\epsilon>0$ we can find a $C>0$ such that,
+with probability $1-\epsilon$,
+all excursions of size equal to or larger than $\delta\n{2}{3}$ will start before step $C\n{2}{3}$.
+For all these excursions we can apply Lemma \ref{L: Lemma 8} to prove that $\Xin \rightarrow_d \Xi$.
+With these considerations we finish the proof of Theorem \ref{T: Main}.
 
 \section{Graph-theory approach}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
