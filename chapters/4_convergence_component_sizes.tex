@@ -661,7 +661,7 @@ With these considerations we finish the proof of Theorem \ref{T: Main}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Lemma 9: Graph Components
+% Lemma 9 - Graph Components: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: Lemma 9}
 	Let $p(n, y, \delta)$ be the chance that $\Gcal \in \Gnt$
@@ -674,8 +674,83 @@ With these considerations we finish the proof of Theorem \ref{T: Main}.
 	\end{equation}
 	for all $\delta > 0$.
 \end{lemma}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma 9 - Graph Components: Statement
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof}
-	This is the proof
+	For this proof,
+	we have to change our understanding of the random graph process $\Gnt$ a little.
+	Until now, we constructed a random graph by labeling all vertices $\{1, \dots, n\}$ 
+	and then drawing Bernoulli random variables to construct edges and consequently components.
+	Now we switch the order of actions. 
+	Start with an unlabeled empty graph with $n$ vertices.
+	Draw $\Bern(p)$ random variables to establish edges between vertices.
+	Then, one by one, assign the labels $1$ to $n$ to the vertices,
+	where the probabilities are equal for all remaining vertices.
+	\fxnote{Fix this sentence.}
+	Since the construction of edges is independent of vertex labels and edge are constructed independently of each other,
+	these two approaches are equivalent construction of the random graph.
+	\fxnote{Construction is used twice here with different meaning.}
+	
+	Let $\SigmaAlgebra_E$ be the sigma-algebra that includes the creation of edges and components, 
+	but not the labeling of the vertices.
+	\fxnote{Alter the description of the sigma-algebra.}
+	For a component $\Ccal$ of size $\alpha\n{2}{3}$,
+	let $v(\Ccal)$ be the label of its minimal vertex and write 
+	$\ChiAn = \n{-1}{3}v(\Ccal)$.
+	We show that $\ChiAn \rightarrow_d \Exponential(\alpha)$.
+	\fxfatal{Proof of Chi -> Exp goes here!}
+	
+	Fix $\delta > 0$.
+	Let $\NComp{I}$ be the expected number of components of size greater than or equal to $\delta\n{2}{3}$ 
+	with its minimal vertex label in $\n{1}{3}I$.
+	Then
+	\begin{equation} \label{E: q(n,[y,infty])}
+	\begin{aligned}
+	\NComp{[y, \infty)}
+	&= \ExpBig{ \ExpBig{ \sum_{\Ccal: \; |\Ccal| \geq \delta\n{2}{3}} \Ind{\{ v(\Ccal) > y\n{1}{3} \}} \cond \SigmaAlgebra_E } } \\
+	&= \ExpBig{ \sum_{\Ccal: \; |\Ccal| \geq \delta\n{2}{3}} P( v(\Ccal) > y\n{1}{3} \cond \SigmaAlgebra_E) } \\
+	&= \ExpBig{ \sum_{\Ccal: \; |\Ccal| \geq \delta\n{2}{3}} P(\ChiAn > y \cond \SigmaAlgebra_E, |\Ccal| = \alpha\n{2}{3}) }
+	\end{aligned}
+	\end{equation}
+	\fxfatal{Fix usage of P for probability. Maybe use mathbb(P).}
+	Since the distribution of $\ChiAn$ converges to the exponential distribution,
+	$P(\ChiAn > y) \leq e^{-\alpha y} (1+ \Smallo{1})$,
+	where the last factor describes an error from the convergence.
+	\fxnote{Describes an error from the convergence... Fix once convergence is proven and understood.}
+	Additionally, $P(\ChiAn \leq 1) \leq (1 - e^{-\alpha}) (1+ \Smallo{1})$,
+	so
+	\begin{equation}
+	P(\ChiAn > y) \leq e^{-\alpha y} (1+ \Smallo{1}) = \frac{e^{-\alpha y}}{1 - e^{-\alpha}} P(\ChiAn \leq 1) (1 + \Smallo{1}).
+	\end{equation}
+	Using this inequality in \eqref{E: q(n,[y,infty])} leads to
+	\begin{equation}
+	\begin{aligned}
+	\NComp{[y, \infty)}
+	&\leq \ExpBig{ \sum_{\Ccal: \; |\Ccal| \geq \delta\n{2}{3}}
+		\frac{e^{-|\Ccal|\n{-2}{3}y}}{1-e^{-|\Ccal|\n{-2}{3}}} P(\ChiAn \leq 1) (1 + \Smallo{1}) } \\
+	&\leq \sup_{\alpha \geq \delta} \frac{e^{-\alpha y}}{1-e^{-\alpha}} (1 + \Smallo{1}) 
+		\ExpBig{ \sum_{\Ccal: \; |\Ccal| \geq \delta\n{2}{3}} P(\ChiAn \leq 1 \cond \SigmaAlgebra_E ) } \\
+	&= \frac{e^{-\delta y}}{1-e^{-\delta}} (1 + \Smallo{1}) \NComp{[0,1]},
+	\end{aligned}
+	\end{equation}
+	Dividing by $\NComp{[0,1]}$ gives us
+	\begin{equation}
+	\limsup_n \frac{\NComp{[y,\infty]}}{\NComp{[0,1]}} \leq \frac{e^{-\delta y}}{1-e^{-\delta}} (1 + \Smallo{1}) \xrightarrow{y \rightarrow \infty} 0.
+	\end{equation}
+	For this convergence to hold,
+	either $\NComp{[0,1]} \rightarrow \infty$ or $\NComp{[y,\infty]} \rightarrow 0$ as $y \rightarrow \infty$.
+	Since the law of total expectation implies $p(n,y,\delta) \leq \NComp{[y,\infty]}$
+	we only need to prove that
+	\begin{equation}
+	\sup_n \NComp{[0,1]} < \infty.
+	\end{equation}
+	Consulting existing literature on random graphs gives us $\sup_n \NComp{[0, \infty]} < \infty$.
+	Because $\NComp{I_1} \leq \NComp{I_2}$ for $I_1 \subset I_2$,
+	this concludes the proof.
+	
+	\fxfatal{Add reference to literature and proof of claim.}
 \end{proof}
 
 
@@ -689,3 +764,4 @@ With these considerations we finish the proof of Theorem \ref{T: Main}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: l2-approach
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fxnote{This section will probably be deleted.}
