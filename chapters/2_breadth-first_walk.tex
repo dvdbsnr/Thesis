@@ -38,7 +38,7 @@ $w_1, w_2, \dots$, the vertices with the smallest label in the corresponding com
 are ordered $w_1 > w_2 > \dots$. 
 Call $w_i$ the root of $\Ci{i}$.
 Now order by levels (distance from the root) and within levels order by original vertex label.
-See Figure \ref{F: bf-walk} for an example of the new ordering.
+See Figure \eqref{F: bf-walk} for an example of the new ordering.
 
 For a more mathematically concise definition,
 consider the set of vertices $\{ v(1),\dots, v(i) \}$
@@ -302,7 +302,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\begin{equation} \label{D: An}
 	\An{t} = \int_{0}^{t} a_n(s)ds - t
 	\end{equation}
-	and
+	with
 	\begin{equation} \label{D: an}
 	a_n(s)ds = P(\text{A new edge appears in} \enspace [s, s+ds] \cond \Zn{u}, \enspace u \leq s).
 	\end{equation}	
@@ -319,7 +319,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 % Lemma Decompositions: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: decomp Zn}
-	We will prove that, for $A_n$ defined in \ref{D: An} and \ref{D: an},
+	We will prove that, for $A_n$ defined in \eqref{D: An} and \eqref{D: an},
 	$Z_n - A_n$
 	is a martingale by showing that
 	\begin{equation} \label{E: Mn martingale}
@@ -371,7 +371,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\begin{equation} \label{D: An}
 	\Bn{t} = \int_{0}^{t} a_n(s)ds = A_n(t) + t
 	\end{equation}
-	with $a_n$ defined in \ref{D: an}.
+	with $a_n$ defined in \eqref{D: an}.
 \end{lemma}
 \begin{note} \label{N: decomp Mn}
 	$B_n$ is a continuous process.
@@ -407,7 +407,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\begin{equation}
 	M_n^2 - B_n = (\underbrace{M_n^2 - [M_n]}_{\text{martingale}}) + ([M_n] - B_n)
 	\end{equation}
-	and to prove \ref{decomp Mn} it suffices to show that
+	and to prove \eqref{decomp Mn} it suffices to show that
 	$[M_n] - B_n$
 	is a martingale.
 	Using the fact that the jumps of $M_n$ are the jumps of $Z_n$ and
@@ -422,7 +422,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	&= (\text{Number of jumps of} \enspace Z_n \enspace \text{in} \enspace [0,t] - t) - \An{t} \\
 	&= \Zn{t} - \An{t}
 	\end{align*}
-	which is a martingale from Lemma \ref{L: decomp Zn}.
+	which is a martingale from Lemma \eqref{L: decomp Zn}.
 	
 \end{proof}
 
@@ -462,7 +462,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	$P(\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s)$.
 	To do this, we condition over a finer $\sigma$-algebra and use the law of total expectation to arrive at a general statement.
 	$\SigmaAlgebra_s$ tells us the history of the walk until time $s$. 
-	We know, how many vertices were eligible at time $i-1$ and how many open edges to $v(i)$ were found in $[\floor(s),s]$.
+	We know, how many vertices were eligible at time $i-1$ and how many open edges to $v(i)$ were found in $[\floor{s},s]$.
 	However it is unknown, exactly which vertices are now children of $v(i)$ and which vertices are still eligible.
 	\fxnote{Is this really important? Isn't it enough to have the finer s-algebra know about the k vertices?}
 	
@@ -480,10 +480,11 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	and want to calculate the probability that one of the remaining $N-k$ edges opens in $[s, s+ds]$.
 	The probability of some edge opening is the sum of the probabilities for single edges opening
 	and some factor describing the, for small $ds$ increasingly slim, 
-	chance of two or more edges opening in the interval:
+	chance of two or more edges opening in the interval.
 	\fxnote{Increasingly slim is not a mathematical term.}
+	We denote by $\NewEdge{I}$ the event of a new edge appearing in an interval $I$ and write
 	\begin{equation}
-	P(\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s^k) 
+	P(\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s^k)
 	= \sum_{j \neq j_1, \dots j_k} P( \text{$(i,j)$ opens in $[s, s+ds]$} \cond \SigmaAlgebra_s^k ) + \Smallo{ds}.
 	\end{equation}
 	For the edge $(i,j)$, all relevant information contained in $\SigmaAlgebra_s^k$ is the fact that 
@@ -506,7 +507,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	and finally, omitting the $\Smallo{ds}$-term:
 	\begin{equation}
 	\begin{aligned}
-	P(\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s^k) 
+	P(\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s^k) 
 	&= \sum_{j \neq j_1, \dots j_k} \ps \\
 	&= (N-k) \frac{pds}{1-p(s-\floor{s})}.
 	\end{aligned}
@@ -517,9 +518,9 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	we apply the law of total expectation:
 	\begin{equation}
 	\begin{aligned}
-	P(\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s)
-	&= \Exp{\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s} \\
-	&= \Exp{ \Exp{\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s^k} \cond \SigmaAlgebra_s} \\
+	P(\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s)
+	&= \Exp{\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s} \\
+	&= \Exp{ \Exp{\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s^k} \cond \SigmaAlgebra_s} \\
 	&= \Exp{ (N-k) \ps \cond \SigmaAlgebra_s}.
 	\end{aligned}
 	\end{equation}
@@ -630,7 +631,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	&= \int_{0}^{s} \amn{u} - 1 du + \frac{s^2}{2n} - \frac{st}{\n{1}{3}} + \frac{s^2t}{2\n{4}{3}} \\
 	&\xrightarrow{n \rightarrow \infty} \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}} + \frac{s^2t}{2\n{4}{3}},
 	\end{align*}
-	Using \ref{L: zeta(i)}, the following inequalities hold for sufficiently large $n$:
+	Using \eqref{L: zeta(i)}, the following inequalities hold for sufficiently large $n$:
 	\fxnote{Add reference to lemma.}
     \begin{align*}
     \left| \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}  + \frac{s^2t}{2\n{4}{3}}  \right| 
@@ -657,7 +658,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
     &\leq 4 s_0 \n{-2}{3} \supns |\Zn{s}| \\
     &\longrightarrow_p 0 
     \end{align*}
-    will suffice to prove \ref{E: limit An}.
+    will suffice to prove \eqref{E: limit An}.
     For that, we will prove the stronger result 
     \begin{equation}
     n^{-2/3} \sup_{s\leq n^{-1/3} s_0} |Z_n(s)| 
@@ -725,7 +726,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
     \end{equation}
     and move to $A_n$.
     
-    Using \ref{E: (27)} and \ref{L: zeta(i)} we obtain
+    Using \eqref{E: (27)} and \eqref{L: zeta(i)} we obtain
     \begin{align*}
     \Exp{|\An{T_n}|} &\leq \Exp{\int_{0}^{T_n} |\an{s}-1|ds} \\
     &\leq \Exp{\int_{0}^{\n{2}{3}s_0} |\an{s}-1|ds} \\
@@ -745,16 +746,16 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
     \fxnote{Fix BigO-Notation (Sapozhnikov?)}
     since, by definition of $T_n$, $|\Zn{T_n}| < K\n{1}{3}.$
     
-    This and \ref{E: exp Mn} lead to a bound for large $n$:
+    This and \eqref{E: exp Mn} lead to a bound for large $n$:
     \begin{equation} \label{E: bound Zn}
     \Exp{|\Zn{T_n}|} \leq \alpha\n{1}{3} + 4s_0K,
     \end{equation}
     where $\alpha = \alpha(s_0,t)$ but not dependent on $n$ and $K$. 
-    Substituting $\Exp{|\Zn{T_n}|}$ in \ref{E: stoch bounded 2} we arrive at
+    Substituting $\Exp{|\Zn{T_n}|}$ in \eqref{E: stoch bounded 2} we arrive at
     \begin{equation}
     P( \sup_{s\leq n^{2/3} s_0} |Z_n(s)| > K \n{1}{3} ) \leq \frac{\alpha}{K} + \frac{4s_0}{\n{1}{3}}
     \end{equation}
-    which proves \ref{E: stoch bounded}.
+    which proves \eqref{E: stoch bounded}.
 \end{proof}
 
 
@@ -774,7 +775,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 % Lemma Limit Bn: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: limit Bn}
-	From its definition in Lemma \ref{L: decomp Mn}, $\Bn{s} = \An{s} + s$, which allows us to rewrite \ref{E: limit Bn} as
+	From its definition in Lemma \eqref{L: decomp Mn}, $\Bn{s} = \An{s} + s$, which allows us to rewrite \eqref{E: limit Bn} as
 	\begin{equation} \label{E: limit Bn An}
 	\n{-2}{3} \An{\n{-2}{3}s_0} \rightarrow_p 0.
 	\end{equation}
@@ -788,7 +789,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	\begin{equation*}
 	\n{-1}{3} \left( \n{-1}{3} \An{\n{-2}{3}s_0} + \frac{1}{2}s_0^2 - s_0t \right) \longrightarrow_p 0
 	\end{equation*}
-	which, since $\frac{1}{2}s_0^2 - s_0t$ is a constant in $n$, proves \ref{E: limit Bn An}.
+	which, since $\frac{1}{2}s_0^2 - s_0t$ is a constant in $n$, proves \eqref{E: limit Bn An}.
 	
 	Let the function $\phi$ be defined by $\phi(s) = \frac{1}{2}\n{-4}{3}s^2 - \n{-2}{3}st$.	
 	Now $\phi(\n{2}{3}s_0) = \frac{1}{2}s_0^2 - s_0t$ and
@@ -799,7 +800,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	&= \n{-1}{3} \supns \left| \An{s} + n^{-1}\frac{s^2}{2} - \n{-1}{3}st \right| \\
 	&\longrightarrow_p 0,
 	\end{align*}
-	as $n \rightarrow \infty$ from Lemma \ref{L: limit An}. This gives \ref{E: limit Bn An + c} and completes the proof.
+	as $n \rightarrow \infty$ from Lemma \eqref{L: limit An}. This gives \eqref{E: limit Bn An + c} and completes the proof.
 \end{proof}
 
 
@@ -815,7 +816,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 \end{lemma}
 
 \begin{proof} \label{P: limit Mn}
-	As previously discussed in the proof of Lemma \ref{L: decomp Mn}, the jumps of $M_n$ are exactly the jumps of $Z_n$ and thus have size $1$. The lemma follows immediately.
+	As previously discussed in the proof of Lemma \eqref{L: decomp Mn}, the jumps of $M_n$ are exactly the jumps of $Z_n$ and thus have size $1$. The lemma follows immediately.
 \end{proof}
 
 
@@ -834,14 +835,14 @@ $\bar{M}_n(s) = \n{-1}{3}\Mn{\n{2}{3}s}$,
 $\bar{A}_n(s) = \n{-1}{3}\An{\n{2}{3}s}$, 
 $\bar{Q}_n(s) = \n{-2}{3}Q_n(\n{2}{3}s)$ and 
 $\bar{B}_n(s) = \n{-2}{3}B_n(\n{2}{3}s)$ to fit the previously rescaled process 
-$\bar{Z}_n$ from \ref{D: rescaled Zn}, such that
+$\bar{Z}_n$ from \eqref{D: rescaled Zn}, such that
 \begin{align*}
 \Zbar{s} &= \Mbar{s} + \Abar{s} \\
 \bar{M}_n^2(s) &= \bar{Q}_n(s) + \Bbar{s}.
 \end{align*}
 \fxnote{Definition of rescaled processes tidier.}
 
-Rescaling Lemmas \ref{L: limit An}, \ref{L: limit Bn} and \ref{L: limit Mn} gives us
+Rescaling Lemmas \eqref{L: limit An}, \eqref{L: limit Bn} and \eqref{L: limit Mn} gives us
 \begin{equation} \label{E: limit An rescaled}
 \sup_{s \leq s_0} |\Abar{s} - \rho (s)| \longrightarrow_p 0,
 \end{equation}
@@ -888,21 +889,21 @@ omitting one of two equivalent conditions and all references to higher dimension
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorem Convergence Z_n: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We are now ready to prove Theorem \ref{T: Z -> W}.
+We are now ready to prove Theorem \eqref{T: Z -> W}.
 
-\begin{proof}[Proof of Theorem \ref{T: convergence Zn}]
+\begin{proof}[Proof of Theorem \eqref{T: convergence Zn}]
 	Let again $\{\Fn{t}\}$ be the filtration generated by $Z_n$, 
 	$\Fn{t} = \sigma \{ \Zn{s}, s \leq t \}$.
 	The rescaling above does not alter martingale properties of the resulting processes,
 	so $\bar{M}_n$ and $\bar{Q}_n = \bar{M}_n^2 - \bar{B}_n$ are still martingales in $\{\Fn{t}\}$.
 	\fxnote{Martingales for/in?}
 	\fxnote{Martingale = F-local martingale?}
-	We apply Theorem \ref{T: functional CLT martingales} to $\bar{M}_n$ and $\bar{B}_n$.
-	The continuity of $\bar{B}_n$ satisfies condition \ref{E: cond1 CLT}, 
-	condition \ref{E: cond2 CLT} holds from \ref{E: limit Mn rescaled}
-	and \ref{E: limit Bn rescaled} gives condition \ref{E: cond3 CLT}, with $c(t) := t$.
+	We apply Theorem \eqref{T: functional CLT martingales} to $\bar{M}_n$ and $\bar{B}_n$.
+	The continuity of $\bar{B}_n$ satisfies condition \eqref{E: cond1 CLT}, 
+	condition \eqref{E: cond2 CLT} holds from \eqref{E: limit Mn rescaled}
+	and \eqref{E: limit Bn rescaled} gives condition \eqref{E: cond3 CLT}, with $c(t) := t$.
 	
-	Thus $\Mbar{s} \rightarrow_d W(s)$, the standard Brownian motion, and by using \ref{E: limit An rescaled} we obtain
+	Thus $\Mbar{s} \rightarrow_d W(s)$, the standard Brownian motion, and by using \eqref{E: limit An rescaled} we obtain
 	\begin{equation*}
 	\Zbar{s} = \Mbar{s} + \Abar{s} \rightarrow_d W(s) + \rho (s) = W^t(s).
 	\end{equation*}
