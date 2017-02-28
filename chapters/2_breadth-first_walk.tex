@@ -518,7 +518,6 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 \end{proof}
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lemma Decomposition Mn: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -543,36 +542,28 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 \begin{proof} \label{P: decomp Mn}
 	Similar to the proof of the previous Lemma, we will show that $M_n^2 - B_n$ is a martingale.
 	Consider the quadratic variation of $M_n$.
-	For any process $M$, the quadratic variation is defined by
+	For any process $M$, its quadratic variation is defined by
 	\begin{equation} \label{D: quadratic variation}
 	[M]_t := \limsup \sum (M_{t_i} - M_{t_{i-1}})^2.
 	\end{equation}
-	Since $M_n$ is a right-continuous process of bounded variation, its quadratic variation
-	
-	\fxnote{Add definition of quadratic variation.}
-	is
+	\fxnote{Add real definition.}
+	Since $M_n$ is a right-continuous process of bounded variation, 
+	its quadratic variation is the sum of the squares of all jumps of $M_n$:
 	\begin{equation} \label{E: quadratic variation Mn}
 	\Mnq{t} = \sum_{0 \leq s \leq t} (\Delta \Mn{s})^2,
 	\end{equation}
-	where
-	$\Delta \Mn{s} := \Mn{s} - \Mn{s-}$ 
-	can take one of two values: $1$ if there is a jump of $1$ at time $s$, 0 otherwise.
-	\fxnote{Other word for "take".}
-	We refer to [EK] to see that
-	$M_n^2 - [M_n]$
-	is a martingale.
+	where $\Delta \Mn{s} := \Mn{s} - \Mn{s-}$. 
+	By \cite{N.Ethier1986}, $M_n^2 - [M_n]$ is a martingale.
 	\fxnote{Add reference from [EK]}
-	\fxnote{Nicer sentence.}
-	Thus
+	Therefore
 	\begin{equation}
 	M_n^2 - B_n = (\underbrace{M_n^2 - [M_n]}_{\text{martingale}}) + ([M_n] - B_n)
 	\end{equation}
-	and to prove \eqref{E: decomp Mn} it suffices to show that
-	$[M_n] - B_n$
-	is a martingale.
-	Using the fact that the jumps of $M_n$ are the jumps of $Z_n$ and
-	$\Delta Z_n \in \lbrace0,1 \rbrace$
-	we calculate
+	and to prove \eqref{E: decomp Mn} it suffices to show that $[M_n] - B_n$ is a martingale.
+	Since $A_n$ is continuous, the jumps of $M_n$ are exactly the jumps of $Z_n$.
+	Note that the jumps $\Delta \Zn{s}$ can take one of two values: 
+	$1$ if there is a jump of size $1$ at time $s$, 0 otherwise.
+	From this, we conclude that
 	\begin{align*}
 	\Mnq{t} - \Bn{t}
 	&= \sum_{0 \leq s \leq t} (\Delta \Mn{s})^2 - \Bn{t} \\
@@ -580,10 +571,9 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	&= \sum_{0 \leq s \leq t} \Delta \Zn{s} - \Bn{t} \\
 	&= \text{Number of jumps of} \enspace Z_n \enspace \text{in} \enspace [0,t] - \Bn{t} \\
 	&= (\text{Number of jumps of} \enspace Z_n \enspace \text{in} \enspace [0,t] - t) - \An{t} \\
-	&= \Zn{t} - \An{t}
+	&= \Zn{t} - \An{t},
 	\end{align*}
-	which is a martingale from Lemma \ref{L: decomp Zn}.
-	
+	which is a martingale by Lemma \ref{L: decomp Zn}.
 \end{proof}
 
 
