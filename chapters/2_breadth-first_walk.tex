@@ -527,13 +527,14 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 % Lemma Decompositions Mn: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: decomp Mn}
-	Similar to the proof of the previous Lemma, we will show that
-	$M_n^2 - B_n$
-	is a martingale.
+	Similar to the proof of the previous Lemma, we will show that $M_n^2 - B_n$ is a martingale.
+	Consider the quadratic variation of $M_n$.
+	For any process $M$, the quadratic variation is defined by
+	\begin{equation} \label{D: quadratic variation}
+	[M]_t := \limsup \sum (M_{t_i} - M_{t_{i-1}})^2.
+	\end{equation}
 	Since $M_n$ is a right-continuous process of bounded variation, its quadratic variation
-	\begin{equation*} \label{D: quadratic variation}
-	[M]_t := \limsup \sum (M_{t_i} - M_{t_{i-1}})^2
-	\end{equation*}
+	
 	\fxnote{Add definition of quadratic variation.}
 	is
 	\begin{equation} \label{E: quadratic variation Mn}
