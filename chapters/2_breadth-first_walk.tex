@@ -291,7 +291,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Lemma Decompositions 1: Statement
+% Lemma Decompositions An: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: decomp Zn}
 	The decomposition 
@@ -314,9 +314,8 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\fxnote{Proof that Mn is cadlaq.}	
 \end{note}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Lemma Decompositions: Proof
+% Lemma Decompositions An: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: decomp Zn}
 	We will prove that, for $A_n$ defined in \eqref{D: An} and \eqref{D: an},
@@ -333,7 +332,8 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\end{equation}
 	
 	We start with the left-hand side. 
-	The difference between $Z_n$ at times $t$ and $t+u$ is the sum of all jumps that occurred in $[t, t+u]$ minus the constant downward drift $u$:
+	The change of $Z_n$ between times $t$ and $t+u$ is the sum of all jumps that occurred in $[t, t+u]$,
+	minus the constant downward drift $u$:
 	\begin{align*}
 	\Exp{\Zn{t+u} - \Zn{t} \cond \F{t}} 
 	&= \Exp{\text{Number of jumps in} \enspace [t, t+u] \cond \F{t}} - u \\
@@ -360,14 +360,179 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Lemma Decompositions 1: Statement
+% Lemma Formula An: Statement
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{lemma} \label{L: formula an}
+	For $a_n$ as defined in Lemma \ref{L: decomp Zn},
+	\begin{equation}
+	\an{s} = (n - s - \Zetan{\ceil{s}} - \Zn{s}) \ps .
+	\end{equation}
+	\fxnote{Update/change Zeta-symbol if needed.}
+	\fxnote{Add explanation of Zeta if needed.}
+\end{lemma}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma Formula An: Proof
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{proof} \label{P: formula an}
+	Consider the walk $Z_n$ at time $s\in[i-1, i]$.
+	Let $N$ be the number of vertices that, at time $i-1$, were eligible to be children of vertex $v(i)$.
+	That is, all vertices not yet explored or discovered, and excluding $v(i)$ itself.
+	To any eligible vertex $j$ we assign a random variable $\Uij$.
+	Let all $\Uij$ be independent and identically $\mathcal{U}(0,1)$ distributed.
+	Our understanding of the process of discovering children of $v(i)$ is as follows:
+	At time $i-1+\Uij$, the edge $(i,j)$ will open with probability $\p$ and
+	$Z_n$ will make a jump of size $1$.
+	We arrive at a characterisation of our breadth-first walk, 
+	equivalent to \eqref{E: def Zn continuous}:	
+	\begin{equation}
+	Z_n(i-1+u) = Z_n(i-1) - u + \sum_{j=1}^{N} \Ind{\{\Uij \leq u, \; (i,j) \; \text{open}\}}.
+	\end{equation}
+	
+	We define $\SigmaAlgebra_s := \sigma(\Zn{t}, t\leq s)$.
+	The goal of this proof is to find an expression for
+	$\Prob(\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s)$.
+	To do this, we condition over a finer $\sigma$-algebra and use the law of total expectation to arrive at a general statement.
+	$\SigmaAlgebra_s$ tells us the history of the walk until time $s$. 
+	We know, how many vertices were eligible at time $i-1$ and how many open edges to $v(i)$ were found in $[\floor{s},s]$.
+	However it is unknown, exactly which vertices are now children of $v(i)$ and which vertices are still eligible.
+	\fxnote{Is this really important? Isn't it enough to have the finer s-algebra know about the k vertices?}
+	
+	Let 
+	\begin{equation}
+	\begin{split}
+	\SigmaAlgebra_s^k := \sigma(&\Zn{t}, t\leq s; \\
+	&\text{There are exactly $k$ children of $v(i)$ encountered thus far}, \\
+	&\text{and these are $j_1, \dots, j_k$}).
+	\end{split}
+	\end{equation}
+	\fxfatal{Definition Fsk: Fix this mess!}
+	
+	We know that $k$ of the $N$ edges eligible at time $i-1$ are already open 
+	and want to calculate the probability that one of the remaining $N-k$ edges opens in $[s, s+ds]$.
+	The probability of some edge opening is the sum of the probabilities for single edges opening
+	and some factor describing the, for small $ds$ increasingly slim, 
+	chance of two or more edges opening in the interval.
+	\fxnote{Increasingly slim is not a mathematical term.}
+	We denote by $\NewEdge{I}$ the event of a new edge appearing in an interval $I$ and write
+	\begin{equation}
+	\Prob(\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s^k)
+	= \sum_{j \neq j_1, \dots j_k} \Prob( \text{$(i,j)$ opens in $[s, s+ds]$} \cond \SigmaAlgebra_s^k ) + \Smallo{ds}.
+	\end{equation}
+	For the edge $(i,j)$, all relevant information contained in $\SigmaAlgebra_s^k$ is the fact that 
+	$(i,j)$ is not yet open, the event of opening has not happened in $[\floor{s}, s)$.
+	Since the opening itself, happening with probability $\p$,
+	and the uniformly distributed time of the event in $[i-1, i]$ are independent,
+	we see that
+	\begin{equation}
+	\begin{aligned}
+	&\Prob(\text{$(i,j)$ opens in $[s, s+ds]$}) \\
+	&\quad = \Prob(\text{$(i,j)$ opens})\Prob(\text{It happens in $[s, s+ds]$}) \\
+	&\quad = \p ds.
+	\end{aligned}
+	\end{equation}
+	By the definition of conditional probability
+	\begin{equation}
+	\begin{aligned}
+	&\Prob( \text{$(i,j)$ opens in $[s, s+ds]$} \cond \text{$(i,j)$ did not open in $[\floor{s}, s]$} ) \\
+	&\quad = \frac{\Prob( \text{$(i,j)$ opens in $[s, s+ds]$})}{\Prob(\text{$(i,j)$ did not open in $[\floor{s}, s]$})} \\
+	&\quad = \frac{\p ds}{1-\p(s-\floor{s})},
+	\end{aligned}
+	\end{equation}
+	\fxnote{Fix the formatting here.}
+	and finally, omitting the $\Smallo{ds}$-term:
+	\begin{equation}
+	\begin{aligned}
+	\Prob(\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s^k) 
+	&= \sum_{j \neq j_1, \dots j_k} \ps \\
+	&= (N-k) \frac{\p ds}{1-\p(s-\floor{s})}.
+	\end{aligned}
+	\end{equation}
+	For any event $\mathcal{E}$,
+	$\Prob(\mathcal{E}) = \Exp{\Ind{\mathcal{E}}}$ holds.
+	Seeing that $\SigmaAlgebra_s \subseteq \SigmaAlgebra_s^k$,
+	we apply the law of total expectation:
+	\begin{equation}
+	\begin{aligned}
+	\Prob(\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s)
+	&= \Exp{\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s} \\
+	&= \Exp{ \Exp{\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s^k} \cond \SigmaAlgebra_s} \\
+	&= \Exp{ (N-k) \ps ds \cond \SigmaAlgebra_s}.
+	\end{aligned}
+	\end{equation}
+	Conditioning on $\SigmaAlgebra_s$,
+	the breadth-first walk $Z_n$ tells us exactly how many vertices connected to vertex $i$ until time $s$.
+	We denote by $\Ineligible{s}$ the number of vertices that are at time $s$ not eligible to be a child of $v(\ceil{s})$.
+	\fxnote{Its not the sum of verties. Its the sum of the amount of vertices.}
+	Then $N-k=n-\Ineligible{s}$ at time $s$ and
+	\begin{equation}
+	\an{s}ds = \Prob(\NewEdge{\sds} \cond \SigmaAlgebra_s) = (n - \Ineligible{s}) \ps ds.
+	\end{equation}
+	Finally, we find a concise expression for $\Ineligible{s}$.
+	At time $i-1$, the ineligible vertices are the $i-1$ vertices already explored
+	and the set $\Ni{i-1}$ of vertices already discovered as children.
+	If $v(i-1)$ is the last vertex of its component,
+	$v(i)$ itself is not part of $\Ni{i-1}$, 
+	so we need to add a term that that equals $1$ if $v(i-1)$ is the last vertex of its component and $0$ otherwise.
+	Together, we arrive at
+	\begin{equation}
+	\Ineligible{i-1} = i-1 + |\Ni{i-1}| + (\ZetaMinus{i} - \ZetaMinus{i-1}).
+	\end{equation}
+	By \eqref{E: def bf-walk z*} this is equivalent to
+	\begin{equation}
+	\Ineligible{i-1} = i-1 + \ZetaMinus{i} + \Zn{i-1}.
+	\end{equation}
+	At time $i-1+u$, for $0<u<1$, 
+	new vertices were discovered as children of $v(i)$ and now add to $\Ineligible{i-1+u}$.
+	The number of ineligible vertices is now
+	\begin{equation}
+	\begin{aligned}
+	\Ineligible{i-1+u} 
+	&= i-1 + \ZetaMinus{i} + \Zn{i-1} + \sum_{j} \Ind{\Uij \leq u} \\
+	&= i-1+u + \ZetaMinus{i} + \Zn{i-1+u},
+	\end{aligned}
+	\end{equation} 
+	by our definition \eqref{E: def Z} of the continuous breadth-first walk.
+	So $\Ineligible{s} = s + \ZetaMinus{\ceil{s}} + \Zn{s}$ which concludes the proof.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Corollary An BV: Statement
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{corollary}
+	The process $A_n$, as defined in Lemma \ref{L: decomp Zn}, is a continuous process of bounded variation.
+	Moreover, $Z_n$ and $M_n$ are \cadlaq{} processes of bounded variation.
+\end{corollary}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Corollary An BV: Proof
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{proof}
+	Since $\an{s} = (n - \Ineligible{s}) \ps \geq 0$ for all $s$,
+	the integral $\int_{0}^{t}\an{s}ds$ is a non-decreasing, continuous function in $t$.
+	Therefore $A_n(t) = \int_{0}^{t}\an{s}ds -t$ is the difference of two continuous, non-decreasing functions.
+	By the Jordan Decomposition, see e.g. \cite{Mikosch2009}, $A_n$ is a continuous process of bounded variation.
+	\fxnote{Add real reference}
+	
+	We remember from the definition of the continuous breadth-first walk in $\eqref{E: def Z}$,
+	that $Z_n$ is the sum of the constant downward stream and jumps of size $1$ for every new edge.
+	By the Jordan Decomposition, $Z_n$ is of bounded variation and the jumps make it a \cadlaq{} process.
+	Since $M_n = Z_n - A_n$ is the difference of two functions of bounded variation is again of bounded variation.
+	Since $A_n$ is continuous and $Z_n$ is \cadlaq{}, $M_n$ is \cadlaq{}.
+\end{proof}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma Decomposition Mn: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: decomp Mn}
 	The decomposition
 	\begin{equation} \label{E: decomp Mn}
 	M_n^2 = Q_n + B_n
 	\end{equation}
-	holds where $Q_n$ is a martingale and $B_n$ is defined by 
+	holds, where $Q_n$ is a martingale and $B_n$ is defined by 
 	\begin{equation} \label{D: Bn}
 	\Bn{t} = \int_{0}^{t} a_n(s)ds = A_n(t) + t
 	\end{equation}
@@ -377,12 +542,11 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	$B_n$ is a continuous process.
 \end{note}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Lemma Decompositions 1: Proof
+% Lemma Decompositions Mn: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: decomp Mn}
-	We will prove that
+	Similar to the proof of the previous Lemma, we will show that
 	$M_n^2 - B_n$
 	is a martingale.
 	Since $M_n$ is a right-continuous process of bounded variation, its quadratic variation
@@ -427,139 +591,6 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 \end{proof}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Lemma Formula An: Statement
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{lemma} \label{L: formula an}
-	For $a_n$ as in the Lemmas above,
-	\begin{equation}
-		\an{s} = (n - s - \Zetan{\ceil{s}} - \Zn{s}) \ps .
-	\end{equation}
-	\fxnote{Update/change Zeta-symbol if needed.}
-	\fxnote{Add explanation of Zeta if needed.}
-\end{lemma}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Lemma Formula An: Proof
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{proof} \label{P: formula an}
-	Consider the walk $Z_n$ at time $s\in[i-1, i]$.
-	Let $N$ be the number of vertices that, at time $i-1$, were eligible to be children of vertex $v(i)$.
-	That is, all vertices not yet explored or discovered, and excluding $v(i)$ itself.
-	To any eligible vertex $j$ we assign a random variable $\Uij$.
-	Let all $\Uij$ be independent and identically $\mathcal{U}(0,1)$ distributed.
-	Our understanding of the process of discovering children of $v(i)$ is as follows:
-	At time $i-1+\Uij$, the edge $(i,j)$ will open with probability $\p$ and
-	$Z_n$ will make a jump of size $1$.
-	We arrive at a characterisation of our breadth-first walk, 
-	equivalent to \eqref{E: def Zn continuous}:	
-	\begin{equation}
-	Z_n(i-1+u) = Z_n(i-1) - u + \sum_{j=1}^{N} \Ind{\{\Uij \leq u, \; (i,j) \; \text{open}\}}.
-	\end{equation}
-	
-	We define $\SigmaAlgebra_s := \sigma(\Zn{t}, t\leq s)$.
-	The goal of this proof is to find an expression for
-	$\Prob(\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s)$.
-	To do this, we condition over a finer $\sigma$-algebra and use the law of total expectation to arrive at a general statement.
-	$\SigmaAlgebra_s$ tells us the history of the walk until time $s$. 
-	We know, how many vertices were eligible at time $i-1$ and how many open edges to $v(i)$ were found in $[\floor{s},s]$.
-	However it is unknown, exactly which vertices are now children of $v(i)$ and which vertices are still eligible.
-	\fxnote{Is this really important? Isn't it enough to have the finer s-algebra know about the k vertices?}
-	
-	Let 
-	\begin{equation}
-	\begin{split}
-	\SigmaAlgebra_s^k := \sigma(&\Zn{t}, t\leq s; \\
-	&\text{There are exactly $k$ children of $v(i)$ encountered thus far}, \\
-		&\text{and these are $j_1, \dots, j_k$}).
-	\end{split}
-	\end{equation}
-	\fxfatal{Definition Fsk: Fix this mess!}
-	
-	We know that $k$ of the $N$ edges eligible at time $i-1$ are already open 
-	and want to calculate the probability that one of the remaining $N-k$ edges opens in $[s, s+ds]$.
-	The probability of some edge opening is the sum of the probabilities for single edges opening
-	and some factor describing the, for small $ds$ increasingly slim, 
-	chance of two or more edges opening in the interval.
-	\fxnote{Increasingly slim is not a mathematical term.}
-	We denote by $\NewEdge{I}$ the event of a new edge appearing in an interval $I$ and write
-	\begin{equation}
-	\Prob(\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s^k)
-	= \sum_{j \neq j_1, \dots j_k} \Prob( \text{$(i,j)$ opens in $[s, s+ds]$} \cond \SigmaAlgebra_s^k ) + \Smallo{ds}.
-	\end{equation}
-	For the edge $(i,j)$, all relevant information contained in $\SigmaAlgebra_s^k$ is the fact that 
-	$(i,j)$ is not yet open, the event of opening has not happened in $[\floor{s}, s)$.
-	Since the opening itself, happening with probability $\p$,
-	and the uniformly distributed time of the event in $[i-1, i]$ are independent,
-	we see that
-	\begin{equation}
-	\Prob(\text{$(i,j)$ opens in $[s, s+ds]$}) = \Prob(\text{$(i,j)$ opens})\Prob(\text{It happens in $[s, s+ds]$}) = pds.
-	\end{equation}
-	By the definition of conditional probability
-	\begin{equation}
-	\begin{aligned}
-	\Prob( \text{$(i,j)$ opens in $[s, s+ds]$} \cond \text{$(i,j)$ did not open in $[\floor{s}, s]$} )
-	&= \frac{\Prob( \text{$(i,j)$ opens in $[s, s+ds]$})}{\Prob(\text{$(i,j)$ did not open in $[\floor{s}, s]$})} \\
-	&= \frac{pds}{1-p(s-\floor{s})},
-	\end{aligned}
-	\end{equation}
-	\fxnote{Fix the formatting here.}
-	and finally, omitting the $\Smallo{ds}$-term:
-	\begin{equation}
-	\begin{aligned}
-	\Prob(\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s^k) 
-	&= \sum_{j \neq j_1, \dots j_k} \ps \\
-	&= (N-k) \frac{pds}{1-p(s-\floor{s})}.
-	\end{aligned}
-	\end{equation}
-	For any event $\mathcal{E}$,
-	$\Prob(\mathcal{E}) = \Exp{\Ind{\mathcal{E}}}$ holds.
-	Seeing that $\SigmaAlgebra_s \subseteq \SigmaAlgebra_s^k$,
-	we apply the law of total expectation:
-	\begin{equation}
-	\begin{aligned}
-	\Prob(\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s)
-	&= \Exp{\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s} \\
-	&= \Exp{ \Exp{\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s^k} \cond \SigmaAlgebra_s} \\
-	&= \Exp{ (N-k) \ps \cond \SigmaAlgebra_s}.
-	\end{aligned}
-	\end{equation}
-	Conditioning on $\SigmaAlgebra_s$,
-	the breadth-first walk $Z_n$ tells us exactly how many vertices connected to vertex $i$ until time $s$.
-	We denote by $\Ineligible{s}$ the number of vertices that are at time $s$ not eligible to be a child of $v(\ceil{s})$.
-	\fxnote{Its not the sum of verties. Its the sum of the amount of vertices.}
-	Then $N-k=n-\Ineligible{s}$ at time $s$ and
-	\begin{equation}
-	\an{s} = (n - \Ineligible{s}) \ps.
-	\end{equation}
-	Finally, we find a concise expression for $\Ineligible{s}$.
-	At time $i-1$, the ineligible vertices are the $i-1$ vertices already explored
-	and the set $\Ni{i-1}$ of vertices already discovered as children.
-	If $v(i-1)$ is the last vertex of its component,
-	$v(i)$ itself is not part of $\Ni{i-1}$, 
-	so we need to add a term that that equals $1$ if $v(i-1)$ is the last vertex of its component and $0$ otherwise.
-	Together, we arrive at
-	\begin{equation}
-	\Ineligible{i-1} = i-1 + |\Ni{i-1}| + (\ZetaMinus{i} - \ZetaMinus{i-1}).
-	\end{equation}
-	By \eqref{E: def bf-walk z*} this is equivalent to
-	\begin{equation}
-	\Ineligible{i-1} = i-1 + \ZetaMinus{i} + \Zn{i-1}.
-	\end{equation}
-	At time $i-1+u$, for $0<u<1$, 
-	new vertices were discovered as children of $v(i)$ and now add to $\Ineligible{i-1+u}$.
-	The number of ineligible vertices is now
-	\begin{equation}
-	\begin{aligned}
-	\Ineligible{i-1+u} 
-	&= i-1 + \ZetaMinus{i} + \Zn{i-1} + \sum_{j} \Ind{\Uij \leq u} \\
-	&= i-1+u + \ZetaMinus{i} + \Zn{i-1+u},
-	\end{aligned}
-	\end{equation} 
-	by our definition \eqref{E: def Z} of the continuous breadth-first walk.
-	So $\Ineligible{s} = s + \ZetaMinus{\ceil{s}} + \Zn{s}$ which concludes the proof.
-\end{proof}
-
 
 
 \section{Asymptotics}
@@ -578,7 +609,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 \begin{lemma} \label{L: limit An}
 	For $A_n$ defined in Lemma \ref{L: decomp Zn} and fix $s_0 \geq 0$,
 	\begin{equation} \label{E: limit An}
-	\n{-1}{3} \supns \left| \An{s} + n^{-1}\frac{s^2}{2} - \n{-1}{3}st \right| \longrightarrow_p 0
+	\n{-1}{3} \supns \left| \An{s} + \frac{s^2}{2}n^{-1} - st\n{-1}{3} \right| \longrightarrow_p 0
 	\end{equation}
 	as $n \rightarrow \infty$, where $t$ is the fixed parameter of the random graph.
 	\fxnote{Change/remove explanation of t: "probability parameter"}
@@ -596,7 +627,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	which is $a_n$ without the denominator.
 	\fxnote{Change "without the denominator"}
 	First, we show that $\an{s}$ and $\amn{s}$ converge uniformly in $n$:
-	\begin{equation}
+	\begin{equation} \label{E: convergence an amn}
 	\begin{aligned}
 	&|\an{s} - \amn{s}| \\
 	&\quad = |(n - s - \Zetan{\ceil{s}} - \Zn{s}) \left( \ps - \p \right)| \\
@@ -606,15 +637,14 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	&= \BigO{n^{-1}}.
 	\end{aligned}
 	\end{equation}
-	\fxnote{Add proof of uniform convergence.}
 	We substitute the definition of $\p$ in \eqref{E: def a'n} to expand
 	\begin{align*}
 	\amn{s} - 1 
 	&= \left( n - s - \Zetan{\ceil{s}} - \Zn{s} \right) \left( n^{-1} + t\n{-4}{3} \right) - 1 \\
-	&= 1 + t\n{-1}{3} - sn^{-1} - st\n{-4}{3} \\
-	&\quad - \left( \Zetan{\ceil{s}} + \Zn{s} \right) \left( n^{-1} + t\n{-4}{3} \right) -1 .
+	&= t\n{-1}{3} - sn^{-1} - st\n{-4}{3} \\
+	&\quad - \left( \Zetan{\ceil{s}} + \Zn{s} \right) \left( n^{-1} + t\n{-4}{3} \right).
 	\end{align*}
-	Thus
+	Therefore
 	\begin{equation} \label{E: an zeta Z / n} 
 	\begin{aligned}
 	\left| \amn{s} - 1 + \frac{s}{n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}} \right|
@@ -623,14 +653,15 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	&\leq 2 \frac{\Zetan{\ceil{s}} + |\Zn{s}|}{n} ,  
 	\end{aligned}
 	\end{equation}
-	for $\n{1}{3} \geq |t|$. Note that $\Zetan{\ceil{s}} \geq 0$ for all $s \geq 0$.
+	for $\n{1}{3} \geq |t|$.
 	Integrating the inner part of the left-hand side over $s$ yields
 	\fxnote{Make clear: We integrate the inner part of the LHS from 0 to s.}
 	\begin{align*}
-	\int_{0}^{s} \amn{u} - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}} du
-	&= \int_{0}^{s} \amn{u} - 1 du + \frac{s^2}{2n} - \frac{st}{\n{1}{3}} + \frac{s^2t}{2\n{4}{3}} \\
+	\int_{0}^{s} (\amn{u} - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}}) du
+	&= \int_{0}^{s}(\amn{u} - 1) du + \frac{s^2}{2n} - \frac{st}{\n{1}{3}} + \frac{s^2t}{2\n{4}{3}} \\
 	&\xrightarrow{n \rightarrow \infty} \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}} + \frac{s^2t}{2\n{4}{3}},
 	\end{align*}
+	the convergence holds uniformly as shown in \eqref{E: convergence an amn}.
 	Using \eqref{E: an zeta Z / n}, the following inequalities hold for sufficiently large $n$:
 	\fxnote{Add reference to lemma.}
 	\begin{equation} \label{E: int an <= 4s/n maxZ + O()}
@@ -639,13 +670,13 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	&\quad = \left| \int_{0}^{s} \amn{u} - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}} du \right| + \BigO{\frac{1}{n}} \\
 	&\quad \leq \int_{0}^{s} \left|\amn{u} - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}} \right| du + \BigO{\frac{1}{n}} \\ 
 	&\quad \leq \int_{0}^{s} 2 \frac{\Zetan{\ceil{u}} + |\Zn{u}|}{n} du \\ 
-	&\quad = \frac{2}{n}  \int_{0}^{s} 1-\min_{w \leq \ceil{u}-1} \Zn{w}  + |\Zn{u}| du \\ 
-	&\quad = \frac{2}{n}  \int_{0}^{s} |\Zn{u}| - \min_{w \leq \ceil{u}-1} \Zn{w} du + \BigO{\frac{s}{n}} \\ 
+	&\quad = \frac{2}{n}  \int_{0}^{s} (1-\min_{w \leq \ceil{u}-1} \Zn{w}  + |\Zn{u}| )du \\ 
+	&\quad = \frac{2}{n}  \int_{0}^{s} (|\Zn{u}| - \min_{w \leq \ceil{u}-1} \Zn{w}) du + \BigO{\frac{s}{n}} \\ 
 	&\quad \leq \frac{4s}{n} \max_{u \leq s} |\Zn{u}| + \BigO{\frac{s}{n}},
 	\end{aligned}
 	\end{equation}
-    the last inequality since $\ceil{u}-1 \leq s$ for $u\leq s$ and thus $|\min_{w \leq \ceil{u}-1}\Zn{w}| \leq \max_{u \leq s}|\Zn{u}|$.
-    The left-hand side of this inequality differs from expression needed for \eqref{E: limit An} by the term $\frac{s^2t}{2\n{4}{3}}$.
+    the last inequality following from $\ceil{u}-1 \leq s$ for $u\leq s$, hence $|\min_{w \leq \ceil{u}-1}\Zn{w}| \leq \max_{u \leq s}|\Zn{u}|$.
+    The left-hand side of this inequality differs from expression used in \eqref{E: limit An} by the term $\frac{s^2t}{2\n{4}{3}}$.
     We show that this difference is negligible even after taking the supremum by defining $A^*_n(s) := \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}$
     and evaluating
     \begin{align*}
@@ -664,20 +695,16 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
     &\leq 4 s_0 \n{-2}{3} \supns |\Zn{s}| + s_0 \BigO{\n{-2}{3}}.
     \end{aligned}
     \end{equation}
-    We note that $\BigO{\n{-2}{3}} \rightarrow_p 0$ as $n \rightarrow \infty$ and see that we can establish the Lemma by proving
+    Since $\BigO{\n{-2}{3}} \rightarrow_p 0$ as $n \rightarrow \infty$, to establish the Lemma it is sufficient to prove
     \begin{equation} \label{E: sup Zn convergence 0}
     \n{-2}{3} \supns |\Zn{s}| \rightarrow_p 0.
     \end{equation}
-    
     In order to show the convergence we proceed to prove the stronger result,
     \begin{equation}
     n^{-1/3} \supns |\Zn{s}| 
     \enspace \text{is stochastically bounded as} \enspace n \rightarrow \infty ,
     \end{equation} 
-    meaning for any 
-    $ \epsilon > 0 $ 
-    there is a
-    $ K > 0 $
+    meaning for any  $ \epsilon > 0 $  there is a $ K > 0 $
     such that for $n$ sufficiently large 
     \begin{equation} \label{E: stoch bounded}
     \Prob\left( n^{-1/3} \supns |\Zn{s}| > K \right) < \epsilon. 
@@ -688,14 +715,14 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
     \Prob( \n{-2}{3} \supns |\Zn{s}| > \delta)
 	&= \Prob( \n{-1}{3} \supns |\Zn{s}| > \delta \n{1}{3} ) \\
 	&\leq \Prob( \n{-1}{3} \supns |\Zn{s}| > K) \quad \text{for $n \geq (\delta K)^3$} \\
-	&< \epsilon
+	&< \epsilon,
     \end{aligned}
     \end{equation*}
-    for fix $\epsilon, \delta > 0$ and sufficiently large $n$.
+    which holds for fix $\epsilon, \delta > 0$ and sufficiently large $n$.
     
     The remainder of this proof will follow a truncation argument.
     \fxnote{Find out what a truncation argument is.}
-    We define two stopping times $T_n$ and $T^*_n$ by
+    We define two stopping times $T^*_n$ and $T_n$ by
     \fxnote{Are those stopping-times?}
     \begin{align} 
     T^*_n &:= \min \lbrace s \cond |Z_n(s)| > K \n{1}{3} \rbrace, \label{E: def T*n} \\
@@ -843,9 +870,9 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 % Lemma Limit Bn: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: limit Bn}
-	From its definition in Lemma \eqref{L: decomp Mn}, $\Bn{s} = \An{s} + s$, which allows us to rewrite \eqref{E: limit Bn} as
+	Since $\Bn{s} = \An{s} + s$, we can rewrite \eqref{E: limit Bn} as
 	\begin{equation} \label{E: limit Bn An}
-	\n{-2}{3} \An{\n{-2}{3}s_0} \rightarrow_p 0.
+	\n{-2}{3} \An{\n{2}{3}s_0} \rightarrow_p 0.
 	\end{equation}
 	We will show that
 	\begin{equation} \label{E: limit Bn An + c}
@@ -859,16 +886,16 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	\end{equation*}
 	which, since $\frac{1}{2}s_0^2 - s_0t$ is a constant in $n$, proves \eqref{E: limit Bn An}.
 	
-	Let the function $\phi$ be defined by $\phi(s) = \frac{1}{2}\n{-4}{3}s^2 - \n{-2}{3}st$.	
-	Now $\phi(\n{2}{3}s_0) = \frac{1}{2}s_0^2 - s_0t$ and
+	Let the function $\phi_n$ be defined by $\phi_n(s) := \frac{1}{2}\n{-4}{3}s^2 - \n{-2}{3}st$.	
+	Now $\phi_n(\n{2}{3}s_0) = \frac{1}{2}s_0^2 - s_0t$ and
 	\begin{align*}
 	\left| \n{-1}{3} \An{\n{-2}{3}s_0} + \frac{1}{2}s_0^2 - s_0t \right| 
 	&= \left| \n{-1}{3} \An{\n{-2}{3}s_0} + \phi(\n{2}{3}s_0) \right| \\
 	&\leq \supns \left| \n{-1}{3} \An{s} + \phi(s) \right| \\
-	&= \n{-1}{3} \supns \left| \An{s} + n^{-1}\frac{s^2}{2} - \n{-1}{3}st \right| \\
-	&\longrightarrow_p 0,
+	&= \n{-1}{3} \supns \left| \An{s} + \frac{s^2}{2}n^{-1} - st\n{-1}{3} \right| \\
+	&\longrightarrow_p 0
 	\end{align*}
-	as $n \rightarrow \infty$ from Lemma \eqref{L: limit An}. This gives \eqref{E: limit Bn An + c} and completes the proof.
+	by Lemma \ref{L: limit An}. This gives \eqref{E: limit Bn An + c} and completes the proof.
 \end{proof}
 
 
@@ -876,7 +903,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 % Lemma Limit Mn: Statement and Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: limit Mn}
-	For $M_n$ defined as in the previous Lemmas and a fix $s_0 \geq 0$,
+	For $M_n$ defined in Lemma \ref{L: decomp Zn} and fix $s_0 \geq 0$,
 	\begin{equation} \label{E: limit Mn}
 	\n{-2}{3} \Exp{\supns |\Mn{s} - \Mn{s-}|^2} \longrightarrow s_0,
 	\end{equation}
@@ -884,7 +911,9 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 \end{lemma}
 
 \begin{proof} \label{P: limit Mn}
-	As previously discussed in the proof of Lemma \eqref{L: decomp Mn}, the jumps of $M_n$ are exactly the jumps of $Z_n$ and thus have size $1$. The lemma follows immediately.
+	As previously discussed in the proof of Lemma \ref{L: decomp Mn}, 
+	the jumps of $M_n$ are exactly the jumps of $Z_n$ and therefore have size $1$. 
+	The Lemma follows immediately.
 \end{proof}
 
 
