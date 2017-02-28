@@ -341,14 +341,14 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\end{align*}
 	since every new edge corresponds to a jump of size $1$ in $Z_n$.
 	
-	Looking at the right-hand side, we define $\Esds$ as the event of a new edge appearing in the interval $[s,s+ds]$ and calculate
+	Looking at the right-hand side, we define $\NewEdge{I}$ as the event of a new edge appearing during the time interval $I$ and calculate
 	\begin{align*}
 	\Exp{\An{t+u} - \An{t} \cond \F{t}}
 	&= \Exp{ \int_{0}^{t+u} a_n(s)ds - (t+u) - \int_{0}^{t} a_n(s)ds + t \cond \F{t} } \\
 	&= \Exp{ \int_{t}^{t+u} a_n(s)ds \cond \F{t} } - u \\
 	&= \int_{t}^{t+u} \Exp{a_n(s)ds \cond \F{t}} - u \\
-	&= \int_{t}^{t+u} \Exp{ \Prob(\Esds \cond \F{s}) \cond \F{t} } - u\\
-	&= \int_{t}^{t+u} \Prob( \Esds \cond \F{t} ) - u
+	&= \int_{t}^{t+u} \Exp{ \Prob(\NewEdge{\sds} \cond \F{s}) \cond \F{t} } - u\\
+	&= \int_{t}^{t+u} \Prob( \NewEdge{\sds} \cond \F{t} ) - u
 	\quad \text{since} \enspace \F{s} \subseteq \F{t} \enspace \forall s \in [t,t+u] \\
 	&= \Exp{\text{Number of new edges appearing in} \enspace [t, t+u] \cond \F{t}} - u.
 	\end{align*}
@@ -368,7 +368,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	M_n^2 = Q_n + B_n
 	\end{equation}
 	holds where $Q_n$ is a martingale and $B_n$ is defined by 
-	\begin{equation} \label{D: An}
+	\begin{equation} \label{D: Bn}
 	\Bn{t} = \int_{0}^{t} a_n(s)ds = A_n(t) + t
 	\end{equation}
 	with $a_n$ defined in \eqref{D: an}.
@@ -407,7 +407,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\begin{equation}
 	M_n^2 - B_n = (\underbrace{M_n^2 - [M_n]}_{\text{martingale}}) + ([M_n] - B_n)
 	\end{equation}
-	and to prove \eqref{decomp Mn} it suffices to show that
+	and to prove \eqref{E: decomp Mn} it suffices to show that
 	$[M_n] - B_n$
 	is a martingale.
 	Using the fact that the jumps of $M_n$ are the jumps of $Z_n$ and
@@ -422,7 +422,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	&= (\text{Number of jumps of} \enspace Z_n \enspace \text{in} \enspace [0,t] - t) - \An{t} \\
 	&= \Zn{t} - \An{t}
 	\end{align*}
-	which is a martingale from Lemma \eqref{L: decomp Zn}.
+	which is a martingale from Lemma \ref{L: decomp Zn}.
 	
 \end{proof}
 
@@ -559,13 +559,6 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	by our definition \eqref{E: def Z} of the continuous breadth-first walk.
 	So $\Ineligible{s} = s + \ZetaMinus{\ceil{s}} + \Zn{s}$ which concludes the proof.
 \end{proof}
-\fxfatal{Add proof of an formula!}
-
-
-
-
-
-
 
 
 
@@ -583,12 +576,12 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 % Lemma Limit An: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: limit An}
-	For $A_n$ defined as in the previous Lemmas and a fix $s_0 \geq 0$,
+	For $A_n$ defined in Lemma \ref{L: decomp Zn} and fix $s_0 \geq 0$,
 	\begin{equation} \label{E: limit An}
-	\n{-1}{3} \supns \left| \An{s} + n^{-1}\frac{s^2}{2} - \n{-1}{3}st \right| \longrightarrow_p 0,
+	\n{-1}{3} \supns \left| \An{s} + n^{-1}\frac{s^2}{2} - \n{-1}{3}st \right| \longrightarrow_p 0
 	\end{equation}
-	where $t$ is the fixed probability parameter of the random graph.
-	\fxnote{Change/remove explanation of t: "probability parameter"}	
+	as $n \rightarrow \infty$, where $t$ is the fixed parameter of the random graph.
+	\fxnote{Change/remove explanation of t: "probability parameter"}
 \end{lemma}
 
 
@@ -602,9 +595,16 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	\end{equation}
 	which is $a_n$ without the denominator.
 	\fxnote{Change "without the denominator"}
-	First, we show that $\an{s}$ and $\amn{s}$ converge uniformly in $s$.
+	First, we show that $\an{s}$ and $\amn{s}$ converge uniformly in $n$:
 	\begin{equation}
-	proof
+	\begin{aligned}
+	&|\an{s} - \amn{s}| \\
+	&\quad = |(n - s - \Zetan{\ceil{s}} - \Zn{s}) \left( \ps - p(n) \right)| \\
+	&\quad = |p(n)(n - s - \Zetan{\ceil{s}} - \Zn{s}) \left( \frac{1 - 1 + (s - \floor{s})p(n)}{1-(s - \floor{s})p(n)} \right)| \\
+	&\quad = \underbrace{\frac{p(n)n - p(n)(s + \Zetan{\ceil{s}} + \Zn{s})}{1-(s - \floor{s})p(n)}}_{\xrightarrow{n \rightarrow \infty} 1} 
+		\underbrace{(s - \floor{s})p(n)}_{=\BigO{n^{-1}}} \\
+	&= \BigO{n^{-1}}.
+	\end{aligned}
 	\end{equation}
 	\fxnote{Add proof of uniform convergence.}
 	Now we use the definition of $p(n)$ to expand
@@ -615,7 +615,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	&\quad - \left( \Zetan{\ceil{s}} + \Zn{s} \right) \left( n^{-1} + t\n{-4}{3} \right) -1 .
 	\end{align*}
 	Thus
-	\begin{equation} \label{E: (27)} 
+	\begin{equation} \label{E: an zeta Z / n} 
 	\begin{aligned}
 	\left| \amn{s} - 1 + \frac{s}{n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}} \right|
 	&= \left| \frac{\Zetan{\ceil{s}} + \Zn{s}}{n} \left( 1 + \frac{t}{\n{1}{3}} \right) \right| \\
@@ -631,131 +631,199 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	&= \int_{0}^{s} \amn{u} - 1 du + \frac{s^2}{2n} - \frac{st}{\n{1}{3}} + \frac{s^2t}{2\n{4}{3}} \\
 	&\xrightarrow{n \rightarrow \infty} \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}} + \frac{s^2t}{2\n{4}{3}},
 	\end{align*}
-	Using \eqref{L: zeta(i)}, the following inequalities hold for sufficiently large $n$:
+	Using \eqref{E: an zeta Z / n}, the following inequalities hold for sufficiently large $n$:
 	\fxnote{Add reference to lemma.}
-    \begin{align*}
-    \left| \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}  + \frac{s^2t}{2\n{4}{3}}  \right| 
-    &= \left| \int_{0}^{s} \amn{u} - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}} du \right| \\
-    &\leq \int_{0}^{s} \left|\amn{u} - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}} \right| du \\
-    &\leq \int_{0}^{s} 2 \frac{\Zetan{\ceil{u}} + |\Zn{u}|}{n} du \\
-    &= \frac{2}{n}  \int_{0}^{s} 1-\min_{w \leq \ceil{u}-1} \Zn{w}  + |\Zn{u}| du \\
-    &= \frac{2}{n}  \int_{0}^{s} |\Zn{u}| - \min_{w \leq \ceil{u}-1} \Zn{w} du + \BigO{\frac{s}{n}} \\
-    &\leq \frac{4}{n} \max_{u \leq s} |\Zn{u}| + \BigO{\frac{s}{n}},
-    \end{align*}
+	\begin{equation} \label{E: int an <= 4s/n maxZ + O()}
+	\begin{aligned}
+	&\left| \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}  + \frac{s^2t}{2\n{4}{3}}  \right| \\
+	&\quad = \left| \int_{0}^{s} \amn{u} - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}} du \right| + \BigO{\frac{1}{n}} \\
+	&\quad \leq \int_{0}^{s} \left|\amn{u} - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}} \right| du + \BigO{\frac{1}{n}} \\ 
+	&\quad \leq \int_{0}^{s} 2 \frac{\Zetan{\ceil{u}} + |\Zn{u}|}{n} du \\ 
+	&\quad = \frac{2}{n}  \int_{0}^{s} 1-\min_{w \leq \ceil{u}-1} \Zn{w}  + |\Zn{u}| du \\ 
+	&\quad = \frac{2}{n}  \int_{0}^{s} |\Zn{u}| - \min_{w \leq \ceil{u}-1} \Zn{w} du + \BigO{\frac{s}{n}} \\ 
+	&\quad \leq \frac{4s}{n} \max_{u \leq s} |\Zn{u}| + \BigO{\frac{s}{n}},
+	\end{aligned}
+	\end{equation}
     the last inequality since $\ceil{u}-1 \leq s$ for $u\leq s$ and thus $|\min_{w \leq \ceil{u}-1}\Zn{w}| \leq \max_{u \leq s}|\Zn{u}|$.
-    
-    We define $A^*_n(s) := \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}$ and consider the difference
+    The left-hand side of this inequality differs from expression needed for \eqref{E: limit An} by the term $\frac{s^2t}{2\n{4}{3}}$.
+    We show that this difference is negligible even after taking the supremum by defining $A^*_n(s) := \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}$
+    and evaluating
     \begin{align*}
     &\n{-1}{3}\supns | A^*_n{s} + \frac{s^2t}{2\n{4}{3}}  | - \n{-1}{3}\supns | A^*_n{s} | \\
-    &\leq \n{-1}{3} \left( \supns | A^*_n{s} | + \supns |\frac{s^2t}{2\n{4}{3}}|  - \n{-1}{3}\supns | A^*_n{s} | \right) \\
+    &\leq \n{-1}{3} \left( \supns | A^*_n{s} | + \supns |\frac{s^2t}{2\n{4}{3}}|  - \supns | A^*_n{s} | \right) \\
     &= \n{-1}{3} \supns |\frac{s^2t}{2\n{4}{3}}| \\
     &= \n{-1}{3} \frac{s_0^2t}{2} \\
-    &\xrightarrow{n \rightarrow \infty} 0,
+    &\xrightarrow{n \rightarrow \infty} 0.
     \end{align*}
-    to see that proving
-    \begin{align*}
-    \n{-1}{3} \supns \frac{4}{n} \max_{u \leq s} |\Zn{u}| 
-    &\leq 4 s_0 \n{-2}{3} \supns |\Zn{s}| \\
-    &\longrightarrow_p 0 
-    \end{align*}
-    will suffice to prove \eqref{E: limit An}.
-    For that, we will prove the stronger result 
+    We can now proceed to take the supremum and rescale both sides of the last inequality to arrive at
     \begin{equation}
-    n^{-2/3} \sup_{s\leq n^{-1/3} s_0} |Z_n(s)| 
+    \begin{aligned}
+    &\n{-1}{3} \supns \left| \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}  + \frac{s^2t}{2\n{4}{3}}  \right| \\
+    &\leq \n{-1}{3} \supns (\frac{4s}{n} \max_{u \leq s} |\Zn{u}| + \BigO{\frac{s}{n}}) \\
+    &\leq \n{-1}{3} 4 s_0 \n{-1}{3} \supns |\Zn{s}| + \n{-1}{3}\BigO{\frac{s_0 \n{2}{3}}{n}} \\
+    &\leq 4 s_0 \n{-2}{3} \supns |\Zn{s}| + s_0 \BigO{\n{-2}{3}}.
+    \end{aligned}
+    \end{equation}
+    We note that $\BigO{\n{-2}{3}} \rightarrow_p 0$ as $n \rightarrow \infty$ and see that we can establish the Lemma by proving
+    \begin{equation} \label{E: sup Zn convergence 0}
+    \n{-2}{3} \supns |\Zn{s}| \rightarrow_p 0.
+    \end{equation}
+    
+    In order to show the convergence we proceed to prove the stronger result,
+    \begin{equation}
+    n^{-1/3} \supns |\Zn{s}| 
     \enspace \text{is stochastically bounded as} \enspace n \rightarrow \infty ,
     \end{equation} 
-    i.e. for any 
+    meaning for any 
     $ \epsilon > 0 $ 
     there is a
     $ K > 0 $
-    such that for $n$ sufficiently big 
+    such that for $n$ sufficiently large 
     \begin{equation} \label{E: stoch bounded}
-    P\left( n^{-1/3} \sup_{s\leq n^{2/3} s_0} |Z_n(s)| > K \right) < \epsilon. 
+    \Prob\left( n^{-1/3} \supns |\Zn{s}| > K \right) < \epsilon. 
     \end{equation}
+    It is easily seen that this suffices to establish \eqref{E: sup Zn convergence 0} by computing
+    \begin{equation*}
+    \begin{aligned}
+    \Prob( \n{-2}{3} \supns |\Zn{s}| > \delta)
+	&= \Prob( \n{-1}{3} \supns |\Zn{s}| > \delta \n{1}{3} ) \\
+	&\leq \Prob( \n{-1}{3} \supns |\Zn{s}| > K) \quad \text{for $n \geq (\delta K)^3$} \\
+	&< \epsilon
+    \end{aligned}
+    \end{equation*}
+    for fix $\epsilon, \delta > 0$ and sufficiently large $n$.
     
-    Let $T^*_n$ be the first time $\n{-1}{3}|Z_n(s)|$ surpasses $K$ and  
-    $T_n := T^*_n$ 
-    if 
-    $T^*_n \leq \n{2}{3}s_0$
-    or else
-    $\n{2}{3}s_0:$
-    \begin{align*}
-    T_n &:= \min \lbrace T^*_n, \n{2}{3}s_0 \rbrace , \\
-    T^*_n &:= \min \lbrace s: |Z_n(s)| > K \n{1}{3} \rbrace .
-    \end{align*}
+    The remainder of this proof will follow a truncation argument.
+    \fxnote{Find out what a truncation argument is.}
+    We define two stopping times $T_n$ and $T^*_n$ by
+    \fxnote{Are those stopping-times?}
+    \begin{align} 
+    T^*_n &:= \min \lbrace s \cond |Z_n(s)| > K \n{1}{3} \rbrace, \label{E: def T*n} \\
+    T_n &:= \min \lbrace T^*_n, \n{2}{3}s_0 \rbrace ,  \label{E: def Tn}
+    \end{align}
     \fxnote{Define Tn, T*n nicer.}
-    Thus 
+    for some fix $K>0$ and use Markov's inequality to rewrite the left-hand side of Equation \eqref{E: stoch bounded} as
     \begin{equation} \label{E: stoch bounded 2}
     \begin{aligned}
-    \Prob( \sup_{s\leq n^{2/3} s_0} |Z_n(s)| > K \n{1}{3} ) &= P ( |Z_n(T_n)| > K\n{1}{3} ) \\
-    &\leq \frac{\Exp{|Z_n(T_n)}}{K}
+    \Prob( \sup_{s\leq n^{2/3} s_0} |Z_n(s)| > K \n{1}{3} ) &= \Prob( |Z_n(T_n)| > K\n{1}{3} ) \\
+    &\leq \frac{\Exp{|Z_n(T_n)}}{K}.
     \end{aligned} 
     \end{equation}
-    by Markov's inequality.
-    To analyse $\Exp{|Z_n(T_n)|}$ we will use the previously established decompositions
-    $Z_n = M_n + A_n$ and $M^2_n = Q_n + B_n$, 
-    starting with the latter:
     
-    Since $Q_n$ is a martingale, by the optional sampling theorem
+    To analyse $\Exp{|Z_n(T_n)|}$ we will use the decompositions established in the previous section. 
+    Lemma \ref{L: decomp Zn} gave $Z_n = M_n + A_n$,
+    so \begin{equation} \label{E: Exp(|Zn|)}
+    \Exp{|Z_n(T_n)|} \leq \Exp{|\Mn{T_n}|} + \Exp{|A_n(T_n)|}.
+    \end{equation}
+    By Lemma \ref{L: decomp Mn}, we have $M^2_n = Q_n + B_n$ where $Q_n$ is a martingale. 
+    The optional sampling theorem dictates that 
     $\Exp{Q_n(\tau)} = 0$ 
-    for all stopping times $\tau$.
+    for all stopping times $\tau$, hence 
     \begin{align*}
-    \Exp{M^2_n(T_n)} &= \Exp{B_n(T_n)} \\
+    \Exp{M^2_n(T_n)} 
+    &= \Exp{Q_n(T_n)} + \Exp{\Bn{T_n}} \\
+    &= \Exp{\Bn{T_n}} \\
     &= \Exp{ \int_{0}^{T_n} a_n(s)ds } \\
     &= \int_{0}^{T_n} \Exp{a_n(s)} ds.
-    \end{align*} 
-    By definition
-    \begin{align*}
+    \end{align*}
+    
+    By the definition of $a_n$ in \eqref{D: an}, we have
+    \begin{equation}
+    \begin{aligned}
     a_n(s) &= (n - \nu_n(s)) \frac{p(n)}{1 - (s - \floor{s})p(n)} \\
     &\leq \frac{n p(n)}{1 - (s - \floor{s})p(n)}
-    \end{align*}
-    which is a deterministic function in $s$. So
+    \end{aligned}
+    \end{equation}
+    which is a deterministic function of $s$. So
     $ \Exp{a_n(s)} \leq \frac{n p(n)}{1 - (s - \floor{s})p(n)} $
     and
-    \begin{align*}
+    \begin{equation}
+    \begin{aligned}
     \int_{0}^{T_n} \Exp{a_n(s)} ds &\leq  \int_{0}^{T_n }\frac{n p(n)}{1 - (s - \floor{s})p(n)} \\
     &\leq \int_{0}^{\n{2}{3}s_0}\frac{n p(n)}{1 - (s - \floor{s})p(n)} \\
     &\leq 2\n{2}{3}s_0,
-    \end{align*}
+    \end{aligned}
+    \end{equation}
     where the last inequality holds for $n$ sufficiently large, since 
     $\frac{n p(n)}{1 - (s - \floor{s})p(n)} \rightarrow 1$
     as $n \rightarrow \infty$.
-    We conclude
-    \begin{equation} \label{E: exp Mn}
-    \Exp{M_n(T_n)} \leq (2s_0)^{1/2}\n{1}{3}
+    Now H\"older's inequality gives us
+    \fxnote{Add reference to Hölder.}
+    \begin{equation} \label{E: Exp(Mn)}
+    \Exp{|\Mn{T_n}|} \leq \sqrt{\Exp{M^2_n(T_n)}} \leq (2s_0)^{1/2}\n{1}{3}.
     \end{equation}
-    and move to $A_n$.
     
-    Using \eqref{E: (27)} and \eqref{L: zeta(i)} we obtain
-    \begin{align*}
-    \Exp{|\An{T_n}|} &\leq \Exp{\int_{0}^{T_n} |\an{s}-1|ds} \\
-    &\leq \Exp{\int_{0}^{\n{2}{3}s_0} |\an{s}-1|ds} \\
-    &\leq \Exp{
-    	\int_{0}^{T_n} | \an{s} + \amn{s} - \amn{s} + \frac{s}{n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}
-    	} \\
-    &\qquad \qquad - \frac{s}{n} + \frac{t}{\n{1}{3}} - \frac{st}{\n{4}{3}} | ds} \\
-    &\leq \Exp{
-    	\int_{0}^{T_n} |\an{s} - \amn{s}|ds \\
-    	&\qquad + \int_{0}^{T_n} |\frac{s}{n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}}| ds \\
-    	&\qquad + \int_{0}^{T_n} |\amn{s} - 1 + \frac{s}{n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}}|
-    } \\
-    &\leq \n{2}{3}s_0 \BigO{\frac{1}{n}} + \n{2}{3}s_0 \BigO{\frac{|t|}{\n{1}{3}}} \\
-    &\qquad +  \n{2}{3}s_0 \left( \frac{4s}{n} \max_{u \leq T_n}|\Zn{u}| + \BigO{\frac{T_n}{n}}\right) \\
-    &\leq 4 s_0 K + s_0|t|\BigO{\n{1}{3}} + s_0^2\BigO{\n{1}{3}} + s_0\BigO{\frac{1}{\n{1}{3}}},
-    \end{align*}
+    We proceed to the analysis of the second term in \eqref{E: Exp(|Zn|)}.
+    The definition of $A_n$ in \eqref{D: An} gives us
+    \begin{equation}
+    \begin{aligned}
+    \Exp{|\An{T_n}|} 
+    &= \Exp{|\int_{0}^{T_n}(\an{s} -1)ds |} \\
+    &\leq \Exp{\int_{0}^{T_n} |\an{s}-1|ds} \\
+    &\leq \Exp{\int_{0}^{\n{2}{3}s_0} |\an{s}-1|ds}.
+    \end{aligned}
+    \end{equation}
+    
+    We decompose $|\an{s} - 1|$ by
+    \begin{equation}
+    \begin{aligned}
+    |\an{s}-1| 
+    &= | \an{s} + \amn{s} - \amn{s} + \frac{s}{n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}} \\
+    &\quad	- \frac{s}{n} + \frac{t}{\n{1}{3}} - \frac{st}{\n{4}{3}} | \\
+    &\leq |\an{s} - \amn{s}| + 	|\frac{s}{n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}}| \\
+	&\quad    + |\amn{s} - 1 + \frac{s}{n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}}|
+    \end{aligned}
+    \end{equation}
+    to evaluate
+    \begin{equation}
+    \begin{aligned}
+    \Exp{|\An{T_n}|} 
+    &\leq \Exp{\int_{0}^{\n{2}{3}s_0} |\an{s} - \amn{s}|ds} \\
+    &\quad + \Exp{\int_{0}^{\n{2}{3}s_0} |\frac{s}{n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}}| ds} \\
+    &\quad + \Exp{\int_{0}^{\n{2}{3}s_0} |\amn{s} - 1 + \frac{s}{n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}}|ds}.
+    \end{aligned}
+    \end{equation}
+    
+    Let us look at the terms individually. 
+    By the uniform convergence $a_n \rightarrow a'_n$ we have
+    \begin{equation}
+    \Exp{\int_{0}^{\n{2}{3}s_0} |\an{s} - \amn{s}|ds} \leq \n{2}{3}s_0 \BigO{\frac{1}{n}},
+    \end{equation}
+    we can estimate the second term by
+    \begin{equation}
+    \Exp{\int_{0}^{\n{2}{3}s_0} |\frac{s}{n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}}| ds}
+    \leq \n{2}{3}s_0 \BigO{\frac{|t|}{\n{1}{3}}},
+    \end{equation}
+    and \eqref{E: int an <= 4s/n maxZ + O()} implies
+    \begin{equation}
+    \begin{aligned}
+    &\Exp{\int_{0}^{T_n} |\amn{s} - 1 + \frac{s}{n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}}|ds} \\
+    &\leq \Exp{ \frac{4T_n}{n} \max_{u \leq T_n}|\Zn{u}| + \BigO{\frac{T_n}{n}} } \\
+    &\leq \frac{4\n{2}{3}s_0}{n} \Exp{\max_{u \leq T_n}|\Zn{u}|} + \BigO{\frac{\n{2}{3}s_0}{n}} \\
+    &\leq 4s_0 K + s_0 \BigO{\n{-1}{3}},
+    \end{aligned}
+    \end{equation}
+    \fxfatal{Fix >= / > in definition of Tn and stoch bounded definition.}
+    where the last inequality follows from the definition of $T_n$ in \eqref{E: def Tn},
+    which assures $|\Zn{s}| \leq K\n{1}{3}$ for all $s \leq T_n$. 
+    
+    Summing these three terms we arrive at
+    \begin{equation} \label{E: Exp(An)}
+    \Exp{|\An{T_n}|} \leq 4 s_0 K + s_0|t|\BigO{\n{1}{3}} + s_0^2\BigO{\n{1}{3}} + s_0\BigO{\n{-1}{3}}
+    \end{equation}
     \fxnote{Fix BigO-Notation (Sapozhnikov?)}
-    since, by definition of $T_n$, $|\Zn{T_n}| < K\n{1}{3}.$
     
-    This and \eqref{E: exp Mn} lead to a bound for large $n$:
+    We combine \eqref{E: Exp(Mn)} and \eqref{E: Exp(An)}, 
+    which results in the following upper bound for large $n$:
     \begin{equation} \label{E: bound Zn}
     \Exp{|\Zn{T_n}|} \leq \alpha\n{1}{3} + 4s_0K,
     \end{equation}
-    where $\alpha = \alpha(s_0,t)$ but not dependent on $n$ and $K$. 
+    where $\alpha = \alpha(s_0,t)$, but does not depend on $n$ and $K$. 
     Substituting $\Exp{|\Zn{T_n}|}$ in \eqref{E: stoch bounded 2} we arrive at
     \begin{equation}
     \Prob( \sup_{s\leq n^{2/3} s_0} |Z_n(s)| > K \n{1}{3} ) \leq \frac{\alpha}{K} + \frac{4s_0}{\n{1}{3}}
     \end{equation}
-    which proves \eqref{E: stoch bounded}.
+    which proves \eqref{E: stoch bounded} by choosing $K$ and $n$ sufficiently large.
 \end{proof}
 
 
@@ -763,11 +831,11 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 % Lemma Limit Bn: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: limit Bn}
-	For $B_n$ defined as in the previous Lemmas and a fix $s_0 \geq 0$,
+	For $B_n$ defined in Lemma \ref{L: decomp Mn} and fix $s_0 \geq 0$,
 	\begin{equation} \label{E: limit Bn}
-	\n{-2}{3} \Bn{\n{2}{3}s_0} \longrightarrow_p s_0,
+	\n{-2}{3} \Bn{\n{2}{3}s_0} \longrightarrow_p s_0
 	\end{equation}
-	as $n \longrightarrow \infty$.
+	as $n \rightarrow \infty$.
 \end{lemma}
 
 
