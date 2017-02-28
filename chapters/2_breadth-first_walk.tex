@@ -608,21 +608,21 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 \begin{proof} \label{P: limit An}
 	We define $\amn{s}$ as
 	\begin{equation} \label{E: def a'n}
-		\amn{s} := (n - s - \Zetan{\ceil{s}} - \Zn{s}) \p,
+		\amn{s} := \an{s} (1 - (s - \floor{s})\p) = (n - s - \Zetan{\ceil{s}} - \Zn{s}) \p.
 	\end{equation}
-	which is $a_n$ without the denominator.
 	\fxnote{Change "without the denominator"}
 	First, we show that $\an{s}$ and $\amn{s}$ converge uniformly in $n$:
 	\begin{equation} \label{E: convergence an amn}
 	\begin{aligned}
-	&|\an{s} - \amn{s}| \\
-	&\quad = |(n - s - \Zetan{\ceil{s}} - \Zn{s}) \left( \ps - \p \right)| \\
-	&\quad = |\p(n - s - \Zetan{\ceil{s}} - \Zn{s}) \left( \frac{1 - 1 + (s - \floor{s})\p}{1-(s - \floor{s})\p} \right)| \\
-	&\quad = |\underbrace{\frac{\p n - \p(s + \Zetan{\ceil{s}} + \Zn{s})}{1-(s - \floor{s})\p}}_{\xrightarrow{n \rightarrow \infty} 1} 
+	|\an{s} - \amn{s}|
+	&= |\an{s}\left( 1-(1 - (s - \floor{s})\p) \right)| \\
+	&= | \frac{(n - s - \Zetan{\ceil{s}} - \Zn{s})\p}{1-(s - \floor{s})\p} (s - \floor{s})\p) | \\
+	&= |\underbrace{\frac{\p n - \p(s + \Zetan{\ceil{s}} + \Zn{s})}{1-(s - \floor{s})\p}}_{\xrightarrow{n \rightarrow \infty} 1} 
 		\underbrace{(s - \floor{s})\p}_{=\BigO{n^{-1}}} |\\
 	&= \BigO{n^{-1}}.
 	\end{aligned}
 	\end{equation}
+	The last step follows from the fact that $|\Zn{s}|, |\ZetaMinus{s}| \leq s$ for all $s$ and $n$.
 	We substitute the definition of $\p$ in \eqref{E: def a'n} to expand
 	\begin{align*}
 	\amn{s} - 1 
@@ -662,8 +662,8 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	\end{aligned}
 	\end{equation}
     the last inequality following from $\ceil{u}-1 \leq s$ for $u\leq s$, hence $|\min_{w \leq \ceil{u}-1}\Zn{w}| \leq \max_{u \leq s}|\Zn{u}|$.
-    The left-hand side of this inequality differs from expression used in \eqref{E: limit An} by the term $\frac{s^2t}{2\n{4}{3}}$.
-    We show that this difference is negligible even after taking the supremum by defining $A^*_n(s) := \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}$
+    The left-hand side of this inequality differs from the expression used in \eqref{E: limit An} by the term $\frac{s^2t}{2\n{4}{3}}$.
+    We show that this difference is negligible even after taking the supremum, by defining $A^*_n(s) := \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}$
     and evaluating
     \begin{align*}
     &\n{-1}{3}\supns | A^*_n{s} + \frac{s^2t}{2\n{4}{3}}  | - \n{-1}{3}\supns | A^*_n{s} | \\
@@ -672,7 +672,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
     &= \n{-1}{3} \frac{s_0^2t}{2} \\
     &\xrightarrow{n \rightarrow \infty} 0.
     \end{align*}
-    We can now proceed to take the supremum and rescale both sides of the last inequality to arrive at
+    We can now proceed to take the supremum and rescale both sides of the last inequality, arriving at
     \begin{equation}
     \begin{aligned}
     &\n{-1}{3} \supns \left| \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}  + \frac{s^2t}{2\n{4}{3}}  \right| \\
@@ -914,18 +914,21 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 % Definitions: Rescaled process
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We now define the rescaled processes 
-$\bar{M}_n(s) = \n{-1}{3}\Mn{\n{2}{3}s}$, 
-$\bar{A}_n(s) = \n{-1}{3}\An{\n{2}{3}s}$, 
-$\bar{Q}_n(s) = \n{-2}{3}Q_n(\n{2}{3}s)$ and 
-$\bar{B}_n(s) = \n{-2}{3}B_n(\n{2}{3}s)$ to fit the previously rescaled process 
-$\bar{Z}_n$ from \eqref{D: rescaled Zn}, such that
+\begin{align*}
+\bar{M}_n(s) &= \n{-1}{3}\Mn{\n{2}{3}s}, \\
+\bar{A}_n(s) &= \n{-1}{3}\An{\n{2}{3}s}, \\
+\bar{Q}_n(s) &= \n{-2}{3}Q_n(\n{2}{3}s), \\
+\bar{B}_n(s) &= \n{-2}{3}B_n(\n{2}{3}s),
+\end{align*} 
+to fit the previously rescaled process 
+$\bar{Z}_n$ in Theorem \ref{T: Z -> W}, such that
 \begin{align*}
 \Zbar{s} &= \Mbar{s} + \Abar{s} \\
 \bar{M}_n^2(s) &= \bar{Q}_n(s) + \Bbar{s}.
 \end{align*}
 \fxnote{Definition of rescaled processes tidier.}
 
-Rescaling Lemmas \eqref{L: limit An}, \eqref{L: limit Bn} and \eqref{L: limit Mn} gives us
+Rescaling Lemmas \ref{L: limit An}, \ref{L: limit Bn} and \ref{L: limit Mn} gives us
 \begin{equation} \label{E: limit An rescaled}
 \sup_{s \leq s_0} |\Abar{s} - \rho (s)| \longrightarrow_p 0,
 \end{equation}
@@ -937,9 +940,10 @@ and
 \begin{equation} \label{E: limit Mn rescaled}
 \Exp{\sup_{s \leq s_0} | \Mbar{s} - \Mbar{s-} |^2 } \longrightarrow 0.
 \end{equation}
-We now use the central limit theorem for martingales to prove te convergence of $\bar{M}_n$ to a Brownian motion.
+We now use the central limit theorem for martingales to prove the convergence of $\bar{M}_n$ to a Brownian motion.
 We state the theorem here, without proof, as it appears in \cite[p. 339 f.]{N.Ethier1986},
-omitting one of two equivalent conditions and all references to higher dimensional processes to focus on the one-dimensional case we will need for our proof.
+omitting one of two equivalent conditions and all references to higher dimensional processes,
+in order to focus on the one-dimensional case we will need for our proof.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -972,21 +976,19 @@ omitting one of two equivalent conditions and all references to higher dimension
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorem Convergence Z_n: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We are now ready to prove Theorem \eqref{T: Z -> W}.
+We are now ready to prove Theorem \ref{T: Z -> W}.
 
-\begin{proof}[Proof of Theorem \eqref{T: convergence Zn}]
-	Let again $\{\Fn{t}\}$ be the filtration generated by $Z_n$, 
-	$\Fn{t} = \sigma \{ \Zn{s}, s \leq t \}$.
-	The rescaling above does not alter martingale properties of the resulting processes,
-	so $\bar{M}_n$ and $\bar{Q}_n = \bar{M}_n^2 - \bar{B}_n$ are still martingales in $\{\Fn{t}\}$.
-	\fxnote{Martingales for/in?}
+\begin{proof}[Proof of Theorem \ref{T: Z -> W}]
+	Let again $\Fn{t} = \sigma \{ \Zn{s}, s \leq t \}$ be the filtration generated by $Z_n$.
+	The rescaling of $M_n$ and $B_n$ maintains martingale properties,
+	so $\bar{M}_n$ and $\bar{Q}_n = \bar{M}_n^2 - \bar{B}_n$ are still $\{\Fn{t}\}$-martingales.
 	\fxnote{Martingale = F-local martingale?}
-	We apply Theorem \eqref{T: functional CLT martingales} to $\bar{M}_n$ and $\bar{B}_n$.
+	We apply Theorem \ref{T: functional CLT martingales} to $\bar{M}_n$ and $\bar{B}_n$.
 	The continuity of $\bar{B}_n$ satisfies condition \eqref{E: cond1 CLT}, 
 	condition \eqref{E: cond2 CLT} holds from \eqref{E: limit Mn rescaled}
-	and \eqref{E: limit Bn rescaled} gives condition \eqref{E: cond3 CLT}, with $c(t) := t$.
+	and \eqref{E: limit Bn rescaled} gives condition \eqref{E: cond3 CLT}, with $c(t) = t$.
 	
-	Thus $\Mbar{s} \rightarrow_d W(s)$, the standard Brownian motion, and by using \eqref{E: limit An rescaled} we obtain
+	Therefore $\Mbar{s} \rightarrow_d W(s)$, the standard Brownian motion, and using \eqref{E: limit An rescaled} we obtain
 	\begin{equation*}
 	\Zbar{s} = \Mbar{s} + \Abar{s} \rightarrow_d W(s) + \rho (s) = W^t(s).
 	\end{equation*}
