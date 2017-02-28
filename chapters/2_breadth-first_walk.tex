@@ -449,7 +449,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	To any eligible vertex $j$ we assign a random variable $\Uij$.
 	Let all $\Uij$ be independent and identically $\mathcal{U}(0,1)$ distributed.
 	Our understanding of the process of discovering children of $v(i)$ is as follows:
-	At time $i-1+\Uij$, the edge $(i,j)$ will open with probability $p(n)$ and
+	At time $i-1+\Uij$, the edge $(i,j)$ will open with probability $\p$ and
 	$Z_n$ will make a jump of size $1$.
 	We arrive at a characterisation of our breadth-first walk, 
 	equivalent to \eqref{E: def Zn continuous}:	
@@ -489,7 +489,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\end{equation}
 	For the edge $(i,j)$, all relevant information contained in $\SigmaAlgebra_s^k$ is the fact that 
 	$(i,j)$ is not yet open, the event of opening has not happened in $[\floor{s}, s)$.
-	Since the opening itself, happening with probability $p(n)$,
+	Since the opening itself, happening with probability $\p$,
 	and the uniformly distributed time of the event in $[i-1, i]$ are independent,
 	we see that
 	\begin{equation}
@@ -590,8 +590,8 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: limit An}
 	We define $\amn{s}$ as
-	\begin{equation}
-		\amn{s} := (n - s - \Zetan{\ceil{s}} - \Zn{s}) p(n),
+	\begin{equation} \label{E: def a'n}
+		\amn{s} := (n - s - \Zetan{\ceil{s}} - \Zn{s}) \p,
 	\end{equation}
 	which is $a_n$ without the denominator.
 	\fxnote{Change "without the denominator"}
@@ -599,15 +599,15 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	\begin{equation}
 	\begin{aligned}
 	&|\an{s} - \amn{s}| \\
-	&\quad = |(n - s - \Zetan{\ceil{s}} - \Zn{s}) \left( \ps - p(n) \right)| \\
-	&\quad = |p(n)(n - s - \Zetan{\ceil{s}} - \Zn{s}) \left( \frac{1 - 1 + (s - \floor{s})p(n)}{1-(s - \floor{s})p(n)} \right)| \\
-	&\quad = \underbrace{\frac{p(n)n - p(n)(s + \Zetan{\ceil{s}} + \Zn{s})}{1-(s - \floor{s})p(n)}}_{\xrightarrow{n \rightarrow \infty} 1} 
-		\underbrace{(s - \floor{s})p(n)}_{=\BigO{n^{-1}}} \\
+	&\quad = |(n - s - \Zetan{\ceil{s}} - \Zn{s}) \left( \ps - \p \right)| \\
+	&\quad = |\p(n - s - \Zetan{\ceil{s}} - \Zn{s}) \left( \frac{1 - 1 + (s - \floor{s})\p}{1-(s - \floor{s})\p} \right)| \\
+	&\quad = |\underbrace{\frac{\p n - \p(s + \Zetan{\ceil{s}} + \Zn{s})}{1-(s - \floor{s})\p}}_{\xrightarrow{n \rightarrow \infty} 1} 
+		\underbrace{(s - \floor{s})\p}_{=\BigO{n^{-1}}} |\\
 	&= \BigO{n^{-1}}.
 	\end{aligned}
 	\end{equation}
 	\fxnote{Add proof of uniform convergence.}
-	Now we use the definition of $p(n)$ to expand
+	We substitute the definition of $\p$ in \eqref{E: def a'n} to expand
 	\begin{align*}
 	\amn{s} - 1 
 	&= \left( n - s - \Zetan{\ceil{s}} - \Zn{s} \right) \left( n^{-1} + t\n{-4}{3} \right) - 1 \\
@@ -730,22 +730,22 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
     By the definition of $a_n$ in \eqref{D: an}, we have
     \begin{equation}
     \begin{aligned}
-    a_n(s) &= (n - \nu_n(s)) \frac{p(n)}{1 - (s - \floor{s})p(n)} \\
-    &\leq \frac{n p(n)}{1 - (s - \floor{s})p(n)}
+    a_n(s) &= (n - \nu_n(s)) \frac{\p}{1 - (s - \floor{s})\p} \\
+    &\leq \frac{n \p}{1 - (s - \floor{s})\p}
     \end{aligned}
     \end{equation}
     which is a deterministic function of $s$. So
-    $ \Exp{a_n(s)} \leq \frac{n p(n)}{1 - (s - \floor{s})p(n)} $
+    $ \Exp{a_n(s)} \leq \frac{n \p}{1 - (s - \floor{s})\p} $
     and
     \begin{equation}
     \begin{aligned}
-    \int_{0}^{T_n} \Exp{a_n(s)} ds &\leq  \int_{0}^{T_n }\frac{n p(n)}{1 - (s - \floor{s})p(n)} \\
-    &\leq \int_{0}^{\n{2}{3}s_0}\frac{n p(n)}{1 - (s - \floor{s})p(n)} \\
+    \int_{0}^{T_n} \Exp{a_n(s)} ds &\leq  \int_{0}^{T_n }\frac{n \p}{1 - (s - \floor{s})\p} \\
+    &\leq \int_{0}^{\n{2}{3}s_0}\frac{n \p}{1 - (s - \floor{s})\p} \\
     &\leq 2\n{2}{3}s_0,
     \end{aligned}
     \end{equation}
     where the last inequality holds for $n$ sufficiently large, since 
-    $\frac{n p(n)}{1 - (s - \floor{s})p(n)} \rightarrow 1$
+    $\frac{n \p}{1 - (s - \floor{s})\p} \rightarrow 1$
     as $n \rightarrow \infty$.
     Now H\"older's inequality gives us
     \fxnote{Add reference to Hölder.}

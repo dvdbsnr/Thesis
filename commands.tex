@@ -19,6 +19,10 @@
 \newcommand{\Ni}[1]
 	{\mathcal{N}_{#1}}
 	
+% p(n)
+\newcommand{\p}
+	{p_n}
+	
 % Brownian motion
 \newcommand{\Wt}
 	{W^t}
@@ -115,12 +119,12 @@
 % E_s,ds, event of new edge
 \newcommand{\Esds}
 	{\mathcal{E}_{[s,s+ds]}	}
-% \ps = p(n)/(1-(s-s)p(n))
+% \ps = \p/(1-(s-s)\p)
 \newcommand{\ps}
-	{\frac{p(n)}{1-(s-\floor{s})p(n)}}
-% \psx{x} = xp(n)/(1-(s-s)p(n))
+	{\frac{\p}{1-(s-\floor{s})\p}}
+% \psx{x} = x\p/(1-(s-s)\p)
 \newcommand{\psx}[1]
-	{\frac{#1 p(n)}{1-(s-\floor{s})p(n)}}
+	{\frac{#1 \p}{1-(s-\floor{s})\p}}
 	
 % \supns sup_{s<=n^2/3s0}
 \newcommand{\supns}
