@@ -1,4 +1,9 @@
-%%%% Commands %%%%
+% COMMANDS %%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% General
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % BigO notation
 \newcommand{\BigO}[1]
 	{O\left(#1\right)}
@@ -7,57 +12,19 @@
 \newcommand{\OrderO}[1]
 	{\Theta \left(#1\right)}
 	
-% Graphs
-\newcommand{\Gnt}
-	{\mathscr{G}(n, n^{-1} + tn^{-4/3})}
-\newcommand{\Gcal}
-	{\mathcal{G}}
-\newcommand{\Ccal}
-	{\mathcal{C}}
-	
-% Neighbour set
-\newcommand{\Ni}[1]
-	{\mathcal{N}_{#1}}
+% càdlàq
+\newcommand{\cadlaq}
+	{c\`{a}dl\`{a}q}	
 	
 % p(n)
 \newcommand{\p}
 	{p_n}
-	
-% càdlàq
-\newcommand{\cadlaq}
-	{c\`{a}dl\`{a}q}	
 	
 % Brownian motion
 \newcommand{\Wt}
 	{W^t}
 \newcommand{\Bt}
 	{B^t}
-
-% Component C_i
-\newcommand{\Ci}[1]
-	{\mathcal{C}_{#1}}
-% Component C^t_n 
-\newcommand{\Cnt}
-	{\mathcal{C}^t_n}
-% Component C^t
-\newcommand{\Ct}
-	{\mathcal{C}^t}
-% Component C^t_n bold
-\newcommand{\Cntbold}
-	{\boldsymbol{\mathcal{C}}^t_n}
-% Component C^t bold
-\newcommand{\Ctbold}
-	{\boldsymbol{\mathcal{C}}^t}
-	
-%S Surplus sigma^t_n
-\newcommand{\sigmant}
-	{\mathcal{\sigma}^t_n}
-%S Surplus sigma^t
-\newcommand{\sigmat}
-	{\mathcal{\sigma}^t}
-%S Surplus sigma^t boldbold
-\newcommand{\sigmatbold}
-	{\boldsymbol{\mathcal{\sigma}}^t}
 	
 % l^2 space plus
 \newcommand{\lp}
@@ -70,65 +37,17 @@
 \newcommand{\n}[2]
 	{n^{#1 / #2}}
 	
-% Zn -> Z_n()
-\newcommand{\Zn}[1]
-	{Z_n(#1)}
-% An -> A_n()
-\newcommand{\An}[1]
-	{A_n(#1)}
-% Bn -> B_n()
-\newcommand{\Bn}[1]
-	{B_n(#1)}
-% Mn -> M_n()
-\newcommand{\Mn}[1]
-	{M_n(#1)}
-% Quadratic variation of Mn: [Mn]t
-\newcommand{\Mnq}[1]
-	{[M_n]_{#1}}
-% an -> a_n()
-\newcommand{\an}[1]
-	{a_n(#1)}
-% amn -> a'_n() (a mark n)
-\newcommand{\amn}[1]
-	{a'_n(#1)}
-% Ft filtration
-\newcommand{\F}[1]
-	{\mathcal{F}_{#1}}
-% Ft filtration
-\newcommand{\Fn}[1]
-	{\mathcal{F}^n_{#1}}
-
-% Z, M, A, Q, B bar
-\newcommand{\Zbar}[1]
-    {\bar{Z}_n(#1)}
-\newcommand{\Abar}[1]
-    {\bar{A}_n(#1)}
-\newcommand{\Mbar}[1]
-    {\bar{M}_n(#1)}
-\newcommand{\Bbar}[1]
-    {\bar{B}_n(#1)}
-    
-% Uniform rv Uij
-\newcommand{\Uij}
-	{U_{i,j}}
-    
-
-% Zeta = C^-1_n()
-\newcommand{\ZetaMinus}[1]
-	{\zeta^{-1}(#1)}
-% Zeta = C^-1_n()
-\newcommand{\Zetan}[1]
-	{\zeta^{-1}_n(#1)}
-	
-% E_s,ds, event of new edge
-\newcommand{\Esds}
-	{\mathcal{E}_{[s,s+ds]}	}
 % \ps = \p/(1-(s-s)\p)
 \newcommand{\ps}
 	{\frac{\p}{1-(s-\floor{s})\p}}
 % \psx{x} = x\p/(1-(s-s)\p)
 \newcommand{\psx}[1]
 	{\frac{#1 \p}{1-(s-\floor{s})\p}}
+	
+% Uniform rv Uij
+\newcommand{\Uij}
+	{U_{i,j}}
+	
 	
 % \supns sup_{s<=n^2/3s0}
 \newcommand{\supns}
@@ -147,21 +66,21 @@
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 % Floor
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
-
+	
 % Real numbers
 \newcommand{\Real}
-    {\mathbb{R}}
+	{\mathbb{R}}
 % Natural numbers
 \newcommand{\Nat}
-    {\mathbb{N}}
+	{\mathbb{N}}
 % Rational numbers
 \newcommand{\Rat}
-    {\mathbb{Q}}
-
+	{\mathbb{Q}}
+	
 % argmin
 \DeclareMathOperator*{\argmin}
 	{arg\,min}
-		
+	
 % Binomial distribution
 \DeclareMathOperator*{\Binom}
 	{Bin}
@@ -169,10 +88,137 @@
 % Bernoulli distribution
 \DeclareMathOperator*{\Bern}
 	{B}
-
+	
 % Exponential distribution
 \DeclareMathOperator*{\Exponential}
 	{Exp}
+	
+% Indicator function
+\newcommand{\Ind}[1]
+	{\mathbbm{1}_{#1}}
+	
+% Interval [s, s+ds]
+\newcommand{\sds}
+	{[s, s+ds]}	
+	
+% Probability
+\newcommand{\Prob}
+	{\mathbb{P}}
+
+% Sigma Algebra
+\newcommand{\SigmaAlgebra}
+	{\mathcal{F}}
+	
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Graphs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Gnt}
+	{\mathscr{G}(n, n^{-1} + tn^{-4/3})}
+\newcommand{\Gcal}
+	{\mathcal{G}}
+\newcommand{\Ccal}
+	{\mathcal{C}}
+	
+% Neighbour set
+\newcommand{\Ni}[1]
+	{\mathcal{N}_{#1}}
+	
+% Component C_i
+\newcommand{\Ci}[1]
+	{\mathcal{C}_{#1}}
+% Component C^t_n 
+\newcommand{\Cnt}
+	{\mathcal{C}^t_n}
+% Component C^t
+\newcommand{\Ct}
+	{\mathcal{C}^t}
+% Component C^t_n bold
+\newcommand{\Cntbold}
+	{\boldsymbol{\mathcal{C}}^t_n}
+% Component C^t bold
+\newcommand{\Ctbold}
+	{\boldsymbol{\mathcal{C}}^t}
+	
+% Number of ineligible vertices at time s.
+\newcommand{\Ineligible}[1]
+	{\eta_n(#1)}
+	
+% New edge in interval I
+\newcommand{\NewEdge}[1]
+	{\mathcal{E}_{#1}}
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+% Processes 	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Zn -> Z_n()
+\newcommand{\Zn}[1]
+	{Z_n(#1)}
+% Znt -> Z_n^t()
+\newcommand{\Znt}[1]
+	{Z_n^t(#1)}
+% An -> A_n()
+\newcommand{\An}[1]
+	{A_n(#1)}
+% Bn -> B_n()
+\newcommand{\Bn}[1]
+	{B_n(#1)}
+% Mn -> M_n()
+\newcommand{\Mn}[1]
+	{M_n(#1)}
+% Quadratic variation of Mn: [Mn]t
+\newcommand{\Mnq}[1]
+	{[M_n]_{#1}}
+% an -> a_n()
+\newcommand{\an}[1]
+	{a_n(#1)}
+% amn -> a'_n() (a mark n)
+\newcommand{\amn}[1]
+	{a'_n(#1)}
+	
+% Ft filtration
+\newcommand{\F}[1]
+	{\mathcal{F}_{#1}}
+% Ft filtration
+\newcommand{\Fn}[1]
+	{\mathcal{F}^n_{#1}}
+
+% Z, M, A, Q, B bar
+\newcommand{\Zbar}[1]
+    {\bar{Z}_n(#1)}
+\newcommand{\Zntbar}
+    {\bar{Z}^t_n}
+\newcommand{\Abar}[1]
+    {\bar{A}_n(#1)}
+\newcommand{\Mbar}[1]
+    {\bar{M}_n(#1)}
+\newcommand{\Bbar}[1]
+    {\bar{B}_n(#1)}
+    
+% Surplus Edge Counting process N_n^t(.)
+\newcommand{\Nnt}
+    {N_n^t}
+% Rescaled Surplus Edge Counting process N_n^t(.)
+\newcommand{\Nntbar}
+    {\bar{N}_n^t}
+% Limit N^t process 
+\newcommand{\Nt}
+	{N^t}    
+    
+% Zeta = C^-1_n()
+\newcommand{\ZetaMinus}[1]
+	{\zeta^{-1}(#1)}
+% Zeta = C^-1_n()
+\newcommand{\Zetan}[1]
+	{\zeta^{-1}_n(#1)}
+	
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Rest (Chapter specific)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Deterministic lemma
 \newcommand{\tn}[1]
@@ -184,10 +230,6 @@
 \newcommand{\xip}
 	{x_{i+1}}
 	
-% Indicator function
-\newcommand{\Ind}[1]
-	{\mathbbm{1}_{#1}}
-	
 % [0, \infty) \times (0, \infty)
 \newcommand{\IntTimesInt}
 	{[0, \infty) \times (0, \infty)}
@@ -195,10 +237,6 @@
 % A{\delta, c}
 \newcommand{\ExcursionEvent}
 	{\mathcal{A}_{\delta, C}}
-	
-% Sigma Algebra
-\newcommand{\SigmaAlgebra}
-	{\mathcal{F}}
 	
 % Chi_alpha^n
 \newcommand{\ChiAn}
@@ -208,18 +246,12 @@
 \newcommand{\NComp}[1]
 	{q(n,#1)}
 	
-% Number of ineligible vertices at time s.
-\newcommand{\Ineligible}[1]
-	{\eta_n(s)}
-	
-% New edge in interval I
-\newcommand{\NewEdge}[1]
-	{\mathcal{E}_{#1}}
-	
-% Probability
-\newcommand{\Prob}
-	{\mathbb{P}}
-	
-% Interval [s, s+ds]
-\newcommand{\sds}
-	{[s, s+ds]}	
+%S Surplus sigma^t_n
+\newcommand{\sigmant}
+	{\mathcal{\sigma}^t_n}
+%S Surplus sigma^t
+\newcommand{\sigmat}
+	{\mathcal{\sigma}^t}
+%S Surplus sigma^t boldbold
+\newcommand{\sigmatbold}
+	{\boldsymbol{\mathcal{\sigma}}^t}
