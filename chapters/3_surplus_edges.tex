@@ -26,10 +26,10 @@ We remind ourselves that a surplus edge in a graph $\Gcal \in \Gnt$ appears if,
 during the transition of vertices and components of the breadth-first walk,
 a vertex opens a new connection to another vertex, 
 which already has opened connections to some explored node.
-We associate with $\Gcal$ a counting process $(\Nnt(s), 0 \leq s \leq n)$,
-with $\Nnt(0) = 0$, which increases by $1$ at each appearance of a surplus edge.
+We associate with $\Gcal$ a counting process $(\nnt(s), 0 \leq s \leq n)$,
+with $\nnt(0) = 0$, which increases by $1$ at each appearance of a surplus edge.
 
-In fact $\Nnt$ is a process very similar to $B_n$,
+In fact $\nnt$ is a process very similar to $B_n$,
 the process defined in Chapter~\ref{C: bf-walk} that counted each appearance of a new edge to an ineligible vertex.
 Lemma~\ref{L: formula an} established that $\Bn{t} = \int_{0}^{t} \an{s}ds$ with
 \begin{equation*}
@@ -37,7 +37,7 @@ Lemma~\ref{L: formula an} established that $\Bn{t} = \int_{0}^{t} \an{s}ds$ with
 \end{equation*}
 where $\Ineligible{s}$ is the number of vertices ineligible to become a child of $v(\ceil{s})$ at time $s$.
 In terms of counting processes, we call $a_n$ the rate or conditional intensity of $B_n$.
-It is evident that $\Nnt$ will have a similar rate,
+It is evident that $\nnt$ will have a similar rate,
 substituting the number of vertices eligible to become a child of $v(\ceil{s})$ with the number of vertices eligible to receive a surplus edge to $v(\ceil{s})$.
 
 \begin{figure}[ht]
@@ -55,7 +55,7 @@ Vertex $v_3$ can not have an edge to itself, so only $v_4$, $v_5$ and $v_6$ are 
 
 In general, at time $i-1$, the first $i$ vertices are ineligible for a surplus edge to $v(i)$.
 The remaining $\Ineligible{i-1} - i$ vertices are candidates for an excess edge opening with probability $\p$.
-Therefore, the counting process $\Nnt$ has rate
+Therefore, the counting process $\nnt$ has rate
 \begin{equation} \label{E: rate Nnt}
 (\Ineligible{\floor{s}} - \floor{s}) \ps.
 \end{equation}
@@ -71,29 +71,29 @@ and using \eqref{E: zeta-1(i) = 1 - min(j)} we can rewrite
 \begin{equation*}
 \begin{aligned}
 \Ineligible{\floor{s}} - \floor{s} 
-&= \floor{s} - \ZetaMinus{\floor{s}+1} + \Znt{\floor{s}} - \floor{s} \\
-&= 1 - \min_{u \leq \floor{s}} \Znt{u} + \Znt{\floor{s}},
+&= \floor{s} - \ZetaMinus{\floor{s}+1} + \znt(\floor{s}) - \floor{s} \\
+&= 1 - \min_{u \leq \floor{s}} \znt(u) + \znt(\floor{s}),
 \end{aligned}
 \end{equation*}
 \fxfatal{Where does the 1 go?}
 and the conditional intensity becomes
 \begin{equation} \label{E: rate Nnt 2}
-(1 - \min_{u \leq \floor{s}} \Znt{u} + \Znt{\floor{s}}) \ps.
+(1 - \min_{u \leq \floor{s}} \znt(u) + \znt(\floor{s}) \ps.
 \end{equation}
 We now rescale the counting process via
 \begin{equation} \label{E: rescale Nnt}
-\Nntbar(s) = \Nnt(\n{2}{3}s).
+\rnnt(s) = \nnt(\n{2}{3}s).
 \end{equation}
 We calculate the rate of this rescaled process.
-Recall that the conditional intensity $\bar{\lambda}(s)$ of the process $\Nntbar(s)$ must satisfy
+Recall that the conditional intensity $\bar{\lambda}(s)$ of the process $\rnnt(s)$ must satisfy
 \begin{equation}
-\Exp{\Nntbar(s)} = \int_{0}^{s} \lambda(u) du.
+\Exp{\rnnt(s)} = \int_{0}^{s} \lambda(u) du.
 \end{equation}
-Denote the rate of $\Nnt$ by $\lambda(s)$ and refer to \eqref{E: rescale Nnt} to evaluate
+Denote the rate of $\nnt$ by $\lambda(s)$ and refer to \eqref{E: rescale Nnt} to evaluate
 \begin{equation*}
 \begin{aligned}
-\Exp{\Nntbar(s)}
-&= \Exp{\Nnt(\n{2}{3}s)} \\
+\Exp{\rnnt(s)}
+&= \Exp{\nnt(\n{2}{3}s)} \\
 &= \int_{0}^{\n{2}{3}s} \lambda(u) du \\
 &= \int_{0}^{s} \n{2}{3} \lambda(\n{2}{3}u) du.
 \end{aligned}
@@ -103,18 +103,19 @@ Comparing both rates directly gives us
 \begin{aligned}
 \bar{\lambda}(s)
 &= \n{2}{3} \lambda(\n{2}{3}s) \\
-&= \n{2}{3} \frac{1 - \min_{u \leq \n{2}{3}s} \Znt{u} + \Znt{\n{2}{3}s}}{1 - (\n{2}{3}s - \floor{\n{2}{3}s})\p} \p \\
-&= \n{2}{3} \frac{1 - \n{1}{3} \min_{u \leq s} \Zntbar(u) + \n{1}{3}\Zntbar(s)}{1 - (\n{2}{3}s - \floor{\n{2}{3}s})\p} \p \\
-&= \underbrace{n \p}_{\rightarrow 1} \frac{\n{-1}{3} - \min_{u \leq s} \Zntbar(u) + \Zntbar(s)}{1 - (\n{2}{3}s - \floor{\n{2}{3}s})\p} \\
-&\xrightarrow{n \rightarrow \infty} \Zntbar(s) - \min_{u \leq s}\Zntbar(u).
+&= \n{2}{3} \frac{1 - \min_{u \leq \n{2}{3}s} \znt(u) + \znt(\n{2}{3}s)}{1 - (\n{2}{3}s - \floor{\n{2}{3}s})\p} \p \\
+&= \n{2}{3} \frac{1 - \n{1}{3} \min_{u \leq s} \rznt(u) + \n{1}{3}\rznt(s)}{1 - (\n{2}{3}s - \floor{\n{2}{3}s})\p} \p \\
+&= \underbrace{n \p}_{\rightarrow 1} \frac{\n{-1}{3} - \min_{u \leq s} \rznt(u) + \rznt(s)}{1 - (\n{2}{3}s - \floor{\n{2}{3}s})\p} \\
+&\xrightarrow{n \rightarrow \infty} \rznt(s) - \min_{u \leq s}\rznt(u).
 \end{aligned}
 \end{equation*}
 
-By Theorem~\ref{T: Z -> W} we have $\Zntbar \rightarrow_d \Wt$,
+By Theorem~\ref{T: Z -> W} we have $\rznt \rightarrow_d \Wt$,
 so
 \begin{equation}
-\Zntbar(s) - \min_{u \leq s}\Zntbar(u) \rightarrow_d \Wt(s) - \min_{u \leq s}\Wt(u) = \Bt.
+\rznt(s) - \min_{u \leq s}\rznt(u) \rightarrow_d \Wt(s) - \min_{u \leq s}\Wt(u) = \Bt.
 \end{equation}
+
 
 The rate of the counting process $\Nt$ therefore converges to $\Bt$.
 \fxfatal{Find out what's the problem with the joint convergence.}
@@ -175,10 +176,10 @@ This includes those pictures in my notes on the height of the excursion and stuf
 We define $B_n$ to be the "height" of the exploration in $\Gnt$, aka the discrete version of $\Bt$.
 We now state the main Theorem of this chapter.
 \begin{theorem} \label{T: Joint Convergence}
-	For the previously defined processes $\Zntbar$ and $\Nntbar$,
+	For the previously defined processes $\rznt$ and $\rnnt$,
 	the joint weak convergence
 	\begin{equation}
-	( \Zntbar(s), \Nntbar(s); s \geq 0 ) \longrightarrow_d (\Wt(s), \Nt(s); s \geq 0)
+	( \rznt(s), \rnnt(s); s \geq 0 ) \longrightarrow_d (\Wt(s), \Nt(s); s \geq 0)
 	\end{equation}
 	holds, where $\Nt$ is the counting process with conditional intensity $\Bt$,
 	i.e. the process for which
@@ -189,34 +190,51 @@ We now state the main Theorem of this chapter.
 \end{theorem}
 \begin{proof}
 
-For $n \in \Nat$ consider the process $\Nnt$.
-The increase of $\Nnt$ in between times $i-1$ and $i$ will be $\Binom(\Bn{i-1},\p)$-distributed.
-Define $\Nntbar(s) = \Nnt(\n{2}{3}s)$.
+For $n \in \Nat$ consider the process $\nnt$.
+The increase of $\nnt$ in between times $i-1$ and $i$ will be $\Binom(\Bn{i-1},\p)$-distributed.
+Define $\rnnt(s) = \nnt(\n{2}{3}s)$.
 
 We want to show that
 \begin{equation}
-(\Zntbar, \Nntbar) \rightarrow_d (\Wt, \Nt),
+(\rznt, \rnnt) \rightarrow_d (\Wt, \Nt),
 \end{equation}
 meaning 
 \begin{equation}
-\Exp{f(\Zntbar, \Nntbar)} \xrightarrow{n \rightarrow \infty} \Exp{f(\Wt, \Nt)}
+\Exp{f(\rznt, \rnnt)} \xrightarrow{n \rightarrow \infty} \Exp{f(\Wt, \Nt)}
 \end{equation}
 for all continuous, bounded functions $f:D[0,T]^2\rightarrow\Real$.
 
-We already know that $\Zntbar \rightarrow_d \Wt$, which implies two conditions.
-First, $\Zntbar$ is tight, 
+We already know that $\rznt \rightarrow_d \Wt$, which implies two conditions.
+First, $\rznt$ is tight, 
 so for all $\epsilon>0$ there exists a compact $K \subset D[0,T]$ such that
 \begin{equation}
-\inf_n \Prob ( \Zntbar \in K) > 1 - \epsilon.
+\inf_n \Prob ( \rznt \in K) > 1 - \epsilon.
 \end{equation}
 
-Second, $\Zntbar$ converges in finite dimensional distributions.
+Second, $\rznt$ converges in finite dimensional distributions.
 So for all $s_1 < s_2 < \dots < s_k$:
 \begin{equation}
-(\Zntbar(s_1), \dots, \Zntbar(s_k)) \rightarrow_d (\Wt(s_1), \dots, \Wt(s_k)).
+(\rznt(s_1), \dots, \rznt(s_k)) \rightarrow_d (\Wt(s_1), \dots, \Wt(s_k)).
 \end{equation}
 
-We can use the Skorohod representation theorem to define two random variables
+We can use the Skorohod representation theorem to define random variables $X$, $X_1$, $X_2$, \dots
+on the same probability space, such that $X \sim \Wt$, $X_i \sim \bar{Z}^t_i$ for all $i$
+and $X_n \rightarrow_{text{a.s.}} X$.
+For random variables mapping to functions, we have
+\begin{equation}
+\sup_{s \in \Real_{\geq 0}} |X_n(s) - X(s)| \rightarrow_{text{a.s.}} 0.
+\end{equation}
+So
+\begin{equation} 
+\sup_{s \in \Real_{\geq 0}} |X_n(s) - X(s)| \rightarrow_p 0,
+\end{equation}
+meaning for all $\epsilon > 0$:
+\begin{equation}
+\Prob( \sup_{s \in \Real_{\geq 0}} |X_n(s) - X(s)| > \epsilon ) \rightarrow 0.
+\end{equation}
+From now on, writing $\rznt$ and $\Wt$ we mean these random variables.
+
+
 
 
 
@@ -226,7 +244,7 @@ We can use the Skorohod representation theorem to define two random variables
 
 We can now assure ourselves that the overestimated probability \eqref{E: rate Nnt} is asymptotically negligible.
 Assume the chance that any vertex encounters two or more surplus edges is non-zero and does not converge to zero as $n \rightarrow \infty$.
-If a vertex connects by multiple excess edges, the process $\Nnt$ makes two or more jumps during the time-interval of length $1$.
+If a vertex connects by multiple excess edges, the process $\nnt$ makes two or more jumps during the time-interval of length $1$.
 The rescaling \eqref{E: rescale Nnt} compresses the time axis until, in the limit process $\Nt$, 
 any distance in an interval of original length $1$ will be reduced to a single point.
 Therefore there would be a non-zero chance that the counting process has multiple coincident points.
