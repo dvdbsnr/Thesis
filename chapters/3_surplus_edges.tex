@@ -9,17 +9,151 @@
 \chapter{Surplus edges}
 \fxnote{Update title.}
 
+Theorem \ref{T: Main} deals with surplus edges.
+The goal of this chapter will be to first define the notion of surplus edges,
+find a way to estimate the probability of encountering one and finally proving the joint convergence of $Z_n$ and the other process.
+
 \section{Counting surplus edges}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: Counting surplus edges
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fxnote{Update title.}
 
-\begin{figure}
+We begin by describing a way to analyse the appearance of surplus edges.
+In Chapter \ref{C: bf-walk} we defined the breadth-first walk $Z_n$, 
+which counted new connections to previously disconnected vertices.
+We remind ourselves that a surplus edge in a graph $\Gcal \in \Gnt$ appears if,
+during the transition of vertices and components of the breadth-first walk,
+a vertex opens a new connection to another vertex, 
+which already has opened connections to some explored node.
+We associate with $\Gcal$ a counting process $(\Nnt(s), 0 \leq s \leq n)$,
+with $\Nnt(0) = 0$, which increases by $1$ at each appearance of a surplus edge.
+
+In fact $\Nnt$ is a process very similar to $B_n$,
+the process defined in Chapter \ref{C: bf-walk} that counted each appearance of a new edge to an ineligible vertex.
+Lemma \ref{L: formula an} established that $\Bn{t} = \int_{0}^{t} \an{s}ds$ with
+\begin{equation*}
+	\an{s} = (n - \Ineligible{s}) \ps,
+\end{equation*}
+where $\Ineligible{s}$ is the number of vertices ineligible to become a child of $v(\ceil{s})$ at time $s$.
+In terms of counting processes, we call $a_n$ the rate or conditional intensity of $B_n$.
+It is evident that $\Nnt$ will have a similar rate,
+substituting the number of vertices eligible to become a child of $v(\ceil{s})$ with the number of vertices eligible to receive a surplus edge to $v(\ceil{s})$.
+
+\begin{figure}[ht]
 	\input{figures/fig_tree1.tex}
+	\caption{A tree} 
+	\label{F: Surplus Edges Tree}
 \end{figure}
 
-\section{Weak convergence of $(Z^t_n, N^t_n)$}
+Consider the breadth-first walk on the graph of Figure \ref{F: Surplus Edges Tree} at time $2$.
+The children of $v_1$, $v_2$ to $v_4$, and the children of $v_2$, that is $v_5$ and $v_6$, are already discovered.
+We are interested in surplus edges to $v_3$.
+So $v_1$ to $v_6$ are unable to form edges to become children of $v_3$ and $\Ineligible{2} = |\{ v_1, \dots,  v_6\}|$.
+Of these vertices, $v_1$ and $v_2$ are already explored an every connection to other nodes is known.
+Vertex $v_3$ can not have an edge to itself, so only $v_4$, $v_5$ and $v_6$ are eligible to receive a surplus edge to $v_3$.
 
+In general, at time $i-1$, the first $i$ vertices are ineligible for a surplus edge to $v(i)$.
+The remaining $\Ineligible{i-1} - i$ vertices are candidates for an excess edge opening with probability $\p$.
+Therefore, the counting process $\Nnt$ has rate
+\begin{equation} \label{E: rate Nnt}
+(\Ineligible{\floor{s}} - \floor{s}) \ps.
+\end{equation}
+Note that this rate is only exact for the chance of encountering exactly one surplus edge, 
+but an overestimation for multiple excess edges.
+If we encounter a surplus edge at some time $s \in [i-1, i)$,
+the number of eligible vertices should decrease by one.
+However, \eqref{E: rate Nnt} is constant for all $s \in [i-1, i)$.
+For ease of computation we will continue with this overestimation and later argue that the difference becomes negligible as $n \rightarrow \infty$.
+
+Lemma \ref{L: formula an} established $\Ineligible{s} = s + \Zetan{\ceil{s}} + \Zn{s}$ 
+and using \eqref{E: zeta-1(i) = 1 - min(j)} we can rewrite
+\begin{equation*}
+\begin{aligned}
+\Ineligible{\floor{s}} - \floor{s} 
+&= \floor{s} - \ZetaMinus{\floor{s}+1} + \Znt{\floor{s}} - \floor{s} \\
+&= 1 - \min_{u \leq \floor{s}} \Znt{u} + \Znt{\floor{s}},
+\end{aligned}
+\end{equation*}
+\fxfatal{Where does the 1 go?}
+and the conditional intensity becomes
+\begin{equation} \label{E: rate Nnt 2}
+(1 - \min_{u \leq \floor{s}} \Znt{u} + \Znt{\floor{s}}) \ps.
+\end{equation}
+We now rescale the counting process via
+\begin{equation} \label{E: rescale Nnt}
+\Nntbar(s) = \Nnt(\n{2}{3}s).
+\end{equation}
+We calculate the rate of this rescaled process.
+Recall that the conditional intensity $\bar{\lambda}(s)$ of the process $\Nntbar(s)$ must satisfy
+\begin{equation}
+\Exp{\Nntbar(s)} = \int_{0}^{s} \lambda(u) du.
+\end{equation}
+Denote the rate of $\Nnt$ by $\lambda(s)$ and refer to \eqref{E: rescale Nnt} to evaluate
+\begin{equation*}
+\begin{aligned}
+\Exp{\Nntbar(s)}
+&= \Exp{\Nnt(\n{2}{3}s)} \\
+&= \int_{0}^{\n{2}{3}s} \lambda(u) du \\
+&= \int_{0}^{s} \n{2}{3} \lambda(\n{2}{3}u) du.
+\end{aligned}
+\end{equation*}
+Comparing both rates directly gives us
+\begin{equation*}
+\begin{aligned}
+\bar{\lambda}(s)
+&= \n{2}{3} \lambda(\n{2}{3}s) \\
+&= \n{2}{3} \frac{1 - \min_{u \leq \n{2}{3}s} \Znt{u} + \Znt{\n{2}{3}s}}{1 - (\n{2}{3}s - \floor{\n{2}{3}s})\p} \p \\
+&= \n{2}{3} \frac{1 - \n{1}{3} \min_{u \leq s} \Zntbar(u) + \n{1}{3}\Zntbar(s)}{1 - (\n{2}{3}s - \floor{\n{2}{3}s})\p} \p \\
+&= \underbrace{n \p}_{\rightarrow 1} \frac{\n{-1}{3} - \min_{u \leq s} \Zntbar(u) + \Zntbar(s)}{1 - (\n{2}{3}s - \floor{\n{2}{3}s})\p} \\
+&\xrightarrow{n \rightarrow \infty} \Zntbar(s) - \min_{u \leq s}\Zntbar(u).
+\end{aligned}
+\end{equation*}
+
+By Theorem \ref{T: Z -> W} we have $\Zntbar \rightarrow_d \Wt$,
+so
+\begin{equation}
+\Zntbar(s) - \min_{u \leq s}\Zntbar(u) \rightarrow_d \Wt(s) - \min_{u \leq s}\Wt(u) = \Bt.
+\end{equation}
+
+The rate of the counting process $\Nt$ therefore converges to $\Bt$.
+\fxfatal{Find out what's the problem with the joint convergence.}
+We now state the main Theorem of this chapter.
+\begin{theorem}
+	For the previously defined processes $\Zntbar$ and $\Nntbar$,
+	the joint weak convergence
+	\begin{equation}
+	( \Zntbar(s), \Nntbar(s); s \geq 0 ) \longrightarrow_d (\Wt(s), \Nt(s); s \geq 0)
+	\end{equation}
+	holds, where $\Nt$ is the counting process with conditional intensity $\Bt$,
+	that is the process for which
+	\begin{equation*}
+	\Nt(s) - \int_{0}^s \Bt(u)du
+	\end{equation*}
+	is a martingale.
+\end{theorem}
+
+We will prove this theorem in the coming Chapter \ref{C: Convergence (Z,N)} after some preliminary results on weak convergence.
+For now assume it is true, so we can correct the error in the overestimated probability \eqref{E: rate Nnt}.
+Assume the chance that any vertex encounters two or more surplus edges is non-zero and does not converge to zero as $n \rightarrow \infty$.
+If a vertex connects by multiple excess edges, the process $\Nnt$ makes two or more jumps during the time-interval of length $1$.
+The rescaling \eqref{E: rescale Nnt} compresses the time axis until, in the limit process $\Nt$, 
+any distance in an interval of original length $1$ will be reduced to a single point.
+Therefore there would be a non-zero chance that the counting process has multiple coincident points.
+By general theory on counting processes, this is not possible.
+\fxnote{Find quote for theory on counting processes.}
+So the probability of a vertex having multiple surplus edges must tend to zero.
+
+
+
+\section{On weak convergence}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: On weak convergence
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fxnote{Introductory text.}
+
 \fxnote{Definition weak convergence}
+
 \begin{definition}[Weak convergence]
 	Let $S$ be a metric space and $\mathcal{S}$ it's class of Borel sets.
 	Let $P, P_1, P_2, \dots$ be probability measures on defined on $S$.
@@ -34,15 +168,15 @@ This definition now applies to convergence in distribution of random variables a
 Let $X, X_1, X_2, \dots$ be random variables on some probability space $S$.
 Let $P, P_1, P_2, \dots$ be the corresponding distributions. 
 
-\begin{definition}[Tightness]
+\begin{definition}[Tightness] \label{D: Tightness}
 	Inhalt...
 \end{definition}
 
-\begin{definition}[Relative compactness]
+\begin{definition}[Relative compactness] \label{D: Rel Compactness}
 	Inhalt...
 \end{definition}
 
-\begin{theorem}[Prohorov's theorem]
+\begin{theorem}[Prohorov's theorem] \label{T: Prohorov}
 	Let $P_n$ be a series of probability measures on some metric space $S$. If $P_n$ is tight, then it is relatively compact.
 \end{theorem}
 
@@ -55,3 +189,9 @@ We will prove weak convergence by showing that
 as $n \rightarrow \infty$, 
 for all continuous, bounded functions 
 $f: D^2 \rightarrow \Real$.
+
+
+\section{Weak convergence of $(Z^t_n, N^t_n)$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: Weak convergence of $(Z^t_n, N^t_n)$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
