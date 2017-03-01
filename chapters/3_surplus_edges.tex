@@ -9,7 +9,7 @@
 \chapter{Surplus edges}
 \fxnote{Update title.}
 
-Theorem \ref{T: Main} deals with surplus edges.
+Theorem~\ref{T: Main} deals with surplus edges.
 The goal of this chapter will be to first define the notion of surplus edges,
 find a way to estimate the probability of encountering one and finally proving the joint convergence of $Z_n$ and the other process.
 
@@ -20,7 +20,7 @@ find a way to estimate the probability of encountering one and finally proving t
 \fxnote{Update title.}
 
 We begin by describing a way to analyse the appearance of surplus edges.
-In Chapter \ref{C: bf-walk} we defined the breadth-first walk $Z_n$, 
+In Chapter~\ref{C: bf-walk} we defined the breadth-first walk $Z_n$, 
 which counted new connections to previously disconnected vertices.
 We remind ourselves that a surplus edge in a graph $\Gcal \in \Gnt$ appears if,
 during the transition of vertices and components of the breadth-first walk,
@@ -30,8 +30,8 @@ We associate with $\Gcal$ a counting process $(\Nnt(s), 0 \leq s \leq n)$,
 with $\Nnt(0) = 0$, which increases by $1$ at each appearance of a surplus edge.
 
 In fact $\Nnt$ is a process very similar to $B_n$,
-the process defined in Chapter \ref{C: bf-walk} that counted each appearance of a new edge to an ineligible vertex.
-Lemma \ref{L: formula an} established that $\Bn{t} = \int_{0}^{t} \an{s}ds$ with
+the process defined in Chapter~\ref{C: bf-walk} that counted each appearance of a new edge to an ineligible vertex.
+Lemma~\ref{L: formula an} established that $\Bn{t} = \int_{0}^{t} \an{s}ds$ with
 \begin{equation*}
 	\an{s} = (n - \Ineligible{s}) \ps,
 \end{equation*}
@@ -46,7 +46,7 @@ substituting the number of vertices eligible to become a child of $v(\ceil{s})$ 
 	\label{F: Surplus Edges Tree}
 \end{figure}
 
-Consider the breadth-first walk on the graph of Figure \ref{F: Surplus Edges Tree} at time $2$.
+Consider the breadth-first walk on the graph of Figure~\ref{F: Surplus Edges Tree} at time $2$.
 The children of $v_1$, $v_2$ to $v_4$, and the children of $v_2$, that is $v_5$ and $v_6$, are already discovered.
 We are interested in surplus edges to $v_3$.
 So $v_1$ to $v_6$ are unable to form edges to become children of $v_3$ and $\Ineligible{2} = |\{ v_1, \dots,  v_6\}|$.
@@ -66,7 +66,7 @@ the number of eligible vertices should decrease by one.
 However, \eqref{E: rate Nnt} is constant for all $s \in [i-1, i)$.
 For ease of computation we will continue with this overestimation and later argue that the difference becomes negligible as $n \rightarrow \infty$.
 
-Lemma \ref{L: formula an} established $\Ineligible{s} = s + \Zetan{\ceil{s}} + \Zn{s}$ 
+Lemma~\ref{L: formula an} established $\Ineligible{s} = s + \Zetan{\ceil{s}} + \Zn{s}$ 
 and using \eqref{E: zeta-1(i) = 1 - min(j)} we can rewrite
 \begin{equation*}
 \begin{aligned}
@@ -110,7 +110,7 @@ Comparing both rates directly gives us
 \end{aligned}
 \end{equation*}
 
-By Theorem \ref{T: Z -> W} we have $\Zntbar \rightarrow_d \Wt$,
+By Theorem~\ref{T: Z -> W} we have $\Zntbar \rightarrow_d \Wt$,
 so
 \begin{equation}
 \Zntbar(s) - \min_{u \leq s}\Zntbar(u) \rightarrow_d \Wt(s) - \min_{u \leq s}\Wt(u) = \Bt.
@@ -151,7 +151,7 @@ So the probability of a vertex having multiple surplus edges must tend to zero.
 % SECTION: On weak convergence
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fxnote{Introductory text.}
-
+This section will probably move to a preliminary chapter.
 \fxnote{Definition weak convergence}
 
 \begin{definition}[Weak convergence]

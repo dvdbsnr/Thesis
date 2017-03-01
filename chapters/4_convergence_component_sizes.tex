@@ -300,7 +300,7 @@ the space remaining is less than $d_1$:
 l-r - \sum_{i=1}^{k} r_i - l_i < d_1.
 \end{equation}
 Let $d^* < \min \{ r_i - l_i \; | \; i = 1, \dots, k \}$
-and apply the logic of Part \ref{PP: Lemma 7 1} to the compact set
+and apply the logic of Part~\ref{PP: Lemma 7 1} to the compact set
 $[r, l] \times [d^*, d_1]$.
 \fxnote{Length d1 or d2? Is there a problem with excursions of exactly length d1?}
 For sufficiently large $n$, 
@@ -310,7 +310,7 @@ Applying this logic to every one if the finitely many gaps between excursions of
 we see that there can not exist more large excursions of $f_n$ already matching $f$.
 \fxnote{There is half a sentence missing here.}
 Thus $\Xin(C) \leq \Xi(C)$ for sufficiently large $n$,
-which completes the proof of Lemma \ref{L: Deterministic Lemma}.
+which completes the proof of Lemma~\ref{L: Deterministic Lemma}.
 \end{proofpart}
 
 	
@@ -320,7 +320,7 @@ which completes the proof of Lemma \ref{L: Deterministic Lemma}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lemma 8: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The following Lemma will now link $Z_n$ and $\Wt$ in the language of Lemma \ref{L: Deterministic Lemma}
+The following Lemma will now link $Z_n$ and $\Wt$ in the language of Lemma~\ref{L: Deterministic Lemma}
 Define $\gamma (n, i) \in \{1, \dots, n\}$ to be the index that makes
 $v(\gamma(n,i))$ is the last vertex of the $i-1$-st component encountered by the breadth-first walk $Z_n$.
 \fxnote{Text clunky here.}
@@ -394,13 +394,13 @@ by showing that these properties hold for the standard Brownian motion with prob
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lemma 8: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{proof}[Proof of Lemma \ref{L: Lemma 8}]
+\begin{proof}[Proof of Lemma~\ref{L: Lemma 8}]
 	By the definition of $\Bt$, 
-	$\Xi$ is the $\Xi$ in Lemma \ref{L: Deterministic Lemma} with $f = \Wt$.
+	$\Xi$ is the $\Xi$ in Lemma~\ref{L: Deterministic Lemma} with $f = \Wt$.
 	Taking $f_n$ to be $\bar{Z}_n$ and defining $\tn{i} = \n{-2}{3} \gamma(n,i)$,
-	$\Xin$ is the $\Xin$ in Lemma \ref{L: Deterministic Lemma}.
+	$\Xin$ is the $\Xin$ in Lemma~\ref{L: Deterministic Lemma}.
 	
-	By Theorem \ref{T: Z -> W} we know $\bar{Z}_n \rightarrow_d \Wt$.
+	By Theorem~\ref{T: Z -> W} we know $\bar{Z}_n \rightarrow_d \Wt$.
 	\fxnote{Add this Theorem}
 	By the Skorohod representation theorem,
 	see \cite{Billingsley2009}, 
@@ -483,7 +483,7 @@ by showing that these properties hold for the standard Brownian motion with prob
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% Finishing the proof
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	We can now apply Lemma \ref{L: Lemma 8} and obtain the vague convergence
+	We can now apply Lemma~\ref{L: Lemma 8} and obtain the vague convergence
 	$ \Xin \rightarrow_d \Xi $.
 \end{proof}
 
@@ -514,7 +514,7 @@ Once the process $\Zn$ reaches step $T_n(y)$,
 the walk has traversed at least all vertices labeled $\{1,2,\dots,\floor{y\n{1}{3}}\}$,
 since it encountered $\floor{y\n{1}{3}}$ individual components.
 \fxnote{More explanation of this process. Maybe write in German then translate.}
-By Theorem \ref{T: Z -> W}, $\n{-2}{3}T_n(y) \rightarrow_d T(y)$
+By Theorem~\ref{T: Z -> W}, $\n{-2}{3}T_n(y) \rightarrow_d T(y)$
 and since $T(y) \rightarrow \infty$ as $y\rightarrow\infty$,
 $T_n(y) \approx \n{2}{3}T(y) \rightarrow\infty$ as $y\rightarrow \infty$.
 This is important for some reason.
@@ -647,8 +647,8 @@ We have shown that with high probability there is no mass of large excursions wa
 For all $\epsilon>0$ we can find a $C>0$ such that,
 with probability $1-\epsilon$,
 all excursions of size equal to or larger than $\delta\n{2}{3}$ will start before step $C\n{2}{3}$.
-For all these excursions we can apply Lemma \ref{L: Lemma 8} to prove that $\Xin \rightarrow_d \Xi$.
-With these considerations we finish the proof of Theorem \ref{T: Main}.
+For all these excursions we can apply Lemma~\ref{L: Lemma 8} to prove that $\Xin \rightarrow_d \Xi$.
+With these considerations we finish the proof of Theorem~\ref{T: Main}.
 
 \section{Graph-theory approach}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -679,8 +679,7 @@ With these considerations we finish the proof of Theorem \ref{T: Main}.
 % Lemma 9 - Graph Components: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof}
-	For this proof,
-	we have to change our understanding of the random graph process $\Gnt$ a little.
+	For this proof we have to change our understanding of the random graph process $\Gnt$ a little.
 	Until now, we constructed a random graph by labeling all vertices $\{1, \dots, n\}$ 
 	and then drawing Bernoulli random variables to construct edges and consequently components.
 	Now we switch the order of actions. 
