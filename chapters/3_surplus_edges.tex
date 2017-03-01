@@ -118,32 +118,6 @@ so
 
 The rate of the counting process $\Nt$ therefore converges to $\Bt$.
 \fxfatal{Find out what's the problem with the joint convergence.}
-We now state the main Theorem of this chapter.
-\begin{theorem}
-	For the previously defined processes $\Zntbar$ and $\Nntbar$,
-	the joint weak convergence
-	\begin{equation}
-	( \Zntbar(s), \Nntbar(s); s \geq 0 ) \longrightarrow_d (\Wt(s), \Nt(s); s \geq 0)
-	\end{equation}
-	holds, where $\Nt$ is the counting process with conditional intensity $\Bt$,
-	that is the process for which
-	\begin{equation*}
-	\Nt(s) - \int_{0}^s \Bt(u)du
-	\end{equation*}
-	is a martingale.
-\end{theorem}
-
-We will prove this theorem in the coming Chapter \ref{C: Convergence (Z,N)} after some preliminary results on weak convergence.
-For now assume it is true, so we can correct the error in the overestimated probability \eqref{E: rate Nnt}.
-Assume the chance that any vertex encounters two or more surplus edges is non-zero and does not converge to zero as $n \rightarrow \infty$.
-If a vertex connects by multiple excess edges, the process $\Nnt$ makes two or more jumps during the time-interval of length $1$.
-The rescaling \eqref{E: rescale Nnt} compresses the time axis until, in the limit process $\Nt$, 
-any distance in an interval of original length $1$ will be reduced to a single point.
-Therefore there would be a non-zero chance that the counting process has multiple coincident points.
-By general theory on counting processes, this is not possible.
-\fxnote{Find quote for theory on counting processes.}
-So the probability of a vertex having multiple surplus edges must tend to zero.
-
 
 
 \section{On weak convergence}
@@ -151,9 +125,9 @@ So the probability of a vertex having multiple surplus edges must tend to zero.
 % SECTION: On weak convergence
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fxnote{Introductory text.}
-This section will probably move to a preliminary chapter.
-\fxnote{Definition weak convergence}
 
+\fxnote{Definition weak convergence}
+This section will probably move to a preliminary chapter.
 \begin{definition}[Weak convergence]
 	Let $S$ be a metric space and $\mathcal{S}$ it's class of Borel sets.
 	Let $P, P_1, P_2, \dots$ be probability measures on defined on $S$.
@@ -195,3 +169,84 @@ $f: D^2 \rightarrow \Real$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Weak convergence of $(Z^t_n, N^t_n)$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We begin this chapter by an introduction on what the rate of a counting process means.
+This includes those pictures in my notes on the height of the excursion and stuff.
+We define $B_n$ to be the "height" of the exploration in $\Gnt$, aka the discrete version of $\Bt$.
+We now state the main Theorem of this chapter.
+\begin{theorem} \label{T: Joint Convergence}
+	For the previously defined processes $\Zntbar$ and $\Nntbar$,
+	the joint weak convergence
+	\begin{equation}
+	( \Zntbar(s), \Nntbar(s); s \geq 0 ) \longrightarrow_d (\Wt(s), \Nt(s); s \geq 0)
+	\end{equation}
+	holds, where $\Nt$ is the counting process with conditional intensity $\Bt$,
+	i.e. the process for which
+	\begin{equation*}
+	\Nt(s) - \int_{0}^s \Bt(u)du
+	\end{equation*}
+	is a martingale.
+\end{theorem}
+\begin{proof}
+
+For $n \in \Nat$ consider the process $\Nnt$.
+The increase of $\Nnt$ in between times $i-1$ and $i$ will be $\Binom(\Bn{i-1},\p)$-distributed.
+Define $\Nntbar(s) = \Nnt(\n{2}{3}s)$.
+
+We want to show that
+\begin{equation}
+(\Zntbar, \Nntbar) \rightarrow_d (\Wt, \Nt),
+\end{equation}
+meaning 
+\begin{equation}
+\Exp{f(\Zntbar, \Nntbar)} \xrightarrow{n \rightarrow \infty} \Exp{f(\Wt, \Nt)}
+\end{equation}
+for all continuous, bounded functions $f:D[0,T]^2\rightarrow\Real$.
+
+We already know that $\Zntbar \rightarrow_d \Wt$, which implies two conditions.
+First, $\Zntbar$ is tight, 
+so for all $\epsilon>0$ there exists a compact $K \subset D[0,T]$ such that
+\begin{equation}
+\inf_n \Prob ( \Zntbar \in K) > 1 - \epsilon.
+\end{equation}
+
+Second, $\Zntbar$ converges in finite dimensional distributions.
+So for all $s_1 < s_2 < \dots < s_k$:
+\begin{equation}
+(\Zntbar(s_1), \dots, \Zntbar(s_k)) \rightarrow_d (\Wt(s_1), \dots, \Wt(s_k)).
+\end{equation}
+
+We can use the Skorohod representation theorem to define two random variables
+
+
+
+
+\end{proof}
+
+
+We can now assure ourselves that the overestimated probability \eqref{E: rate Nnt} is asymptotically negligible.
+Assume the chance that any vertex encounters two or more surplus edges is non-zero and does not converge to zero as $n \rightarrow \infty$.
+If a vertex connects by multiple excess edges, the process $\Nnt$ makes two or more jumps during the time-interval of length $1$.
+The rescaling \eqref{E: rescale Nnt} compresses the time axis until, in the limit process $\Nt$, 
+any distance in an interval of original length $1$ will be reduced to a single point.
+Therefore there would be a non-zero chance that the counting process has multiple coincident points.
+By general theory on counting processes, this is not possible.
+\fxnote{Find quote for theory on counting processes.}
+So the probability of a vertex having multiple surplus edges must tend to zero.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
