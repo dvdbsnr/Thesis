@@ -26,7 +26,7 @@
 \begin{lemma} \label{L: Deterministic Lemma}
 	Let $f:[0, \infty) \rightarrow \Real$ be a continuous function. 
 	Let $\mathcal{E}$ be the set of non-empty intervals 
-	$e=(l,r) \subset \Real_{\geq 0}$
+	$e=[l,r] \subset \Real_{\geq 0}$
 	such that
 	\begin{equation} \label{E: f cond 1}
 	f(r) = f(l) = \min_{s \leq l} f(s),
@@ -46,7 +46,8 @@
 	\end{equation}
 	
 	Let $f_n \rightarrow f$ as $n \rightarrow \infty$ uniformly on bounded intervals.
-	Suppose $(\tn{i}, i \geq 1)$ satisfy the following conditions:
+	Now define $\Xin := \lbrace (\tn{i}, \tn{i+1} - \tn{i}) \; | \; i \geq 1 \rbrace$
+	for any sequence of sets of points $\fnPoints := (\tn{i}, i \geq 1)$, satisfying the following conditions:
 	
 	\begin{equation} \label{E: fn cond 3}
 	0 = \tn{1} < \tn{2} < ... \; \text{and} \; \lim_{i \rightarrow \infty} \tn{i} = \infty,
@@ -58,8 +59,7 @@
 	\max_{i: \tn{i} \leq s_0}(f_n(\tn{i}) - f_n(\tn{i+1})) \rightarrow 0 \; \text{as} \; n \rightarrow \infty, \; \text{for all} \; s_0 \leq \infty.
 	\end{equation}
 	
-	Define $\Xin := \lbrace (\tn{i}, \tn{i+1} - \tn{i}) \; | \; i \geq 1 \rbrace$.
-	Then $\Xin \rightarrow \Xi$ as $n \rightarrow \infty$.
+	Then $\Xin \rightarrow_d \Xi$ as $n \rightarrow \infty$.
 \end{lemma}
 \fxnote{Conditions in Lemma -> Ask Sapozhnikov}
 
@@ -160,7 +160,7 @@ $ \mathcal{E}^* := \{ (l_i, r_i) \; | \; i=1, \dots, k \} $
 be the set of these excursions.
 Consider a fix
 $(l,r) \in \mathcal{E}^*$.
-\fxnote{Some figure showing an excusion goes here probably.}
+\fxnote{Some figure showing an excursion goes here probably.}
 Since $l-r > d_1$,
 we can find an $\epsilon > 0$
 such that the length of the interval
@@ -214,16 +214,17 @@ $[0, l-\epsilon]$ and $[l+\epsilon, r-\epsilon]$ above.
 We now take a look at $f_n$.
 Fix an $x^* \in [l+\epsilon, r-\epsilon]$.
 We will now show that there exist points
-$l_n(x^*) \in [l-\epsilon, l+\epsilon]$
+$\lnx \in [l-\epsilon, l+\epsilon]$
 and 
-$r_n(x^*) \in [r-\epsilon, r+\epsilon]$
-for which conditions \eqref{E: fn cond 3} to \eqref{E: fn cond 5} hold.
+$\rnx \in [r-\epsilon, r+\epsilon]$
+for which conditions \eqref{E: fn cond 3} to \eqref{E: fn cond 5} hold
+and $(\lnx, \rnx- \lnx) \in \Xin$.
 
-Define $l_n(x^*) := \argmin_{u \leq x} f_n(u)$.
+Define $\lnx := \argmin_{u \leq x} f_n(u)$.
 \fxerror{Make ln(x) := sup(argmin(...))}
 By the uniform convergence $f_n \rightarrow f$,
 we can find an $N \in \Nat$,
-such that $|f_n(x) - f(x)| < \delta* / 3$ for all
+such that $|f_n(x) - f(x)| < \delta^* / 3$ for all
 $x \in [T_1, T_2]$ and $n \geq N$.
 So for every point $x \in [0, l - \epsilon]\cup[l + \epsilon, r - \epsilon]$,
 \begin{equation} \label{E: fn(x) > fn(l)}
@@ -234,12 +235,12 @@ So $f_n$ takes its minimum over
 $[0, l - \epsilon]\cup[l + \epsilon, r - \epsilon]$
 at $l$ or somewhere in $[l-\epsilon, l+\epsilon]$.
 \fxnote{Maybe give the interval a name.}
-So $l_n(x^*) \in [l-\epsilon, l+\epsilon]$ and
-$l_n(x^^*) = \min_{u \leq l_n(x^*)} f_n(u)$.
+So $\lnx \in [l-\epsilon, l+\epsilon]$ and
+$\lnx = \min_{u \leq \lnx} f_n(u)$.
 
 Now define 
-$r_n(x^*) := \inf \{ x > x^* \; | \; f_n(x) = l_n(x^*) \}$.
-By \eqref{E: fn(x) > fn(l)}, the function $f_n$ can not reach its past minimum $l_n(x^*)$
+$\rnx := \inf \{ x > x^* \; | \; f_n(x) = \lnx \}$.
+By \eqref{E: fn(x) > fn(l)}, the function $f_n$ can not reach its past minimum $\lnx$
 before $r-\epsilon$.
 As previously discussed,
 there exists a $r^* \in (r, r+\epsilon]$ such that $f(r) - f(r^*) \geq \delta^*$.
@@ -248,16 +249,53 @@ Now
 l_n(x) > l(x) - \delta^* / 3 = f(r) - \delta^* / 3 \geq f(r^*) + \delta^* - \delta^* / 3 > f_n(r^*),
 \end{equation}
 \fxnote{Align these.}
-which implies that $r_n(x^*)$ must be smaller than $r^*$,
-thus $r_n(x^*) \in [r - \epsilon, r+ \epsilon]$.
-Since $l_n(x) = \min_{u \leq l_n(x^*)} f_n(u)$
-and $r_n(x^*)$ is the first time this previous minimum is reached,
-$r_n(x^*) = \min_{u \leq l_n(x^*)} f_n(u)$.
+which implies that $\rnx$ must be smaller than $r^*$,
+thus $\rnx \in [r - \epsilon, r+ \epsilon]$.
+Since $l_n(x) = \min_{u \leq \lnx} f_n(u)$
+and $\rnx$ is the first time this previous minimum is reached,
+$\rnx = \min_{u \leq \lnx} f_n(u)$.
 
 \fxerror{Here: What is a condition on fn? What must be shown?}
 
+To recap: We have shown that for any excursion $(l,r)$ of $f$ there are two points $\lnx$ and $\rnx$, very close to $l$ and $r$ respectively,
+satisfying condition \eqref{E: fn cond 4} with no other eligible points in between.
+The question remains whether these points must be elements of $\fnPoints$ 
+or if it's possible to skip large excursions of $f$ by missing elements on $\fnPoints$.
+First of all, consider that \eqref{E: fn cond 3} ensures there is no last element of $\fnPoints$.
+Any excursion of $f_n$ started will eventually end.
+For any excursion $(l,r)$ of $f$, if $\lnx \in \fnPoints$ there will be some point greater or equal to $\rnx$ present in $\fnPoints$,
+so the excursion of $f$ is matched by some excursion of similar or greater length.
+The only problem that could arise is $\fnPoints$ skipping the end of one
+and the start of another large excursion of $f$,
+or even skipping multiple large excursions of $f$.
+
+Consider two consecutive large excursions of $f$, $(l_1, r_1)$ and $(l_2, r_2)$
+and the space between $r_1$ and $l_2$.
+Suppose there is either no element of $\fnPoints$ in $[r_1-\epsilon, l_2+\epsilon]$ for all $\epsilon>0$.
+The latest element of $\fnPoints$ was located at or before $l_1$, the next will be at or around $r_2$.
+We know $f(r_1)=f(l_1) > f(l_2)$, so there is $\delta>0$ such that for all large $n$,
+$|f_n(l^*) - f_n(r^*)|> \delta$ for all $l^*$ and $r^*$ in the respective $\epsilon$-neighbourhoods around $l_1$ and $r_2$.
+Any possible point of $\fnPoints$ before $l_1$ will only be higher, any point after $r_2$ will only be lower.
+This is a contradiction to \eqref{E: fn cond 5}.
+So there must be at least a point of $\fnPoints$ in between these two large excursions, no excursion can be skipped.
+\fxfatal{Fix everything about this. Please. Fuck} 
+
+
+Additionally, we have shown that any point satisfying \eqref{E: fn cond 4} must lay in some $\epsilon$-neighbourhood around a start- or endpoint of some excursion of $f$.
+\fxfatal{Show this!}
+We will now show that conditions \eqref{E: fn cond 3} and \eqref{fn cond 5} assure us 
+that the set $\fnPoints$ must contain points in some $\epsilon$-neighbourhood of $l$ and $r$.
+First of all, \eqref{E: fn cond 3} ensures that there is no last element in any sequence $\fnPoints$.
+Our only concern is $\fnPoints$ skipping an excursion.
+Consider again the fixed pair $(l,r)$.
+Suppose there is no element of $\fnPoints$ in $[l-\epsilon, l+\epsilon] $
+
+
+
+
+
 Since $l - r + 2\epsilon > d_1$,
-we have found $\tn{i} = l_n(x^*)$, $\tn{i+1} = r_n(x^*)$,
+we have found $\tn{i} = \lnx$, $\tn{i+1} = \rnx$,
 such that $(\tn{i}, \tn{i+1} - \tn{i}) \in \Xin \cap C$
 for all $n$ greater than some $N_i = N \in \Nat$.
 Now let $N^* := \max\{N_1, \dots, N_k\}$ 
@@ -287,7 +325,7 @@ There is an at most countable number of these,
 let $\mathcal{E^*} := \{ (l_i, r_i) \; | \; i \in \Nat \}$
 be the set of such excursions starting in $(r,l)$ with length less than or equal to $d_1$.
 We know
-\begin{equation}
+\begin{equation} 
 \sum_{i=1}^{\infty} r_i - l_i = l - r > d_1,
 \end{equation}
 so we can choose a finite set of excursions
