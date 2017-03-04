@@ -12,6 +12,10 @@
 \newcommand{\OrderO}[1]
 	{\Theta \left(#1\right)}
 	
+% Event E_{x}
+\newcommand{\Event}[1]
+	{\mathcal{E}_{#1}}
+	
 % càdlàq
 \newcommand{\cadlaq}
 	{c\`{a}dl\`{a}q}	
@@ -84,15 +88,16 @@
 % Binomial distribution
 \DeclareMathOperator*{\Binom}
 	{Bin}
-	
 % Bernoulli distribution
 \DeclareMathOperator*{\Bern}
 	{B}
-	
 % Exponential distribution
 \DeclareMathOperator*{\Exponential}
 	{Exp}
-	
+% Poisson distribution
+\DeclareMathOperator*{\Poisson}
+	{Poi}
+		
 % Indicator function
 \newcommand{\Ind}[1]
 	{\mathbbm{1}_{#1}}
@@ -145,9 +150,9 @@
 \newcommand{\Ineligible}[1]
 	{\eta_n(#1)}
 	
-% New edge in interval I
+% Event: New edge in interval I
 \newcommand{\NewEdge}[1]
-	{\mathcal{E}_{#1}}
+	{\Event{#1}}
 	
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
@@ -162,7 +167,12 @@
 % Rescaled Z
 \newcommand{\rznt}
 	{\bar{Z}^t_n}
-	
+% Z - minZ process
+\newcommand{\zminz}
+	{B_n^t}
+% Rescaled Z-minZ process
+\newcommand{\rzminz}
+	{\bar{B}_n^t}
 
 % An -> A_n()
 \newcommand{\An}[1]
@@ -183,6 +193,16 @@
 \newcommand{\amn}[1]
 	{a'_n(#1)}
 	
+% Z, M, A, Q, B bar
+\newcommand{\Zbar}[1]
+	{\bar{Z}_n(#1)}
+\newcommand{\Abar}[1]
+	{\bar{A}_n(#1)}
+\newcommand{\Mbar}[1]
+	{\bar{M}_n(#1)}
+\newcommand{\Bbar}[1]
+	{\bar{B}_n(#1)}
+	
 % Ft filtration
 \newcommand{\F}[1]
 	{\mathcal{F}_{#1}}
@@ -190,16 +210,7 @@
 \newcommand{\Fn}[1]
 	{\mathcal{F}^n_{#1}}
 
-% Z, M, A, Q, B bar
-\newcommand{\Zbar}[1]
-    {\bar{Z}_n(#1)}
-\newcommand{\Abar}[1]
-    {\bar{A}_n(#1)}
-\newcommand{\Mbar}[1]
-    {\bar{M}_n(#1)}
-\newcommand{\Bbar}[1]
-    {\bar{B}_n(#1)}
-    
+ 
 % Surplus Edge Counting process N_n^t(.)
 \newcommand{\nnt}
     {N_n^t}
@@ -209,6 +220,12 @@
 % Limit N^t process 
 \newcommand{\Nt}
 	{N^t}    
+% N in discrete time (M_n?)
+\newcommand{\Ndis}
+	{M_n^t}
+% N in discrete time (M_n?)
+\newcommand{\rNdis}
+	{\bar{M}_n^t}
     
 % Zeta = C^-1_n()
 \newcommand{\ZetaMinus}[1]
