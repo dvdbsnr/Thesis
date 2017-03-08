@@ -1,0 +1,52 @@
+% Chapter 2: Preliminaries
+% Contains:
+%   Weak convergence
+%   Vague convergence
+%   etc.
+
+\chapter{Preliminaries: On convergence of random measures}
+\fxnote{Update title.}
+
+\section{On weak convergence}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: On weak convergence
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fxnote{Introductory text.}
+
+\fxnote{Definition weak convergence}
+This section will probably move to a preliminary chapter.
+\begin{definition}[Weak convergence]
+	Let $S$ be a metric space and $\mathcal{S}$ it's class of Borel sets.
+	Let $P, P_1, P_2, \dots$ be probability measures on defined on $S$.
+	We say $P_n$ converges weakly to $P$, $P_n \Rightarrow P$, if
+	\begin{equation} 
+	\int_S fdP_n \xrightarrow{n \rightarrow \infty} \int_S fdP
+	\end{equation}
+	holds for all continuous, bounded functions $f: S \rightarrow \Real$.
+\end{definition}
+
+This definition now applies to convergence in distribution of random variables as follows:
+Let $X, X_1, X_2, \dots$ be random variables on some probability space $S$.
+Let $P, P_1, P_2, \dots$ be the corresponding distributions. 
+
+\begin{definition}[Tightness] \label{D: Tightness}
+	Inhalt...
+\end{definition}
+
+\begin{definition}[Relative compactness] \label{D: Rel Compactness}
+	Inhalt...
+\end{definition}
+
+\begin{theorem}[Prohorov's theorem] \label{T: Prohorov}
+	Let $P_n$ be a series of probability measures on some metric space $S$. If $P_n$ is tight, then it is relatively compact.
+\end{theorem}
+
+
+
+We will prove weak convergence by showing that
+\begin{equation}
+\Exp{ f(\bar{Z}^t_n, \bar{N}_n) } \longrightarrow \Exp{ f(W^t, N) }
+\end{equation}
+as $n \rightarrow \infty$, 
+for all continuous, bounded functions 
+$f: D^2 \rightarrow \Real$.
