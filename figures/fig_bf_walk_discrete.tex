@@ -8,23 +8,23 @@ minor grid style={dotted},
 xmin=0,
 axis lines = middle,
 xmax=28,
-ymax = 2,
+ymax = 3,
 ymin  = -7,
 xlabel={$i$},
 x label style = {at={(axis description cs:1.04,0.785)},anchor=east},
-ylabel={$Z_n(i)$},
+ylabel={$z_n(i)$},
 y label style = {at={(axis description cs:0,1.11)},anchor=north},
 xtick={5,10,15,20,25},
 minor xtick = {1,...,27},
-ytick={-6,...,1},
-minor ytick={-6,...,1},
+ytick={-6,...,2},
+minor ytick={-6,...,2},
 width = 13cm,
 height = 6.5cm
 ]
 
 \addplot [
 mark=x,
-mark options={color=black}, 
+mark options={color=black, scale=1.5}, 
 color=gray
 ]
 coordinates{
@@ -38,7 +38,7 @@ coordinates{
 
 
 \addplot [dashed] coordinates {(5, -7) (5, 2)};
-\addplot [dashed] coordinates {(12, -7) (12, 2)};
+\addplot [dashed] coordinates {(13, -7) (13, 2)};
 \addplot [dashed] coordinates {(15, -7) (15, 2)};
 \addplot [dashed] coordinates {(18, -7) (18, 2)};
 \addplot [dashed] coordinates {(19, -7) (19, 2)};
