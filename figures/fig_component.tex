@@ -1,0 +1,22 @@
+\begin{tikzpicture}[level distance = 11mm, scale = 1]
+	\tikzstyle{level 1}=[sibling distance=8mm]
+	\tikzstyle{level 2}=[sibling distance=8mm]
+	\tikzstyle{level 3}=[sibling distance=8mm]
+	
+	\node [plain] [right=2.5cm of 1] (1) {1} [grow=up]
+	child { node [plain] {4}
+		child { node [plain] {8}
+		}
+		child { node [plain] {7}
+		}
+		child { node [plain] {6}
+		}
+	}
+	child { node [plain] (3) {3}
+	}
+	child { node [plain] {2}
+		child { node [plain] (5) {5}
+		}
+	}
+	;
+\end{tikzpicture}

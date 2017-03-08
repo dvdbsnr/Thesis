@@ -38,7 +38,7 @@ $w_1, w_2, \dots$, the vertices with the smallest label in the corresponding com
 are ordered $w_1 > w_2 > \dots$. 
 Call $w_i$ the root of $\Ci{i}$.
 Now order by levels (distance from the root) and within levels order by original vertex label.
-See Figure \eqref{F: bf-walk} for an example of the new ordering.
+See Figure~\ref{F: bf-walk discrete} for an example of the new ordering.
 
 For a more mathematically concise definition,
 consider the set of vertices $\{ v(1),\dots, v(i) \}$
@@ -125,11 +125,9 @@ and increases by the number of new neighbours explored in each step.
 	{\input{figures/fig_bf_walk_discrete.tex}}
 	
 	\caption{Breadth-first walk on the first components of a graph}
-	\label{F: bf-walk}
+	\label{F: bf-walk discrete}
 \end{figure} 
-\fxnote{Fix random walk: Error around node 9!?}
 \fxnote{Fix centering of figure captions}
-\fxnote{Add lines indicating end of components in fig bf walk}
 \fxnote{Add more vertex labels in original ordering?}
 
 
@@ -252,7 +250,20 @@ The discrete walk now adds the children of $v(i)$,
 $c(i)$, to this list at time $i$.
 The newly defined continuous walk adds those vertices at uniformly random times in $(i-1, i)$.
 
+\begin{figure}[H]
+	\centering
+	\subfloat[A graph component]
+	{\input{figures/fig_component.tex}}\\
+	
+	\centering
+	\subfloat[The continuous breadth-first walk]
+	{\input{figures/fig_bf_walk_cont.tex}}
+	
+	\caption{Continuous breadth-first walk on a single component}
+	\label{F: bf-walk cont}
+\end{figure} 
 \fxfatal{Here comes a figure and some illustration.}
+
 
 For $\mathcal{G} \in \Gnt$, 
 we call the continuous breadth-first walk on its vertices $Z_n^t$.
