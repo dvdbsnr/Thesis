@@ -117,7 +117,7 @@ so
 \end{equation}
 
 
-The rate of the counting process $\Nt$ therefore converges to $\Bt$.
+The rate of the counting process $\rnnt$ therefore converges to $\Bt$.
 \fxfatal{Find out what's the problem with the joint convergence.}
 
 
@@ -175,6 +175,11 @@ We begin this chapter by an introduction on what the rate of a counting process 
 This includes those pictures in my notes on the height of the excursion and stuff.
 We define $B_n$ to be the "height" of the exploration in $\Gnt$, aka the discrete version of $\Bt$.
 We now state the main Theorem of this chapter.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorem Joint Convergence: Statement
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{theorem} \label{T: Joint Convergence}
 	For the previously defined processes $\rznt$ and $\rnnt$,
 	the joint weak convergence
@@ -188,11 +193,13 @@ We now state the main Theorem of this chapter.
 	\end{equation*}
 	is a martingale.
 \end{theorem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorem Joint Convergence: Proof
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof}
 
-For $n \in \Nat$ consider the process $\nnt$.
-The increase of $\nnt$ in between times $i-1$ and $i$ will be $\Binom(\Bn{i-1},\p)$-distributed.
-Define $\rnnt(s) = \nnt(\n{2}{3}s)$.
+We begin with a quick overview of the proof.
 
 We want to show that
 \begin{equation}
@@ -203,142 +210,190 @@ meaning
 \Exp{f(\rznt, \rnnt)} \xrightarrow{n \rightarrow \infty} \Exp{f(\Wt, \Nt)}
 \end{equation}
 for all continuous, bounded functions $f:D[0,T]^2\rightarrow\Real$.
+The main idea of our proof is conditioning the expectations of some fix realization of the Brownian motion $\Wt$,
+then first proving the convergence
+\begin{equation}
+	\Exp{f(\znt, \nnt) \cond \Wt} \rightarrow \Exp{f(\Wt, \nnt) \cond \Wt}
+\end{equation}
+and then showing that $\nnt \rightarrow_d \Nt$,
+which proves
+\begin{equation}
+	\Exp{f(\Wt, \nnt) \cond \Wt} \rightarrow \Exp{f(\Wt, \Nt ) \cond \Wt}
+\end{equation}
+since $f(\Wt, \cdot)$ is a bounded and continuous function.
+The Theorem then follows from averaging over all $\Wt$, using the law of total expectation.
 
-We already know that $\rznt \rightarrow_d \Wt$, which implies two conditions.
-First, $\rznt$ is tight, 
-so for all $\epsilon>0$ there exists a compact $K \subset D[0,T]$ such that
+First, we will show that $\rnnt$ is tight as a random process with image in $\DT$.
+We already know that $\rznt \rightarrow_d \Wt$, which implies that $\rznt$ is tight, 
+so for all $\epsilon>0$ there exists a compact $K \subset \CT$ such that
 \begin{equation}
 \inf_n \Prob ( \rznt \in K) > 1 - \epsilon.
 \end{equation}
 
-Second, $\rznt$ converges in finite dimensional distributions.
-So for all $s_1 < s_2 < \dots < s_k$:
+To show that $\rnnt$ is tight, we need to prove that for all $\epsilon>0$ there exists a $K \subset \DT$ such that
 \begin{equation}
-(\rznt(s_1), \dots, \rznt(s_k)) \rightarrow_d (\Wt(s_1), \dots, \Wt(s_k)).
+	\Prob(\rnnt \in K) > 1 - \epsilon.
+\end{equation}
+By the Arzelá–Ascoli theorem, it suffices to show that there exists a real number $K>0$, such that
+\begin{equation}
+	\Prob( \sup_{s \leq T} \rnnt(s) < K ) > 1 - \epsilon. 
+\end{equation}
+Since $\rnnt(s)$ is an increasing process in $s$, this is equivalent to
+\begin{equation}
+	\Prob( \rnnt(T) \geq K ) < \epsilon.
 \end{equation}
 
-We can use the Skorohod representation theorem to define random variables $X$, $X_1$, $X_2$, \dots
-on the same probability space, such that $X \sim \Wt$, $X_i \sim \bar{Z}^t_i$ for all $i$
-and $X_n \rightarrow_{text{a.s.}} X$.
-For random variables mapping to functions, we have
-\begin{equation}
-\sup_{s \in \Real_{\geq 0}} |X_n(s) - X(s)| \rightarrow_{text{a.s.}} 0.
-\end{equation}
-So
-\begin{equation} 
-\sup_{s \in \Real_{\geq 0}} |X_n(s) - X(s)| \rightarrow_p 0,
-\end{equation}
-meaning for all $\epsilon > 0$:
-\begin{equation}
-\Prob( \sup_{s \in \Real_{\geq 0}} |X_n(s) - X(s)| > \epsilon ) \rightarrow 0.
-\end{equation}
-From now on, writing $\rznt$ and $\Wt$ we mean these random variables.
-
-By the reflection principle, for all $\epsilon>0$ exists an $A>0$ such that
+We first establish a similar result about $\rznt$.
+By the reflection principle of Brownian motion, for all $\epsilon>0$ exists an $A>0$ such that
 \begin{equation}
 \Prob( \sup_{s\leq T} |\Wt(s)| > A ) \leq \Prob( \sup_{s\leq T} \Wt(s) > A ) = 2 \Prob( \Wt(T) > A ) < \epsilon.
 \end{equation}
 This implies that for all $\epsilon > 0$ exists $A>0$ such that for all $n$
-\begin{align}
-\Prob(\sup_{s \leq T} |\rznt(s)| > A) &< \epsilon \\
-\Prob(\sup_{s \leq T} |\rzminz(s)| > A) &< \epsilon,
-\end{align}
-where $\rzminz(s) = \rznt(s) - \min_{u \leq s}\rznt(u) \rightarrow_d \Bn{s}$.
-\fxnote{Add definition of B, Bbar etc.}
-
-To see this, fix $\epsilon > 0$ and chose $A>0$ such that $A - \sup_{s\leq T} |\Wt(s)| \geq \delta > 0$.
-Let $N$ such that $\sup_{s\leq T} |\rznt(s) - \Wt(s)| < \delta$.
-Choose $A^* = \max(N, A)$. Then either $\sup_{s\leq T} |\rznt(s) < A^*$ since $T \leq N$ or $\rznt$ is constant after $N$ or because of the convergence.
-\fxfatal{This is a paceholder until I see if I really need this part.}
-
-Therefore
-\begin{equation}
-\Prob( \sup_{s \leq T} |\zminz(\n{2}{3}s)| \geq A\n{1}{3} ) < \epsilon \forall n.
+\begin{equation} \label{E: rznt bounded}
+\Prob(\sup_{s \leq T} |\rznt(s)| > A) < \epsilon.
 \end{equation}
 
-Our next goal is showing that the sequence $\rnnt$ is tight.
-That is, for all $\epsilon > 0$ exists $K>0$ such that
-\begin{equation}
-\Prob(\sup_{s \leq T} |\rnnt(s)| > K) = \Prob( \rnnt(T) > K ) < \epsilon.
+To see this, fix $\epsilon > 0$ and choose $A>0$ sufficiently large, 
+such that with high probability $A - \sup_{s\leq T} |\Wt(s)| > \delta$, for some $\delta > 0$.
+Choose $N_0 \in \Nat$ such that $\sup_{s\leq T} |\rznt(s) - \Wt(s)| < \delta$ for all $n \geq N_0$.
+Now define $A^* = \max(N_0, A)$. For small $n$, $|\rznt|$ is bounded since $|\znt|$ is bounded by the number of vertices in its graph.
+For large $n$, $|\rznt| < A^*$ with high probability from its closeness to $\Wt$.
+
+Define $\rzminz(s) := \rznt(s) - \min_{u \leq s}\rznt(u)$, the process reflecting $\rznt$ at the x-axis.
+Since $|\rzminz(s)| \leq 2\max_{u \leq s}|\rznt(u)|$, \eqref{E: rznt bounded} implies
+\begin{equation} \label{E: rzminz bounded}
+\Prob(\sup_{s \leq T} |\rzminz(s)| > 2A) < \epsilon.
 \end{equation}
-For $i \in [0, \n{2}{3}T]$, $\nnt(i) - \nnt(i-1) \sim \Binom(\zminz(i-1), \p)$.
-Additionally $\zminz(i-1) \leq \sup_{j \leq \n{2}{3}T} \zminz(j) \leq \n{1}{3}A$ with probability greater than $1-\epsilon$.
-Conditioning on the event that $\zminz(i-1) \leq A\n{1}{3}$,
+Therefore, for all $\epsilon > 0$ exists an $A>0$ such that
 \begin{equation}
-X_i \sim \Binom(\zminz(i-1), \p) \leq_{\text{st.}} Y_i \sim \Binom(A\n{1}{3}, \p).
+\Prob( \sup_{s \leq T} |\zminz(\n{2}{3}s)| \geq A\n{1}{3} ) < \epsilon
 \end{equation}
-Then
+holds for all $n \in \Nat$.
+
+We now move to the process $\rnnt$. Consider the unscaled process $\nnt$ at time $i \in [0, \n{2}{3}T]$.
+The increment to its next step is binomially distributed on the number of vertices eligible for a surplus edge:
 \begin{equation}
+\nnt(i) - \nnt(i-1) \sim \Binom(\zminz(i-1), \p).
+\end{equation}
+As previously established, for all $i \in [0, \n{2}{3}T]$ we know 
+\begin{equation}
+	\zminz(i) \leq \sup_{j \leq \n{2}{3}T} \zminz(j) \leq A\n{1}{3}
+\end{equation}
+with probability greater than $1-\epsilon$.
+
+If we condition on the event that $\zminz(i-1) \leq A\n{1}{3}$, a random variable $X_i \sim \Binom(\zminz(i-1), \p)$ will be stochastically dominated:
+\begin{equation}
+X_i \leq_{\text{st.}} Y_i \sim \Binom(A\n{1}{3}, \p).
+\end{equation}
+Seeing $\nnt(T\n{2}{3})$ as the sum of all its increments, we arrive at
+\begin{equation} \label{E: nnt stoch dominance}
 \nnt(T\n{2}{3}) \leq_{\text{st.}} \sum_{j=1}^{T\n{2}{3}} Y_j,
 \end{equation}
-where $Y_1, Y_2, \dots \sim \Binom(A\n{1}{3}, \p)$ i.i.d.
+where $Y_1, Y_2, \dots, Y_{T\n{2}{3}} \sim \Binom(A\n{1}{3}, \p)$.
 
-Therefore
+We denote by $\Event{A}$ the event $\zminz(i-1) \leq A\n{1}{3}$ and use the law of total probability to compute
 \begin{align*}
 \Prob(\rnnt(T) \geq K) 
 &= \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3}) \\
-&= \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3}) \Prob(\zminz(i-1) > A\n{1}{3}) \\
-&\quad + \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3}) \Prob(\zminz(i-1) \leq A\n{1}{3}) \\
-&\leq \epsilon + \Prob( \sum_{j=1}^{T\n{2}{3}} Y_j \geq K) \\
-&\leq \epsilon + \frac{1}{K}\n{2}{3}T \Exp{Y_1} \\
-&= \epsilon + \frac{1}{K}\n{2}{3}T \p A\n{1}{3} \\
-&= \epsilon + \frac{1}{K}n\p T \\
-&\leq \epsilon + CAT\frac{1}{K} \qquad \text{for some $C>0$} \\
-&\leq 2\epsilon
+&= \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3} \cond \neg\Event{A}) \Prob(\neg \Event{A}) \\
+&\quad + \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3} \cond \Event{A}) \Prob(\Event{A}) \\
+&\leq \epsilon + \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3} \cond \Event{A}), \\
 \end{align*}
+which holds since $P(\Event{A}) > 1-\epsilon$.
+
+Since this probability is now conditioned on $\Event{A}$, the stochastic dominance \eqref{E: nnt stoch dominance} holds.
+Markov's inequality then gives
+\begin{align*}
+\Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3} \cond \Event{A}) 
+&\leq \Prob( \sum_{j=1}^{T\n{2}{3}} Y_j \geq K) \\
+&\leq \frac{1}{K}T\n{2}{3} \Exp{Y_1} \\
+&= \frac{1}{K}T\n{2}{3} \p A\n{1}{3} \\
+&= \frac{1}{K}n\p TA \\
+&\leq \frac{1}{K}CTA
+\end{align*}
+for some constant $C \in \Real$, since $n\p \rightarrow 1$ as $n \rightarrow \infty$.
 \fxnote{Fix the use of > and >= here.}
 \fxnote{Fix the use of A/K here.}
-for large $K$.
-Thus $\znt$ is tight.
-\fxnote{What is tight? In n or s?}
+So
+\begin{equation}
+\Prob(\rnnt(T) \geq K) \leq \epsilon + \frac{1}{K}CTA \leq 2 \epsilon
+\end{equation}
+for large $K$. Note that, since $\nnt$ is a counting process, $\rnnt(s) \geq 0$ for all $s \in \Real_{\geq 0}$.
+\fxnote{I probably dont need his sentence.}
+With high probability, $\sup_{s \leq T}\rnnt(s)$ is bounded by some $K>0$,
+hence the random variable $\rnnt$ maps into a compact subset of $\DT$ with high probability and $\rnnt$ is tight.
 
-Since $\nnt$ is monotonically increasing, $\rnnt$ is tight as a random variable with image in $D$.
-This is a new fact, since we previously only knew that the rate of $\rnnt$ converges and is tight.
-\fxnote{Show that this is true.}
+Since both $\rznt$ and $\rnnt$ are tight, $(\znt, \rnnt)$ is tight.
+Thus there is a compact subset $C \subset \CT \times \DT$ such that
+\begin{equation}
+	\Prob( (\rznt, \rnnt) \in C) > 1 - \epsilon.
+\end{equation}
 
-Next, we will show that
+The next step in our proof will be showing that
 \begin{equation}
-\Exp{f(\Wt, \rnnt)} = \Exp{ \Exp{f(\Wt, \rnnt) \cond \Wt} } \rightarrow \Exp{f(\Wt, \Nt)} = \Exp{ \Exp{f(\Wt, \Nt) \cond \Wt} }.
+\Exp{ f(\rznt, \rnnt) \cond \Wt} \rightarrow \Exp{f(\Wt, \rnnt) \cond \Wt}.
 \end{equation}
-The function $f: D^2 \rightarrow \Real$ is bounded and continuous,
-so $f(\Wt,\cdot): D \rightarrow \Real$ is bounded and continuous for all $\Wt \in D$.
-So we will prove that for all trajectories $\Wt$, $\rnnt \rightarrow_d \Nt$.
-
-Both $\znt$ and $\rnnt$ are tight for all $n$,
-so $(\znt, \rnnt)$ is tight for all $n$.
-So for all $\epsilon$ there exists a compact set $C \subset D^2$ such that
-\begin{equation}
-\Prob ((\znt, \rnnt) \in C) > 1 - \epsilon.
-\end{equation}
-The function $f$ is bounded by some real number $M$.
-So even if $(\znt, \rnnt)$ is not in this compact set,
-\begin{equation}
-\Exp{f(\znt, \rnnt)} \leq M\epsilon + \Exp{f(\znt, \rnnt) \cond (\znt, \rnnt) \in C}.
-\end{equation}
-Remember the assumption that $\znt$ and $\Wt$ are defined on the same probability space,
-where they converge almost surely.
-Then for all $\epsilon, \delta > 0$, there exists $N_0$ sucht that for all $n > N_0$,  
-$\Prob(||\znt - \Wt||>\delta) < \epsilon$.
-Then
-\begin{equation}
-\Exp{f(\znt, \rnnt)} \leq 2M\epsilon \Exp{f(\znt, \rnnt) \cond (\znt, \rnnt) \in C, ||\znt - \Wt||>\delta}.
-\end{equation}
-Consider
-\begin{equation*}
-f(\znt, \rnnt) = f(\znt, \rnnt) + f(\Wt, \rnnt) - f(\Wt, \rnnt) \leq f(\Wt, \rnnt) + |f(\znt, \rnnt) - f(\Wt, \rnnt)|
-\end{equation*}
-so 
-\begin{equation}
+Recall that $f$ is a bounded function, so there exists $M>0$ such that $f(x,y) < M$ for all $(x,y) \in \CT \times \DT$.
+We denote by $\Event{C}$ the event $(\znt, \rnnt) \in C$ and use the law of total expectation to calculate
+\begin{equation} \label{E: Estimation step 1}
 \begin{aligned}
-\Exp{f(\znt, \rnnt)} 
-&\leq 2M\epsilon \Exp{f(\Wt, \rnnt) + |f(\znt, \rnnt) - f(\Wt, \rnnt)| \cond (\znt, \rnnt) \in C, ||\znt - \Wt||>\delta } \\
-&\leq 2M\epsilon + \epsilon + \Exp{f(\Wt, \rnnt), \cond (\znt, \rnnt) \in C, ||\znt - \Wt||>\delta}
+\Exp{ f(\rznt, \rnnt) \cond \Wt} 
+&= \Exp{f(\rznt, \rnnt) \cond \Wt, \Event{C}} \Prob(\Event{C}) \\
+&\quad + \Exp{f(\rznt, \rnnt) \cond \Wt, \neg\Event{C}} \Prob(\neg\Event{C}) \\
+&\leq \Exp{f(\rznt, \rnnt) \cond \Wt, \Event{C}} + \epsilon M.
 \end{aligned}
 \end{equation}
-by the continuity of $f$.
 
-We define a process $\Ndis$, which may be thought of as $\Nt$ in discrete time.
-While $\Nt$ is the continuous counting process using $\Bt$ as rate,
+Since $\rznt \rightarrow_d \Wt$, we can use the Skorohod representation theorem to define random variables $X$, $X_1$, $X_2$, \dots
+on the some common probability space, such that $X \sim \Wt$, $X_i \sim \bar{Z}^t_i$ for all $i \in \Nat$
+and $X_n \rightarrow_{a.s.} X$ as $n \rightarrow \infty$.
+Meaning, since $X$ and $X_n$ are random variables mapping into function spaces, we have
+\begin{equation}
+\sup_{s \in \Real_{\geq 0}} |X_n(s) - X(s)| \rightarrow_{a.s.} 0,
+\end{equation}
+which additionally implies
+\begin{equation} 
+\sup_{s \in \Real_{\geq 0}} |X_n(s) - X(s)| \rightarrow_p 0,
+\end{equation}
+so for all $\epsilon > 0$:
+\begin{equation} \label{E: Prob(Event(delta)) 1}
+\Prob( \sup_{s \in \Real_{\geq 0}} |X_n(s) - X(s)| > \epsilon ) \rightarrow 0.
+\end{equation}
+From here on out, writing $\rznt$ and $\Wt$ we refer to these newly defined random variables.
+Note that these are in fact not the same objects, just identically distributed random variables defined on a common probability space.
+
+Defining the norm $\norm{X}_T := \sup_{s \leq T}X(s)$, we denote by $\Event{\delta}$ the event $\norm{\Wt - \rznt}_T < \delta$.
+By \eqref{E: Prob(Event(delta)) 1}, for sufficiently large $n$, $\Prob(\Event{\delta}) > 1 - \epsilon$.
+Now an argument analogous to \eqref{E: First Total Probability Argument} gives
+\begin{equation} \label{E: Estimation step 2}
+\begin{aligned}
+\Exp{f(\znt, \rnnt)} 
+&\leq \Exp{f(\rznt, \rnnt) \cond \Wt, \Event{C}} + \epsilon M \\
+&\leq \Exp{f(\rznt, \rnnt) \cond \Wt, \Event{C}, \Event{\delta}} + 2 \epsilon M.
+\end{aligned}
+\end{equation}
+
+By the continuity of $f$, for all $\epsilon>0$ we can choose a $\delta > 0$ such that $\norm{\Wt - \rznt}_T < \delta$ implies
+that the inequality
+\begin{equation*}
+\begin{aligned}
+f(\znt, \rnnt) &= f(\znt, \rnnt) + f(\Wt, \rnnt) - f(\Wt, \rnnt) \\
+&\leq f(\Wt, \rnnt) + |f(\znt, \rnnt) - f(\Wt, \rnnt)| \\
+&\leq f(\Wt, \rnnt) + \epsilon
+\end{aligned}
+\end{equation*}
+holds. Therefore
+\begin{equation} \label{E: Estimation step 3}
+\begin{aligned}
+\Exp{f(\znt, \rnnt)} 
+&\leq \Exp{f(\rznt, \rnnt) \cond \Wt, \Event{C}, \Event{\delta}} + 2 \epsilon M \\
+&\leq \Exp{f(\Wt, \rnnt) \cond \Wt, \Event{C}, \Event{\delta}} + \epsilon + 2 \epsilon M.
+\end{aligned}
+\end{equation}
+
+Our next objective is to establish the convergence $\rnnt \rightarrow_d \Nt$.
+For this, we define a process $\Ndis$, which may be thought of as $\Nt$ in discrete time.
+While $\Nt$ is the continuous counting process with $\Bt$ as conditional intensity,
 we define $\Ndis$ by
 \begin{equation}
 \begin{aligned}
@@ -346,26 +401,25 @@ we define $\Ndis$ by
 \Ndis(k) &:= \Ndis(k-1) + \xi_k, 
 \end{aligned}
 \end{equation}
-where $\xi_k \sim \Binom(\n{1}{3}\Bt(\n{2}{3}k), \p)$.
-Now define $\rNdis(k) := \n{-1}{3} \Ndis(\n{2}{3}k)$.
+where $\xi_k \sim \Binom(\n{1}{3}\Bt(\n{-2}{3}k), \p)$,
+the discrete steps of $\Ndis$ are dependent on an upscaling of the reflected Brownian motion $\Bt$.
 
-We will show that, if $||\znt - \Wt|| < \delta$, 
-then $\Ndis(k) = \nnt(k)$ for all $k \leq \n{2}{3}T$ with hight probability.
-For this, we use a coupling argument to redefine both processes.
+We will show that, if $||\rznt - \Wt|| < \delta$, 
+then $\Ndis(k) = \nnt(k)$ for all $k \leq \n{2}{3}T$ with high probability.
+For this, we redefine both processes using a coupling argument.
 \fxnote{Find out what a coupling argument is.}
 At step $k$, let
-\begin{equation}
+\begin{equation} \label{E: def alpha beta}
 \begin{aligned}
 \alpha_k := \min(\zminz(k), \n{1}{3}\Bt(\n{-2}{3}k)), \\
 \beta_k := \max(\zminz(k), \n{1}{3}\Bt(\n{-2}{3}k)).
 \end{aligned}
 \end{equation}
-Note that instead of rescaling $\zminz$ to fit $\Bt$, we rescaled $\Bt$.
 Now define random variables
-\begin{equation}
+\begin{equation} \label{E: def xi eta}
 \begin{aligned}
-\xi_k \sim \Binom(\alpha_k, \p),
-\eta_k \sim \Binom(\beta_k - \alpha_k, \p).
+\xi_k &\sim \Binom(\alpha_k, \p), \\
+\eta_k &\sim \Binom(\beta_k - \alpha_k, \p).
 \end{aligned}
 \end{equation}
 So $\xi_k + \eta_k \sim \Binom(\beta_k, \p)$.
@@ -373,16 +427,28 @@ So $\xi_k + \eta_k \sim \Binom(\beta_k, \p)$.
 Consider the two possibilities at time $k$:
 Either $\zminz(k) \leq \n{1}{3}\Bt(\n{-2}{3}k)$,
 then $\alpha_k = \zminz(k)$ and $\beta_k = \n{1}{3}\Bt(\n{-2}{3}k)$, 
-so $\xi_k =_d \nnt(k) - \nnt(k-1)$ and $\xi_k + \eta_k =_d \Ndis(k) - \Ndis(k)$.
+so 
+\begin{equation}
+\begin{aligned}
+\xi_k &=_d \nnt(k) - \nnt(k-1), \\
+\xi_k + \eta_k &=_d \Ndis(k) - \Ndis(k-1).
+\end{aligned}
+\end{equation}
 Or $\zminz(k) > \n{1}{3}\Bt(\n{-2}{3}k)$,
 then $\alpha_k = \n{1}{3}\Bt(\n{-2}{3}k)$ and $\beta_k = \zminz(k)$, 
-so $\xi_k =_d \Ndis(k) - \Ndis(k)$ and $\xi_k + \eta_k =_d \nnt(k) - \nnt(k-1)$.
+so
+\begin{equation}
+\begin{aligned}
+\xi_k &=_d \Ndis(k) - \Ndis(k-1), \\
+\xi_k + \eta_k &=_d \nnt(k) - \nnt(k-1).
+\end{aligned}
+\end{equation}
 
 This way, we can define $\nnt$ and $\Ndis$ by
 \begin{equation*}
 \nnt(k) - \nnt(k-1) = 
 \begin{cases}
-\xi_k & \zminz(k) \leq \n{1}{3}\Bt(\n{-2}{3}k) \\
+\xi_k & \text{if} \enspace \zminz(k) \leq \n{1}{3}\Bt(\n{-2}{3}k), \\
 \xi_k + \eta_k &\text{else}
 \end{cases}
 \end{equation*}
@@ -390,11 +456,11 @@ and
 \begin{equation*}
 \Ndis(k) - \Ndis(k-1) = 
 \begin{cases}
-\xi_k + \eta_k & \zminz(k) \leq \n{1}{3}\Bt(\n{-2}{3}k) \\
+\xi_k + \eta_k & \text{if} \enspace \zminz(k) \leq \n{1}{3}\Bt(\n{-2}{3}k), \\
 \xi_k &\text{else}.
 \end{cases}
 \end{equation*}
-By the definitions of $\xi_k$ and $\eta_k$,
+By \eqref{E: def alpha beta} and \eqref{E: def xi eta},
 these definitions maintain
 \begin{equation}
 \begin{aligned}
@@ -402,120 +468,150 @@ these definitions maintain
 \Ndis(k) - \Ndis(k-1) &\sim \Binom(\n{1}{3} \Bt(\n{-2}{3}k), \p).
 \end{aligned}
 \end{equation}
+We see that, no matter the relation of $\zminz(k)$ and $\n{1}{3}\Bt(\n{-2}{3}k)$, 
+the increments of the processes differ only by the random variable $\eta_k$.
 
-Conditioning on $||\znt - \Wt|| < \delta$, which we call $\Event{\delta}$,
-for $\Ndis(k) \neq \nnt(k)$ for some $k$,
-there has to have been step in which the increments of both processes have differed.
-
-\begin{align*}
+Conditioning on $||\znt - \Wt|| < \delta$, for $\Ndis(k) \neq \nnt(k)$ to hold for some $k$,
+there has to have been a step in which the increments of both processes were different.
+We evaluate
+\begin{equation} \label{E: Prob eta not 0}
+\begin{aligned}
 &\Prob(\exists k\leq \n{2}{3}T: \Ndis(k) \neq \nnt(k) \cond \Event{\delta}) \\
 &\quad \leq \sum_{k=1}^{\n{2}{3}T} \Prob( \Ndis(k) - \Ndis(k-1) \neq \nnt(k) - \nnt(k-1) \cond \Event{\delta}) \\
 &\quad \leq \n{2}{3}T \max_{k \leq \n{2}{3}T} \Prob(\Ndis(k) - \Ndis(k-1) \neq \nnt(k) - \nnt(k-1) \cond \Event{\delta}) \\
 &\quad = \n{2}{3}T \max_{k \leq \n{2}{3}T} \Prob( \eta_k \neq 0 \cond \Event{\delta} ).
-\end{align*}
-
-Since, by $||\znt - \Wt|| < \delta$, we know $\beta_k - \alpha_k < \delta \n{1}{3}$,
-$\eta_k \leq_{\text{st.}} \zeta_k \sim \Binom(\delta\n{1}{3}, \p)$.
-
-So 
-\begin{equation}
-\Prob( \eta_k \neq 0 \cond \Event{\delta} ) \leq \Prob( \zeta_k \neq 0) = \Prob( \zeta_k \geq 1 ) \leq \Exp{\zeta_k} = \delta\n{1}{3}\p.
+\end{aligned}
 \end{equation}
 
-So
-\begin{align*}
+Since $||\znt - \Wt|| < \delta$, we know $\beta_k - \alpha_k < \delta \n{1}{3}$. Therefore
+$\eta_k \leq_{\text{st.}} \zeta \sim \Binom(\delta\n{1}{3}, \p)$ for all $k \leq \n{2}{3}T$.
+
+using the law of total expectation,
+\begin{equation}
+\Prob( \eta_k \neq 0 \cond \Event{\delta} ) \leq \Prob( \zeta_k \geq 1 ) \leq \Exp{\zeta_k} = \delta\n{1}{3}\p,
+\end{equation}
+and substituting in \eqref{E: Prob eta not 0} we obtain
+\begin{equation}
+\begin{aligned}
 &\Prob(\exists k\leq \n{2}{3}T: \Ndis(k) \neq \nnt(k) \cond \Event{\delta}) \\
 &\quad \leq \n{2}{3}T\delta\n{1}{3}\p \\
 &\quad \leq n \p T \delta \\
-&\quad \leq 2\delta 
-\end{align*}
+&\quad \leq 2T\delta 
+\end{aligned}
+\end{equation}
 for large $n$.
 
-Therefore
-\begin{align*}
+We now define $\rNdis(s) = \n{-1}{3} \Ndis(\n{2}{3}s)$ and continue the estimation from \eqref{E: Estimation step 3},
+which yields
+\begin{equation} \label{E: Estimation step 4}
+\begin{aligned}
 \Exp{f(\znt, \nnt)} 
-&\leq 2M\epsilon + \epsilon + \Exp{f(\Wt, \nnt) \cond \Event{C}, \Event{\delta}} \\
-&\leq 2M\epsilon + \epsilon + 2\delta T M + \Exp{f(\Wt, \Ndis) \cond \Event{C}, \Event{\delta}}.
-\end{align*}
+&\leq \Exp{f(\Wt, \nnt) \cond \Event{C}, \Event{\delta}} + \epsilon + 2M\epsilon   \\
+&\leq \Exp{f(\Wt, \rNdis) \cond \Event{C}, \Event{\delta}} + 2\delta T M + \epsilon  + 2M\epsilon  .
+\end{aligned}
+\end{equation}
 \fxnote{Epsilon here?}
 
-Since $\nnt$ is tight  and $\nnt$ is equal to $\Ndis$ with hight probability,
-$\Ndis$ is tight.
-
 We know show that $\rNdis \rightarrow_d \Nt$.
-It suffices proving convergence in finite dimensional distributions,
-in this case for all $s_1 < s_2 < \dots < s_l \leq T$:
-\begin{equation}
-	\Prob( \rNdis(s_1) = k_1, \dots, \rNdis(s_l) = k_l ) \rightarrow 
-	\Prob( \Nt(s_1) = k_1, \dots, \Nt(s_l) = k_l )
+Since $\nnt$ is tight and $\nnt$ is equal to $\Ndis$ with high probability,
+$\Ndis$ and $\rNdis$ are tight and it suffices proving convergence in finite dimensional distributions,
+in this case for all $0 \leq s_1 < s_2 < \dots < s_l \leq T$:
+\begin{equation} \label{E: convergence fdd}
+\begin{aligned}
+&\Prob( \rNdis(s_1) = k_1, \dots, \rNdis(s_l) = k_l ) \\
+&\quad \xrightarrow{n \rightarrow \infty}  \Prob( \Nt(s_1) = k_1, \dots, \Nt(s_l) = k_l ).
+\end{aligned}
 \end{equation}
-as convergence in $\Real$.
 
-Remember that we are still working with a fix trajectory $\Wt$.
-Recall $\Nt$ is a poisson point process (p.p.p.), continuous on $\Real$ with rate $\Bt$,
-and $\Ndis$ is a discrete process whose increments are defined by $\Bt$ at integer times.
-By definition of a p.p.p., the increments of $\Nt$ are independent and
-for all $a<b$: $\Nt(b) - \Nt(a) \sim \Poisson( \int_{a}^{b} \Bt(s)ds)$.
-Similarly, for all $k$: $\Ndis(k) - \Ndis(k-1) \sim \Binom(\Bt(\n{2}{3}k), p)$.
-
-Then
-\begin{align*}
+Recall that $\Nt$ is a Poisson point process, continuous on $\Real$ with rate $\Bt$,
+thus the increments of $\Nt$ are independent and for all $a<b$: 
+\begin{equation}
+\Nt(b) - \Nt(a) \sim \Poisson( \int_{a}^{b} \Bt(s)ds).
+\end{equation}
+In contrast, $\Ndis$ is a discrete process whose increments are defined by $\Bt$ at integer times, 
+that is for all $k \leq T$: 
+\begin{equation} \label{E: increments Ndis 2}
+\Ndis(k) - \Ndis(k-1) \sim \Binom(\n{1}{3}\Bt(\n{-2}{3}k), \p)
+\end{equation}
+We can evaluate the distribution of the increments of $\rNdis$ by
+\begin{equation}
+\rNdis(k) - \rNdis(k-1) = \n{-1}{3}( \Ndis(\n{2}{3}k) - \Ndis(\n{2}{3}(k-1)).
+\end{equation}
+Between times $\n{2}{3}(k-1)$ and $\n{2}{3}k$, there are multiple integer steps,
+the increment in each step as defined in \eqref{E: increments Ndis 2}. 
+Thus
+\begin{equation}
+\rNdis(k) - \rNdis(k-1) \sim \n{-1}{3} \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j} \Binom( \n{1}{3}\Bt(\n{-2}{3}i), \p ).
+\end{equation}
+Since the increments are independent, we can move the sum inside the argument of the Binomial distribution.
+Let us define 
+\begin{equation*}
+R_{n,j} := \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{1}{3}\Bt(\n{-2}{3}i)
+\end{equation*}
+and compute the probability in \eqref{E: convergence fdd} as
+\begin{equation} \label{E: distribution Ndis}
+\begin{aligned}
 &\Prob(\rNdis(s_1) = k_1, \dots, \rNdis(s_l) = k_l) \\
-&\quad = \Prob( \rNdis(s_j) - \rNdis(s_{j-1}) = k_j - k_{j-1} \enspace \forall j=2,\dots,l ) \\
+&\quad = \Prob( \rNdis(s_j) - \rNdis(s_{j-1}) = k_j - k_{j-1}, \enspace \forall j=2,\dots,l ) \\
 &\quad = \prod_{j=2}^{l} \Prob( \n{1}{3}\rNdis(s_j) - \n{1}{3}\rNdis(s_{j-1}) = \n{1}{3}(k_j - k_{j-1})) \\
 &\quad = \prod_{j=2}^{l} \Prob( Y_j = \n{1}{3}(k_j - k_{j-1}) ),
-\end{align*}
-where
-\begin{equation}
-Y_j \sim \Binom(\underbrace{\sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{1}{3}\Bt(\n{-2}{3}i)}_{=: R_{n,j}}, \p).
+\end{aligned}
 \end{equation}
-Note that $Y_j =_d \sum_{k=1}^{R_j} \xi_k$, where $\xi_k \sim \Bern(\p)$.
+where $Y_j \sim \Binom(R_{n,j}, \p)$.
+Note that $Y_j =_d \sum_{k=1}^{R_j} \xi_k$, with $\xi_k \sim \Bern(\p)$.
 
-Now
+In the next step we use the Poisson limit theorem, see for example \cite{Billingsley2009},
+which states that for a series of binomially distributed random variables $Z_k \sim \Binom(N_k, p_k)$
+with $\Exp{Z_k} = N_k p_k \rightarrow \lambda \in \Real$ as $k \rightarrow \infty$,
+the convergence 
+\begin{equation}
+	Z_k \rightarrow_d \Poisson(\lambda)
+\end{equation}
+holds as $k \rightarrow \infty$.
+
+To apply this theorem, we calculate the expected value of $Y_j$:
 \begin{align*}
-\Exp{\sum_{k=1}^{R_j} \xi_k} 
+\Exp{Y_j} 
 &= R_j \p \\
-&\approx \frac{1}{n} R_j \\
-&= \frac{1}{n} \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{1}{3}\Bt(\n{-2}{3}i) \\
-&= \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{-2}{3}\Bt(\n{-2}{3}i) \\
-&\xrightarrow{\text{Riemann Sum}} \int_{s_{j-1}}^{s_j} \Bt(u)du.
+&= \frac{1}{n} R_j + \BigO{\n{-1}{3}}\\
+&= \frac{1}{n} \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{1}{3}\Bt(\n{-2}{3}i) + \BigO{\n{-1}{3}}\\
+&= \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{-2}{3}\Bt(\n{-2}{3}i) + \BigO{\n{-1}{3}}
 \end{align*}
-
-We state the Poisson Convergence Theorem:
-Let $Y_k \sim \Binom(k, p_k)$ and let $\Exp{Y_k} = kp_k \rightarrow \lambda \in \Real$.
-Then $Y_k \rightarrow_d \Poisson(\lambda)$.
-
-Applied here:
+\fxfatal{Improve Riemann Sum argument.}
+Using a Riemann Sum argument gives
 \begin{equation}
-Y_j =_d \sum_{k=1}^{R_j} \xi_k \rightarrow_d \Poisson( \int_{s_{j-1}}^{s_j} \Bt(u)du ) =_d \Nt(s_j) - \Nt(s_{j-1}).
+\Exp{Y_j} \rightarrow \int_{s_{j-1}}^{s_j} \Bt(u)du.
 \end{equation}
-So $\Ndis \rightarrow \Nt$ and
+
+Now applying the Poisson limit theorem yields
+\begin{equation} \label{E: convergence dist Yj}
+Y_j \rightarrow_d \Poisson( \int_{s_{j-1}}^{s_j} \Bt(u)du ) =_d \Nt(s_j) - \Nt(s_{j-1}),
+\end{equation}
+and, applying this convergence in \eqref{E: distribution Ndis}, we arrive at
 \begin{equation}
+\begin{aligned}
+&\Prob(\rNdis(s_1) = k_1, \dots, \rNdis(s_l) = k_l) \\
+&\quad = \prod_{j=2}^{l} \Prob( Y_j = \n{1}{3}(k_j - k_{j-1}) ) \\
+&\quad \rightarrow \prod_{j=2}^{l} \Prob( \Nt(s_j) - \Nt(s_{j-1}) = \n{1}{3}(k_j - k_{j-1}) ) \\
+&\quad = \Prob(\Nt(s_1) = k_1, \dots, \Nt(s_l) = k_l).
+\end{aligned}
+\end{equation}
+This proves $\rNdis \rightarrow_d \Nt$ and consequently
+\begin{equation} \label{E: Convergence Ndis Nt}
 	\Exp{f(\Wt, \Ndis) \cond \Wt} \rightarrow \Exp{f(\Wt, \Nt) \cond \Wt}.
 \end{equation}
-Therefore
+Combining \eqref{E: Equality of Expectations} and \eqref{E: Convergence Ndis Nt} yields
+\fxfatal{Add explanantion of Equality}
 \begin{equation}
-	\Exp{f(\znt, \nnt)} = \Exp{\Exp{f(\znt, \nnt) \cond \Wt}} \rightarrow \Exp{\Exp{f(\Wt, \Nt) \cond \Wt}} = \Exp{f(\Wt, \Nt)},
+\begin{aligned}
+&\Exp{f(\rznt, \rnnt)} = \Exp{\Exp{f(\rznt, \rnnt) \cond \Wt}} \\
+&\qquad \longrightarrow \Exp{\Exp{f(\Wt, \Nt) \cond \Wt}} = \Exp{f(\Wt, \Nt)},
+\end{aligned}
 \end{equation}
-so $(\znt, \nnt) \rightarrow_d (\Wt, \Nt)$.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\fxnote{Fix formatting here.}
+which proves $(\rznt, \rnnt) \rightarrow_d (\Wt, \Nt)$ and completes the proof.
 \end{proof}
+
 
 \newpage
 We can now assure ourselves that the overestimated probability \eqref{E: rate Nnt} is asymptotically negligible.
