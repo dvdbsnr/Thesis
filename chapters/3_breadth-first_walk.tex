@@ -353,7 +353,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	&= \int_{t}^{t+u} \Exp{a_n(s)ds \cond \F{t}} - u \\
 	&= \int_{t}^{t+u} \Exp{ \Prob(\NewEdge{\sds} \cond \F{s}) \cond \F{t} } - u\\
 	&= \int_{t}^{t+u} \Prob( \NewEdge{\sds} \cond \F{t} ) - u
-	\quad \text{since} \enspace \F{s} \subseteq \F{t} \enspace \forall s \in [t,t+u] \\
+	\quad \text{since} \enspace \F{t} \subseteq \F{s} \enspace \forall s \in [t,t+u] \\
 	&= \Exp{\text{Number of new edges appearing in} \enspace [t, t+u] \cond \F{t}} - u.
 	\end{align*}
 	\fxnote{Fs in Ft or Ft in Fs? Use "tower property".}
@@ -388,7 +388,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	At time $i-1+\Uij$, the edge $(i,j)$ will open with probability $\p$ and
 	$Z_n$ will make a jump of size $1$.
 	We arrive at a characterisation of our breadth-first walk, 
-	equivalent to \eqref{E: def Zn continuous}:	
+	equivalent to \eqref{E: def Z}:	
 	\begin{equation}
 	Z_n(i-1+u) = Z_n(i-1) - u + \sum_{j=1}^{N} \Ind{\{\Uij \leq u, \; (i,j) \; \text{open}\}}.
 	\end{equation}
@@ -475,7 +475,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	and the set $\Ni{i-1}$ of vertices already discovered as children.
 	If $v(i-1)$ is the last vertex of its component,
 	$v(i)$ itself is not part of $\Ni{i-1}$, 
-	so we need to add a term that that equals $1$ if $v(i-1)$ is the last vertex of its component and $0$ otherwise.
+	so we need to add a term that equals $1$ if $v(i-1)$ is the last vertex of its component and $0$ otherwise.
 	Together, we arrive at
 	\begin{equation}
 	\Ineligible{i-1} = i-1 + |\Ni{i-1}| + (\ZetaMinus{i} - \ZetaMinus{i-1}).
@@ -548,23 +548,30 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: decomp Mn}
 	Similar to the proof of the previous Lemma, we will show that $M_n^2 - B_n$ is a martingale.
-	Consider the quadratic variation of $M_n$.
-	For any process $M$, its quadratic variation is defined by
-	\begin{equation} \label{D: quadratic variation}
-	[M]_t := \limsup \sum (M_{t_i} - M_{t_{i-1}})^2.
+	
+	By \cite[Theorem 21.70, p.471]{Klenke2013}, 
+	for all martingales $M$ there exist a unique process $[M] = ([M]_t)_{t\geq 0}$ with $[M]_0 = 0$ such that
+	$M^2 - [M]$	is a martingale.
+	This process is called the quadratic variation of $M$ and can be calculated as follows:
+	Let $\Pi_n = \{ t_{n,0}, \dots, t_{n,k_n} \}$ be a sequence of partitions of $[0,t]$
+	with $\norm{\Pi_n} \rightarrow 0$ as $n \rightarrow \infty$, 
+	where $\norm{\Pi} := \max_{t_i, t_{i-1} \in \Pi} (t_i - t_{i-1})$ is the mesh of the partition.
+	Then
+	\begin{equation} \label{E: def quadratic variation}
+		[M]_t = \lim_{n \rightarrow \infty} \sum_{t_i, t_{i-1} \in \Pi_n}(M_{t_i} - M_{t_{i-1}})^2.
 	\end{equation}
-	\fxnote{Add real definition.}
-	Since $M_n$ is a right-continuous process of bounded variation, 
-	its quadratic variation is the sum of the squares of all jumps of $M_n$:
-	\begin{equation} \label{E: quadratic variation Mn}
+	
+	If $M_t$ is a continuous process of bounded variation, then $[M]_t = 0$ for all $t$.
+	The process $M_n$ is right-continuous and of bounded variation.
+	Therefore the quadratic variation vanishes on intervals where $\Mn$ is continuous, 
+	which leaves the jumps as the only discontinuities:
+	\begin{equation}
 	\Mnq{t} = \sum_{0 \leq s \leq t} (\Delta \Mn{s})^2,
 	\end{equation}
-	where $\Delta \Mn{s} := \Mn{s} - \Mn{s-}$. 
-	By \cite{N.Ethier1986}, $M_n^2 - [M_n]$ is a martingale.
-	\fxnote{Add reference from [EK]}
-	Therefore
+	where $\Delta \Mn{s} := \Mn{s} - \Mn{s-}$ are the jumps of $M_n$.
+	Thus
 	\begin{equation}
-	M_n^2 - B_n = (\underbrace{M_n^2 - [M_n]}_{\text{martingale}}) + ([M_n] - B_n)
+	M_n^2 - B_n = (\underbrace{M_n^2 - [M_n]}_{\text{martingale}}) + ([M_n] - B_n),
 	\end{equation}
 	and to prove \eqref{E: decomp Mn} it suffices to show that $[M_n] - B_n$ is a martingale.
 	Since $A_n$ is continuous, the jumps of $M_n$ are exactly the jumps of $Z_n$.
@@ -600,7 +607,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 % Lemma Limit An: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: limit An}
-	For $A_n$ defined in Lemma~\ref{L: decomp Zn} and fix $s_0 \geq 0$,
+	For $A_n$ defined in Lemma~\ref{L: decomp Zn} and fixed $s_0 \geq 0$,
 	\begin{equation} \label{E: limit An}
 	\n{-1}{3} \supns \left| \An{s} + \frac{s^2}{2}n^{-1} - st\n{-1}{3} \right| \longrightarrow_p 0
 	\end{equation}
@@ -618,18 +625,18 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 		\amn{s} := \an{s} (1 - (s - \floor{s})\p) = (n - s - \Zetan{\ceil{s}} - \Zn{s}) \p.
 	\end{equation}
 	\fxnote{Change "without the denominator"}
-	First, we show that $\an{s}$ and $\amn{s}$ converge uniformly in $n$:
+	First, we show that $\an{s}$ and $\amn{s}$ become asymptotically close, uniformly in $s$, for large $n$:
 	\begin{equation} \label{E: convergence an amn}
 	\begin{aligned}
 	|\an{s} - \amn{s}|
 	&= |\an{s}\left( 1-(1 - (s - \floor{s})\p) \right)| \\
 	&= | \frac{(n - s - \Zetan{\ceil{s}} - \Zn{s})\p}{1-(s - \floor{s})\p} (s - \floor{s})\p) | \\
-	&= |\underbrace{\frac{\p n - \p(s + \Zetan{\ceil{s}} + \Zn{s})}{1-(s - \floor{s})\p}}_{\xrightarrow{n \rightarrow \infty} 1} 
+	&= |\underbrace{\frac{\p n - \p(s + \Zetan{\ceil{s}} + \Zn{s})}{1-(s - \floor{s})\p}}_{\leq 5} 
 		\underbrace{(s - \floor{s})\p}_{=\BigO{n^{-1}}} |\\
 	&= \BigO{n^{-1}}.
 	\end{aligned}
 	\end{equation}
-	The last step follows from $\p = \BigO{n^{-1}}$ and $|\Zn{s}|, |\ZetaMinus{s}| \leq s$ for all $s$ and $n$.
+	The last step follows from $\p = \BigO{n^{-1}}$ and $|\Zn{s}|, |\ZetaMinus{s}| \leq n$ for all $s \leq s_0\n{2}{3}$ and $n$.
 	We substitute the definition of $\p$ in \eqref{E: def a'n} to expand
 	\begin{align*}
 	\amn{s} - 1 
@@ -648,16 +655,20 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	\end{equation}
 	for $\n{1}{3} \geq |t|$.
 	Integrating the inner part of the left-hand side over $s$ yields
-	\fxnote{Make clear: We integrate the inner part of the LHS from 0 to s.}
-	\begin{align*}
-	\int_{0}^{s} (\amn{u} - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}}) du
-	&= \int_{0}^{s}(\amn{u} - 1) du + \frac{s^2}{2n} - \frac{st}{\n{1}{3}} + \frac{s^2t}{2\n{4}{3}} \\
-	&\xrightarrow{n \rightarrow \infty} \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}} + \frac{s^2t}{2\n{4}{3}},
-	\end{align*}
-	the convergence holds uniformly as shown in \eqref{E: convergence an amn}.
+	\begin{equation}
+	\begin{aligned}
+	&\int_{0}^{s} (\amn{u} - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}}) du \\
+	&\quad = \int_{0}^{s}(\amn{u} - 1) du + \frac{s^2}{2n} - \frac{st}{\n{1}{3}} + \frac{s^2t}{2\n{4}{3}},
+	\end{aligned}
+	\end{equation}
+	and from \eqref{E: convergence an amn} we know
+	\begin{equation} \label{E: convergence amn An}
+	|\int_{0}^{s}(\amn{u} - 1) du - \An{s}| = \BigO{n^{-1}}.
+	\end{equation}
+	
 	Using \eqref{E: zeta-1(i) = 1 - min(j)} and \eqref{E: an zeta Z / n}, the following inequalities hold for sufficiently large $n$:
 	\fxnote{Add reference to lemma.}
-	\begin{equation*}
+	\begin{equation} \label{E: int an <= 4s/n maxZ + O()}
 	\begin{aligned}
 	&\left| \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}  + \frac{s^2t}{2\n{4}{3}}  \right| \\
 	&\quad = \left| \int_{0}^{s} \amn{u} - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}} du \right| + \BigO{\frac{1}{n}} \\
@@ -667,7 +678,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	&\quad = \frac{2}{n}  \int_{0}^{s} (|\Zn{u}| - \min_{w \leq \ceil{u}-1} \Zn{w}) du + \BigO{\frac{s}{n}} \\ 
 	&\quad \leq \frac{4s}{n} \max_{u \leq s} |\Zn{u}| + \BigO{\frac{s}{n}},
 	\end{aligned}
-	\end{equation*}
+	\end{equation}
     the last inequality following from $\ceil{u}-1 \leq s$ for $u\leq s$, hence $|\min_{w \leq \ceil{u}-1}\Zn{w}| \leq \max_{u \leq s}|\Zn{u}|$.
     The left-hand side of this inequality differs from the expression used in \eqref{E: limit An} by the term $\frac{s^2t}{2\n{4}{3}}$.
     We show that this difference is negligible even after taking the supremum, by defining $A^*_n(s) := \An{s} + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}$
@@ -711,7 +722,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	&< \epsilon,
     \end{aligned}
     \end{equation*}
-    which holds for fix $\epsilon, \delta > 0$ and sufficiently large $n$.
+    which holds for fixed $\epsilon, \delta > 0$ and sufficiently large $n$.
     
     The remainder of this proof will follow a truncation argument.
     \fxnote{Find out what a truncation argument is.}
@@ -722,7 +733,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
     T_n &:= \min \lbrace T^*_n, \n{2}{3}s_0 \rbrace ,  \label{E: def Tn}
     \end{align}
     \fxnote{Define Tn, T*n nicer.}
-    for some fix $K>0$ and use Markov's inequality to rewrite the left-hand side of Equation \eqref{E: stoch bounded} as
+    for some fixed $K>0$ and use Markov's inequality to rewrite the left-hand side of Equation \eqref{E: stoch bounded} as
     \begin{equation} \label{E: stoch bounded 2}
     \begin{aligned}
     \Prob( \sup_{s\leq n^{2/3} s_0} |Z_n(s)| > K \n{1}{3} ) &= \Prob( |Z_n(T_n)| > K\n{1}{3} ) \\
@@ -744,7 +755,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
     &= \Exp{Q_n(T_n)} + \Exp{\Bn{T_n}} \\
     &= \Exp{\Bn{T_n}} \\
     &= \Exp{ \int_{0}^{T_n} a_n(s)ds } \\
-    &= \int_{0}^{\n{2}{3}s_0} \Exp{a_n(s)} ds.
+    &\leq \int_{0}^{\n{2}{3}s_0} \Exp{a_n(s)} ds.
     \end{align*}
     
     By the definition of $a_n$ in \eqref{D: an}, we have
@@ -851,7 +862,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 % Lemma Limit Bn: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: limit Bn}
-	For $B_n$ defined in Lemma~\ref{L: decomp Mn} and fix $s_0 \geq 0$,
+	For $B_n$ defined in Lemma~\ref{L: decomp Mn} and fixed $s_0 \geq 0$,
 	\begin{equation} \label{E: limit Bn}
 	\n{-2}{3} \Bn{\n{2}{3}s_0} \longrightarrow_p s_0
 	\end{equation}
@@ -896,9 +907,9 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 % Lemma Limit Mn: Statement and Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: limit Mn}
-	For $M_n$ defined in Lemma~\ref{L: decomp Zn} and fix $s_0 \geq 0$,
+	For $M_n$ defined in Lemma~\ref{L: decomp Zn} and fixed $s_0 \geq 0$,
 	\begin{equation} \label{E: limit Mn}
-	\n{-2}{3} \Exp{\supns |\Mn{s} - \Mn{s-}|^2} \longrightarrow s_0,
+	\n{-2}{3} \Exp{\supns |\Mn{s} - \Mn{s-}|^2} \longrightarrow 0,
 	\end{equation}
 	as $n\longrightarrow \infty$.
 \end{lemma}
