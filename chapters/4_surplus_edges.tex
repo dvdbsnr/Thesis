@@ -11,26 +11,32 @@
 
 Theorem~\ref{T: Main} deals with surplus edges.
 The goal of this chapter will be to first define the notion of surplus edges,
-find a way to estimate the probability of encountering one and finally proving the joint convergence of $Z_n$ and the other process.
+find a way to estimate the probability of encountering one and finally proving the joint convergence of $Z_n$ and the surplus edge counting process.
+
+This chapter will begin with some explanation of the coming theorem.
+It will define
+\begin{equation}
+\zminz(s) = \znt(s) - \min_{u \leq s}\znt(s)
+\end{equation}
+and explain how the rate of the counting process $\nnt$ at time $s$ is equal to the height of the exploration.
 
 \section{Counting surplus edges}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Counting surplus edges
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fxnote{Update title.}
 
 We begin by describing a way to analyse the appearance of surplus edges.
 In Chapter~\ref{C: bf-walk} we defined the breadth-first walk $Z_n$, 
-which counted new connections to previously disconnected vertices.
+which counted new connections to previously not connected vertices.
 We remind ourselves that a surplus edge in a graph $\Gcal \in \Gnt$ appears if,
-during the transition of vertices and components of the breadth-first walk,
-a vertex opens a new connection to another vertex, 
+during the transition of vertices and components by the breadth-first walk,
+a vertex forms a new connection to another vertex
 which already has opened connections to some explored node.
 We associate with $\Gcal$ a counting process $(\nnt(s), 0 \leq s \leq n)$,
 with $\nnt(0) = 0$, which increases by $1$ at each appearance of a surplus edge.
 
 In fact $\nnt$ is a process very similar to $B_n$,
-the process defined in Chapter~\ref{C: bf-walk} that counted each appearance of a new edge to an ineligible vertex.
+the process defined in Chapter~\ref{C: bf-walk} that counted each appearance of a new edge to an eligible vertex.
 Lemma~\ref{L: formula an} established that $\Bn{t} = \int_{0}^{t} \an{s}ds$ with
 \begin{equation*}
 	\an{s} = (n - \Ineligible{s}) \ps,
@@ -49,15 +55,15 @@ substituting the number of vertices eligible to become a child of $v(\ceil{s})$ 
 Consider the breadth-first walk on the graph of Figure~\ref{F: Surplus Edges Tree} at time $2$.
 The children of $v_1$, $v_2$ to $v_4$, and the children of $v_2$, that is $v_5$ and $v_6$, are already discovered.
 We are interested in surplus edges to $v_3$.
-So $v_1$ to $v_6$ are unable to form edges to become children of $v_3$ and $\Ineligible{2} = |\{ v_1, \dots,  v_6\}|$.
-Of these vertices, $v_1$ and $v_2$ are already explored an every connection to other nodes is known.
+Since $v_1$ to $v_6$ are unable to form edges to become children of $v_3$, we have $\Ineligible{2} = |\{ v_1, \dots,  v_6\}|$.
+Of these vertices, $v_1$ and $v_2$ are already explored and every connection to neighbouring nodes is known.
 Vertex $v_3$ can not have an edge to itself, so only $v_4$, $v_5$ and $v_6$ are eligible to receive a surplus edge to $v_3$.
 
 In general, at time $i-1$, the first $i$ vertices are ineligible for a surplus edge to $v(i)$.
 The remaining $\Ineligible{i-1} - i$ vertices are candidates for an excess edge opening with probability $\p$.
 Therefore, the counting process $\nnt$ has rate
 \begin{equation} \label{E: rate Nnt}
-(\Ineligible{\floor{s}} - \floor{s}) \ps.
+\lambda(s) = (\Ineligible{\floor{s}} - \floor{s}) \ps.
 \end{equation}
 Note that this rate is only exact for the chance of encountering exactly one surplus edge, 
 but an overestimation for multiple excess edges.
@@ -78,7 +84,7 @@ and using \eqref{E: zeta-1(i) = 1 - min(j)} we can rewrite
 \fxfatal{Where does the 1 go?}
 and the conditional intensity becomes
 \begin{equation} \label{E: rate Nnt 2}
-(1 - \min_{u \leq \floor{s}} \znt(u) + \znt(\floor{s}) \ps.
+\lambda(s) = (1 - \min_{u \leq \floor{s}} \znt(u) + \znt(\floor{s}) \ps.
 \end{equation}
 We now rescale the counting process via
 \begin{equation} \label{E: rescale Nnt}
@@ -87,9 +93,9 @@ We now rescale the counting process via
 We calculate the rate of this rescaled process.
 Recall that the conditional intensity $\bar{\lambda}(s)$ of the process $\rnnt(s)$ must satisfy
 \begin{equation}
-\Exp{\rnnt(s)} = \int_{0}^{s} \lambda(u) du.
+\Exp{\rnnt(s)} = \int_{0}^{s} \bar{\lambda(u)} du.
 \end{equation}
-Denote the rate of $\nnt$ by $\lambda(s)$ and refer to \eqref{E: rescale Nnt} to evaluate
+Using \eqref{E: rescale Nnt} we compare evaluate the above integral in terms of $\lambda(s)$:
 \begin{equation*}
 \begin{aligned}
 \Exp{\rnnt(s)}
@@ -98,7 +104,7 @@ Denote the rate of $\nnt$ by $\lambda(s)$ and refer to \eqref{E: rescale Nnt} to
 &= \int_{0}^{s} \n{2}{3} \lambda(\n{2}{3}u) du.
 \end{aligned}
 \end{equation*}
-Comparing both rates directly gives us
+Comparing both integrands gives us
 \begin{equation*}
 \begin{aligned}
 \bar{\lambda}(s)
@@ -110,10 +116,13 @@ Comparing both rates directly gives us
 \end{aligned}
 \end{equation*}
 
+Since $n\p \rightarrow 1$ and $|\n{2}{3}s - \floor{\n{2}{3}s}| < 1$ for all $s$ and $n$,
+this rate becomes asymptotically close to $\rznt(s) - \min_{u \leq s}\rznt(u)$ as $n \rightarrow \infty$.
+
 By Theorem~\ref{T: Z -> W} we have $\rznt \rightarrow_d \Wt$,
 so
 \begin{equation}
-\rznt(s) - \min_{u \leq s}\rznt(u) \rightarrow_d \Wt(s) - \min_{u \leq s}\Wt(u) = \Bt.
+\bar{\lambda}(s) \rightarrow_d \Wt(s) - \min_{u \leq s}\Wt(u) = \Bt.
 \end{equation}
 
 
@@ -127,11 +136,6 @@ The rate of the counting process $\rnnt$ therefore converges to $\Bt$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Weak convergence of $(Z^t_n, N^t_n)$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-We begin this chapter by an introduction on what the rate of a counting process means.
-This includes those pictures in my notes on the height of the excursion and stuff.
-We define $B_n$ to be the "height" of the exploration in $\Gnt$, aka the discrete version of $\Bt$.
-We now state the main Theorem of this chapter.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -167,23 +171,24 @@ meaning
 \Exp{f(\rznt, \rnnt)} \xrightarrow{n \rightarrow \infty} \Exp{f(\Wt, \Nt)}
 \end{equation}
 for all continuous, bounded functions $f:D[0,T]^2\rightarrow\Real$.
-The main idea of our proof is conditioning the expectations of some fix realization of the Brownian motion $\Wt$,
-then first proving the convergence
+The main idea of our proof is conditioning the expectations of some fixed realization of the Brownian motion $\Wt$ and analysing  $\Exp{f(\znt, \nnt) \cond \Wt}$.
+We first prove that for all $\epsilon > 0$ and sufficiently large $n$,
 \begin{equation}
-	\Exp{f(\znt, \nnt) \cond \Wt} \rightarrow \Exp{f(\Wt, \nnt) \cond \Wt}
+	| \Exp{f(\znt, \nnt) \cond \Wt} -  \Exp{f(\Wt, \nnt) \cond \Wt} | < \epsilon
 \end{equation}
-and then showing that $\nnt \rightarrow_d \Nt$,
+holds.
+We then show that, conditioning on a fixed underlying Brownian motion $\Wt$, the convergence $\nnt \rightarrow_d \Nt$ holds,
 which proves
 \begin{equation}
-	\Exp{f(\Wt, \nnt) \cond \Wt} \rightarrow \Exp{f(\Wt, \Nt ) \cond \Wt}
+	\Exp{f(\Wt, \nnt) \cond \Wt} \xrightarrow{n \rightarrow \infty} \Exp{f(\Wt, \Nt ) \cond \Wt}
 \end{equation}
 since $f(\Wt, \cdot)$ is a bounded and continuous function.
-The Theorem then follows from averaging over all $\Wt$, using the law of total expectation.
+The Theorem follows by averaging over all $\Wt$ using the law of total expectation.
 
 First, we will show that $\rnnt$ is tight as a random process with image in $\DT$.
 We already know that $\rznt \rightarrow_d \Wt$, which implies that $\rznt$ is tight, 
 so for all $\epsilon>0$ there exists a compact $K \subset \CT$ such that
-\begin{equation}
+\begin{equation} \label{E: rznt tight}
 \inf_n \Prob ( \rznt \in K) > 1 - \epsilon.
 \end{equation}
 
@@ -200,21 +205,11 @@ Since $\rnnt(s)$ is an increasing process in $s$, this is equivalent to
 	\Prob( \rnnt(T) \geq K ) < \epsilon.
 \end{equation}
 
-We first establish a similar result about $\rznt$.
-By the reflection principle of Brownian motion, for all $\epsilon>0$ exists an $A>0$ such that
-\begin{equation}
-\Prob( \sup_{s\leq T} |\Wt(s)| > A ) \leq \Prob( \sup_{s\leq T} \Wt(s) > A ) = 2 \Prob( \Wt(T) > A ) < \epsilon.
-\end{equation}
-This implies that for all $\epsilon > 0$ exists $A>0$ such that for all $n$
+We establish an analogous result for $\rznt$ from \eqref{E: rznt tight}.
+For all $\epsilon > 0$ exists $A>0$ such that for all $n$
 \begin{equation} \label{E: rznt bounded}
 \Prob(\sup_{s \leq T} |\rznt(s)| > A) < \epsilon.
 \end{equation}
-
-To see this, fix $\epsilon > 0$ and choose $A>0$ sufficiently large, 
-such that with high probability $A - \sup_{s\leq T} |\Wt(s)| > \delta$, for some $\delta > 0$.
-Choose $N_0 \in \Nat$ such that $\sup_{s\leq T} |\rznt(s) - \Wt(s)| < \delta$ for all $n \geq N_0$.
-Now define $A^* = \max(N_0, A)$. For small $n$, $|\rznt|$ is bounded since $|\znt|$ is bounded by the number of vertices in its graph.
-For large $n$, $|\rznt| < A^*$ with high probability from its closeness to $\Wt$.
 
 Define $\rzminz(s) := \rznt(s) - \min_{u \leq s}\rznt(u)$, the process reflecting $\rznt$ at the x-axis.
 Since $|\rzminz(s)| \leq 2\max_{u \leq s}|\rznt(u)|$, \eqref{E: rznt bounded} implies
@@ -249,14 +244,17 @@ Seeing $\nnt(T\n{2}{3})$ as the sum of all its increments, we arrive at
 where $Y_1, Y_2, \dots, Y_{T\n{2}{3}} \sim \Binom(A\n{1}{3}, \p)$.
 
 We denote by $\Event{A}$ the event $\zminz(i-1) \leq A\n{1}{3}$ and use the law of total probability to compute
-\begin{align*}
+\begin{equation} \label{E: First Total Probability Argument}
+\begin{aligned}
 \Prob(\rnnt(T) \geq K) 
 &= \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3}) \\
-&= \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3} \cond \neg\Event{A}) \Prob(\neg \Event{A}) \\
-&\quad + \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3} \cond \Event{A}) \Prob(\Event{A}) \\
-&\leq \epsilon + \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3} \cond \Event{A}), \\
-\end{align*}
-which holds since $P(\Event{A}) > 1-\epsilon$.
+&=  \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3} \cond \Event{A}) \Prob(\Event{A}) \\
+&\quad + \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3} \cond \neg\Event{A}) \Prob(\neg \Event{A}) \\
+&\leq \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3} \cond \Event{A}) + \epsilon, \\
+\end{aligned}	
+\end{equation}
+
+which holds since $\Prob(\neg\Event{A}) <\epsilon$.
 
 Since this probability is now conditioned on $\Event{A}$, the stochastic dominance \eqref{E: nnt stoch dominance} holds.
 Markov's inequality then gives
@@ -275,12 +273,11 @@ So
 \begin{equation}
 \Prob(\rnnt(T) \geq K) \leq \epsilon + \frac{1}{K}CTA \leq 2 \epsilon
 \end{equation}
-for large $K$. Note that, since $\nnt$ is a counting process, $\rnnt(s) \geq 0$ for all $s \in \Real_{\geq 0}$.
-\fxnote{I probably dont need his sentence.}
+for large $K$.
 With high probability, $\sup_{s \leq T}\rnnt(s)$ is bounded by some $K>0$,
 hence the random variable $\rnnt$ maps into a compact subset of $\DT$ with high probability and $\rnnt$ is tight.
 
-Since both $\rznt$ and $\rnnt$ are tight, $(\znt, \rnnt)$ is tight.
+Since both $\rznt$ and $\rnnt$ are tight, $(\rznt, \rnnt)$ is tight.
 Thus there is a compact subset $C \subset \CT \times \DT$ such that
 \begin{equation}
 	\Prob( (\rznt, \rnnt) \in C) > 1 - \epsilon.
@@ -288,8 +285,9 @@ Thus there is a compact subset $C \subset \CT \times \DT$ such that
 
 The next step in our proof will be showing that
 \begin{equation}
-\Exp{ f(\rznt, \rnnt) \cond \Wt} \rightarrow \Exp{f(\Wt, \rnnt) \cond \Wt}.
+|\Exp{ f(\rznt, \rnnt) \cond \Wt} - \Exp{f(\Wt, \rnnt) \cond \Wt}| < \epsilon
 \end{equation}
+for all $\epsilon>0$ and sufficiently large $n$.
 Recall that $f$ is a bounded function, so there exists $M>0$ such that $f(x,y) < M$ for all $(x,y) \in \CT \times \DT$.
 We denote by $\Event{C}$ the event $(\znt, \rnnt) \in C$ and use the law of total expectation to calculate
 \begin{equation} \label{E: Estimation step 1}
@@ -302,8 +300,8 @@ We denote by $\Event{C}$ the event $(\znt, \rnnt) \in C$ and use the law of tota
 \end{equation}
 
 Since $\rznt \rightarrow_d \Wt$, we can use the Skorohod representation theorem to define random variables $X$, $X_1$, $X_2$, \dots
-on the some common probability space, such that $X \sim \Wt$, $X_i \sim \bar{Z}^t_i$ for all $i \in \Nat$
-and $X_n \rightarrow_{a.s.} X$ as $n \rightarrow \infty$.
+on the some common probability space, such that $\Wt2 \sim \Wt$, $\bar{\mathcal{Z}}^t_i \sim \bar{Z}^t_i$ for all $i \in \Nat$
+and $\rznt2 \rightarrow_{a.s.} \Wt2$ as $n \rightarrow \infty$.
 Meaning, since $X$ and $X_n$ are random variables mapping into function spaces, we have
 \begin{equation}
 \sup_{s \in \Real_{\geq 0}} |X_n(s) - X(s)| \rightarrow_{a.s.} 0,
@@ -435,15 +433,15 @@ We evaluate
 \begin{aligned}
 &\Prob(\exists k\leq \n{2}{3}T: \Ndis(k) \neq \nnt(k) \cond \Event{\delta}) \\
 &\quad \leq \sum_{k=1}^{\n{2}{3}T} \Prob( \Ndis(k) - \Ndis(k-1) \neq \nnt(k) - \nnt(k-1) \cond \Event{\delta}) \\
-&\quad \leq \n{2}{3}T \max_{k \leq \n{2}{3}T} \Prob(\Ndis(k) - \Ndis(k-1) \neq \nnt(k) - \nnt(k-1) \cond \Event{\delta}) \\
-&\quad = \n{2}{3}T \max_{k \leq \n{2}{3}T} \Prob( \eta_k \neq 0 \cond \Event{\delta} ).
+&\quad \leq \sum_{k=1}^{\n{2}{3}T} \Prob( \eta_k \neq 0 \cond \Event{\delta}) \\
+&\quad \leq \n{2}{3}T \max_{k \leq \n{2}{3}T} \Prob(\eta_k \neq 0 \cond \Event{\delta}).
 \end{aligned}
 \end{equation}
 
 Since $||\znt - \Wt|| < \delta$, we know $\beta_k - \alpha_k < \delta \n{1}{3}$. Therefore
 $\eta_k \leq_{\text{st.}} \zeta \sim \Binom(\delta\n{1}{3}, \p)$ for all $k \leq \n{2}{3}T$.
 
-using the law of total expectation,
+Using the law of total expectation gives
 \begin{equation}
 \Prob( \eta_k \neq 0 \cond \Event{\delta} ) \leq \Prob( \zeta_k \geq 1 ) \leq \Exp{\zeta_k} = \delta\n{1}{3}\p,
 \end{equation}
@@ -451,6 +449,7 @@ and substituting in \eqref{E: Prob eta not 0} we obtain
 \begin{equation}
 \begin{aligned}
 &\Prob(\exists k\leq \n{2}{3}T: \Ndis(k) \neq \nnt(k) \cond \Event{\delta}) \\
+&\quad \leq \n{2}{3}T \max_{k \leq \n{2}{3}T} \Prob( \eta_k \neq 0 \cond \Event{\delta} ) \\
 &\quad \leq \n{2}{3}T\delta\n{1}{3}\p \\
 &\quad \leq n \p T \delta \\
 &\quad \leq 2T\delta 
@@ -463,13 +462,25 @@ which yields
 \begin{equation} \label{E: Estimation step 4}
 \begin{aligned}
 \Exp{f(\znt, \nnt)} 
-&\leq \Exp{f(\Wt, \nnt) \cond \Event{C}, \Event{\delta}} + \epsilon + 2M\epsilon   \\
-&\leq \Exp{f(\Wt, \rNdis) \cond \Event{C}, \Event{\delta}} + 2\delta T M + \epsilon  + 2M\epsilon  .
+&\leq \Exp{f(\Wt, \nnt) \cond \Wt, \Event{C}, \Event{\delta}} + \epsilon + 2M\epsilon   \\
+&\leq \Exp{f(\Wt, \rNdis) \cond \Wt} + 2\delta T M + \epsilon  + 2M\epsilon  .
 \end{aligned}
 \end{equation}
-\fxnote{Epsilon here?}
+Since neither $\Wt$ nor $\rNdis$ are dependent on $\rznt$ we can drop the events $\Event{C}$ and $\Event{\delta}$ from the conditional expectation.
+This inequality holds for all bounded, continuous functions $f$. 
+Therefore it holds for $-f$ as well, which implies
+\begin{equation}
+\begin{aligned}
+\Exp{-f(\znt, \nnt)} &\leq \Exp{-f(\Wt, \rNdis) \cond \Wt}+ 2\delta T M  + \epsilon + 2M\epsilon \\
+\iff  \Exp{f(\znt, \nnt)} &\geq \Exp{f(\Wt, \rNdis) \cond \Wt} - 2\delta T M  - \epsilon - 2M\epsilon.
+\end{aligned}
+\end{equation}
+In combination with \eqref{E: Estimation step 4} we obtain
+\begin{equation} \label{E: Equality of Expectations}
+	|\Exp{f(\znt, \nnt)} - \Exp{f(\Wt, \rNdis) \cond \Wt} | \leq 2\delta T M + \epsilon  + 2M\epsilon.
+\end{equation}
 
-We know show that $\rNdis \rightarrow_d \Nt$.
+We now show that $\rNdis \rightarrow_d \Nt$.
 Since $\nnt$ is tight and $\nnt$ is equal to $\Ndis$ with high probability,
 $\Ndis$ and $\rNdis$ are tight and it suffices proving convergence in finite dimensional distributions,
 in this case for all $0 \leq s_1 < s_2 < \dots < s_l \leq T$:
@@ -517,7 +528,7 @@ and compute the probability in \eqref{E: convergence fdd} as
 where $Y_j \sim \Binom(R_{n,j}, \p)$.
 Note that $Y_j =_d \sum_{k=1}^{R_j} \xi_k$, with $\xi_k \sim \Bern(\p)$.
 
-In the next step we use the Poisson limit theorem, see for example \cite{Billingsley2009},
+In the next step we use the Poisson limit theorem, see for example \cite[Theorem 3.7, p.79]{Klenke2013},
 which states that for a series of binomially distributed random variables $Z_k \sim \Binom(N_k, p_k)$
 with $\Exp{Z_k} = N_k p_k \rightarrow \lambda \in \Real$ as $k \rightarrow \infty$,
 the convergence 
@@ -535,9 +546,14 @@ To apply this theorem, we calculate the expected value of $Y_j$:
 &= \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{-2}{3}\Bt(\n{-2}{3}i) + \BigO{\n{-1}{3}}
 \end{align*}
 \fxfatal{Improve Riemann Sum argument.}
-Using a Riemann Sum argument gives
+
+This sum represents a partition of the interval $[s_{j-1}, s_j]$ into $\n{2}{3}(s_j - s_{j-1})$ subintervals, each of length $\n{-2}{3}$.
+Since $\n{-2}{3}i$ is an element of its correpsonding subinterval, 
+we are dealing with a Riemann sum over the continuous function $\Bt$.
+Since $\Bt$ is bounded almost surely on the compact interval $[s_{j-1}, s_j]$,
+the sum converges to an integral and
 \begin{equation}
-\Exp{Y_j} \rightarrow \int_{s_{j-1}}^{s_j} \Bt(u)du.
+\Exp{Y_j} \longrightarrow \int_{s_{j-1}}^{s_j} \Bt(u)du.
 \end{equation}
 
 Now applying the Poisson limit theorem yields
@@ -545,17 +561,17 @@ Now applying the Poisson limit theorem yields
 Y_j \rightarrow_d \Poisson( \int_{s_{j-1}}^{s_j} \Bt(u)du ) =_d \Nt(s_j) - \Nt(s_{j-1}),
 \end{equation}
 and, applying this convergence in \eqref{E: distribution Ndis}, we arrive at
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 &\Prob(\rNdis(s_1) = k_1, \dots, \rNdis(s_l) = k_l) \\
 &\quad = \prod_{j=2}^{l} \Prob( Y_j = \n{1}{3}(k_j - k_{j-1}) ) \\
-&\quad \rightarrow \prod_{j=2}^{l} \Prob( \Nt(s_j) - \Nt(s_{j-1}) = \n{1}{3}(k_j - k_{j-1}) ) \\
+&\enspace \longrightarrow \prod_{j=2}^{l} \Prob( \Nt(s_j) - \Nt(s_{j-1}) = \n{1}{3}(k_j - k_{j-1}) ) \\
 &\quad = \Prob(\Nt(s_1) = k_1, \dots, \Nt(s_l) = k_l).
 \end{aligned}
-\end{equation}
+\end{equation*}
 This proves $\rNdis \rightarrow_d \Nt$ and consequently
 \begin{equation} \label{E: Convergence Ndis Nt}
-	\Exp{f(\Wt, \Ndis) \cond \Wt} \rightarrow \Exp{f(\Wt, \Nt) \cond \Wt}.
+	\Exp{f(\Wt, \Ndis) \cond \Wt} \longrightarrow \Exp{f(\Wt, \Nt) \cond \Wt}.
 \end{equation}
 Combining \eqref{E: Equality of Expectations} and \eqref{E: Convergence Ndis Nt} yields
 \fxfatal{Add explanantion of Equality}
@@ -570,7 +586,6 @@ which proves $(\rznt, \rnnt) \rightarrow_d (\Wt, \Nt)$ and completes the proof.
 \end{proof}
 
 
-\newpage
 We can now assure ourselves that the overestimated probability \eqref{E: rate Nnt} is asymptotically negligible.
 Assume the chance that any vertex encounters two or more surplus edges is non-zero and does not converge to zero as $n \rightarrow \infty$.
 If a vertex connects by multiple excess edges, the process $\nnt$ makes two or more jumps during the time-interval of length $1$.
