@@ -48,7 +48,7 @@ substituting the number of vertices eligible to become a child of $v(\ceil{s})$ 
 
 \begin{figure}[ht]
 	\input{figures/fig_tree1.tex}
-	\caption{A tree} 
+	\caption{A sample component} 
 	\label{F: Surplus Edges Tree}
 \end{figure}
 
@@ -299,50 +299,52 @@ We denote by $\Event{C}$ the event $(\znt, \rnnt) \in C$ and use the law of tota
 \end{aligned}
 \end{equation}
 
-Since $\rznt \rightarrow_d \Wt$, we can use the Skorohod representation theorem to define random variables $X$, $X_1$, $X_2$, \dots
-on the some common probability space, such that $\Wt2 \sim \Wt$, $\bar{\mathcal{Z}}^t_i \sim \bar{Z}^t_i$ for all $i \in \Nat$
-and $\rznt2 \rightarrow_{a.s.} \Wt2$ as $n \rightarrow \infty$.
-Meaning, since $X$ and $X_n$ are random variables mapping into function spaces, we have
+Since $\rznt \rightarrow_d \Wt$, we can use the Skorohod representation theorem to define random variables 
+$\WtX$, $\bar{\mathcal{Z}}^t_1$, $\bar{\mathcal{Z}}^t_2$, \dots
+on the some common probability space, such that $\WtX \sim \Wt$, $\bar{\mathcal{Z}}^t_i \sim \bar{Z}^t_i$ for all $i \in \Nat$
+and $\rzntX \rightarrow_{a.s.} \WtX$ as $n \rightarrow \infty$.
+Meaning, since $\WtX$ and $\rzntX$ are random variables mapping into function spaces, we have
 \begin{equation}
-\sup_{s \in \Real_{\geq 0}} |X_n(s) - X(s)| \rightarrow_{a.s.} 0,
+\sup_{s \in \Real_{\geq 0}} |\rzntX(s) - \WtX(s)| \rightarrow_{a.s.} 0,
 \end{equation}
 which additionally implies
 \begin{equation} 
-\sup_{s \in \Real_{\geq 0}} |X_n(s) - X(s)| \rightarrow_p 0,
+\sup_{s \in \Real_{\geq 0}} |\rzntX(s) - \WtX(s)| \rightarrow_p 0,
 \end{equation}
 so for all $\epsilon > 0$:
 \begin{equation} \label{E: Prob(Event(delta)) 1}
-\Prob( \sup_{s \in \Real_{\geq 0}} |X_n(s) - X(s)| > \epsilon ) \rightarrow 0.
+\Prob( \sup_{s \in \Real_{\geq 0}} |\rzntX(s) - \WtX(s)| > \epsilon ) \rightarrow 0.
 \end{equation}
-From here on out, writing $\rznt$ and $\Wt$ we refer to these newly defined random variables.
-Note that these are in fact not the same objects, just identically distributed random variables defined on a common probability space.
 
-Defining the norm $\norm{X}_T := \sup_{s \leq T}X(s)$, we denote by $\Event{\delta}$ the event $\norm{\Wt - \rznt}_T < \delta$.
+Form here on out we substitute $\Wt$ and $\rznt$ with $\WtX$ and $\rzntX$ respectively.
+By the equality in distribution, the result will then still hold for the original processes.
+
+Defining the norm $\norm{X}_T := \sup_{s \leq T}X(s)$, we denote by $\Event{\delta}$ the event $\norm{\WtX - \rzntX}_T < \delta$.
 By \eqref{E: Prob(Event(delta)) 1}, for sufficiently large $n$, $\Prob(\Event{\delta}) > 1 - \epsilon$.
 Now an argument analogous to \eqref{E: First Total Probability Argument} gives
 \begin{equation} \label{E: Estimation step 2}
 \begin{aligned}
 \Exp{f(\znt, \rnnt)} 
-&\leq \Exp{f(\rznt, \rnnt) \cond \Wt, \Event{C}} + \epsilon M \\
-&\leq \Exp{f(\rznt, \rnnt) \cond \Wt, \Event{C}, \Event{\delta}} + 2 \epsilon M.
+&\leq \Exp{f(\rzntX, \rnnt) \cond \WtX, \Event{C}} + \epsilon M \\
+&\leq \Exp{f(\rzntX, \rnnt) \cond \WtX, \Event{C}, \Event{\delta}} + 2 \epsilon M.
 \end{aligned}
 \end{equation}
 
-By the continuity of $f$, for all $\epsilon>0$ we can choose a $\delta > 0$ such that $\norm{\Wt - \rznt}_T < \delta$ implies
+By the continuity of $f$, for all $\epsilon>0$ we can choose a $\delta > 0$ such that $\norm{\WtX - \rzntX}_T < \delta$ implies
 that the inequality
 \begin{equation*}
 \begin{aligned}
-f(\znt, \rnnt) &= f(\znt, \rnnt) + f(\Wt, \rnnt) - f(\Wt, \rnnt) \\
-&\leq f(\Wt, \rnnt) + |f(\znt, \rnnt) - f(\Wt, \rnnt)| \\
-&\leq f(\Wt, \rnnt) + \epsilon
+f(\znt, \rnnt) &= f(\znt, \rnnt) + f(\WtX, \rnnt) - f(\WtX, \rnnt) \\
+&\leq f(\WtX, \rnnt) + |f(\znt, \rnnt) - f(\WtX, \rnnt)| \\
+&\leq f(\WtX, \rnnt) + \epsilon
 \end{aligned}
 \end{equation*}
 holds. Therefore
 \begin{equation} \label{E: Estimation step 3}
 \begin{aligned}
 \Exp{f(\znt, \rnnt)} 
-&\leq \Exp{f(\rznt, \rnnt) \cond \Wt, \Event{C}, \Event{\delta}} + 2 \epsilon M \\
-&\leq \Exp{f(\Wt, \rnnt) \cond \Wt, \Event{C}, \Event{\delta}} + \epsilon + 2 \epsilon M.
+&\leq \Exp{f(\rzntX, \rnnt) \cond \WtX, \Event{C}, \Event{\delta}} + 2 \epsilon M \\
+&\leq \Exp{f(\WtX, \rnnt) \cond \WtX, \Event{C}, \Event{\delta}} + \epsilon + 2 \epsilon M.
 \end{aligned}
 \end{equation}
 
@@ -359,7 +361,7 @@ we define $\Ndis$ by
 where $\xi_k \sim \Binom(\n{1}{3}\Bt(\n{-2}{3}k), \p)$,
 the discrete steps of $\Ndis$ are dependent on an upscaling of the reflected Brownian motion $\Bt$.
 
-We will show that, if $||\rznt - \Wt|| < \delta$, 
+We will show that, if $||\rzntX - \WtX|| < \delta$, 
 then $\Ndis(k) = \nnt(k)$ for all $k \leq \n{2}{3}T$ with high probability.
 For this, we redefine both processes using a coupling argument.
 \fxnote{Find out what a coupling argument is.}
@@ -400,33 +402,33 @@ so
 \end{equation}
 
 This way, we can define $\nnt$ and $\Ndis$ by
-\begin{equation*}
+\begin{equation}
 \nnt(k) - \nnt(k-1) = 
 \begin{cases}
 \xi_k & \text{if} \enspace \zminz(k) \leq \n{1}{3}\Bt(\n{-2}{3}k), \\
 \xi_k + \eta_k &\text{else}
 \end{cases}
-\end{equation*}
+\end{equation}
 and
-\begin{equation*}
+\begin{equation}
 \Ndis(k) - \Ndis(k-1) = 
 \begin{cases}
 \xi_k + \eta_k & \text{if} \enspace \zminz(k) \leq \n{1}{3}\Bt(\n{-2}{3}k), \\
 \xi_k &\text{else}.
 \end{cases}
-\end{equation*}
+\end{equation}
 By \eqref{E: def alpha beta} and \eqref{E: def xi eta},
 these definitions maintain
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 \nnt(k) - \nnt(k-1) &\sim \Binom(\zminz(k), \p), \\
 \Ndis(k) - \Ndis(k-1) &\sim \Binom(\n{1}{3} \Bt(\n{-2}{3}k), \p).
 \end{aligned}
-\end{equation}
+\end{equation*}
 We see that, no matter the relation of $\zminz(k)$ and $\n{1}{3}\Bt(\n{-2}{3}k)$, 
 the increments of the processes differ only by the random variable $\eta_k$.
 
-Conditioning on $||\znt - \Wt|| < \delta$, for $\Ndis(k) \neq \nnt(k)$ to hold for some $k$,
+Conditioning on $||\znt - \WtX|| < \delta$, for $\Ndis(k) \neq \nnt(k)$ to hold for some $k$,
 there has to have been a step in which the increments of both processes were different.
 We evaluate
 \begin{equation} \label{E: Prob eta not 0}
@@ -438,7 +440,7 @@ We evaluate
 \end{aligned}
 \end{equation}
 
-Since $||\znt - \Wt|| < \delta$, we know $\beta_k - \alpha_k < \delta \n{1}{3}$. Therefore
+Since $||\znt - \WtX|| < \delta$, we know $\beta_k - \alpha_k < \delta \n{1}{3}$. Therefore
 $\eta_k \leq_{\text{st.}} \zeta \sim \Binom(\delta\n{1}{3}, \p)$ for all $k \leq \n{2}{3}T$.
 
 Using the law of total expectation gives
@@ -462,22 +464,22 @@ which yields
 \begin{equation} \label{E: Estimation step 4}
 \begin{aligned}
 \Exp{f(\znt, \nnt)} 
-&\leq \Exp{f(\Wt, \nnt) \cond \Wt, \Event{C}, \Event{\delta}} + \epsilon + 2M\epsilon   \\
-&\leq \Exp{f(\Wt, \rNdis) \cond \Wt} + 2\delta T M + \epsilon  + 2M\epsilon  .
+&\leq \Exp{f(\WtX, \nnt) \cond \WtX, \Event{C}, \Event{\delta}} + \epsilon + 2M\epsilon   \\
+&\leq \Exp{f(\WtX, \rNdis) \cond \WtX} + 2\delta T M + \epsilon  + 2M\epsilon  .
 \end{aligned}
 \end{equation}
-Since neither $\Wt$ nor $\rNdis$ are dependent on $\rznt$ we can drop the events $\Event{C}$ and $\Event{\delta}$ from the conditional expectation.
+Since neither $\WtX$ nor $\rNdis$ are dependent on $\rzntX$ we can drop the events $\Event{C}$ and $\Event{\delta}$ from the conditional expectation.
 This inequality holds for all bounded, continuous functions $f$. 
 Therefore it holds for $-f$ as well, which implies
 \begin{equation}
 \begin{aligned}
-\Exp{-f(\znt, \nnt)} &\leq \Exp{-f(\Wt, \rNdis) \cond \Wt}+ 2\delta T M  + \epsilon + 2M\epsilon \\
-\iff  \Exp{f(\znt, \nnt)} &\geq \Exp{f(\Wt, \rNdis) \cond \Wt} - 2\delta T M  - \epsilon - 2M\epsilon.
+\Exp{-f(\znt, \nnt)} &\leq \Exp{-f(\WtX, \rNdis) \cond \WtX}+ 2\delta T M  + \epsilon + 2M\epsilon \\
+\iff  \Exp{f(\znt, \nnt)} &\geq \Exp{f(\WtX, \rNdis) \cond \WtX} - 2\delta T M  - \epsilon - 2M\epsilon.
 \end{aligned}
 \end{equation}
 In combination with \eqref{E: Estimation step 4} we obtain
 \begin{equation} \label{E: Equality of Expectations}
-	|\Exp{f(\znt, \nnt)} - \Exp{f(\Wt, \rNdis) \cond \Wt} | \leq 2\delta T M + \epsilon  + 2M\epsilon.
+	|\Exp{f(\znt, \nnt)} - \Exp{f(\WtX, \rNdis) \cond \WtX} | \leq 2\delta T M + \epsilon  + 2M\epsilon.
 \end{equation}
 
 We now show that $\rNdis \rightarrow_d \Nt$.
@@ -522,26 +524,26 @@ and compute the probability in \eqref{E: convergence fdd} as
 &\Prob(\rNdis(s_1) = k_1, \dots, \rNdis(s_l) = k_l) \\
 &\quad = \Prob( \rNdis(s_j) - \rNdis(s_{j-1}) = k_j - k_{j-1}, \enspace \forall j=2,\dots,l ) \\
 &\quad = \prod_{j=2}^{l} \Prob( \n{1}{3}\rNdis(s_j) - \n{1}{3}\rNdis(s_{j-1}) = \n{1}{3}(k_j - k_{j-1})) \\
-&\quad = \prod_{j=2}^{l} \Prob( Y_j = \n{1}{3}(k_j - k_{j-1}) ),
+&\quad = \prod_{j=2}^{l} \Prob( Y_{n,j} = \n{1}{3}(k_j - k_{j-1}) ),
 \end{aligned}
 \end{equation}
-where $Y_j \sim \Binom(R_{n,j}, \p)$.
-Note that $Y_j =_d \sum_{k=1}^{R_j} \xi_k$, with $\xi_k \sim \Bern(\p)$.
+where $Y_{n,j} \sim \Binom(R_{n,j}, \p)$.
+Note that $Y_{n,j} =_d \sum_{k=1}^{R_{n,j}} \xi_k$, with $\xi_k \sim \Bern(\p)$.
 
 In the next step we use the Poisson limit theorem, see for example \cite[Theorem 3.7, p.79]{Klenke2013},
-which states that for a series of binomially distributed random variables $Z_k \sim \Binom(N_k, p_k)$
-with $\Exp{Z_k} = N_k p_k \rightarrow \lambda \in \Real$ as $k \rightarrow \infty$,
+which states that for a series of binomially distributed random variables $X_k \sim \Binom(N_k, p_k)$
+with $\Exp{X_k} = N_k p_k \rightarrow \lambda \in \Real$ as $k \rightarrow \infty$,
 the convergence 
 \begin{equation}
-	Z_k \rightarrow_d \Poisson(\lambda)
+	X_k \rightarrow_d \Poisson(\lambda)
 \end{equation}
 holds as $k \rightarrow \infty$.
 
-To apply this theorem, we calculate the expected value of $Y_j$:
+To apply this theorem, we calculate the expected value of $Y_{n,j}$:
 \begin{align*}
-\Exp{Y_j} 
-&= R_j \p \\
-&= \frac{1}{n} R_j + \BigO{\n{-1}{3}}\\
+\Exp{Y_{n,j}} 
+&= R_{n,j} \p \\
+&= \frac{1}{n} R_{n,j} + \BigO{\n{-1}{3}}\\
 &= \frac{1}{n} \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{1}{3}\Bt(\n{-2}{3}i) + \BigO{\n{-1}{3}}\\
 &= \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{-2}{3}\Bt(\n{-2}{3}i) + \BigO{\n{-1}{3}}
 \end{align*}
@@ -553,32 +555,32 @@ we are dealing with a Riemann sum over the continuous function $\Bt$.
 Since $\Bt$ is bounded almost surely on the compact interval $[s_{j-1}, s_j]$,
 the sum converges to an integral and
 \begin{equation}
-\Exp{Y_j} \longrightarrow \int_{s_{j-1}}^{s_j} \Bt(u)du.
+\Exp{Y_{n,j}} \longrightarrow \int_{s_{j-1}}^{s_j} \Bt(u)du.
 \end{equation}
 
 Now applying the Poisson limit theorem yields
 \begin{equation} \label{E: convergence dist Yj}
-Y_j \rightarrow_d \Poisson( \int_{s_{j-1}}^{s_j} \Bt(u)du ) =_d \Nt(s_j) - \Nt(s_{j-1}),
+Y_{n,j} \rightarrow_d \Poisson( \int_{s_{j-1}}^{s_j} \Bt(u)du ) =_d \Nt(s_j) - \Nt(s_{j-1}),
 \end{equation}
 and, applying this convergence in \eqref{E: distribution Ndis}, we arrive at
 \begin{equation*}
 \begin{aligned}
 &\Prob(\rNdis(s_1) = k_1, \dots, \rNdis(s_l) = k_l) \\
-&\quad = \prod_{j=2}^{l} \Prob( Y_j = \n{1}{3}(k_j - k_{j-1}) ) \\
+&\quad = \prod_{j=2}^{l} \Prob( Y_{n,j} = \n{1}{3}(k_j - k_{j-1}) ) \\
 &\enspace \longrightarrow \prod_{j=2}^{l} \Prob( \Nt(s_j) - \Nt(s_{j-1}) = \n{1}{3}(k_j - k_{j-1}) ) \\
 &\quad = \Prob(\Nt(s_1) = k_1, \dots, \Nt(s_l) = k_l).
 \end{aligned}
 \end{equation*}
 This proves $\rNdis \rightarrow_d \Nt$ and consequently
 \begin{equation} \label{E: Convergence Ndis Nt}
-	\Exp{f(\Wt, \Ndis) \cond \Wt} \longrightarrow \Exp{f(\Wt, \Nt) \cond \Wt}.
+	\Exp{f(\WtX, \Ndis) \cond \WtX} \longrightarrow \Exp{f(\WtX, \Nt) \cond \Wt}.
 \end{equation}
 Combining \eqref{E: Equality of Expectations} and \eqref{E: Convergence Ndis Nt} yields
 \fxfatal{Add explanantion of Equality}
 \begin{equation}
 \begin{aligned}
-&\Exp{f(\rznt, \rnnt)} = \Exp{\Exp{f(\rznt, \rnnt) \cond \Wt}} \\
-&\qquad \longrightarrow \Exp{\Exp{f(\Wt, \Nt) \cond \Wt}} = \Exp{f(\Wt, \Nt)},
+&\Exp{f(\rzntX, \rnnt)} = \Exp{\Exp{f(\rzntX, \rnnt) \cond \WtX}} \\
+&\qquad \longrightarrow \Exp{\Exp{f(\WtX, \Nt) \cond \WtX}} = \Exp{f(\WtX, \Nt)},
 \end{aligned}
 \end{equation}
 \fxnote{Fix formatting here.}
@@ -597,7 +599,7 @@ By general theory on counting processes, this is not possible.
 So the probability of a vertex having multiple surplus edges must tend to zero.
 
 
-
+\newpage
 
 
 
