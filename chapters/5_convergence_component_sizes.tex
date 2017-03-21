@@ -20,6 +20,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Deterministic Lemma 7: Statement and Note
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -36,7 +37,7 @@
 	\end{equation}
 	Define $\Xi := \lbrace (l, r-l) \; | \; (l, r) \in \mathcal{E} \rbrace$.
 	
-	Suppose that for intervals $e_1, e_2 \in \mathcal{E}$ we have 
+	Suppose that for intervals $(l_1, r_1), (l_2, r_2) \in \mathcal{E}$ with $l_1 < l_2$ we have 
 	\begin{equation} \label{E: f cond f(l1) > f(l2)}
 	f(l_1) > f(l_2)
 	\end{equation}
@@ -47,7 +48,7 @@
 	
 	Let $f_n \rightarrow f$ as $n \rightarrow \infty$ uniformly on bounded intervals.
 	Now define $\Xin := \lbrace (\tn{i}, \tn{i+1} - \tn{i}) \; | \; i \geq 1 \rbrace$
-	for any sequence of sets of points $\fnPoints := (\tn{i}, i \geq 1)$, satisfying the following conditions:
+	for any sequence of sets of points $\fnPoints := (\tn{i}, i \geq 1)$ satisfying the following conditions:
 	
 	\begin{equation} \label{E: fn cond 3}
 	0 = \tn{1} < \tn{2} < ... \; \text{and} \; \lim_{i \rightarrow \infty} \tn{i} = \infty,
@@ -59,13 +60,13 @@
 	\max_{i: \tn{i} \leq s_0}(f_n(\tn{i}) - f_n(\tn{i+1})) \rightarrow 0 \; \text{as} \; n \rightarrow \infty, \; \text{for all} \; s_0 \leq \infty.
 	\end{equation}
 	
-	Then $\Xin \rightarrow_d \Xi$ as $n \rightarrow \infty$.
+	Then $\Xin \rightarrow_v \Xi$ as $n \rightarrow \infty$.
 \end{lemma}
 \fxnote{Conditions in Lemma -> Ask Sapozhnikov}
 
 \begin{note}
 	The convergence
-	$\Xin \rightarrow_d \Xi$
+	$\Xin \rightarrow_v \Xi$
 	is to be interpreted as the vague convergence of counting measures,
 	which means that for all continuous functions
 	$f: \IntTimesInt \rightarrow \Real$
@@ -104,7 +105,6 @@
 	General stuff about vague convergence should not be in the proof.
 	Maybe vague convergence before the Lemma, interval stuff in the note.}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Deterministic Lemma 7: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -133,7 +133,7 @@ To prove the Lemma,
 we fix some bounded subset of
 $\IntTimesInt$,
 $C := [T_1, T_2] \times [d_1, d_2]$,
-and show that, for sufficiently high $n$,
+and show that, for sufficiently large $n$,
 $\Xin(C) = \Xi(C)$,
 that is,
 there are exactly as many excursions of $f_n$ starting in
@@ -154,7 +154,7 @@ Let us first establish some facts about excursions of the limit function $f$.
 In the interval $[T_1, T_2]$,
 there can only be a finite number of excursion starting with length of at least $d_1$,
 at most $T_1/d_1$.
-\fxnote{Fix this sentence!}
+We call excursions of length greater than $d_1$ large, all other excursions small.
 Let
 $ \mathcal{E}^* := \{ (l_i, r_i) \; | \; i=1, \dots, k \} $
 be the set of these excursions.
@@ -184,7 +184,7 @@ $f(l) = \min_{u \leq l}f(u)$,
 so $f(x) = f(l)$.
 That leaves two possibilities:
 First, $f$ is constant on the interval $[x,l]$.
-But this were an interval of non-zero length without any excursions on it,
+But this would be an interval of non-zero length without any excursions on it,
 a contradiction to \eqref{E: f cond complement zero}.
 Second, there is an interval
 $[x', l']$, with $x\leq x'<l' \leq l$,
@@ -217,10 +217,10 @@ We will now show that there exist points
 $\lnx \in [l-\epsilon, l+\epsilon]$
 and 
 $\rnx \in [r-\epsilon, r+\epsilon]$
-for which conditions \eqref{E: fn cond 3} to \eqref{E: fn cond 5} hold
-and $(\lnx, \rnx- \lnx) \in \Xin$.
+for which condition \eqref{E: fn cond 4} hold,
+making $(\lnx, \rnx- \lnx)$ a possible element of $\Xin$.
 
-Define $\lnx := \argmin_{u \leq x} f_n(u)$.
+Define $\lnx := \min(\argmin_{u \leq x} f_n(u))$.
 \fxerror{Make ln(x) := sup(argmin(...))}
 By the uniform convergence $f_n \rightarrow f$,
 we can find an $N \in \Nat$,
@@ -235,8 +235,8 @@ So $f_n$ takes its minimum over
 $[0, l - \epsilon]\cup[l + \epsilon, r - \epsilon]$
 at $l$ or somewhere in $[l-\epsilon, l+\epsilon]$.
 \fxnote{Maybe give the interval a name.}
-So $\lnx \in [l-\epsilon, l+\epsilon]$ and
-$\lnx = \min_{u \leq \lnx} f_n(u)$.
+Therefore $\lnx \in [l-\epsilon, l+\epsilon]$ and, 
+since we chose $\lnx$ as the smallest value for which $f_n$ attains this minimum, $\lnx = \min_{u \leq \lnx} f_n(u)$.
 
 Now define 
 $\rnx := \inf \{ x > x^* \; | \; f_n(x) = \lnx \}$.
@@ -257,43 +257,27 @@ $\rnx = \min_{u \leq \lnx} f_n(u)$.
 
 \fxerror{Here: What is a condition on fn? What must be shown?}
 
-To recap: We have shown that for any excursion $(l,r)$ of $f$ there are two points $\lnx$ and $\rnx$, very close to $l$ and $r$ respectively,
-satisfying condition \eqref{E: fn cond 4} with no other eligible points in between.
-The question remains whether these points must be elements of $\fnPoints$ 
-or if it's possible to skip large excursions of $f$ by missing elements on $\fnPoints$.
-First of all, consider that \eqref{E: fn cond 3} ensures there is no last element of $\fnPoints$.
-Any excursion of $f_n$ started will eventually end.
-For any excursion $(l,r)$ of $f$, if $\lnx \in \fnPoints$ there will be some point greater or equal to $\rnx$ present in $\fnPoints$,
-so the excursion of $f$ is matched by some excursion of similar or greater length.
-The only problem that could arise is $\fnPoints$ skipping the end of one
-and the start of another large excursion of $f$,
-or even skipping multiple large excursions of $f$.
+We have shown that the only points satisfying condition \eqref{E: fn cond 4} must lay near the beginning and end of excursions of $f$.
+This is not sufficient as proof of the Lemma, since the sequence $\fnPoints$ might not contain any points between two large excursions,
+or even not contain any points, thus skipping one or more eligible excursions.
+We will now show that \eqref{E: fn cond 3} and \eqref{E: fn cond 5} imply 
+that any set satisfying these two conditions must contain at least one element in between two large excursions of $f$.
+
+First of all, \eqref{E: fn cond 3} ensures there must exist points in $\fnPoints$ and no last element of $\fnPoints$ exists.
 
 Consider two consecutive large excursions of $f$, $(l_1, r_1)$ and $(l_2, r_2)$
 and the space between $r_1$ and $l_2$.
-Suppose there is either no element of $\fnPoints$ in $[r_1-\epsilon, l_2+\epsilon]$ for all $\epsilon>0$.
+Suppose there is no element of $\fnPoints$ in $[r_1-\epsilon, l_2+\epsilon]$ for all $\epsilon>0$.
 The latest element of $\fnPoints$ was located at or before $l_1$, the next will be at or around $r_2$.
 We know $f(r_1)=f(l_1) > f(l_2)$, so there is $\delta>0$ such that for all large $n$,
-$|f_n(l^*) - f_n(r^*)|> \delta$ for all $l^*$ and $r^*$ in the respective $\epsilon$-neighbourhoods around $l_1$ and $r_2$.
-Any possible point of $\fnPoints$ before $l_1$ will only be higher, any point after $r_2$ will only be lower.
+$|f_n(l^*) - f_n(r^*)|> \delta$ for all $l^*$ and $r^*$ in the sufficiently small $\epsilon$-neighbourhoods around $l_1$ and $r_2$.
+
+Any previous element of $\fnPoints$ will only yield a larger, any element after $r_2$ only a smaller $f_n$-value.
 This is a contradiction to \eqref{E: fn cond 5}.
-So there must be at least a point of $\fnPoints$ in between these two large excursions, no excursion can be skipped.
-\fxfatal{Fix everything about this. Please. Fuck} 
+So there must be at least one point of $\fnPoints$ in between these two large excursions, no excursion can be skipped.
 
-
-Additionally, we have shown that any point satisfying \eqref{E: fn cond 4} must lay in some $\epsilon$-neighbourhood around a start- or endpoint of some excursion of $f$.
-\fxfatal{Show this!}
-We will now show that conditions \eqref{E: fn cond 3} and \eqref{fn cond 5} assure us 
-that the set $\fnPoints$ must contain points in some $\epsilon$-neighbourhood of $l$ and $r$.
-First of all, \eqref{E: fn cond 3} ensures that there is no last element in any sequence $\fnPoints$.
-Our only concern is $\fnPoints$ skipping an excursion.
-Consider again the fixed pair $(l,r)$.
-Suppose there is no element of $\fnPoints$ in $[l-\epsilon, l+\epsilon] $
-
-
-
-
-
+For any excursion $(l,r)$ of $f$, there exists $\lnx, \rnx \in \fnPoints$ in the respective $\epsilon$-neighbourhoods,
+so the excursion of $f$ is matched by an excursion of $f_n$ of equal or greater length.
 Since $l - r + 2\epsilon > d_1$,
 we have found $\tn{i} = \lnx$, $\tn{i+1} = \rnx$,
 such that $(\tn{i}, \tn{i+1} - \tn{i}) \in \Xin \cap C$
@@ -301,7 +285,7 @@ for all $n$ greater than some $N_i = N \in \Nat$.
 Now let $N^* := \max\{N_1, \dots, N_k\}$ 
 and every excursion of $f$ in $C$ is matched by an excursion of $f_n$ in $C$,
 with $n \geq N^*$.
-So eventually $\Xi (C) \leq \Xin(C)$.
+Therefore eventually $\Xi (C) \leq \Xin(C)$.
 \end{proofpart}
 
 
@@ -314,7 +298,6 @@ Now that every excursion of $f$ is matched,
 we need to show that there can not exist any additional large excursion of $f_n$.
 Considering the fact that excursions can not overlap,
 the only possibility for an additional large excursion is the space between two large excursions.
-\fxnote{This is quite obvious.}
 For a pair of large excursions,
 $(l_i, r_i)$ and $(l_{i+1}, r_{i+1})$,
 there is only enough space in between them if
@@ -322,6 +305,7 @@ $r_i - l_{i+1} > d_1$.
 Consider such an interval $[r,l]$ of length greater than $d_1$.
 By condition \eqref{E: f cond complement zero} the space must be filled with smaller excursions of $f$.
 There is an at most countable number of these,
+\fxnote{Why?}
 let $\mathcal{E^*} := \{ (l_i, r_i) \; | \; i \in \Nat \}$
 be the set of such excursions starting in $(r,l)$ with length less than or equal to $d_1$.
 We know
@@ -329,142 +313,127 @@ We know
 \sum_{i=1}^{\infty} r_i - l_i = l - r > d_1,
 \end{equation}
 so we can choose a finite set of excursions
-$\{ (l_i, r_i) \; | \; i = 1, \dots, k \}$
+$\{ (l_i, r_i) \; | \; i = 1, \dots, K \}$
 such that, 
 if we exclude these from the interval $[r,l]$, 
 the space remaining is less than $d_1$:
-\fxerror{This is the first : ! Delete it?}
 \begin{equation}
-l-r - \sum_{i=1}^{k} r_i - l_i < d_1.
+l-r - \sum_{i=1}^{K} r_i - l_i < d_1.
 \end{equation}
-Let $d^* < \min \{ r_i - l_i \; | \; i = 1, \dots, k \}$
+Let $d^* < \min \{ r_i - l_i \; | \; i = 1, \dots, K \}$
 and apply the logic of Part~\ref{PP: Lemma 7 1} to the compact set
 $[r, l] \times [d^*, d_1]$.
-\fxnote{Length d1 or d2? Is there a problem with excursions of exactly length d1?}
 For sufficiently large $n$, 
-every of these $k$ excursions of $f$ will be matched with an excursion of $f_n$,
+every one of these $K$ excursions of $f$ will be matched with an excursion of $f_n$,
 so that there will be no space left for a large excursion of $f_n$ in $[r,l]$.
 Applying this logic to every one if the finitely many gaps between excursions of $f$,
-we see that there can not exist more large excursions of $f_n$ already matching $f$.
-\fxnote{There is half a sentence missing here.}
+we see that there can not exist any more large excursions of $f_n$  than those already matching $f$.
 Thus $\Xin(C) \leq \Xi(C)$ for sufficiently large $n$,
-which completes the proof of Lemma~\ref{L: Deterministic Lemma}.
+which completes the proof.
 \end{proofpart}
 
-	
 \end{proof}
+
+Before applying this Lemma to our processes, we need to briefly introduce Girsanovs Theorem,
+which will enable us to prove certain properties of the Brownian motion with drift.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Girsanov Theorem
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We state the theorem as in \cite[Theorem 4.2.2, p.66]{Lamberton1996}.
+\begin{theorem}[Girsanov] \label{T: Girsanov}
+	Let $(W(s))_{0 \leq s \leq T}$ be a Brownian motion on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$.
+	Let $(\Theta(s))_{0 \leq s \leq T}$ be an adapted process satisfying
+	\begin{equation} \label{E: Girsanov cond Theta}
+	\int_{0}^{T} \Theta^2(u)du < \infty.
+	\end{equation}
+	Define
+	\begin{align}
+		\tilde{W}(s) &:= W(s) + \int_0^s \Theta(u)du, \label{E: Girsanov def W tilde} \\ 
+		X(s) &:= \exp \left\{ -\int_{0}^{s} \Theta(u) dW(u) - \frac{1}{2} \int_0^s \Theta^2(u)du \right\}. \label{E: Girsanov def X}
+	\end{align}
+	If $X(s)$ a martingale, that is $\Exp{X(s)} = \Exp{X(0)} = 1$ for all $s$,
+	the measure $\mathbb{Q}$, defined by
+	\begin{equation} \label{E: Girsanov def P tilde}
+	\tilde{\mathbb{P}}(A) := \int_A X(\omega) d\mathbb{P}(\omega), \; \text{for all} \; A \in \mathcal{F},
+	\end{equation}
+	is a probability measure under which the process 
+	$(\tilde{W}(s))_{0 \leq s \leq T}$
+	is a Brownian motion.
+\end{theorem}
+
+By \cite[Remark 4.2.3, p. 66]{Lamberton2000}, a sufficient condition for $X(t)$ to be a martingale is the so-called Novikov-condition
+\begin{equation} \label{E: Novikov}
+\ExpBig{ \exp \left( \frac{1}{2} \int_{0}^{T} \Theta^2(u)du \right) } < \infty.
+\end{equation}
+
+We can apply this Theorem to the Brownian motion with drift $W^t$ as follows:
+Recall the definition
+\begin{equation}
+\Wt(s) = W(s) + ts - \frac{1}{2} s^2 = W(s) + \int_0^s (t-u)du.
+\end{equation}
+For $T<\infty$, $\Theta(u) := t-u$ satisfies \eqref{E: Novikov},
+therefore $X(t)$, as defined in \eqref{E: Girsanov def X}, is a martingale and
+$\Wt$ is a standard Brownian motion under the probability measure $\tilde{\mathbb{P}}$ defined in \eqref{E: Girsanov def P tilde}.
+Since $X(s) > 0$ almost surely for all $s$, the probability measures $\mathbb{P}$ and $\tilde{\mathbb{P}}$ agree which sets have probability zero:
+\begin{equation} \label{E: P0 = Q0}
+\mathbb{P}(A) = 0 \iff \tilde{\mathbb{P}}(A) = 0, \; \text{for all} \; A \in \mathcal{F}.
+\end{equation}
+Properties holding with probability $1$ or $0$ for a standard Brownian motion will hold with probability $1$ or $0$, respectively,
+for $\Wt$ under $\tilde{\mathbb{P}}$ and hence under the original measure $\mathbb{P}$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lemma 8: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The following Lemma will now link $Z_n$ and $\Wt$ in the language of Lemma~\ref{L: Deterministic Lemma}
-Define $\gamma (n, i) \in \{1, \dots, n\}$ to be the index that makes
-$v(\gamma(n,i))$ is the last vertex of the $i-1$-st component encountered by the breadth-first walk $Z_n$.
-\fxnote{Text clunky here.}
-Let $\Ci{n,i}$ be the size of the $i$-th component.
-\fxnote{Fix i indices}
+The following Lemma will now link excursions of $Z_n$ and $\Wt$ in the language of Lemma~\ref{L: Deterministic Lemma}.
+Let $\Ci{n,i}$ be the size of the $i$-th component and
+define $\gamma_n(i) \in \{1, \dots, n\}$ as the index for which
+$v(\gamma_n(i))$ is the last vertex of the $i-1$-th component encountered by the breadth-first walk $Z_n$.
+For a rigorous treatment of the following Lemma, we need to extend this definition beyond the $n$ possible values for $\gamma_n(i)$.
+Let $i^* \in \Nat$ such that $\gamma_n(i^*) = n$. For all $j > i^*$, define $\gamma_n(j) := \gamma_n(j-1) + 1$.
+Recall that we extended the definition of $\rznt$ in chapter~\ref{C: bf-walk} to a constant process after $s=\n{1}{3}$.
 
 \begin{lemma} \label{L: Lemma 8}
 	Let $\Xi$ be the point process with points corresponding to excursions of $\Bt$,
 	\begin{equation} \label{E: Lemma 8 def Xi}
 	\Xi := \{ (l(\gamma), |\gamma|) \; | \; \gamma \; \text{excursion of} \; \Bt \}.
 	\end{equation}
-	Let $\Xin$ be the point process with points corresponding to excursions of the breadth-first walk
+	Let $\Xin$ be the rescaled point process with points corresponding to excursions of the breadth-first walk
 	\begin{equation} \label{E: Lemma 8 def Xin}
-	\Xin := \{ ( \n{-2}{3} \gamma(n,i), \n{-2}{3} \Ci{n,i} ) \; | \; i \geq 1 \}.
+	\Xin := \{ ( \n{-2}{3} \gamma_n(i), \n{-2}{3} \Ci{n,i} ) \; | \; i \geq 1 \}.
 	\end{equation}
-	Then $\Xin \rightarrow \Xi$ as $n \rightarrow \infty$.
+	Then $\Xin \rightarrow_v \Xi$ as $n \rightarrow \infty$.
 \end{lemma}
-\fxnote{Try not to repeat the same sentence twice here.}
-
-Before proving this Lemma, we need to state Girsanov's Theorem, 
-which will enable us to prove certain properties of the Brownian motion with drift.
-\fxnote{Explanation here or at the end?}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Girsanov Theorem
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We state the theorem as in \cite[Theorem 5.2.3]{Shreve2004}
-\begin{theorem}[Girsanov] \label{T: Girsanov}
-	Let $W(t), 0 \leq t \leq T$, be a Brownian motion on a probability space
-	$(\Omega, \mathcal{F}, \mathbb{P})$.
-	Define
-	\begin{align}
-	\tilde{W}(t) &:= W(t) + \int_0^t \Theta(u)du, \label{E: Girsanov def W tilde} \\ 
-	Z(t) &:= \exp \left\{ -\int_{0}^{t} \Theta(u) dW(u) - \frac{1}{2} \int_0^t \Theta^2(u)du \right\}. \label{E: Girsanov def Z}
-	\end{align}
-	Assume that
-	\begin{equation} \label{E: Girsanov cond Theta}
-	\ExpBig{ \int_{0}^{T} \Theta^2(u) Z^2(u)du  } < \infty.
-	\end{equation}
-	Set the random variable $Z=Z(T)$. Then $\Exp{Z(T)} = 1$ and $\mathbb{Q}$, defined by
-	\begin{equation} \label{E: Girsanov def Q}
-	\mathbb{Q}(A) := \int_A Z(\omega) d\mathbb{P}(\omega), \; \text{for all} \; A \in \mathcal{F},
-	\end{equation}
-	is a probability measure under which the process 
-	$\tilde{W}(t)$, $0 \leq t \leq T$, 
-	is a standard Brownian motion.
-\end{theorem}
-\fxerror{Check definition of Z=Z(T) in other references!}
-\fxfatal{Brownian Motion -> Brownian motion in whole document!}
-\fxerror{Q are already the rational numbers.}
-\fxfatal{E(Z) = 1 is not a result, but a condition!}
-
-We can apply this Theorem to the Brownian motion with drift $W^t$ as follows:
-$\Wt(s) = W(s) + ts - \frac{1}{2} s^2 = W(s) + \int_0^s (t-u)du $.
-Since $\Theta(u) = t-u$ obviously satisfies \eqref{E: Girsanov cond Theta} for $T < \infty$,
-$\Wt$ is a standard Brownian motion under the probability measure $\mathbb{Q}$, 
-as defined in \eqref{E: Girsanov def Q}. 
-From it's definition in \eqref{E: Girsanov def Z}, $Z(T) > 0$ with probability $1$.
-Thus, for all sets $A \in \mathcal{F}$,
-\begin{equation} \label{E: P0 = Q0}
-\mathbb{P}(A) = 0 \iff \mathbb{Q}(A) = 0.
-\end{equation}
-This means, that events that happen with probability $0$ under the measure $\mathbb{Q}$ also happen with probability $0$ under $\mathbb{P}$.
-\fxerror{That's literally what it means. Some more interpretation might be nice.}
-We will use this result to proof certain properties of the Brownian motion with drift,
-by showing that these properties hold for the standard Brownian motion with probability $1$ and changing the measure.
-\fxerror{Explain: "Changing the measure." Or fix this sentence after proof is complete.}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lemma 8: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof}[Proof of Lemma~\ref{L: Lemma 8}]
-	By the definition of $\Bt$, 
-	$\Xi$ is the $\Xi$ in Lemma~\ref{L: Deterministic Lemma} with $f = \Wt$.
-	Taking $f_n$ to be $\bar{Z}_n$ and defining $\tn{i} = \n{-2}{3} \gamma(n,i)$,
-	$\Xin$ is the $\Xin$ in Lemma~\ref{L: Deterministic Lemma}.
-	
-	By Theorem~\ref{T: Z -> W} we know $\bar{Z}_n \rightarrow_d \Wt$.
-	\fxnote{Add this Theorem}
-	By the Skorohod representation theorem,
-	see \cite{Billingsley2009}, 
-	\fxnote{Add reference.}
-	\fxnote{Explain Skorohod.}
-	we can construct a probability space 
-	\fxnote{Can we construct one? Or does one just exist?}
-	$(\Omega, F, P)$ 
-	\fxnote{Add real probability space.}
-	on which exist random variables
-	$\bar{Y}_n$ and $V^t$,
-	distributed as 
-	$\bar{Z}_n$ and $\Wt$ respectively,
-	that converge almost surely.
-	Almost sure convergence implies that,
-	with probability $1$,
+	We apply the reasoning used in the proof of Theorem~\ref{T: Joint Convergence} once more,
+	and use the Skorohod representation theorem to construct random variables
+	$\rzntX$ and $\WtX$,
+	which converge almost surely.
+	Almost sure convergence implies
 	\begin{equation}
-	d(\bar{Y}_n, V^t) = \sup_{x \in \Real}|\bar{Y}_n(x) - V^t(x)| \rightarrow 0,
+	\sup_{s \in \Real}|\rzntX(s) - \WtX(s)| \rightarrow 0
 	\end{equation}
-	as $n \rightarrow \infty$.
-	So $\bar{Y}_n(\omega)$ converges to $V^t(\omega)$ uniformly,
-	especially on bounded intervals.
-	\fxnote{Not "especially" on bounded intervals.}
-	We still need to show that conditions \eqref{E: f cond 1} to \eqref{E: f cond complement zero} hold for $\Wt$
-	and conditions \eqref{E: fn cond 3} to \eqref{E: fn cond 5} hold for the breadth-first walk.
+	almost surely,
+	so $\rzntX(\omega) \rightarrow \WtX(\omega)$ uniformly.
+	Analogously we define
+	\begin{equation}
+		\BtX(s) := \WtX(s) - \min_{u \leq s}\WtX(s).
+	\end{equation}
 	
+	By the definition of $\BtX$, 
+	$\Xi$ is the $\Xi$ in Lemma~\ref{L: Deterministic Lemma} with $f = \WtX$.
+	As $f_n$ we take $\bar{Z}_n$ and define $\tn{i} = \n{-2}{3} \gamma(n,i)$, that is, 
+	the elements of $\fnPoints$ to be the end-points of components,
+	downscaled to match $\rzntX$.
+	This way $\Xin$ in \eqref{E: Lemma 8 def Xin} coincides with $\Xin$ in Lemma~\ref{L: Deterministic Lemma}.
+	
+	We still need to show that conditions \eqref{E: f cond 1} to \eqref{E: f cond complement zero} hold for $\WtX$
+	and conditions \eqref{E: fn cond 3} to \eqref{E: fn cond 5} hold for the breadth-first walk.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% Conditions on BM
@@ -473,9 +442,15 @@ by showing that these properties hold for the standard Brownian motion with prob
 	We first define the set $\mathcal{E}$ for the Brownian motion.
 	Consider the set of positive rational numbers.
 	For every $q \in \Rat^+$, 
-	set $l(q) := \sup( \underset{s \leq q}{\argmin} \Wt(s) ) $ 
-	and $r(q) := \inf( {s \in \Real \; | \; \Wt(s) = l(q)} ) $.
-	\fxerror{In this definition, if q is a minimum, l(q) = r(q) = q}
+	define 
+	\begin{equation}
+		l(q) := \sup\{ \argmin_{s < q} \WtX(s) \}
+	\end{equation}
+	and
+	\begin{equation}
+		r(q) := \inf\{ {s \in \Real \; | \; \WtX(s) = l(q)} \}.
+	\end{equation}
+	
 	Now every rational number belongs to one excursion $(l(q), r(q))$,
 	while one excursion contains multiple rational numbers.
 	We define the set of excursions
@@ -483,46 +458,59 @@ by showing that these properties hold for the standard Brownian motion with prob
 	\mathcal{E} := \bigcup_{q \in \Rat^+} \{ (l(q), r(q)) \}
 	\end{equation}
 	and note that it is countable.
-	\fxnote{When do we need countability? For the set definition?}
-	The following properties will be proven on the standard Brownian motion $W$,
-	we later take the step to $\Wt$.
-	\fxnote{"Take the step" - Lame!}
 	
-	We first make sure that every interval $[l_i, r_i]$ is in fact non-trivial and condition \eqref{E: f cond 2} is met,
-	since the definition above permits the case $l(q) = r(q) = q$.
-	\fxerror{OR: Fix the definition. -> Talk to Sapozhnikov?}
-	\fxerror{Here goes the proof of that. Some stuff about rational numbers.}
+	The following properties will be proven on a standard Brownian motion $W$,
+	we later use Girsanovs theorem to apply them to $\WtX$.
 	
-	The complement of all excursion is the set of intervals,
+	By, for example, \cite[Theorem 1.22]{Peres2008},
+	$W$ is not monotonous on any interval $[a,b]$ with $0 < a < b < \infty$ almost surely.
+	
+	Consider two excursions $(l_1, r_2), (l_2, r_2)$ with $l_1 < l_2$.
+	If $W(l_2) = \min_{s \leq l_2} W(s) \geq f(l_1)$ then $W(s) \geq W(l_1)$ for all $l_1 < s < l_2$.
+	Therefore the must exist $\epsilon>0$ such that $W$ is monotonously increasing on $[l_1, l_1 + \epsilon]$.
+	For each $(l,r) \in \mathcal{E}$ this is not possible almost surely
+	and since $\mathcal{E}$ is countable,
+	condition \eqref{E: f cond f(l1) > f(l2)} holds with probability $1$.
+	
+	The complement of all excursion is the set of intervals
 	on which the Brownian motion is monotonously decreasing.
-	But, see \cite[Theorem 1.22]{Peres2008}, with probability $1$,
-	$W$ is not monotonous on any interval $[a,b]$ with $0 < a < b < \infty$.
-	\fxerror{Is that enough to prove that there is no monotonous interval?}
+	By the same reasoning, almost surely there is no interval in between any two excursions on which $W$ is monotonously decreasing,
+	therefore condition{E: f cond complement zero} holds almost surely.
 	
-	These properties hold with probability $1$ for the standard Brownian motion.
-	So they hold with probability $1$ for $\Wt$ under $\mathbb{Q}$
-	and, by \eqref{E: P0 = Q0}, 
-	almost surely for $\Wt$ under the original measure $\mathbb{P}$.
-	\fxnote{"probability 1" - looks weird!}
-	
+	A standard Brownian motion $W$ satisfies the conditions of Lemma~ref{L: Deterministic Lemma} almost surely,
+	therefore $\WtX$ does so almost surely under $\tilde{\mathbb{P}}$
+	and by Girsanovs theorem likewise under $\Prob$.  
+
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% Conditions on Zn
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	We now show that conditions 
 	\eqref{E: fn cond 3} to \eqref{E: fn cond 5}
-	hold for the random walk $Z_n$ and $\Xin$
-	as defined in \eqref{E: Lemma 8 def Xin}.
+	hold for the random walk $Z_n$ and $t_{n,i} = \n{-2}{3} \gamma_n(i)$.
 	
-	\fxfatal{Add this after the alternative definition random walk.
-	For the real references.}
-
-
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% Finishing the proof
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	We can now apply Lemma~\ref{L: Lemma 8} and obtain the vague convergence
-	$ \Xin \rightarrow_d \Xi $.
+	The breadth-first walk $\znt$ is a discrete process, therefore for all $n \in \Nat$ and $i \geq 2$:
+	\begin{equation}
+		\tn{i} - \tn{i-1} = \n{-2}{3}\gamma_n(i) - \n{-2}{3}\gamma_n(i-1) \geq \n{-2}{3} > 0.
+	\end{equation}
+	\fxnote{fix scaling?}
+	By definition of $\gamma_n(i)$,
+	$\lim_{i \rightarrow \infty} \gamma_n(i) = \infty$ for all $n$
+	which establishes condition \eqref{E: fn cond 3}.
+	
+	The breadth-first walk attains a new minimum at the end of every component,
+	which ensures \eqref{E: fn cond 4}.
+	The difference between the levels of $\znt$ at the end of two consecutive components is always $1$,
+	so 
+	\begin{equation}
+		\max_{i: \tn{i} \leq s_0}(\rzntX(\tn{i}) - \rzntX(\tn{i+1})) = \n{-1}{3} \xrightarrow{n \rightarrow \infty} 0
+	\end{equation}
+	for all $s_0 > 0$.
+	
+	The processes and sets defined meet all conditions for Lemma~\ref{L: Deterministic Lemma}
+	and we can establish the vague convergence $ \Xin \rightarrow_v \Xi $
+	
+	
 \end{proof}
 
 
