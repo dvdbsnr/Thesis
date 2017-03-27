@@ -15,12 +15,127 @@
 A brief introduction.
 \lipsum[100]
 
-\section{Definitions}
+\section{The Erdös-Renyi random graph}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: The Erdös-Renyi random graph
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{General results on component sizes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: General results on component sizes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section we discuss previous results on component sizes in the Erdös-Renyi random graph.
+We begin with the subcritical graph, that is
+$\Gcal \in \mathscr{G}(n, \p)$ with $\p < \frac{1}{n}$.
+
+Define $\lambda = \p n$ and $I_{\lambda}$ as the large deviation rate functions for Poisson random variables with mean $\lambda$,
+that is
+\begin{equation}
+	I_{\lambda} = \lambda - 1 - \log(\lambda).
+\end{equation}
+
+The following theorem provides an upper bound on the size of $\Ccal_{\max}$, the largest component of $\Gcal$.
+See \cite[Theorem 4.4, p.125]{vanderHofstad.2016}.
+\begin{theorem}[Lower bound on largest subcritical component]
+	Fix $\lambda < 1$. 
+	Then, for all $a > 1/I_{\lambda}$, 
+	there exists $\delta = \delta(a, \lambda)$ such that
+	\begin{equation}
+		\Prob( |\Ccal_{\max}| \geq a \log n ) = \BigO{n^{-\delta}}.
+	\end{equation}
+\end{theorem}
+
+The next theorem gives an upper bound for the size of $\Ccal_{\max}$.
+See \cite[Theorem 4.5, p.125]{vanderHofstad.2016}.
+\begin{theorem}[Upper bound on largest subcritical component]
+	Fix $\lambda < 1$. 
+	Then, for all $a < 1/I_{\lambda}$, 
+	there exists $\delta = \delta(a, \lambda)$ such that
+	\begin{equation}
+	\Prob( |\Ccal_{\max}| \leq a \log n ) = \BigO{n^{-\delta}}.
+	\end{equation}
+\end{theorem}
+
+Together, these theorems imply
+\begin{equation}
+	\frac{|\Ccal_{\max}|}{\log n} \rightarrow_p 1/I_{\lambda}.
+\end{equation}
+
+We have established that, for $\p n < 1$, the expected largest component size will be of order $\log n$.
+
+Consider the opposite case, $\lambda = \p n > 1$. 
+Denote by $\xi_\lambda = 1 - \eta_n\lambda$ the survival probability of a Poisson branching process with mean offspring $\lambda$.
+Note that $\xi_\lambda > 0$ since $\lambda > 1$.
+Any vertex is part of a large component with probability $\xi_\lambda$, 
+therefore we will expect around $n \xi_\lambda$ vertices being part of large connected components.
+The following theorem now states that all of these vertices are, in fact, part of the same connected component, which we call the giant component.
+\fxnote{Add explanation for Poisson branching process}
+See \cite[Theorem 4.8, p.131]{vanderHofstad.2016}.
+\begin{theorem}[Law of large numbers for giant component]
+	Fix $\lambda>1$.
+	Then, for all $\nu \in (\frac{1}{2}, 1)$, there exists $\delta = \delta(\nu, \lambda)$ such that
+	\begin{equation}
+		\Prob\left( \left| |\Ccal_{\max}| - n \xi_\lambda \right| \geq n^{\nu}\right) = \BigO{n^{-\delta}}.
+	\end{equation}
+\end{theorem}
+
+\fxnote{What size is this giant component?}
+
+To recap: For $n \p < 1$ we expect many small clusters of size at most $\log n$,
+for $n \p > 1$ we expect one giant component, rapidly approaching size $n$.
+But what happens around $n \p \approx 1$?
+As it turns out, the emergence of the giant component occurs quite rapidly,
+such that shortly after $n \p = 1$ most graphs do not have any component of order between $\frac{1}{2}\n{2}{3}$ and $\n{2}{3}$.
+We switch to the language of $\mathscr{G}(n,m)$ for the following theorem.
+\begin{theorem}
+test
+\end{theorem}
+
+For an estimate on when exactly this giant component emerges, we quote \cite[Theorem 6.8, p.142]{Bollobas.2001} for
+\begin{theorem}
+	Almost every graph process $\Gcal = (\Gcal_t)_0^n$ is such that 
+	for every $t \geq t_1 = \floor{ n/2 + 2(\log n)^{1/2}\n{2}{3} }$ 
+	the graph $\Gcal_t$ has a unique component of order at least $\n{2}{3}$ and the other components have at most $\frac{1}{2}\n{2}{3}$
+\end{theorem}
+
+
+
+
+
+As it turns out, there is a so-called critical window in which the component sizes are not of size $\log n$ and there is no giant component yet.
+We call a random graph $\Gcal \in \mathscr(n, n^{-1} + t\n{-4}{3})$ critical, for $t \in \Real$.
+
+The following theorem proves that the rescaled sequence of sizes of the biggest component in $\Gcal$ is tight.
+That is, with high probability it is contained in some compact subset of $\Real$.
+See \cite[Theorem 5.1, p.150]{vanderHofstad.2016}
+\begin{theorem}[Largest critical cluster]
+	Let $\lambda = 1 + t\n{-1}{3}$, with $t \in \Real$.
+	There exists a constant $b = b(t)$ such that for all $\omega > 1$,
+	\begin{equation}
+		\Prob\left( \omega^{-1} \n{2}{3} \leq |\Ccal_{\max}| \leq \omega \n{2}{3}\right) \geq 1 - \frac{b}{\omega}.
+	\end{equation}	
+\end{theorem}
+
+If we rescaled the size of the biggest component by $\n{-2}{3}$,
+it is with high probability contained in the compact interval $[\omega^{-1}, \omega]$.
+
+\fxnote{This should come last}
+
+
+
+
+
+
+
+
+
 
 \section{Main statements of this thesis}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: Main statements of this thesis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Hello this is the main statement.
 \begin{figure}%
 	\centering
 	\subfloat[$W(s)$]{\input{figures/fig_bm.tex}}%
