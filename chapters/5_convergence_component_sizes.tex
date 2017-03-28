@@ -410,27 +410,52 @@ Recall that we extended the definition of $\rznt$ in chapter~\ref{C: bf-walk} to
 % Lemma 8: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof}
+	First, let us give some remarks on the structure of the objects in use here and their convergence.
+	Lemma~\ref{L: Deterministic Lemma} states that, under certain conditions, two deterministic point processes converge in the vague topology.
+	This Lemma now introduces $\Xin$ and $\Xi$, which are random variables mapping into the space of point processes, again equipped with the vague topology.
+	
+	Both $\Xin$ and $\Xi$ are random in the sense that they depend on their underlying processes, $\rznt$ and $\Wt$ respectively,
+	so to clarify we define the sets
+	\begin{equation} \label{E: Lemma 8 def XiWt}
+	\begin{aligned}
+	\Xi_{\Wt} &:= \{ (l(\gamma), |\gamma|) \; | \; \gamma \; \text{excursion of} \; \Bt \}, \\
+	\Xin_{\rznt} &:= \{ ( \n{-2}{3} \gamma_n(i), \n{-2}{3} \Ci{n,i} ) \; | \; i \geq 1 \},
+	\end{aligned}
+	\end{equation}
+	which are dependent on the specific realisation of the random processes $\Wt$ and $\rznt$.
+	
+	Now \eqref{E: Lemma 8 def Xi} and \eqref{E: Lemma 8 def Xin} can be redefined as the random variables
+	\begin{equation} \label{E: Lemma 8 def Xi Xin}
+	\begin{aligned}
+	\Xi : \; &\omega \mapsto \Xi_{\Wt(\omega)}, \\
+	\Xin : \; &\omega \mapsto \Xin_{\rznt(\omega)}.
+	\end{aligned}
+	\end{equation}
+	
 	We apply the reasoning used in the proof of Theorem~\ref{T: Joint Convergence} once more,
 	and use the Skorohod representation theorem to construct random variables
-	$\rzntX$ and $\WtX$,
+	$\rzntX$ and $\WtX$ on a probability space $(\Omega', \mathcal{F}', \mathbb{P}')$,
 	which converge almost surely.
 	Almost sure convergence implies
 	\begin{equation}
-	\sup_{s \in \Real}|\rzntX(s) - \WtX(s)| \rightarrow 0
+	\sup_{s \leq s_0}|\rzntX(s) - \WtX(s)| \rightarrow 0
 	\end{equation}
 	almost surely,
-	so $\rzntX(\omega) \rightarrow \WtX(\omega)$ uniformly.
+	so $\rzntX(\omega') \rightarrow \WtX(\omega')$ uniformly for almost all $\omega' \in \Omega'$. 
 	Analogously we define
 	\begin{equation}
 		\BtX(s) := \WtX(s) - \min_{u \leq s}\WtX(s).
 	\end{equation}
 	
+	On the same probability space, we now define $\XinX$ and $\XiX$ as in \eqref{E: Lemma 8 def XiWt} and \eqref{E: Lemma 8 def Xi Xin}.
+	Since $\rznt \sim \rzntX$ and $\Wt \sim \WtX$ we have $\Xin \sim \XinX$ and $\Xi \sim \XiX$.
+	
 	By the definition of $\BtX$, 
-	$\Xi$ is the $\Xi$ in Lemma~\ref{L: Deterministic Lemma} with $f = \WtX$.
-	As $f_n$ we take $\bar{Z}_n$ and define $\tn{i} = \n{-2}{3} \gamma(n,i)$, that is, 
+	$\XiX$ is the $\Xi$ in Lemma~\ref{L: Deterministic Lemma} with $f = \WtX$.
+	As $f_n$ we take $\rznt$ and define $\tn{i} = \n{-2}{3} \gamma(n,i)$, that is, 
 	the elements of $\fnPoints$ to be the end-points of components,
-	downscaled to match $\rzntX$.
-	This way $\Xin$ in \eqref{E: Lemma 8 def Xin} coincides with $\Xin$ in Lemma~\ref{L: Deterministic Lemma}.
+	rescaled to match $\rzntX$.
+	This way $\XinX$ coincides with $\Xin$ in Lemma~\ref{L: Deterministic Lemma}.
 	
 	We still need to show that conditions \eqref{E: f cond 1} to \eqref{E: f cond complement zero} hold for $\WtX$
 	and conditions \eqref{E: fn cond 3} to \eqref{E: fn cond 5} hold for the breadth-first walk.
@@ -507,10 +532,30 @@ Recall that we extended the definition of $\rznt$ in chapter~\ref{C: bf-walk} to
 	\end{equation}
 	for all $s_0 > 0$.
 	
-	The processes and sets defined meet all conditions for Lemma~\ref{L: Deterministic Lemma}
-	and we can establish the vague convergence $ \Xin \rightarrow_v \Xi $
 	
-	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Completing the proof
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	For a given realisation of $\rzntX(\omega')$ and $\WtX(\omega')$ 
+	the processes and sets defined meet all conditions of Lemma~\ref{L: Deterministic Lemma}
+	and we can establish the convergence
+	\begin{equation}	
+		\XinX_{\rzntX(\omega')} \rightarrow_v \XiX_{\WtX(\omega')}.
+	\end{equation}.
+	This convergence holds almost surely, so
+	\begin{equation}
+		\XinX \rightarrow_{a.s.} \XiX
+	\end{equation}
+	with regard to the vague topology.
+	Since almost sure convergence implies convergence in distribution we have
+	\begin{equation}
+		\XinX \rightarrow_d \XiX
+	\end{equation}
+	and therefore
+	\begin{equation}
+		\Xin \rightarrow_d \Xi
+	\end{equation}
+	with regard to the vague topology, which completes the proof.	
 \end{proof}
 
 
