@@ -541,7 +541,7 @@ Recall that we extended the definition of $\rznt$ in chapter~\ref{C: bf-walk} to
 	and we can establish the convergence
 	\begin{equation}	
 		\XinX_{\rzntX(\omega')} \rightarrow_v \XiX_{\WtX(\omega')}.
-	\end{equation}.
+	\end{equation}
 	This convergence holds almost surely, so
 	\begin{equation}
 		\XinX \rightarrow_{a.s.} \XiX
@@ -588,44 +588,45 @@ since it encountered $\floor{y\n{1}{3}}$ individual components.
 By Theorem~\ref{T: Z -> W}, $\n{-2}{3}T_n(y) \rightarrow_d T(y)$
 and since $T(y) \rightarrow \infty$ as $y\rightarrow\infty$,
 $T_n(y) \approx \n{2}{3}T(y) \rightarrow\infty$ as $y\rightarrow \infty$.
-This is important for some reason.
-\fxnote{Find out why Tn(y) is important.}
-
+This implies that we will not expect the walk to eventually discover only one giant component,
+but many smaller ones that eventually end.
 
 \section{Late excursions of $Z_n$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Late excursions of Z_n
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+We now try to provide an exact depiction of the considerations at the end of the last section.
+The following Lemma proves that with high probability, all relevant excursions do in fact take place in a compact subset of $\IntTimesInt$.
+
 \begin{lemma}
 	Let 
 	$\Prob(\ExcursionEvent)$ 
-	\fxnote{Is A the right letter for this?}
 	be the probability that the breadth-first walk encounters an excursion $\gamma$ of length 
 	$|\gamma| > \delta\n{2}{3}$, starting after step $C\n{2}{3}$.
-	\fxnote{Excursions are not really encountered. Maybe traversed?}
 	Then for all $\epsilon>0$ exists $C>0$ such that $\Prob(\ExcursionEvent) < \epsilon$. 
 \end{lemma}
 
 \begin{proof}
 	By the law of total expectation,
-	\begin{align*}
+	\begin{equation} \label{E: P(ExcEvent) 1}
+	\begin{aligned}
 	\Prob(\ExcursionEvent) 
-	&\leq \Exp{ \text{Number of excursions $\gamma$, with $|\gamma| \geq C\n{2}{3}$ and $l(\gamma) \geq \delta\n{2}{3}$ } } \\
+	&\leq \Exp{ \text{Number of excursions $\gamma$ with $|\gamma| \geq C\n{2}{3}$ and $l(\gamma) \geq \delta\n{2}{3}$ } } \\
 	&= \Exp{ \sum_{\gamma: \; l(\gamma) \geq \delta\n{2}{3}} \Ind{\{|\gamma| \geq C\n{2}{3} \} } } \\
-	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\gamma: \; l(\gamma) \geq \delta\n{2}{3}}  |\gamma|^2 \Ind{\{|\gamma| \geq C\n{2}{3} \} }}.
-	\end{align*}
-	\fxnote{Fix the formatting and add equation number}
+	&\leq \Exp{ \sum_{\gamma: \; l(\gamma) \geq \delta\n{2}{3}} \frac{|\gamma|^2}{\delta^2\n{4}{3}} \Ind{\{|\gamma| \geq C\n{2}{3} \} }} \\
+	&= \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\gamma: \; l(\gamma) \geq \delta\n{2}{3}}  |\gamma|^2 \Ind{\{|\gamma| \geq C\n{2}{3} \} }}.
+	\end{aligned}
+	\end{equation}
 	
 	Let $T$ be the time the last excursion starting before $C\n{2}{3}$ ends.
 	\fxnote{Maybe diagram goes here.}
 	The behaviour of the breadth-first walk after $T$ will be the same as the behaviour of a new walk on $\Gcal(n-T,p)$.
 	\fxnote{Some more explanation on this, please!}
-	Note that the notions of excursions of the breadth-first walk and components in the underlying graph are interchangeable.
-	\fxnote{Note that the notions...}
 	We write $\Ccal \in \Gcal$ to denote a component $\Ccal$ contained in the random graph $\Gcal$,
 	and $|\Ccal|$ for its size.
-	Then
+	Since the notions of excursions of the breadth-first walk and components in the underlying graph are interchangeable,
+	we can rewrite \eqref{E: P(ExcEvent) 1} as
 	\begin{equation} \label{E: P(ExcEvent) 2}
 	\begin{aligned}
 	\Prob(\ExcursionEvent) 
@@ -634,38 +635,37 @@ This is important for some reason.
 	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, p)}  |\Ccal|^2 }.
 	\end{aligned}
 	\end{equation}
-	For ease of notation,
-	let us now consider the graph $\Gcal(k,p)$.
+	
+	For ease of notation we consider the graph $\Gcal(k,p)$ and calculate
 	\begin{equation} \label{E: P(ExcEvent) 3}
 	\begin{aligned}
 	\Exp{\sum_{\Ccal \in \Gcal(k, p)} |\Ccal|^2 } 
 	&= \Exp{ \sum_{\Ccal \in \Gcal(k, p)} |\Ccal| \sum_{v \in \Ccal} 1} \\
 	&= \Exp{ \sum_{\Ccal \in \Gcal(k, p)} |\Ccal| \sum_{v \in \Gcal(k,p)} \Ind{\{v \in \Ccal\}} } \\
-	&= \sum_{v \in \Gcal(k,p)} \Exp{ \underbrace{\sum_{\Ccal \in \Gcal(k, p)} \Ind{v \in \Ccal}}_{|\Ccal|} } \\ 
+	&= \sum_{v \in \Gcal(k,p)} \Exp{ \sum_{\Ccal \in \Gcal(k, p)} |\Ccal| \Ind{\{v \in \Ccal\}} } \\ 
 	&= \sum_{v \in \Gcal(k,p)} \Exp{|\Ccal(v)|} \\
 	&= k \Exp{|\Ccal(1)|},
 	\end{aligned}
 	\end{equation}
 	where $\Ccal(v)$ denotes the component containing the vertex $v$ and the last inequality stems from the interchangeability of the vertex labels.
-	\fxnote{Is interchangeability of vertex labels a thing?}
-	We will bound the expectation of the size of this component from above by a suitable branching process.
-	Exploring the component in the language of a branching process $(Y_i, \; i\geq 0)$ works by starting at time $0$ with one vertex,
-	$Y_0 = 1$.
+	We will bound the expectation of the size of this component from above by a suitable branching process $(Y_i, \; i\geq 0)$.
+	Starting at time $0$ with one vertex, we have $Y_0 = 1$.
 	The number of children of this vertex is a $\Binom(k-1,p)$ distributed random variable, $Y_1$.
 	In the next step, each child-vertex will itself have children,
 	each Binomially distributed on the remaining set of vertices with probability $p$.
-	So 
-	\begin{align*}
+	We compute 
+	\begin{equation}
+	\begin{aligned}
 	Y_{2,1} &\sim \Binom(k-1-Y_1,p), \\ 
 	Y_{2,2} &\sim \Binom(k-1-Y_1-Y_{2,1},p), \\
 	&\dots \\
 	Y_{2,Y_1} &\sim \Binom(k-1-Y_1-Y_{2,1}-\dots-Y_{2,Y_1-1},p) \\
 	Y_2 &= \sum_{i=1}^{Y_1} Y_{2,i}.
-	\end{align*}
-	The size of the component will then be the amount of explored vertices,
-	or 
-	To provide an upper bound,
-	we consider the branching process where each number of children is $\Binom(k,p)$ distributed.
+	\end{aligned}
+	\end{equation}
+	The size of the component will then be the total amount of explored vertices,
+	which is the sum of all $Y_j$, $j \geq 0$.
+	To provide an upper bound we consider the branching process where each amount of children is $\Binom(k,p)$ distributed.
 	Define the process as follows,
 	\begin{equation}
 	\begin{aligned}
@@ -673,27 +673,36 @@ This is important for some reason.
 	Z_j &:= \sum_{i=1}^{Z_{j-1}} Z_{j,i},
 	\end{aligned}
 	\end{equation}
-	 where $Z_{j,i} \sim\Binom(k,p)$ for all $i,j \geq 1$.
-	 Then the process $(Y_i, \; i\geq 0)$ is stochastically dominated by 
-	 $(Z_i, \; i\geq 0)$ and
-	 \begin{equation}
-	 |\Ccal(1)| \leq_{\text{st.}} Z_0 + Z_1 + Z_2 + \dots.
-	 \end{equation}
-	 For $m\geq0$,
-	 \begin{align*}
-	 \Exp{Z_m} 
-	 &= \Exp{Z_{m-1}}kp \\
-	 &\dots \\
-	 &= \Exp{Z_0}(kp)^m \\
-	 &= (kp)^m,
-	 \end{align*}
-	so
-	\begin{align*}
+	where $Z_{j,i} \sim\Binom(k,p)$ for all $i,j \geq 1$.
+	Then the process $(Y_i, \; i\geq 0)$ is stochastically dominated by 
+	$(Z_i, \; i\geq 0)$ and
+	\begin{equation}
+	|\Ccal(1)| \leq_{\text{st.}} Z_0 + Z_1 + Z_2 + \dots
+	\end{equation}
+	which gives
+	\begin{equation} \label{E: Exp C(1) <= sum Z}
+		\Exp{|\Ccal(1)|} \leq \sum_{j=0}^{\infty}\Exp{Z_j}.
+	\end{equation}	
+	For $j\geq0$ we calculate the expectation of $Z_j$ by
+	\begin{equation}
+	\begin{aligned}
+	\Exp{Z_j} 
+	&= \Exp{Z_{j-1}}kp \\
+	&\dots \\
+	&= \Exp{Z_0}(kp)^j \\
+	&= (kp)^j.
+	\end{aligned}		
+	\end{equation}
+	Substituting in \eqref{E: Exp C(1) <= sum Z} gives
+	\begin{equation} \label{E: Exp C(1) <= frac kp}
+	\begin{aligned}
 	\Exp{|\Ccal(1)|} 
-	&\leq 1 + kp + (kp)^2 + \dots \\
+	&\leq \sum_{j=0}^{\infty} (kp)^j \\
 	&= \frac{1}{1-kp}.
-	\end{align*}
-	Substituting in \eqref{E: P(ExcEvent) 3} yields
+	\end{aligned}		
+	\end{equation}
+	We continue the calculation in \eqref{E: P(ExcEvent) 2} using \eqref{E: P(ExcEvent) 3} and \eqref{E: Exp C(1) <= frac kp},
+	which yields
 	\begin{equation}
 	\begin{aligned}
 	\Prob(\ExcursionEvent) 
@@ -701,15 +710,16 @@ This is important for some reason.
 	&= \frac{n-C\n{2}{3}}{\delta^2 \n{4}{3}} \frac{1}{1-(n-C\n{2}{3})(n^{-1} + t\n{-4}{3})} \\
 	&= \frac{n-C\n{2}{3}}{\delta^2 \n{4}{3}} \frac{\n{1}{3}}{C-t+Ct\n{-1}{3}} \\
 	&\leq \frac{n}{\delta^2 \n{4}{3}} \frac{\n{1}{3}}{C-t+Ct\n{-1}{3}} \\
-	&= \frac{1}{\delta^2} \frac{1}{C-t+Ct\n{-1}{3}}.
+	&= \delta^{-2} \frac{1}{C-t+Ct\n{-1}{3}}.
 	\end{aligned}
 	\end{equation}
-	For $n \rightarrow \infty$, 
-	this expression converges asymptotically to $\frac{1}{\delta^2} \frac{1}{C-t}$,
-	where $t$ and $\delta$ are fixed.
-	Thus, for all $\epsilon>0$ we can choose $C>0$ such that
-	$\Prob(\ExcursionEvent) \leq \frac{1}{\delta^2} \frac{1}{C-t+Ct\n{-1}{3}} < \epsilon$,
-	which completes the proof.
+	For fixed $C$, $\delta$ and $t$
+	this expression converges asymptotically to $\delta^{-2} \frac{1}{C-t}$ as $n \rightarrow \infty$.
+	Therefore for all $\epsilon>0$ we can choose $C>0$ such that
+	\begin{equation}
+		\Prob(\ExcursionEvent) \leq \delta^{-2} \frac{1}{C-t+Ct\n{-1}{3}} < \epsilon.
+	\end{equation}
+	This completes the proof.
 \end{proof}
 
 We have shown that with high probability there is no mass of large excursions wandering off to infinity.
