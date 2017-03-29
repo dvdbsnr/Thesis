@@ -39,10 +39,16 @@ Since we are working in the vague topology of counting processes,
 this would entail the component not necessarily converging in distribution to some excursion of $\Bt$.
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Deterministic Lemma 7: Statement and Note
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We start with a deterministic Lemma.
+Given a continuous function $f$ with properties similar to a Brownian motion
+and a sequence of functions $f_n$ converging uniformly to $f$,
+we can define a set of excursions on each $f_n$ such that
+the point processes of starts and lengths of excursions converge vaguely to the point processes of starts and lengths of excursions on $f$.
+
 \begin{lemma} \label{L: Deterministic Lemma}
 	Let $f:[0, \infty) \rightarrow \Real$ be a continuous function. 
 	Let $\mathcal{E}$ be the set of non-empty intervals 
@@ -273,7 +279,6 @@ Since $l_n(x) = \min_{u \leq \lnx} f_n(u)$
 and $\rnx$ is the first time this previous minimum is reached,
 $\rnx = \min_{u \leq \lnx} f_n(u)$.
 
-\fxerror{Here: What is a condition on fn? What must be shown?}
 
 We have shown that the only points satisfying condition \eqref{E: fn cond 4} must lay near the beginning and end of excursions of $f$.
 This is not sufficient as proof of the Lemma, since the sequence $\fnPoints$ might not contain any points between two large excursions,
@@ -405,6 +410,7 @@ for $\Wt$ under $\tilde{\mathbb{P}}$ and hence under the original measure $\math
 % Lemma 8: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The following Lemma will now link excursions of $Z_n$ and $\Wt$ in the language of Lemma~\ref{L: Deterministic Lemma}.
+We define a random point process containing the starts and lengths of excursions of $\Bt$ together with a sequence of random point processes describing the starts and sizes of components discovered by $\rznt$.
 Let $\Ci{n,i}$ be the size of the $i$-th component and
 define $\gamma_n(i) \in \{1, \dots, n\}$ as the index for which
 $v(\gamma_n(i))$ is the last vertex of the $i-1$-th component encountered by the breadth-first walk $Z_n$.
