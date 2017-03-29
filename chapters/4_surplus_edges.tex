@@ -6,13 +6,12 @@
 %   The proof of (Z_n, N_n) => (W,N)
 %   Why the overestimated probability is OK
 
-\chapter{Surplus edges}
+\chapter{Surplus edges} \label{C: surplus edges}
 \fxnote{Update title.}
 
 The goal of this chapter will be to first examine under which circumstances surplus edges can arise during the breadth-first walk,
 then finding an expression for the probability of encountering one 
 and finally proving the joint convergence of $\rznt$ and the surplus edge counting process to $\Wt$ and some limit process dependent on the realisation of $\Wt$.
-
 
 
 \section{Counting surplus edges}
@@ -603,18 +602,10 @@ Assume the chance that any vertex encounters two or more surplus edges is non-ze
 If a vertex connects by multiple excess edges, the process $\nnt$ makes two or more jumps during the time-interval of length $1$.
 The rescaling \eqref{E: rescale Nnt} compresses the time axis until, in the limit process $\Nt$, 
 any distance in an interval of original length $1$ will be reduced to a single point.
-Therefore there would be a non-zero chance that the counting process has multiple coincident points.
-By general theory on counting processes, this is not possible.
-\fxnote{Find quote for theory on counting processes.}
-So the probability of a vertex having multiple surplus edges must tend to zero.
-
-
-\newpage
-
-
-
-
-
+Consequently there would be a non-zero chance that the counting process has multiple coincident points.
+But by definition $\Nt$ is a Poisson counting process with continuous intensity $\Bt$,
+therefore it is simple with probability $1$, see \cite[Remark 2.1, p.34]{Haenggi.2013}.
+We conclude that the probability of a vertex having multiple surplus edges must tend to zero.
 
 
 

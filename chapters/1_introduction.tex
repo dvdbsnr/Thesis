@@ -109,7 +109,7 @@ We call a random graph $\Gcal(n, n^{-1} + t\n{-4}{3})$ critical for $t \in \Real
 The following theorem proves that the rescaled sequence of sizes of the biggest component in $\Gcal$ is tight.
 That is, with high probability it is contained in some compact subset of $\Real$.
 See \cite[Theorem 5.1, p.150]{vanderHofstad.2016}
-\begin{theorem}[Largest critical cluster]
+\begin{theorem}[Largest critical cluster] \label{T: largest critical cluster}
 	Let $\lambda = 1 + t\n{-1}{3}$, with $t \in \Real$.
 	There exists a constant $b = b(t)$ such that for all $\omega > 1$,
 	\begin{equation}
@@ -135,7 +135,25 @@ it is with high probability contained in the compact interval $[\omega^{-1}, \om
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Main statements of this thesis
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Hello this is the main statement.
+
+In this section we state the main results of this thesis,
+which is a refinement of Theorem~\ref{T: largest critical cluster}.
+While previously the size of largest component was only estimated to be of order $\n{2}{3}$,
+the following Theorem will give a limit distribution for all component sizes, downscaled by $\n{-2}{3}$.
+
+Denote by $W$ the standard Brownian motion. 
+For a fixed parameter $t \in \Real$ we call the process $\Wt$, defined by
+\begin{equation}
+	\Wt(s) := W(s) + \int_{0}^{s}(t-s)ds = W(s) + ts - \frac{1}{2}s^2,
+\end{equation}
+the Brownian motion with drift $t-s$ at time $s$.
+The central object of our analysis will be the process $\Wt$ and its excursions above past minima.
+We reflect $\Wt$ at $0$, defining the process $\Bt$ by
+\begin{equation}
+	\Bt(s) := \Wt(s) - \min_{u \leq s}\Wt(u)
+\end{equation}
+and calling it the reflected Brownian motion with drift.
+
 \begin{figure}%
 	\centering
 	\subfloat[$W(s)$]{\input{figures/fig_bm.tex}}%
@@ -151,7 +169,27 @@ Hello this is the main statement.
 	\label{F: BM}%
 \end{figure}
 
-We will now state the main theorem of this thesis, which we will prove gradually in the following chapters.
+See Figure~\ref{F: BM} for an example of a Brownian motion with drift for positive and negative $t$ and the corresponding reflected process.
+Note that for positive $t$ the time intervals between zeroes of $\Bt$, especially the first, are much longer than for negative $t$.
+We call an excursion $\gamma$ of $\Bt$ a time interval $[l(\gamma), r(\gamma)]$ for which $\Bt(l(\gamma)) = \Bt(r(\gamma)) = 0$
+and $\Bt(s) > 0$ for all $l(\gamma) < s < r(\gamma)$.
+Denote by $|\gamma| = r(\gamma) - l(\gamma)$ the length of an excursion.
+
+Additionally we define a Poisson counting process $\Nt$, 
+which equips each excursion with a number of marks,
+emerging with intensity $\Bt(s)$ at time $s$.
+Informally speaking, the chance of encountering a mark in a time interval $\sds$ is characterized by
+\begin{equation}
+	\Prob( \text{Some mark emerges in} \; \sds \cond \Bt(u), u \leq s ) = \Bt(s)ds.
+\end{equation}
+More formally we define $\Nt$ to be the counting process for which
+\begin{equation}
+	\Nt(s) - \int_{0}^{s} \Bt(s)ds
+\end{equation}
+is a martingale.
+Denote by $\mu(\gamma)$ the number of marks during an excursion $\gamma$.
+
+We now state the main theorem of this thesis, which we will prove gradually in the following chapters.
 \begin{theorem}[Main theorem] \label{T: Main}
 	Let 
 	$\Cnt(1) \geq \Cnt(2) \geq ... $ 
@@ -160,10 +198,10 @@ We will now state the main theorem of this thesis, which we will prove gradually
 	and let
 	$\sigmant(j)$ 
 	be the surplus of the corresponding component.
-	Then, as $n \longrightarrow \infty$,
+	Then, as $n \rightarrow \infty$,
 	\begin{equation}
 	( \n{-2}{3} ( \Cnt(j), \sigmant(j) ), \; j \geq 1 ) 
-	\longrightarrow_p
+	\rightarrow_p
 	( (\Ct(j), \sigmat), \; j \geq 1 )
 	= ( \Ctbold, \sigmatbold ),
 	\end{equation}
@@ -175,5 +213,30 @@ We will now state the main theorem of this thesis, which we will prove gradually
 	$\left( ( \Ct(j), \sigmat(j) ), \; j \geq 1 \right)$
 	is distributed as the sequence
 	$ \left( (|\gamma_j|, \mu(\gamma_j)), j \geq 1  \right) $
-	of lengths and mark-counts of excursions of $\mathcal{B}^t$.
+	of lengths and mark-counts of excursions of $\Bt$.
 \end{theorem}
+\fxnote{Defining a limit is unnecessary, distribution to (gamma, mu) would suffice.}
+
+We conclude this chapter with an overview of the remaining chapters and the structure of the proof of Theorem~\ref{T: Main}.
+
+Chapter~\ref{C: preliminaries} will develop some preliminary theory on the function spaces $C$ and $D$,
+convergence of probability measures and counting processes, which will prove useful in the coming chapters.
+
+In Chapter~\ref{C: bf-walk} we define a way to traverse all vertices of a given graph, called the breadth-first walk $\znt$, 
+that reduces the graph to a one-dimensional random walk in which component sizes are decoded as excursions above past minima.
+We analyse its characteristics when applied to $\Gnt$ and discover that, after a certain rescaling, it converges in distribution to $\Wt$.
+
+Chapter~\ref{C: surplus edges} deals with the second coordinate $\sigmant$ in Theorem~\ref{T: Main}, the surplus edges.
+We describe a Poisson counting process $\nnt$ which tallies up all encountered excess edges and calculate its limit rate as $\Bt$.
+The remainder of this chapter will be spent proving that this convergence of rates suffices to declare the convergence of the joint distribution of
+the rescaled breadth-first walk and this counting process to $\Wt$ and $\Nt$.
+
+It remains to be proven that not only does the rescaled random walk converge in distribution to the Brownian motion with drift,
+but that the convergence of component sizes to lengths of excursions of $\Bt$ in distribution follows as well.
+In Chapter~\ref{C: convergence} we first prove that this does indeed hold if we must not expect any large components to "wander off to infinity" as $n \rightarrow \infty$ and subsequently that, with high probability, this problem does not arise in $\Gnt$.
+This completes the proof of Theorem~\ref{T: Main}.
+
+Lastly, Chapter~\ref{C: outlook} provides an overview over the remaining statements of Aldous paper,
+which contains a non-uniform version of Theorem~\ref{T: Main} and the multiplicative coalescent, 
+a process describing the joining of components to form larger components as the parameter $t$ grows.
+
