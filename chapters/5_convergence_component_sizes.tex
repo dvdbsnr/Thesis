@@ -12,12 +12,31 @@
 %     Proposition 15
 %     Applying Prop 15 to the bf-walk
 
-\chapter{Convergence of component sizes}
+\chapter{Convergence of component sizes} \label{C: convergence}
 \fxnote{Update title.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % What's still missing
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In Chapter~\ref{C: bf-walk} we have shown that the rescaled breadth-first walk $\rznt$ on $\Gnt$
+converges in distribution to the Brownian motion with drift $\Bt$.
+Intuitively it is clear that Theorem~\ref{T: Main} should follow:
+Component sizes are coded into the breadth-first walk as excursions above past minima,
+excursions of $\Bt$ are excursions of $\Wt$ above past minima.
+But rigorously deducing a proof of our main theorem requires a bit more work.
+To make sure that indeed components and excursions do match up,
+we describe them as two-dimensional point processes
+in which the first entry gives the start of an excursion or component, 
+the second the length of an excursion or the size of a component.
+The following first two Lemmata prove that this sequence of Poisson point processes describing components 
+converges to the point process describing excursions with regard to the vague topology.
+
+For the proof of Theorem~\ref{T: Main} to hold, it remains to be shown that this encompasses all relevant components and excursions.
+One problem that might arise is the starting point of a component of size greater than some $\delta \n{2}{3}$, 
+which needs to be considered in the convergence, to diverge to infinity as $n \rightarrow \infty$.
+Since we are working in the vague topology of counting processes, 
+this would entail the component not necessarily converging in distribution to some excursion of $\Bt$.
 
 
 
