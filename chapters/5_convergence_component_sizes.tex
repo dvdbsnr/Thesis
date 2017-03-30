@@ -586,14 +586,10 @@ Recall that we extended the definition of $\rznt$ in chapter~\ref{C: bf-walk} to
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % What's still missing
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We have now shown that our main theorem holds for all excursions
-with starting times and lengths in compact intervals.
-To extend this statement to the general case,
-we must show that we can always find a compact subset,
-such that all relevant excursions happen inside this pair of intervals.
 
-We will show this using to approaches:
-On one hand, we can analyse the behaviour of the breadth-first walk $Z_n$
+It remains to be shown that we need not consider the problem of a large component wandering off to infinity.
+We prove this using to approaches:
+On one hand, we can analyse the behaviour of the breadth-first walk $\znt$
 after a certain stopping time.
 On the other hand, 
 we can consider the behaviour of components of the random graph
@@ -623,7 +619,7 @@ but many smaller ones that eventually end.
 We now try to provide an exact depiction of the considerations at the end of the last section.
 The following Lemma proves that with high probability, all relevant excursions do in fact take place in a compact subset of $\IntTimesInt$.
 
-\begin{lemma}
+\begin{lemma} \label{L: late excursions}
 	Let 
 	$\Prob(\ExcursionEvent)$ 
 	be the probability that the breadth-first walk encounters an excursion $\gamma$ of length 
@@ -760,10 +756,8 @@ With these considerations we finish the proof of Theorem~\ref{T: Main}.
 % SECTION: Graph-theory approach
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% T(y) and T_n(y)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+In this section, we present an  alternative proof of Lemma~\ref{L: late excursions},
+which relies not on stochastic calculus but uses theory on random graphs.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lemma 9 - Graph Components: Statement

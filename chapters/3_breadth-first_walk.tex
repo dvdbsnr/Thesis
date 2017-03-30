@@ -8,7 +8,7 @@
 \fxnote{Update title.}
 
 
-\section{The discrete breadth-first walk}
+\section{The breadth-first walk in discrete time}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: The discrete breadth-first walk
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -212,7 +212,7 @@ Knowing this we can reconstruct sizes and indices of components via
 
 \fxnote{Transition to next chapter here.}
 
-\section{The continuous-time breadth-first walk}
+\section{The breadth-first walk in continuous time}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: The continuous-time breadth-first walk
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -304,6 +304,13 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lemma Decompositions An: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We begin with a Lemma similar to the Doob decomposition theorem,
+which states that any adapted stochastic process $X_n$ with $\Exp{X_n} < \infty$ for all $n$
+may be decomposed into a martingale and an integrable predictable process.
+When trying to decompose $Z_n$, we deal with a process in continuous time for which the restriction on the expectation still holds.
+The following Lemma will directly provide such a decomposition.
+
 \begin{lemma} \label{L: decomp Zn}
 	The decomposition 
 	\begin{equation} \label{E: decomp Zn}
@@ -316,8 +323,7 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	with
 	\begin{equation} \label{D: an}
 	a_n(s)ds = \Prob(\text{A new edge appears in} \enspace [s, s+ds] \cond \Zn{u}, \enspace u \leq s).
-	\end{equation}	
-	\fxnote{Make text in P() not cursive?}
+	\end{equation}
 \end{lemma}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -362,6 +368,12 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	This proves $M_n$ to be a martingale. 	
 \end{proof}
 
+For a better understanding of the processes involved, we need to find a concise expression for the probability used in \eqref{D: an}.
+The next Lemma provides such an expression for $\an{s}$ 
+dependent on $\p$, the history of the breadth-first walk up to $s$ and the distance between $s$ and $\floor{s}$, 
+the largest natural number smaller than $s$.
+\fxnote{This is redundant.}
+An ensuing corollary provides some characteristics of the resulting process $A_n$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lemma Formula An: Statement
@@ -371,8 +383,6 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	\begin{equation}
 	\an{s} = (n - s - \Zetan{\ceil{s}} - \Zn{s}) \ps .
 	\end{equation}
-	\fxnote{Update/change Zeta-symbol if needed.}
-	\fxnote{Add explanation of Zeta if needed.}
 \end{lemma}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -498,7 +508,6 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 	So $\Ineligible{s} = s + \ZetaMinus{\ceil{s}} + \Zn{s}$ which concludes the proof.
 \end{proof}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Corollary An BV: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -528,6 +537,10 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lemma Decomposition Mn: Statement and Note
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Having obtained a precise definition of $A_n$, we shift our focus to $M_n$, the martingale observed in Lemma~\ref{L: decomp Zn}.
+The following statement proves a similar decomposition of the squared martingale.
+
 \begin{lemma} \label{L: decomp Mn}
 	The decomposition
 	\begin{equation} \label{E: decomp Mn}
@@ -593,14 +606,24 @@ For ease of notation, we will drop the superscript $t$ from all random variables
 
 
 
-\section{Asymptotics}
+\section{The central limit theorem for martingales}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SECTION: Asymptotics
+% SECTION: The central limit theorem for martingales
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fxfatal{Update title.}
+\fxfatal{Update title}
 
-We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ with the goal of using the functional central limit theorem for martingales.
-\fxnote{Update text.}
+The main goal of this section will be the use of the functional central limit theorem for martingales
+and subsequently proving Theorem~\ref{T: Z -> W}.
+As stated in Theorem~\ref{T: functional CLT martingales}, with Z as X and M as N and so on,
+\fxnote{Fix references to CLT Theorem}
+we need to make sure that our processes satisfy conditions \eqref{E: CLT cond 1} to \eqref{E: CLT cond 3}.
+\fxnote{Fix references to CLT eqs}
+\fxnote{Maybe rescale the processes here?}
+
+We start by analysing the asymptotic behaviour of $A_n$.
+This will not be used directly in Girsanovs theorem, 
+but will be helpful for later Lemmata and provide the drift of $\Wt$.
+\fxnote{Fix these sentences.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -612,9 +635,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	\n{-1}{3} \supns \left| \An{s} + \frac{s^2}{2}n^{-1} - st\n{-1}{3} \right| \longrightarrow_p 0
 	\end{equation}
 	as $n \rightarrow \infty$, where $t$ is the fixed parameter of the random graph.
-	\fxnote{Change/remove explanation of t: "probability parameter"}
 \end{lemma}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lemma Limit An: Proof
@@ -856,6 +877,8 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
     which proves \eqref{E: stoch bounded} by choosing $K$ and $n$ sufficiently large.
 \end{proof}
 
+Having established Lemma~\ref{L: limit An} it is now easy to deduce that $B_n$ and $M_n$ satisfy conditions 
+that will make them suitable for Girsanovs theorem after a rescaling.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lemma Limit Bn: Statement
@@ -867,7 +890,6 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	\end{equation}
 	as $n \rightarrow \infty$.
 \end{lemma}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lemma Limit Bn: Proof
@@ -881,7 +903,7 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 	\begin{equation} \label{E: limit Bn An + c}
 	\n{-1}{3} \An{\n{-2}{3}s_0} + \frac{1}{2}s_0^2 - s_0t \longrightarrow_p 0,
 	\end{equation}
-	where again $t$ denotes the probability parameter. 
+	where again $t$ denotes the probability parameter of $\Gcal$. 
 	\fxnote{Change "probability parameter"}
 	This implies
 	\begin{equation*}
@@ -920,32 +942,29 @@ We will now prove some limit properties of the processes $A_n$, $B_n$ and $M_n$ 
 \end{proof}
 
 
-\section{The central limit theorem for martingales}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SECTION: The central limit theorem for martingales
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fxfatal{Update title}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Definitions: Rescaled process
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We now define the rescaled processes 
-\begin{align*}
+\begin{equation}
+\begin{aligned}
 \bar{M}_n(s) &= \n{-1}{3}\Mn{\n{2}{3}s}, \\
 \bar{A}_n(s) &= \n{-1}{3}\An{\n{2}{3}s}, \\
 \bar{Q}_n(s) &= \n{-2}{3}Q_n(\n{2}{3}s), \\
 \bar{B}_n(s) &= \n{-2}{3}B_n(\n{2}{3}s),
-\end{align*} 
+\end{aligned} 	
+\end{equation}
+
 to fit the previously rescaled process 
 $\bar{Z}_n$ in Theorem~\ref{T: Z -> W}, such that
-\begin{align*}
-\Zbar{s} &= \Mbar{s} + \Abar{s} \\
+\begin{equation}
+\begin{aligned}
+\Zbar{s} &= \Mbar{s} + \Abar{s}, \\
 \bar{M}_n^2(s) &= \bar{Q}_n(s) + \Bbar{s}.
-\end{align*}
-\fxnote{Definition of rescaled processes tidier.}
+\end{aligned}	
+\end{equation}
 
-Rescaling Lemmas~\ref{L: limit An}, \ref{L: limit Bn} and \ref{L: limit Mn} gives us
+Rescaling Lemmata~\ref{L: limit An}, \ref{L: limit Bn} and \ref{L: limit Mn} gives us
 \begin{equation} \label{E: limit An rescaled}
 \sup_{s \leq s_0} |\Abar{s} - \rho (s)| \longrightarrow_p 0,
 \end{equation}
@@ -986,7 +1005,7 @@ in order to focus on the one-dimensional case we will need for our proof.
 	\begin{equation} \label{E: cond3 CLT}
 	\Bn{t} \longrightarrow_p c(t).
 	\end{equation}
-	Then $M_n \longrightarrow_d X$ where $x$ is a process with sample paths in $C_{\Real}[0,\infty)$ and independent Gaussian increments.
+	Then $M_n \longrightarrow_d X$ where $X$ is a process with sample paths in $C_{\Real}[0,\infty)$ and independent Gaussian increments.
 \end{theorem}
 
 
@@ -1006,9 +1025,9 @@ We are now ready to prove Theorem~\ref{T: Z -> W}.
 	and \eqref{E: limit Bn rescaled} gives condition \eqref{E: cond3 CLT}, with $c(t) = t$.
 	
 	Therefore $\Mbar{s} \rightarrow_d W(s)$, the standard Brownian motion, and using \eqref{E: limit An rescaled} we obtain
-	\begin{equation*}
+	\begin{equation}
 	\Zbar{s} = \Mbar{s} + \Abar{s} \rightarrow_d W(s) + \rho (s) = W^t(s).
-	\end{equation*}
+	\end{equation}
 			
 \end{proof}
 
