@@ -59,11 +59,35 @@ as $n \rightarrow \infty$,
 for all continuous, bounded functions 
 $f: D^2 \rightarrow \Real$.
 
+We state the theorem here, without proof, as it appears in \cite[p. 339 f.]{Ethier.2005},
+omitting one of two equivalent conditions and all references to higher dimensional processes,
+in order to focus on the one-dimensional case we will need for our proof.
 
-\section{Vague convergence of probability measures}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SECTION: On vague convergence
+% Central limit theorem for martingales: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{theorem}[Central limit theorem for martingales] \label{T: functional CLT martingales}
+	Let $\{\Fn{t}\}$ be a filtration and $M_n$ a $\{\Fn{t}\}$-local martingale with sample paths in $D_{\Real}[0,\infty)$ and $\Mn{0}=0$.
+	Let $B_n$ be a process with sample paths in $D_{\Real}[0,\infty)$, increasing in $t$, such that $M_n^2 - B_n$ is an $\{\Fn{t}\}$-local martingale.
+	
+	Let the following conditions hold:
+	For each $T>0$,
+	\begin{equation} \label{E: cond1 CLT}
+	\lim_{n->\infty} \ExpBig{
+		\sup_{t \leq T} | \Bn{t} - \Bn{t-}|
+	} = 0,
+	\end{equation}
+	\begin{equation} \label{E: cond2 CLT}
+	\lim_{n->\infty} \ExpBig{
+		\sup_{t \leq T} | \Mn{t} - \Mn{t-}|^2
+	} = 0,
+	\end{equation}
+	and with $c(t)$ a continuous, increasing function on $[0, \infty)$, $c(0) = 0$, let
+	\begin{equation} \label{E: cond3 CLT}
+	\Bn{t} \longrightarrow_p c(t).
+	\end{equation}
+	Then $M_n \longrightarrow_d X$ where $X$ is a process with sample paths in $C_{\Real}[0,\infty)$ and independent Gaussian increments.
+\end{theorem}
 
 
 
