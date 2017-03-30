@@ -1,7 +1,6 @@
-\include{preamble}
-\include{commands}
-
-%\includeonly{chapters/2_breadth-first_walk}
+\input{preamble}
+\input{commands}
+\input{glossary}
 
 \makeindex
 
@@ -16,23 +15,29 @@
 	
 	\maketitle
 	
-	\tableofcontents 
+	\input{chapters/0_abstract}
+	\input{chapters/0_dedication}
 	
-	\include{chapters/0_abstract}
-	\include{chapters/0_dedication}
-	\include{chapters/1_introduction}
-	\include{chapters/2_preliminaries}
-	\include{chapters/3_breadth-first_walk}
-	\include{chapters/4_surplus_edges}
-	\include{chapters/5_convergence_component_sizes}
-	\include{chapters/6_outlook}
+	\tableofcontents 
+	\newpage
+	
+	\input{chapters/1_introduction}
+	\input{chapters/2_preliminaries}
+	\input{chapters/3_breadth-first_walk}
+	\input{chapters/4_surplus_edges}
+	\input{chapters/5_convergence_component_sizes}
+	\input{chapters/6_outlook}
+	
 	
 	\nocite{*}
 	\bibliography{bibliography} 
 	\bibliographystyle{ieeetr}
 	
+	\listoffigures
 	
-	\setcounter{tocdepth}{10}
-	\listoffixmes
+	\glsaddall
+	\printglossary
+	
+	
 	
 \end{document}
