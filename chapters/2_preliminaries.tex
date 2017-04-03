@@ -94,4 +94,50 @@ in order to focus on the one-dimensional case we will need for our proof.
 \section{Counting processes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Counting processes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Girsanov Theorem
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We conclude this chapter by introducing Girsanovs Theorem,
+which will enable us to prove certain properties of the Brownian motion with drift.
+We state the theorem as it appears in \cite[Theorem 4.2.2, p.66]{Lamberton.2000}.
+
+\begin{theorem}[Girsanov] \label{T: Girsanov}
+	Let $(W(s))_{0 \leq s \leq T}$ be a Brownian motion on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$.
+	Let $(\Theta(s))_{0 \leq s \leq T}$ be an adapted process satisfying
+	\begin{equation} \label{E: Girsanov cond Theta}
+	\int_{0}^{T} \Theta^2(u)du < \infty.
+	\end{equation}
+	Define
+	\begin{align}
+	\tilde{W}(s) &:= W(s) + \int_0^s \Theta(u)du, \label{E: Girsanov def W tilde} \\ 
+	X(s) &:= \exp \left\{ -\int_{0}^{s} \Theta(u) dW(u) - \frac{1}{2} \int_0^s \Theta^2(u)du \right\}. \label{E: Girsanov def X}
+	\end{align}
+	If $X(s)$ a martingale, that is $\Exp{X(s)} = \Exp{X(0)} = 1$ for all $s$,
+	the measure $\mathbb{Q}$, defined by
+	\begin{equation} \label{E: Girsanov def P tilde}
+	\tilde{\mathbb{P}}(A) := \int_A X(\omega) d\mathbb{P}(\omega), \; \text{for all} \; A \in \mathcal{F},
+	\end{equation}
+	is a probability measure under which the process 
+	$(\tilde{W}(s))_{0 \leq s \leq T}$
+	is a Brownian motion.
+\end{theorem}
+
+By \cite[Remark 4.2.3, p.66]{Lamberton.2000}, a sufficient condition for $X(t)$ to be a martingale is the so-called Novikov-condition
+\begin{equation} \label{E: Novikov}
+\ExpBig{ \exp \left( \frac{1}{2} \int_{0}^{T} \Theta^2(u)du \right) } < \infty.
+\end{equation}
+
+We can apply this Theorem to the Brownian motion with drift $W^t$ as follows:
+Recall the definition
+\begin{equation}
+\Wt(s) = W(s) + ts - \frac{1}{2} s^2 = W(s) + \int_0^s (t-u)du.
+\end{equation}
+For $T<\infty$, $\Theta(u) := t-u$ satisfies \eqref{E: Novikov},
+therefore $X(t)$, as defined in \eqref{E: Girsanov def X}, is a martingale and
+$\Wt$ is a standard Brownian motion under the probability measure $\tilde{\mathbb{P}}$ defined in \eqref{E: Girsanov def P tilde}.
+Since $X(s) > 0$ almost surely for all $s$, the probability measures $\mathbb{P}$ and $\tilde{\mathbb{P}}$ agree which sets have probability zero:
+\begin{equation} \label{E: P0 = Q0}
+\mathbb{P}(A) = 0 \iff \tilde{\mathbb{P}}(A) = 0, \; \text{for all} \; A \in \mathcal{F}.
+\end{equation}
+Properties holding with probability $1$ or $0$ for a standard Brownian motion will hold with probability $1$ or $0$, respectively,
+for $\Wt$ under $\tilde{\mathbb{P}}$ and hence under the original measure $\mathbb{P}$.
