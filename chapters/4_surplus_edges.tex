@@ -55,7 +55,7 @@ Hence we will expect the probability of encountering an excess edge at time $s$ 
 \end{equation}
 Rescaling the counting process appropriately this probability should scale to
 \begin{equation}
-\rzminz(s) := \rznt(s) - \min_{u \leq s}\rzminz(u),
+\rzminz(s) := \rznt(s) - \min_{u \leq s}\rznt(u),
 \end{equation}
 which converges in distribution to
 \begin{equation}
@@ -106,9 +106,9 @@ We now rescale the counting process via
 We calculate the rate of this rescaled process.
 Recall that the conditional intensity $\bar{\lambda}(s)$ of the process $\rnnt(s)$ must satisfy
 \begin{equation}
-\Exp{\rnnt(s)} = \int_{0}^{s} \bar{\lambda(u)} du.
+\Exp{\rnnt(s)} = \int_{0}^{s} \bar{\lambda}(u) du.
 \end{equation}
-Using \eqref{E: rescale Nnt} we compare evaluate the above integral in terms of $\lambda(s)$:
+Using \eqref{E: rescale Nnt} we evaluate the above integral in terms of $\lambda(s)$:
 \begin{equation*}
 \begin{aligned}
 \Exp{\rnnt(s)}
@@ -134,7 +134,7 @@ this rate becomes asymptotically close to $\rznt(s) - \min_{u \leq s}\rznt(u)$ a
 By Theorem~\ref{T: Z -> W} we have $\rznt \rightarrow_d \Wt$,
 so
 \begin{equation}
-\bar{\lambda}(s) \rightarrow_d \Wt(s) - \min_{u \leq s}\Wt(u) = \Bt.
+\bar{\lambda}(s) \rightarrow_d \Wt(s) - \min_{u \leq s}\Wt(u) = \Bt(s).
 \end{equation}
 The rate of the counting process $\rnnt$ therefore converges in distribution to $\Bt$.
 
@@ -196,7 +196,7 @@ The Theorem follows by averaging over all $\Wt$ using the law of total expectati
 
 First, we will show that $\rnnt$ is tight as a random process with image in $\DT$.
 We already know that $\rznt \rightarrow_d \Wt$, which implies that $\rznt$ is tight, 
-so for all $\epsilon>0$ there exists a compact $K \subset \CT$ such that
+so for all $\epsilon>0$ there exists a compact $K \subset \DT$ such that
 \begin{equation} \label{E: rznt tight}
 \inf_n \Prob ( \rznt \in K) > 1 - \epsilon.
 \end{equation}
@@ -252,7 +252,7 @@ Seeing $\nnt(T\n{2}{3})$ as the sum of all its increments, we arrive at
 \end{equation}
 where $Y_1, Y_2, \dots, Y_{T\n{2}{3}} \sim \Binom(A\n{1}{3}, \p)$.
 
-We denote by $\Event{A}$ the event $\zminz(i-1) \leq A\n{1}{3}$ and use the law of total probability to compute
+We denote by $\Event{A}$ the event $\sup_{j \leq \n{2}{3}T} \zminz(j) \leq A\n{1}{3}$ and use the law of total probability to compute
 \begin{equation} \label{E: First Total Probability Argument}
 \begin{aligned}
 \Prob(\rnnt(T) \geq K) 
@@ -287,7 +287,7 @@ With high probability, $\sup_{s \leq T}\rnnt(s)$ is bounded by some $K>0$,
 hence the random variable $\rnnt$ maps into a compact subset of $\DT$ with high probability and $\rnnt$ is tight.
 
 Since both $\rznt$ and $\rnnt$ are tight, $(\rznt, \rnnt)$ is tight.
-Thus there is a compact subset $C \subset \CT \times \DT$ such that
+Thus there is a compact subset $C \subset \DT^2$ such that
 \begin{equation}
 	\Prob( (\rznt, \rnnt) \in C) > 1 - \epsilon.
 \end{equation}
@@ -297,7 +297,7 @@ The next step in our proof will be showing that
 |\Exp{ f(\rznt, \rnnt) \cond \Wt} - \Exp{f(\Wt, \rnnt) \cond \Wt}| < \epsilon
 \end{equation}
 for all $\epsilon>0$ and sufficiently large $n$.
-Recall that $f$ is a bounded function, so there exists $M>0$ such that $f(x,y) < M$ for all $(x,y) \in \CT \times \DT$.
+Recall that $f$ is a bounded function, so there exists $M>0$ such that $f(x,y) < M$ for all $(x,y) \in \DT^2$.
 We denote by $\Event{C}$ the event $(\znt, \rnnt) \in C$ and use the law of total expectation to calculate
 \begin{equation} \label{E: Estimation step 1}
 \begin{aligned}
@@ -314,15 +314,15 @@ on the some common probability space, such that $\WtX \sim \Wt$, $\bar{\mathcal{
 and $\rzntX \rightarrow_{a.s.} \WtX$ as $n \rightarrow \infty$.
 Meaning, since $\WtX$ and $\rzntX$ are random variables mapping into function spaces, we have
 \begin{equation}
-\sup_{s \in \Real_{\geq 0}} |\rzntX(s) - \WtX(s)| \rightarrow_{a.s.} 0,
+\sup_{s \leq T} |\rzntX(s) - \WtX(s)| \rightarrow_{a.s.} 0,
 \end{equation}
 which additionally implies
 \begin{equation} 
-\sup_{s \in \Real_{\geq 0}} |\rzntX(s) - \WtX(s)| \rightarrow_p 0,
+\sup_{s \leq T} |\rzntX(s) - \WtX(s)| \rightarrow_p 0,
 \end{equation}
 so for all $\epsilon > 0$:
 \begin{equation} \label{E: Prob(Event(delta)) 1}
-\Prob( \sup_{s \in \Real_{\geq 0}} |\rzntX(s) - \WtX(s)| > \epsilon ) \rightarrow 0.
+\Prob( \sup_{s \leq T} |\rzntX(s) - \WtX(s)| > \epsilon ) \rightarrow 0.
 \end{equation}
 
 Form here on out we substitute $\Wt$ and $\rznt$ with $\WtX$ and $\rzntX$ respectively.
@@ -452,7 +452,7 @@ We evaluate
 Since $||\znt - \WtX|| < \delta$, we know $\beta_k - \alpha_k < \delta \n{1}{3}$. Therefore
 $\eta_k \leq_{\text{st.}} \zeta \sim \Binom(\delta\n{1}{3}, \p)$ for all $k \leq \n{2}{3}T$.
 
-Using the law of total expectation gives
+Using Markov's inequality gives
 \begin{equation}
 \Prob( \eta_k \neq 0 \cond \Event{\delta} ) \leq \Prob( \zeta_k \geq 1 ) \leq \Exp{\zeta_k} = \delta\n{1}{3}\p,
 \end{equation}
