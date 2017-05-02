@@ -99,7 +99,7 @@ the point processes of starts and lengths of excursions converge vaguely to the 
 		\Exp{f(\Xin)} \rightarrow \Exp{f(\Xi)}.
 	\end{equation}
 	By general theory,
-	see for example \cite{Kallenberg1990},
+	see for example \cite{Kallenberg.1990},
 	\fxnote{Add real reference here}
 	this is equivalent to the convergence
 	\begin{equation}
@@ -172,8 +172,7 @@ then show that there can not be any more excursion of $f_n$ of sufficient length
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Proof Part 1: \Xi in \Xin
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{proofpart}[$\Xin(C) \subseteq \Xi(C)$] \label{PP: Lemma 7 1}
-
+\begin{proofpart}[$\Xi(C) \subseteq \Xin(C)$]
 Let us first establish some facts about excursions of the limit function $f$.
 In the interval $[T_1, T_2]$,
 there can only be a finite number of excursion starting with length of at least $d_1$,
@@ -315,8 +314,7 @@ Therefore eventually $\Xi (C) \leq \Xin(C)$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Proof Part 2: \Xin in \Xi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{proofpart}[$\Xi(C) \subseteq \Xin(C)$] \label{PP: Lemma 7 2}
-
+\begin{proofpart}[$\Xin(C) \subseteq \Xi(C)$] \label{PP: Xin in Xi}
 Now that every excursion of $f$ is matched, 
 we need to show that there can not exist any additional large excursion of $f_n$.
 Considering the fact that excursions can not overlap,
@@ -344,18 +342,17 @@ the space remaining is less than $d_1$:
 l-r - \sum_{i=1}^{K} r_i - l_i < d_1.
 \end{equation}
 Let $d^* < \min \{ r_i - l_i \; | \; i = 1, \dots, K \}$
-and apply the logic of Part~\ref{PP: Lemma 7 1} to the compact set
+and apply the logic of Claim~\ref{C: Xi in Xin} to the compact set
 $[r, l] \times [d^*, d_1]$.
 For sufficiently large $n$, 
 every one of these $K$ excursions of $f$ will be matched with an excursion of $f_n$,
 so that there will be no space left for a large excursion of $f_n$ in $[r,l]$.
 Applying this logic to every one if the finitely many gaps between excursions of $f$,
 we see that there can not exist any more large excursions of $f_n$  than those already matching $f$.
-Thus $\Xin(C) \leq \Xi(C)$ for sufficiently large $n$,
-which completes the proof.
+There $\Xin(C) \leq \Xi(C)$ for sufficiently large $n$, which completes the proof.
 \end{proofpart}
-
 \end{proof}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

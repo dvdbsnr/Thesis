@@ -13,6 +13,7 @@
 \usepackage{amsmath} 
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{thmtools}
 \usepackage{mathtools}
 \usepackage{bbm}
 \usepackage{mathrsfs}
@@ -67,22 +68,23 @@
 
 
 
+
+
+
+
+
 %%%% Theorems, Lemmas etc. %%%%
-% All Theorems numbered by chapter.
-% Theorem.
-\newtheorem{theorem}{Theorem}[chapter]
-% Lemma.
-\newtheorem{lemma}[theorem]{Lemma}
-% Corollary
-\newtheorem{corollary}[theorem]{Corollary}
+% All Theorems etc. numbered by chapter.
+\declaretheorem[style=plain, numberwithin=chapter]{theorem}
+\declaretheorem[style=plain,sibling=theorem]{lemma}
+\declaretheorem[style=plain,sibling=theorem]{corollary}
 
 % In Definition-style, i.e. no italics.
-\theoremstyle{definition}
-% Definition.
-\newtheorem{definition}[theorem]{Definition}
+\declaretheorem[style=definition,sibling=theorem]{definition}
 % Note, not numbered.
-\newtheorem*{note}{Note}
+\declaretheorem[style=definition, numbered=no]{note}
 
-% Proofpart, to partition proofs
-\newtheorem{proofpart}{Part}
+% Claim as part of proof
+\declaretheorem[style=definition, numberwithin=theorem, name=Part]{proofpart}
+
 
