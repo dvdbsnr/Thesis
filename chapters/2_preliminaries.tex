@@ -12,8 +12,54 @@
 % SECTION: On weak convergence
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\fxnote{Definition weak convergence}
-This section will probably move to a preliminary chapter.
+The central notion of this thesis is the convergence in distribution of random variables in general metric spaces.
+
+\begin{definition}[Weak convergence, {\cite[p.7]{Billingsley.1999}}]
+	Let $\mu_n$, $\mu$ be measures on a metric space $S$ with associated \Bosi $\mathcal{S} = \Bo(S)$.
+	
+	Denote by $\Cb(S)$ the space of bounded, continuous functions $f: S \rightarrow \Real$.
+	
+	We say $\mu_n$ converges weakly to $\mu$, $\mu_n \Rightarrow \mu$, if
+	\begin{equation}
+		\int_S fd\mu_n \rightarrow \int_s fd\mu
+	\end{equation}
+	as $n \rightarrow \infty$ for all $f \in \Cb(S)$.
+\end{definition}
+
+For a random variable $X$ in $(S, \mathcal{S})$, 
+defined on a probability space $\ProbSpace$,
+the distribution or law $P$ of $X$ is defined by
+\begin{equation}
+	P(A) := \Prob(X \in A)
+\end{equation}
+for all $A \in \mathcal{S}$.
+
+For a series of random variables in the same metric space to converge in distribution 
+does not require them to be defined on the same probability space.
+Let $X_n$, $X$ be random variables in a metric space $(S, \mathcal{S})$,
+\begin{equation}
+\begin{aligned}
+	X: \ProbSpace &\rightarrow (S, \mathcal{S}), \\
+	X_i: (\Omega_i, \SigmaAlgebra_i, \Prob_i) &\rightarrow (S, \mathcal{S}),
+\end{aligned}
+\end{equation}
+with associated distributions $P_n$, $P$.
+
+Now $X_n$ converges in distribution to $X$, $X_n \rightarrow_d X$,
+if their distribution functions converge weakly, $P_n \Rightarrow P$.
+
+
+
+
+
+
+\begin{definition}[Convergence in distribution]
+	
+	
+\end{definition}
+
+
+
 \begin{definition}[Weak convergence]
 	Let $S$ be a metric space and $\mathcal{S}$ it's class of Borel sets.
 	Let $P, P_1, P_2, \dots$ be probability measures on defined on $S$.
@@ -24,15 +70,15 @@ This section will probably move to a preliminary chapter.
 	holds for all continuous, bounded functions $f: S \rightarrow \Real$.
 \end{definition}
 
-This definition now applies to convergence in distribution of random variables as follows:
-Let $X, X_1, X_2, \dots$ be random variables on some probability space $S$.
-Let $P, P_1, P_2, \dots$ be the corresponding distributions. 
-
-\begin{definition}[Tightness] \label{D: Tightness}
-	Inhalt...
+\begin{definition}[Convergence in distribution] \label{D: Convergence in Distribution}
+	
 \end{definition}
 
 \begin{definition}[Relative compactness] \label{D: Rel Compactness}
+	Inhalt...
+\end{definition}
+
+\begin{definition}[Tightness] \label{D: Tightness}
 	Inhalt...
 \end{definition}
 
@@ -40,15 +86,9 @@ Let $P, P_1, P_2, \dots$ be the corresponding distributions.
 	Let $P_n$ be a series of probability measures on some metric space $S$. If $P_n$ is tight, then it is relatively compact.
 \end{theorem}
 
-
-
-We will prove weak convergence by showing that
-\begin{equation}
-\Exp{ f(\bar{Z}^t_n, \bar{N}_n) } \longrightarrow \Exp{ f(W^t, N) }
-\end{equation}
-as $n \rightarrow \infty$, 
-for all continuous, bounded functions 
-$f: D^2 \rightarrow \Real$.
+\begin{lemma}
+	In function spaces, tightness and convergence in finite dimensional distributions implies convergence in distribution.
+\end{lemma}
 
 
 
@@ -57,6 +97,20 @@ $f: D^2 \rightarrow \Real$.
 % SECTION: The space D
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{definition}[The space $\DT$]
+	
+\end{definition}
+
+Compact sets of $\DT$.
+
+\begin{definition}[Skorohod metric]
+	
+\end{definition}
+
+\begin{lemma}[Tightness in $\DT$]
+	
+\end{lemma}
+
 
 
 \section{Point processes}
@@ -64,6 +118,104 @@ $f: D^2 \rightarrow \Real$.
 % SECTION: Point processes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{definition}[Point process, {\cite[p.123]{Resnick.2008}}]
+	Let $S$ be a locally compact second countable Hausdorff space
+	and $\Bo(S)$ its \Bosi.
+	Let $\{x_i, i \geq 1\}$ be a collection of points of $S$.
+	Let
+	\begin{equation}
+		\mu := \sum_{i \geq 1} \delta_{x_i},
+	\end{equation}
+	with $\delta_x$ the Dirac measure of $x \in S$,
+	be locally compact, that is, 
+	if $C \in \Bo(S)$ is compact then $\mu(C) < \infty$.
+	Then $\mu$ is a \emph{point measure} on $E$.
+	
+	Denote by $M_p(S)$ the space of all point measures on $E$
+	and let $\mathscr{M}_p(S)$ be the smallest $\sigma$-algebra containing all sets of the form
+	\begin{equation*}
+		\{ m \in M_p(S) \cond m(A) \in B \}
+	\end{equation*}
+	for some $A \in \Bo(S)$ and $B \in \Bo(\Rplus)$.
+	
+	A \emph{point process} $N$ is a measurable map from a probability space
+	$\ProbSpace$ into $(M_p(S), \mathscr{M}_p(S))$.
+\end{definition}
+
+For all coming observations, we will take $\Rplus$ as th underlying Hausdorff space with its \Bosi $\Bo = \Bo(\Rplus)$.
+
+\begin{definition}[Poisson point process, {\cite[p.130]{Resnick.2008}}]
+	We call a point process $N$ a \emph{Poisson point process} or \emph{Poisson process},
+	if
+	\begin{enumerate}
+		\item for all disjoint sets $A_1, A_2, \dots, A_n \in \Bo$
+			the random variables $N(A_1), N(A_2), \dots, N(A_n)$ are independent and
+		\item for all $A \in \Bo$, $N(A)$ has Poisson distribution $\Poisson(\gamma)$,
+			\begin{equation*}
+				\Prob(N(A) = k) = \frac{\gamma^k}{k!}\exp(-\gamma)
+			\end{equation*}
+			where $\gamma = \gamma(A) \in [0, \infty]$ is the \emph{mean measure} or \emph{intensity} of $N$.
+	\end{enumerate}
+	The mean measure is often given in terms of a \emph{rate} or \emph{conditional intenstiy} $\lambda$ by
+	\begin{equation}
+		\gamma(A) = \int_A \lambda(t)dt.
+	\end{equation}	
+\end{definition}
+
+\begin{definition}[Simple point process, {\cite[p.124]{Resnick.2008}}]
+	A point process $N$ on $\Rplus$ is called \emph{simple} if 
+	\begin{equation}
+		\Prob( N({x}) > 1 ) = 0
+	\end{equation}
+	for all $x \in \Rplus$.
+\end{definition}
+
+By \cite[Remark 2.1, p.34]{Haenggi.2013} a Poisson point process is simple if and only if
+its mean measure $\gamma$ has no discrete component,
+that is $\gamma(x) = 0$ for all $x \in \Rplus$.
+
+
+\begin{definition}[Vague convergence]
+	Let $\CK(\Rplus)$ be the space of continuous real valued functions on $\Rplus$ with compact support,
+	meaning there exists a compact set $K \in \Bo$ such that $f(x) = 0$ for all $x \notin K$.
+	
+	Let $\mu, \mu_1, \mu_2, \dots$ be point measures on a Hausdorff space $E$.
+	We say $\mu_n$ converges vaguely to $\mu$, $\mu_n \rightarrow_v \mu$, if
+	\begin{equation}
+		\int_{\Rplus} fd\mu_n \xrightarrow{n \rightarrow \infty} \int_{\Rplus} fd\mu
+	\end{equation}
+	for all $f \in \CK(\Rplus)$.
+\end{definition}
+
+
+\begin{lemma}[Equivalent conditions for vague convergence, {\cite[Proposition 3.12, p.142]{Resnick.2008}}]
+	Let $\mu, \mu_1, \mu_2, \dots$ be point measures on $E$.
+	The following are equivalent:
+	\begin{enumerate}
+		\item $\mu_n \rightarrow_v \mu$,
+		\item $\mu_n(B) \rightarrow \mu(B)$ for all relatively compact (i.e. with compact closure) $B$ 
+			for which $\mu(\partial(B)) = 0$.
+		\item
+	\end{enumerate}
+\end{lemma}
+
+\begin{lemma}[Pointwise convergence, {\cite[Proposition 3.13, p.144]{Resnick.2008}}]
+	Let $\mu, \mu_1, \mu_2, \dots$ be point measures on $E$ and $\mu_n \rightarrow_v \mu$.
+	For compact $K$ with $\mu(\partial K) = 0$ and $n \geq N(K)$
+	there exist a labeling of points of $\mu_n$ and $\mu$ in $K$ such that
+	\begin{equation}
+	\begin{aligned}
+		\mu_n(\cdot \cap K) &= \sum_{i=1}^{M} \delta_{x_i^{(n)}}, \\
+		\mu(\cdot \cap K) &= \sum_{i=1}^{M} \delta_{x_i},
+	\end{aligned}
+	\end{equation}
+	and in $E^M$
+	\begin{equation}
+		( x_i^{(n)}, 1 \leq i \leq M ) \xrightarrow{n \rightarrow \infty}
+		( x_i, 1 \leq i \leq M  ) 
+	\end{equation}
+	in the sense of componentwise convergence.
+\end{lemma}
 
 
 \section{Further results}
