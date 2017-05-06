@@ -26,9 +26,9 @@ The central notion of this thesis is the convergence in distribution of random v
 	as $n \rightarrow \infty$ for all $f \in \Cb(S)$.
 \end{definition}
 
-For a random variable $X$ in $(S, \mathcal{S})$, 
+We say a random variable $X$ in $(S, \mathcal{S})$, 
 defined on a probability space $\ProbSpace$,
-the distribution or law $P$ of $X$ is defined by
+has distribution or law $P$ if
 \begin{equation}
 	P(A) := \Prob(X \in A)
 \end{equation}
@@ -44,52 +44,109 @@ Let $X_n$, $X$ be random variables in a metric space $(S, \mathcal{S})$,
 \end{aligned}
 \end{equation}
 with associated distributions $P_n$, $P$.
-
 Now $X_n$ converges in distribution to $X$, $X_n \rightarrow_d X$,
-if their distribution functions converge weakly, $P_n \Rightarrow P$.
+if their distribution measures converge weakly, $P_n \Rightarrow P$.
 
+The main goal of this chapter is now to find necessary and sufficient conditions
+for the convergence in distribution of a given sequence of random variables 
+or equivalently the weak convergence of their distribution measures.
 
-
-
-
-
-\begin{definition}[Convergence in distribution]
-	
-	
-\end{definition}
-
-
-
-\begin{definition}[Weak convergence]
-	Let $S$ be a metric space and $\mathcal{S}$ it's class of Borel sets.
-	Let $P, P_1, P_2, \dots$ be probability measures on defined on $S$.
-	We say $P_n$ converges weakly to $P$, $P_n \Rightarrow P$, if
-	\begin{equation} 
-	\int_S fdP_n \xrightarrow{n \rightarrow \infty} \int_S fdP
-	\end{equation}
-	holds for all continuous, bounded functions $f: S \rightarrow \Real$.
-\end{definition}
-
-\begin{definition}[Convergence in distribution] \label{D: Convergence in Distribution}
-	
-\end{definition}
-
-\begin{definition}[Relative compactness] \label{D: Rel Compactness}
-	Inhalt...
-\end{definition}
-
-\begin{definition}[Tightness] \label{D: Tightness}
-	Inhalt...
-\end{definition}
-
-\begin{theorem}[Prohorov's theorem] \label{T: Prohorov}
-	Let $P_n$ be a series of probability measures on some metric space $S$. If $P_n$ is tight, then it is relatively compact.
+A first useful reference provides the so-called Portmanteau theorem.
+\begin{theorem}[Portmanteau, {\cite[Theorem 2.1, p.16]{Billingsley.1999}}]
+	Let $P_n$, $P$ be probability measures on $(S, \mathcal{S})$.
+	The following conditions are equivalent:
+	\begin{enumerate}
+		\item $P_n \Rightarrow P$,
+		\item $\int_S fdP_n \rightarrow \int_S fdP$ for all $f \in \Cb(S)$,
+		\item $\limsup_n P_n(F) \leq P(F)$ for all closed $F$,
+		\item $\liminf_n P_n(G) \geq P(G)$ for all open $G$,
+		\item $P_n(A) \rightarrow P(A)$ for all $A$ with $P(\partial A) = 0$.
+	\end{enumerate}
 \end{theorem}
 
-\begin{lemma}
-	In function spaces, tightness and convergence in finite dimensional distributions implies convergence in distribution.
-\end{lemma}
+A powerful tool to prove weak convergence of measures is relative compactness.
 
+\begin{definition}[Relative compactness, {\cite[p.57]{Billingsley.1999}}] \label{D: Rel Compactness}
+	Let $\Pi$ be a family of probability measures on $(S, \mathcal{S})$.
+	We call $\Pi$ \emph{relatively compact} if for every sequence in $\Pi$ there exists a convergent subsequence.
+	That is, for all sequences $\{P_n\} \subset \Pi$ there exists $\{P_{n_i} \} \subset \Pi$
+	and a probability measure $Q$ on $(S, \mathcal{S})$, not necessarily on $\Pi$,
+	such that $P_{n_i} \Rightarrow_i Q$.
+	
+	We call a sequence of probability measures $\{P_n\}$ relatively compact if
+	for every subsequence $\{P_{n_i}\}$ there exists a further subsequence
+	$\{P_{n_{i_k}}\}$ and a probabilty measure $Q$ such that
+	$P_{n_{i_k}} \Rightarrow_k Q$.
+\end{definition}
+
+For function spaces, knowing that a sequence of functions is relatively compact
+provides us with a powerful tool to prove convergence in distribution.
+
+\begin{definition}[Finite dimensional distributions, {\cite{Aldous.1997}}]
+	\fxfatal{Add real reference here.}
+	Let $X: \Omega \times \Rplus \rightarrow \mathbb{X}$ be a stochastic process with distribution $P$
+	For $t_1, \dots, t_k \in \Rplus$ we denote by \emph{finite-dimensional distributions} of $X$ 
+	the push forward measures 
+	\begin{equation}
+		P\pi^{-1}_{t_1, \dots, t_k}(A) := \Prob\{ X(t_1) \in A_1, \dots, X(t_k) \in A_k \}
+	\end{equation}
+	for $A = A_1 \times \dots \times A_k \in \mathbb{X}^k$.
+\end{definition}
+
+Now consider a relatively compact sequence of stochastic processes $\{X_n\}$,
+with distributions $\{P_n\}$,
+and a stochastic process $X$ with distribution $P$,
+such that
+\begin{equation}
+	P_n\pi^{-1}_{t_1, \dots, t_k} \Rightarrow P\pi^{-1}_{t_1, \dots, t_k}
+\end{equation}
+for all $k$ and $t_1, \dots, t_k \in \Rplus$.
+Since $\{P_n\}$ is relatively compact,
+we know that every subsequence contains a further subsequence converging to some probability measure $Q$.
+It can be shown that the convergence of finite-dimensional distributions implies that all of these
+limit measure are in fact $P$,
+which in turn proves $P_n \Rightarrow P$. For details see \cite[p.57]{Billingsley.1999}.
+
+If we can prove a series of probability measure to converge in finite-dimensional distributions to some
+limit measure we therefore only need to show relative compactness of the series
+for the convergence in distribution to hold.
+
+Relative compactness is closely linked to another property of series of measures, tightness.
+
+We call a measure $\mu$ on a metric space tight,
+if for all $\epsilon > 0$ there exists a compact $K$ such that
+\begin{equation}
+	\mu(K^c) < \epsilon.
+\end{equation}
+
+This carries over to families of probability measures as follows:
+
+\begin{definition}[Tightness of families of probability measures, {\cite[p.59]{Billingsley.1999}}] \label{D: Tightness}
+	A family $\Pi$ of probability measures on a metric space $(S, \mathcal{S})$ is \emph{tight} 
+	if for every $\epsilon > 0$ there exists a compact $K \subset S$
+	such that $P(K) > 1 - \epsilon$
+	for all $P \in \Pi$.	
+\end{definition}
+
+The last main result of this section now provides a link between tightness and relative compactness
+and therefore an effective means of proving convergence in distribution.
+
+\begin{theorem}[Prohorov's theorem, {\cite[Theorem 5.1, p.59]{Billingsley.1999}}] \label{T: Prohorov}
+	Let $P_n$ be a series of probability measures on a metric space $(S, \mathcal{S})$. 
+	If $P_n$ is tight, it is relatively compact.
+\end{theorem}
+
+We summarize this theorem and our considerations above in the following lemma.
+
+\begin{lemma}
+	Let $X, X_n$ be stochastic processes with distributions $P, P_n$.
+	If $\{X_n\}$  is tight and
+	\begin{equation*}
+		P_n\pi^{-1}_{t_1, \dots, t_k} \Rightarrow P\pi^{-1}_{t_1, \dots, t_k},
+	\end{equation*}
+	for all $k$ and $t_1, \dots, t_k \in \Rplus$,
+	then $X_n \Rightarrow X$.
+\end{lemma}
 
 
 \section{The space $\DT$}
