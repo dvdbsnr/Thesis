@@ -571,9 +571,9 @@ The following Lemma proves that with high probability, all relevant excursions d
 \begin{lemma} \label{L: late excursions}
 	Let 
 	$\Prob(\ExcursionEvent)$ 
-	be the probability that the breadth-first walk encounters an excursion $\gamma$ of length 
+	be the probability that the breadth-first walk makes an excursion $\gamma$ of length 
 	$|\gamma| > \delta\n{2}{3}$, starting after step $C\n{2}{3}$.
-	Then for all $\epsilon>0$ exists $C>0$ such that $\Prob(\ExcursionEvent) < \epsilon$. 
+	Then for all $\epsilon>0$ and $\delta > 0$ exists $C>0$ such that $\Prob(\ExcursionEvent) < \epsilon$. 
 \end{lemma}
 
 \begin{proof}
@@ -700,6 +700,7 @@ all excursions of size equal to or larger than $\delta\n{2}{3}$ will start befor
 For all these excursions we can apply Lemma~\ref{L: Lemma 8} to prove that $\Xin \rightarrow_d \Xi$.
 With these considerations we finish the proof of Theorem~\ref{T: Main}.
 
+\newpage
 \section{Graph-theory approach}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Graph-theory approach
