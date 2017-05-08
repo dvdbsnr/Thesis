@@ -7,7 +7,7 @@
 \chapter{Preliminaries} \label{C: preliminaries}
 \fxnote{Update title.} 
 
-\section{Weak convergence of probability measures}
+\section{Weak convergence of probability measures} \label{S: weak convergence}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: On weak convergence
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -52,7 +52,7 @@ for the convergence in distribution of a given sequence of random variables
 or equivalently the weak convergence of their distribution measures.
 
 A first useful reference provides the so-called Portmanteau theorem.
-\begin{theorem}[Portmanteau, {\cite[Theorem 2.1, p.16]{Billingsley.1999}}]
+\begin{theorem}[Portmanteau, {\cite[Theorem 2.1, p.16]{Billingsley.1999}}] \label{T: portmanteau weak}
 	Let $P_n$, $P$ be probability measures on $(S, \mathcal{S})$.
 	The following conditions are equivalent:
 	\begin{enumerate}
@@ -149,28 +149,101 @@ We summarize this theorem and our considerations above in the following lemma.
 \end{lemma}
 
 
-\section{The space $\DT$}
+\section{The space $\DT$} \label{S: space DT}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: The space D
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{definition}[The space $\DT$]
+The coming chapters will mainly deal with two types of stochastic processes:
+Brownian motion and so-called \cadlag-processes.
+This section will deal with the issue of proving tightness and thus convergence for the latter.
+
+\begin{definition}[The space $\DT$, {\cite[p.121]{Billingsley.1999}}]
+	We call a function $f: I \rightarrow \Real$, $I \subseteq \Rplus$, \emph{\cadlag},
+	if
+	\begin{enumerate}
+		\item for $t \in I$, $f(t+) = \lim_{s \downarrow t}f(s)$ exists and $f(t) = f(t+)$,
+		\item for $t \in I$, $f(t-) = \lim_{s \uparrow t}f(s)$ exists.
+	\end{enumerate}
+	These functions are right-continuous possess left limits everywhere (continue à droite, limite à gauche).
 	
+	We denote by $\DT$ the space of \cadlag-functions on $I = [0,T]$.
 \end{definition}
 
-Compact sets of $\DT$.
+Considering topology and convergence on $DT$, 
+we quickly observe that the known notion of distance known in $C(I)$,
+the space of continuous functions on $I$,
+where
+\begin{equation}
+	f_n \rightarrow f \iff \sup_{t \in I} |f_n(t) - f(t)| \rightarrow 0,
+\end{equation}
+is not sufficient for $\DT$.
+Consider the functions
+\begin{equation}
+	\begin{aligned}
+	f_n(t) &= 
+		\begin{cases} 
+		0 & t < x_n, \\
+		1 & t \geq x_n, 
+		\end{cases} \\
+	f(t) &= 
+		\begin{cases} 
+		0 & t < x, \\
+		1 & t \geq x.
+		\end{cases} \\
+	\end{aligned}
+\end{equation}
+For $x_n \rightarrow x$ we would expect $f_n$ to converge to $f$,
+however $\sup_{t \in I}|f_n(t) - f(t)| = 1$ whenever $x_n \neq x$.
 
-\begin{definition}[Skorohod metric]
+Thinking of the previous convergence as allowing shifts on the y-axis,
+we need a convergence that additionally allows shifts on the x-axis.
+
+\begin{definition}[Skorohod metric, {\cite[p.124]{Billingsley.1999}}]
+	Denote by $\Lambda$ the class of strictly increasing, continuous mappings from $[0,T]$ onto itself.
 	
+	For $x, y \in \DT$, define the \emph{Skorohod metric} $d(x,y)$ as the infimum of all $\epsilon > 0$ 
+	for which exists a $\lambda \in \Lambda$ such that
+	\begin{enumerate}
+		\item $\sup_{t \in [0,T]}|\lambda (t) - t| = \sup_{t \in [0,T]}|t - \lambda^{-1}(t)| < \epsilon$,
+		\item  $\sup_{t \in [0,T]}|x(\lambda (t)) - y(t)| = \sup_{t \in [0,T]}|x(t) - y(\lambda^{-1}(t))| < \epsilon$.
+	\end{enumerate}
+	And writing $\norm{x}_T = \sup_{t \in [0,T]}|x(t)|$ we can provide a more compact form:
+	\begin{equation}
+		d(x,y) = \inf_{\lambda \in \Lambda}\{ \norm{\lambda - I}_T \vee \norm{x - y(\lambda)}_T \},
+	\end{equation}
+	where $I:[0,T] \rightarrow [0,T]$ is the identity map.
 \end{definition}
 
-\begin{lemma}[Tightness in $\DT$]
+\begin{definition}[Modulus of continuity, {\cite[p.122]{Billingsley.1999}}]
+	A set $\{t_i\}$, where $ 0 = t_0 < t_1 < \dots < t_k = T $,
+	is called \emph{$\delta$-sparse} if $\min_{1\leq i \leq k} (t_i - t_{i-1}) > \delta$.
 	
-\end{lemma}
+	For $0 < \delta < 1$ and $x \in \DT$, define the \emph{modulus of continuity} by
+	\begin{equation*}
+		w_x'(\delta) := \inf_{\{t_i\}} \max_{1\leq i \leq k} w_x[t_{i-1}, t_i),
+	\end{equation*}
+	where the infimum extends over all $\delta$-sparse sets $\{t_i\}$ and
+	\begin{equation*}
+		w_x(I) := \sup_{s,t \in I}|x(s)  -x(t)|.
+	\end{equation*}
+\end{definition}
+
+The Arzelà-Ascoli theorem, see \cite[Theorem 7.2, p.82]{Billingsley.1999},
+provides a complete characterisation of relatively compact sets in $\CT$.
+We are now ready to present a $\DT$-equivalent.
+
+\begin{theorem}[Arzelà-Ascoli in $\DT$, {\cite[Theorem 12.3, p.130]{Billingsley.1999}}]
+	A necessary and sufficient condition for a set $A$ to be relatively compact in the Skorohod toplogy is that
+	\begin{enumerate}
+		\item $\sup_{x \in A} \norm{x}_T < \infty$,
+		\item $\lim_{\delta \rightarrow 0} \sup_{x \in A} w'_x(\delta) = 0$.
+	\end{enumerate}
+\end{theorem}
 
 
 
-\section{Point processes}
+\section{Point processes} \label{S: point processes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Point processes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -231,30 +304,50 @@ By \cite[Remark 2.1, p.34]{Haenggi.2013} a Poisson point process is simple if an
 its mean measure $\gamma$ has no discrete component,
 that is $\gamma(x) = 0$ for all $x \in \Rplus$.
 
+In order to talk reasonably about convergence of point processes,
+we first need to introduce a topology on the space of point measures.
+The \emph{vague topology} is similar to the one generated by the weak convergence in Section~\ref{S: weak convergence}.
+When trying to apply weak convergence to point measures we run into a problem,
+since a point measure $\mu = \sum_{i \geq 1} \delta_{x_i}$ may contain an infinite number of points on $\Rplus$
+and therefore
+\begin{equation*}
+	\int_{\Rplus} fd\mu = \sum_{i \geq 1} f(x_i) = \infty
+\end{equation*}
+for certain $f \in \Cb(\Rplus)$, which makes a discussion of convergence in $\Real$ of the integrals unreasonable.
 
-\begin{definition}[Vague convergence]
-	Let $\CK(\Rplus)$ be the space of continuous real valued functions on $\Rplus$ with compact support,
-	meaning there exists a compact set $K \in \Bo$ such that $f(x) = 0$ for all $x \notin K$.
+To counter this, we define a new type of convergence, 
+in which the integrals only have to converge for functions with compact support.
+
+\begin{definition}[Vague convergence, {\cite[p.140]{Resnick.2008}}]
+	Let $\CK(E)$ be the space of continuous real valued functions ona Hausdorff space $E$ with compact support,
+	meaning there exists a compact set $K \in \Bo(E)$ such that $f(x) = 0$ for all $x \notin K$.
 	
-	Let $\mu, \mu_1, \mu_2, \dots$ be point measures on a Hausdorff space $E$.
-	We say $\mu_n$ converges vaguely to $\mu$, $\mu_n \rightarrow_v \mu$, if
+	Let $\mu, \mu_1, \mu_2, \dots$ be point measures on  $E$.
+	We say $\mu_n$ \emph{converge vaguely} to $\mu$, $\mu_n \rightarrow_v \mu$, if
 	\begin{equation}
 		\int_{\Rplus} fd\mu_n \xrightarrow{n \rightarrow \infty} \int_{\Rplus} fd\mu
 	\end{equation}
 	for all $f \in \CK(\Rplus)$.
 \end{definition}
 
+Theorem~\ref{T: portmanteau weak} gave necessary and sufficient conditions for weak convergence of measures,
+the following lemma may be seen as an equivalent Portmanteau Theorem in the sense of vague convergence.
 
 \begin{lemma}[Equivalent conditions for vague convergence, {\cite[Proposition 3.12, p.142]{Resnick.2008}}]
-	Let $\mu, \mu_1, \mu_2, \dots$ be point measures on $E$.
+	Let $\mu, \mu_1, \mu_2, \dots$ be point measures on a Hausdorff space $E$.
 	The following are equivalent:
 	\begin{enumerate}
 		\item $\mu_n \rightarrow_v \mu$,
 		\item $\mu_n(B) \rightarrow \mu(B)$ for all relatively compact (i.e. with compact closure) $B$ 
 			for which $\mu(\partial(B)) = 0$.
-		\item
+		\item $\limsup_n \mu_n(K) \leq \mu(K)$ and $\liminf_n \mu_n(G) \geq \mu(G)$
+			for all compact $K$ and all open, relatively compact $G$.
 	\end{enumerate}
 \end{lemma}
+
+Since point measures are uniquely defined by the points on their underlying space they're describing,
+we would expect our idea of convergence to imply some kind of convergence of points on $E$.
+In fact, as the next lemma shows, vague convergence does imply a pointwise convergence in $E$.
 
 \begin{lemma}[Pointwise convergence, {\cite[Proposition 3.13, p.144]{Resnick.2008}}]
 	Let $\mu, \mu_1, \mu_2, \dots$ be point measures on $E$ and $\mu_n \rightarrow_v \mu$.
