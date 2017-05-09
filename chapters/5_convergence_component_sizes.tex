@@ -91,43 +91,29 @@ the point processes of starts and lengths of excursions converge vaguely to the 
 \begin{note}
 	The convergence
 	$\Xin \rightarrow_v \Xi$
-	is to be interpreted as the vague convergence of counting measures,
-	which means that for all continuous functions
-	$f: \IntTimesInt \rightarrow \Real$
-	with compact support,
-	\begin{equation}
-		\Exp{f(\Xin)} \rightarrow \Exp{f(\Xi)}.
-	\end{equation}
-	By general theory,
-	see for example \cite{Kallenberg.1990},
-	\fxnote{Add real reference here}
+	is to be interpreted as the vague convergence of counting measures
+	which, by Lemma~\ref{L: portmanteau vague},
 	this is equivalent to the convergence
 	\begin{equation}
 	\Xin(C) \rightarrow \Xi(C)
 	\end{equation}
-	for all compact subsets of
+	for all relatively compact subsets of
 	$\IntTimesInt$,
 	where $\Xi(\partial C) = 0$.
-	In this case, a compact subset is a pair of closed intervals
+	In this case, a relatively compact subset is a pair of intervals
 	$[T_1, T_2] \times [d_1, d_2]$,
 	with $T_1, T_2 \geq 0$
 	and $d_1, d_2 > 0$.
-	The condition on the measure of the boundary means,
+	The condition on the measure of the boundary means
 	that the limit process must not have any excursions starting exactly at
 	$T_1$ or $T_2$,
 	or any excursions of length exactly $d_1$ or $d_2$.
 	An exception is the case of $T_1=0$.
-	Since the domain of $f$ starts at $0$,
-	and the boundary condition is needed to prevent the case of points in $\Xin$ converging to some point on the boundary "from outside",
-	\fxnote{This is not really a boundary condition.}
-	\fxnote{Are "" around "from outside" needed?}
-	\fxnote{This is not a nice sentence in general.}
-	we do not need to consider $0$ as part of the boundary of any interval 
+	Since the domain of $f$ starts at $0$
+	and the condition on the boundary is needed to prevent the case of points in $\Xin$ converging to some point on the boundary "from outside",
+	we do not need to consider $0$ as part of the boundary of an interval 
 	$[0, T_2] \times [d_1, d_2]$.
 \end{note}
-\fxnote{Does this fit in the note? 
-	General stuff about vague convergence should not be in the proof.
-	Maybe vague convergence before the Lemma, interval stuff in the note.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Deterministic Lemma 7: Proof
@@ -363,9 +349,12 @@ We define a random point process containing the starts and lengths of excursions
 Let $\Ci{n,i}$ be the size of the $i$-th component and
 define $\gamma_n(i) \in \{1, \dots, n\}$ as the index for which
 $v(\gamma_n(i))$ is the last vertex of the $i-1$-th component encountered by the breadth-first walk $Z_n$.
-For a rigorous treatment of the following Lemma, we need to extend this definition beyond the $n$ possible values for $\gamma_n(i)$.
-Let $i^* \in \Nat$ such that $\gamma_n(i^*) = n$. For all $j > i^*$, define $\gamma_n(j) := \gamma_n(j-1) + 1$.
-Recall that we extended the definition of $\rznt$ in chapter~\ref{C: bf-walk} to a constant process after $s=\n{1}{3}$.
+For this lemma, we need to extend the definitions of $\gamma_n$ and $\Ci{n,i}$ beyond the $n$-th vertex and the last component.
+Let $i^*_n$ be the index of the last component 
+and define $\gamma_n(i^*_n + 1) := \max_{1 \leq i \leq i^*_n}\gamma_n(i) + 1$ 
+and consequently $\gamma_n(j) := \gamma_n(j-1) + 1$ for all $j > i^*_n + 1$.
+For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
+
 
 \begin{lemma} \label{L: Lemma 8}
 	Let $\Xi$ be the point process with points corresponding to excursions of $\Bt$,
@@ -391,17 +380,21 @@ Recall that we extended the definition of $\rznt$ in chapter~\ref{C: bf-walk} to
 	so to clarify we define the sets
 	\begin{equation} \label{E: Lemma 8 def XiWt}
 	\begin{aligned}
-	\Xi_{\Wt} &:= \{ (l(\gamma), |\gamma|) \; | \; \gamma \; \text{excursion of} \; \Bt \}, \\
-	\Xin_{\rznt} &:= \{ ( \n{-2}{3} \gamma_n(i), \n{-2}{3} \Ci{n,i} ) \; | \; i \geq 1 \},
+	\Xi_{\Wt} &:= \{ (l(\gamma), |\gamma|) \; | \; \gamma \; \text{excursion of} \; \Bt\}, \\
+	\Xin_{\znt} &:= \{ ( \n{-2}{3} \gamma_n(i), \n{-2}{3} \Ci{n,i} ) \; | \; i \geq 1 \}, \\
+	\bar{\Xi}^{(n)}_{\rznt} &:= \{ ( \bar{\gamma}_n(i), \bar{\Ccal}_{n,i} ) \; | \; i \geq 1 \},
 	\end{aligned}
 	\end{equation}
-	which are dependent on the specific realisation of the random processes $\Wt$ and $\rznt$.
+	which are dependent on the specific realisation of the random processes $\Wt$ and $\znt$,
+	where $\bar{\gamma}_n$ and $\bar{\Ccal}_{n,i}$ describe starting points and excursion lengths of $\rznt$.
+	Since $\rznt(s) = \n{-1}{3}\znt(\n{2}{3}s)$ we have $\Xin_{\znt} = \bar{\Xi}^{(n)}_{\rznt}$
+	and we can use $\Xin$ and $\bar{\Xi}^{(n)}$ interchangeably when appropriate.
 	
 	Now \eqref{E: Lemma 8 def Xi} and \eqref{E: Lemma 8 def Xin} can be redefined as the random variables
 	\begin{equation} \label{E: Lemma 8 def Xi Xin}
 	\begin{aligned}
 	\Xi : \; &\omega \mapsto \Xi_{\Wt(\omega)}, \\
-	\Xin : \; &\omega \mapsto \Xin_{\rznt(\omega)}.
+	\Xin : \; &\omega \mapsto \Xin_{\znt(\omega)}.
 	\end{aligned}
 	\end{equation}
 	
@@ -460,7 +453,7 @@ Recall that we extended the definition of $\rznt$ in chapter~\ref{C: bf-walk} to
 	The following properties will be proven on a standard Brownian motion $W$,
 	we later use Girsanovs theorem to apply them to $\WtX$.
 	
-	By, for example, \cite[Theorem 1.22]{Morters.2010},
+	By \cite[Theorem 1.22, p.18]{Morters.2010},
 	$W$ is not monotonous on any interval $[a,b]$ with $0 < a < b < \infty$ almost surely.
 	
 	Consider two excursions $(l_1, r_2), (l_2, r_2)$ with $l_1 < l_2$.
@@ -473,9 +466,9 @@ Recall that we extended the definition of $\rznt$ in chapter~\ref{C: bf-walk} to
 	The complement of all excursion is the set of intervals
 	on which the Brownian motion is monotonously decreasing.
 	By the same reasoning, almost surely there is no interval in between any two excursions on which $W$ is monotonously decreasing,
-	therefore condition{E: f cond complement zero} holds almost surely.
+	therefore condition \eqref{E: f cond complement zero} holds almost surely.
 	
-	A standard Brownian motion $W$ satisfies the conditions of Lemma~ref{L: Deterministic Lemma} almost surely,
+	A standard Brownian motion $W$ satisfies the conditions of Lemma~\ref{L: Deterministic Lemma} almost surely,
 	therefore $\WtX$ does so almost surely under $\tilde{\mathbb{P}}$
 	and by Girsanovs theorem likewise under $\Prob$.  
 
@@ -537,35 +530,13 @@ Recall that we extended the definition of $\rznt$ in chapter~\ref{C: bf-walk} to
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 It remains to be shown that we need not consider the problem of a large component wandering off to infinity.
-We prove this using to approaches:
-On one hand, we can analyse the behaviour of the breadth-first walk $\znt$
-after a certain stopping time.
-On the other hand, 
-we can consider the behaviour of components of the random graph
-and the distribution of vertices on them.
-\fxnote{This whole paragraph is a placeholder for something nicer.}
-
-Consider the functions
-\begin{align}
-T(y) &:= \min \{s \;|\; \Wt(s)=-y\}, \label{E: def T(y)}, \\
-T_n(y) &:= \min\{i \;|\; \Zn{i}=-\floor{y\n{1}{3}} \}. \label{E: def Tn(y)}.
-\end{align}
-Once the process $\Zn$ reaches step $T_n(y)$, 
-the walk has traversed at least all vertices labeled $\{1,2,\dots,\floor{y\n{1}{3}}\}$,
-since it encountered $\floor{y\n{1}{3}}$ individual components.
-\fxnote{More explanation of this process. Maybe write in German then translate.}
-By Theorem~\ref{T: Z -> W}, $\n{-2}{3}T_n(y) \rightarrow_d T(y)$
-and since $T(y) \rightarrow \infty$ as $y\rightarrow\infty$,
-$T_n(y) \approx \n{2}{3}T(y) \rightarrow\infty$ as $y\rightarrow \infty$.
-This implies that we will not expect the walk to eventually discover only one giant component,
-but many smaller ones that eventually end.
+We prove this by analysing the behaviour of the breadth-first walk after a certain stopping time.
 
 \section{Late excursions of $Z_n$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Late excursions of Z_n
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We now try to provide an exact depiction of the considerations at the end of the last section.
 The following Lemma proves that with high probability, all relevant excursions do in fact take place in a compact subset of $\IntTimesInt$.
 
 \begin{lemma} \label{L: late excursions}
