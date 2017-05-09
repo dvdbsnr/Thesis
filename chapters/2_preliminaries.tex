@@ -14,7 +14,7 @@
 
 The central notion of this thesis is the convergence in distribution of random variables in general metric spaces.
 
-\begin{definition}[Weak convergence, {\cite[p.7]{Billingsley.1999}}]
+\begin{definition}[Weak convergence, {\cite[p.7]{Billingsley.1999}}] \label{D: weak convergence}
 	Let $\mu_n$, $\mu$ be measures on a metric space $S$ with associated \Bosi $\mathcal{S} = \Bo(S)$.
 	
 	Denote by $\Cb(S)$ the space of bounded, continuous functions $f: S \rightarrow \Real$.
@@ -66,7 +66,7 @@ A first useful reference provides the so-called Portmanteau theorem.
 
 A powerful tool to prove weak convergence of measures is relative compactness.
 
-\begin{definition}[Relative compactness, {\cite[p.57]{Billingsley.1999}}] \label{D: Rel Compactness}
+\begin{definition}[Relative compactness, {\cite[p.57]{Billingsley.1999}}] \label{D: rel compactness}
 	Let $\Pi$ be a family of probability measures on $(S, \mathcal{S})$.
 	We call $\Pi$ \emph{relatively compact} if for every sequence in $\Pi$ there exists a convergent subsequence.
 	That is, for all sequences $\{P_n\} \subset \Pi$ there exists $\{P_{n_i} \} \subset \Pi$
@@ -82,7 +82,7 @@ A powerful tool to prove weak convergence of measures is relative compactness.
 For function spaces, knowing that a sequence of functions is relatively compact
 provides us with a powerful tool to prove convergence in distribution.
 
-\begin{definition}[Finite dimensional distributions, {\cite{Aldous.1997}}]
+\begin{definition}[Finite dimensional distributions, {\cite{Aldous.1997}}] \label{D: fidi distributions}
 	\fxfatal{Add real reference here.}
 	Let $X: \Omega \times \Rplus \rightarrow \mathbb{X}$ be a stochastic process with distribution $P$
 	For $t_1, \dots, t_k \in \Rplus$ we denote by \emph{finite-dimensional distributions} of $X$ 
@@ -121,7 +121,7 @@ if for all $\epsilon > 0$ there exists a compact $K$ such that
 
 This carries over to families of probability measures as follows:
 
-\begin{definition}[Tightness of families of probability measures, {\cite[p.59]{Billingsley.1999}}] \label{D: Tightness}
+\begin{definition}[Tightness of families of probability measures, {\cite[p.59]{Billingsley.1999}}] \label{D: tightness}
 	A family $\Pi$ of probability measures on a metric space $(S, \mathcal{S})$ is \emph{tight} 
 	if for every $\epsilon > 0$ there exists a compact $K \subset S$
 	such that $P(K) > 1 - \epsilon$
@@ -138,7 +138,7 @@ and therefore an effective means of proving convergence in distribution.
 
 We summarize this theorem and our considerations above in the following lemma.
 
-\begin{lemma}
+\begin{lemma} \label{L: tightness and fidi}
 	Let $X, X_n$ be stochastic processes with distributions $P, P_n$.
 	If $\{X_n\}$  is tight and
 	\begin{equation*}
@@ -158,7 +158,7 @@ The coming chapters will mainly deal with two types of stochastic processes:
 Brownian motion and so-called \cadlag-processes.
 This section will deal with the issue of proving tightness and thus convergence for the latter.
 
-\begin{definition}[The space $\DT$, {\cite[p.121]{Billingsley.1999}}]
+\begin{definition}[The space $\DT$, {\cite[p.121]{Billingsley.1999}}] \label{D: DT}
 	We call a function $f: I \rightarrow \Real$, $I \subseteq \Rplus$, \emph{\cadlag},
 	if
 	\begin{enumerate}
@@ -199,7 +199,7 @@ however $\sup_{t \in I}|f_n(t) - f(t)| = 1$ whenever $x_n \neq x$.
 Thinking of the previous convergence as allowing shifts on the y-axis,
 we need a convergence that additionally allows shifts on the x-axis.
 
-\begin{definition}[Skorohod metric, {\cite[p.124]{Billingsley.1999}}]
+\begin{definition}[Skorohod metric, {\cite[p.124]{Billingsley.1999}}] \label{D: skorohod}
 	Denote by $\Lambda$ the class of strictly increasing, continuous mappings from $[0,T]$ onto itself.
 	
 	For $x, y \in \DT$, define the \emph{Skorohod metric} $d(x,y)$ as the infimum of all $\epsilon > 0$ 
@@ -215,7 +215,7 @@ we need a convergence that additionally allows shifts on the x-axis.
 	where $I:[0,T] \rightarrow [0,T]$ is the identity map.
 \end{definition}
 
-\begin{definition}[Modulus of continuity, {\cite[p.122]{Billingsley.1999}}]
+\begin{definition}[Modulus of continuity, {\cite[p.122]{Billingsley.1999}}] \label{D: modulus of continuity}
 	A set $\{t_i\}$, where $ 0 = t_0 < t_1 < \dots < t_k = T $,
 	is called \emph{$\delta$-sparse} if $\min_{1\leq i \leq k} (t_i - t_{i-1}) > \delta$.
 	
@@ -233,7 +233,7 @@ The Arzelà-Ascoli theorem, see \cite[Theorem 7.2, p.82]{Billingsley.1999},
 provides a complete characterisation of relatively compact sets in $\CT$.
 We are now ready to present a $\DT$-equivalent.
 
-\begin{theorem}[Arzelà-Ascoli in $\DT$, {\cite[Theorem 12.3, p.130]{Billingsley.1999}}]
+\begin{theorem}[Arzelà-Ascoli in $\DT$, {\cite[Theorem 12.3, p.130]{Billingsley.1999}}] \label{T: AA in DT}
 	A necessary and sufficient condition for a set $A$ to be relatively compact in the Skorohod toplogy is that
 	\begin{enumerate}
 		\item $\sup_{x \in A} \norm{x}_T < \infty$,
@@ -248,7 +248,7 @@ We are now ready to present a $\DT$-equivalent.
 % SECTION: Point processes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{definition}[Point process, {\cite[p.123]{Resnick.2008}}]
+\begin{definition}[Point process, {\cite[p.123]{Resnick.2008}}] \label{D: point process}
 	Let $S$ be a locally compact second countable Hausdorff space
 	and $\Bo(S)$ its \Bosi.
 	Let $\{x_i, i \geq 1\}$ be a collection of points of $S$.
@@ -274,7 +274,7 @@ We are now ready to present a $\DT$-equivalent.
 
 For all coming observations, we will take $\Rplus$ as th underlying Hausdorff space with its \Bosi $\Bo = \Bo(\Rplus)$.
 
-\begin{definition}[Poisson point process, {\cite[p.130]{Resnick.2008}}]
+\begin{definition}[Poisson point process, {\cite[p.130]{Resnick.2008}}] \label{D: poisson process}
 	We call a point process $N$ a \emph{Poisson point process} or \emph{Poisson process},
 	if
 	\begin{enumerate}
@@ -292,7 +292,7 @@ For all coming observations, we will take $\Rplus$ as th underlying Hausdorff sp
 	\end{equation}	
 \end{definition}
 
-\begin{definition}[Simple point process, {\cite[p.124]{Resnick.2008}}]
+\begin{definition}[Simple point process, {\cite[p.124]{Resnick.2008}}] \label{D: simple point process}
 	A point process $N$ on $\Rplus$ is called \emph{simple} if 
 	\begin{equation}
 		\Prob( N({x}) > 1 ) = 0
@@ -318,7 +318,7 @@ for certain $f \in \Cb(\Rplus)$, which makes a discussion of convergence in $\Re
 To counter this, we define a new type of convergence, 
 in which the integrals only have to converge for functions with compact support.
 
-\begin{definition}[Vague convergence, {\cite[p.140]{Resnick.2008}}]
+\begin{definition}[Vague convergence, {\cite[p.140]{Resnick.2008}}] \label{D: vague convergence}
 	Let $\CK(E)$ be the space of continuous real valued functions ona Hausdorff space $E$ with compact support,
 	meaning there exists a compact set $K \in \Bo(E)$ such that $f(x) = 0$ for all $x \notin K$.
 	
@@ -333,7 +333,7 @@ in which the integrals only have to converge for functions with compact support.
 Theorem~\ref{T: portmanteau weak} gave necessary and sufficient conditions for weak convergence of measures,
 the following lemma may be seen as an equivalent Portmanteau Theorem in the sense of vague convergence.
 
-\begin{lemma}[Equivalent conditions for vague convergence, {\cite[Proposition 3.12, p.142]{Resnick.2008}}]
+\begin{lemma}[Equivalent conditions for vague convergence, {\cite[Proposition 3.12, p.142]{Resnick.2008}}] \label{L: portmanteau vague}
 	Let $\mu, \mu_1, \mu_2, \dots$ be point measures on a Hausdorff space $E$.
 	The following are equivalent:
 	\begin{enumerate}
@@ -349,7 +349,7 @@ Since point measures are uniquely defined by the points on their underlying spac
 we would expect our idea of convergence to imply some kind of convergence of points on $E$.
 In fact, as the next lemma shows, vague convergence does imply a pointwise convergence in $E$.
 
-\begin{lemma}[Pointwise convergence, {\cite[Proposition 3.13, p.144]{Resnick.2008}}]
+\begin{lemma}[Pointwise convergence, {\cite[Proposition 3.13, p.144]{Resnick.2008}}] \label{L: pointwise convergence}
 	Let $\mu, \mu_1, \mu_2, \dots$ be point measures on $E$ and $\mu_n \rightarrow_v \mu$.
 	For compact $K$ with $\mu(\partial K) = 0$ and $n \geq N(K)$
 	there exist a labeling of points of $\mu_n$ and $\mu$ in $K$ such that
