@@ -13,6 +13,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The central notion of this thesis is the convergence in distribution of random variables in general metric spaces.
+The results presented in this section and the next will be of special importance in the proof of Theorem~\ref{T: Joint Convergence}
+in Chapter~\ref{C: surplus edges}.
 
 \begin{definition}[Weak convergence, {\cite[p.7]{Billingsley.1999}}] \label{D: weak convergence}
 	Let $\mu_n$, $\mu$ be measures on a metric space $S$ with associated \Bosi $\mathcal{S} = \Bo(S)$.
@@ -242,11 +244,15 @@ We are now ready to present a $\DT$-equivalent.
 \end{theorem}
 
 
-
 \section{Point processes} \label{S: point processes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Point processes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In Chapter~\ref{C: convergence} we will finish the proof of Theorem~\ref{T: Main}
+by considering excursions of the Brownian motion as two-dimensional point processes
+on the positive real line.
+This section will provide an overview of the needed theory.
 
 \begin{definition}[Point process, {\cite[p.123]{Resnick.2008}}] \label{D: point process}
 	Let $S$ be a locally compact second countable Hausdorff space
@@ -272,7 +278,7 @@ We are now ready to present a $\DT$-equivalent.
 	$\ProbSpace$ into $(M_p(S), \mathscr{M}_p(S))$.
 \end{definition}
 
-For all coming observations, we will take $\Rplus$ as th underlying Hausdorff space with its \Bosi $\Bo = \Bo(\Rplus)$.
+For all coming observations, we will take $\Rplus$ as the underlying Hausdorff space with its \Bosi $\Bo = \Bo(\Rplus)$.
 
 \begin{definition}[Poisson point process, {\cite[p.130]{Resnick.2008}}] \label{D: poisson process}
 	We call a point process $N$ a \emph{Poisson point process} or \emph{Poisson process},
@@ -376,8 +382,9 @@ In fact, as the next lemma shows, vague convergence does imply a pointwise conve
 In the course of this thesis we will require two further results on Brownian motion.
 First we introduce the central limit theorem for martingales,
 which provides us with a means to identify convergence of a martingale to Brownian motion.
+It will be used in the proof of Theorem~\ref{T: Z -> W} in Chapter~\ref{C: bf-walk}.
 
-We state the theorem here, without proof, as it appears in \cite[Theorem 1.4, p.339 f.]{Ethier.2005},
+We state the theorem here as it appears in \cite[Theorem 1.4, p.339 f.]{Ethier.2005},
 omitting one of two equivalent conditions and all references to higher dimensional processes,
 in order to focus on the one-dimensional case we will need for our proof.
 
@@ -408,11 +415,11 @@ in order to focus on the one-dimensional case we will need for our proof.
 \end{theorem}
 
 
-We conclude this preliminary chapter by presenting Girsanovs Theorem,
-which will enable us to prove certain properties of the Brownian motion with drift.
-We state the theorem as it appears in \cite[Theorem 4.2.2, p.66]{Lamberton.2000}.
+We conclude this preliminary chapter by presenting the Girsanov theorem,
+which will enable us to deduce certain properties of the Brownian motion with drift
+and prove Lemma~\ref{L: Lemma 8} in Chapter~\ref{C: convergence}.
 
-\begin{theorem}[Girsanov] \label{T: Girsanov}
+\begin{theorem}[Girsanov theorem, {\cite[Theorem 4.2.2, p.66]{Lamberton.2000}}] \label{T: Girsanov}
 	Let $(W(s))_{0 \leq s \leq T}$ be a standard Brownian motion on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$.
 	Let $(\Theta(s))_{0 \leq s \leq T}$ be an adapted process satisfying
 	\begin{equation} \label{E: Girsanov cond Theta}
