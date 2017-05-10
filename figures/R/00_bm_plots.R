@@ -5,6 +5,7 @@
 library(ggplot2)
 library(reshape2)
 library(tikzDevice)
+library(dplyr)
 
 # load functions
 source("R/bm_functions.R")
@@ -12,18 +13,18 @@ source("R/bm_functions.R")
 
 #### Parameters --------------------------------
 # random seed
-set.seed(200)
+set.seed(600)
 
 # last time value
-time.max <- 1
+time.max <- 4
 # number of steps
-n.steps <- 500
+n.steps <- 2000
 
 
 # t parameter for positive drift.
-tpos <- 0.25
+tpos <- 1.2
 # t parameter for negative drift.
-tneg <- -0.01
+tneg <- -1.2
 
 
 #### Create Brownian Motion positive t --------------------------------
@@ -34,7 +35,7 @@ step.size <- time.max / n.steps
 steps <- seq(0, time.max, by=step.size)
 
 # standard brownian motion
-increments <- rnorm(n.steps, mean = 0, sd = step.size)
+increments <- rnorm(n.steps, mean = 0, sd = sqrt(step.size))
 bm <- c(0, cumsum(increments))
 
 # brownian motion with drift t-s
@@ -46,20 +47,25 @@ bm.ref <- reflect.brownian.motion(bm)
 bm.drift.ref <- reflect.brownian.motion(bm.drift)
 
 # all brownian motions in one dataframe
-df <- data.frame(
+df.pos <- data.frame(
   step = steps,
   bm,
   bm.ref,
   bm.drift,
   bm.drift.ref
-)
-df <- melt(df, id.vars="step")
+) %>% 
+  melt(id.vars="step")
+
+plot <- ggplot(df.pos %>% filter(variable == "bm"),
+               aes(x = step, y = value)) +
+  geom_line()
+plot(plot)
 
 #### Plot positive t --------------------------------
 
 # Plot regular Brownian motion
 tikz('fig_bm.tex',standAlone = FALSE, width = 1.5,height = 1.5)
-plot <- ggplot(data=df[df$variable=="bm", ], 
+plot <- ggplot(df.pos %>% filter(variable=="bm"), 
                aes(x=step, y=value)) +
   geom_line() +
   geom_hline(aes(yintercept = 0)) +
@@ -77,7 +83,7 @@ dev.off()
 
 # Plot Brownian motion with drift.
 tikz('fig_bm_drift_pos.tex',standAlone = FALSE, width = 1.5,height = 1.5)
-plot <- ggplot(data=df[df$variable=="bm.drift", ], 
+plot <- ggplot(df.pos %>% filter(variable=="bm.drift"), 
                aes(x=step, y=value)) +
   geom_line() +
   geom_hline(aes(yintercept = 0)) +
@@ -95,7 +101,7 @@ dev.off()
 
 # Plot Brownian motion with drift and reflection.
 tikz('fig_bm_drift_ref_pos.tex',standAlone = FALSE, width = 1.5,height = 1.5)
-plot <- ggplot(data=df[df$variable=="bm.drift.ref", ], 
+plot <- ggplot(df.pos %>% filter(variable=="bm.drift.ref"), 
                aes(x=step, y=value)) +
   geom_line() +
   geom_hline(aes(yintercept = 0)) +
@@ -114,15 +120,6 @@ dev.off()
 
 #### Create Brownian Motion negative t --------------------------------
 
-# size of one step
-step.size <- time.max / n.steps
-# values of steps
-steps <- seq(0, time.max, by=step.size)
-
-# standard brownian motion
-increments <- rnorm(n.steps, mean = 0, sd = step.size)
-bm <- c(0, cumsum(increments))
-
 # brownian motion with drift t-s
 bm.drift <- bm + tneg*steps - 0.5*steps*steps
 
@@ -132,20 +129,20 @@ bm.ref <- reflect.brownian.motion(bm)
 bm.drift.ref <- reflect.brownian.motion(bm.drift)
 
 # all brownian motions in one dataframe
-df <- data.frame(
+df.neg <- data.frame(
   step = steps,
   bm,
   bm.ref,
   bm.drift,
   bm.drift.ref
-)
-df <- melt(df, id.vars="step")
+) %>% 
+  melt(id.vars="step")
 
 #### Plot negative t --------------------------------
 
 # Plot Brownian motion with drift.
 tikz('fig_bm_drift_neg.tex',standAlone = FALSE, width = 1.5,height = 1.5)
-plot <- ggplot(data=df[df$variable=="bm.drift", ], 
+plot <- ggplot(df.neg %>% filter(variable=="bm.drift"), 
                aes(x=step, y=value)) +
   geom_line() +
   geom_hline(aes(yintercept = 0)) +
@@ -163,7 +160,7 @@ dev.off()
 
 # Plot Brownian motion with drift and reflection.
 tikz('fig_bm_drift_ref_neg.tex',standAlone = FALSE, width = 1.5,height = 1.5)
-plot <- ggplot(data=df[df$variable=="bm.drift.ref", ], 
+plot <- ggplot(df.neg %>% filter(variable=="bm.drift.ref"), 
                aes(x=step, y=value)) +
   geom_line() +
   geom_hline(aes(yintercept = 0)) +
