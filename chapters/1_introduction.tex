@@ -20,8 +20,53 @@ A brief introduction.
 % SECTION: The Erdös-Renyi random graph
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-This section introduces the Erdös-renyi random graph,
-talks about the original paper and establishes notation.
+In their paper, Erdös and Renyi proposed a model of random graph that is now known as the Erdös-Renyi random graph.
+There are several ways to construct this random graph which we will briefly introduce,
+starting with the historic models used in this first paper 
+and continuing with the equivalent model which provides the basis for Aldous' paper and consequently this thesis.
+
+We denote by $G_{n,M}$ the set of graphs on $n$ vertices with $M$ edges that are
+\begin{enumerate}
+	\item undirected,
+	\item without slings, i.e. there is no edge $(v,v)$ for some vertex $v$,
+	\item without parallel edges, i.e. there can be at most one edge $(v_1, v_2)$ for each pair of vertices.
+\end{enumerate}
+A graph in $G_{n,M}$ can be constructed by choosing $M$ out of the $\binom{n}{2}$ possible edges between the vertices,
+which leads to a total number of graphs
+\begin{equation}
+	|G_{n,M}| = \binom{\binom{n}{2}}{M}.
+\end{equation}
+The Erdös-Renyi random graph $\Gcal(n, M)$ is now obtained by choosing one element of $G_{n,M}$ at random
+with equal probability for each graph, where the number of edges is usually dependent on the number of vertices, $M = M(n)$.
+
+An equivalent definition provides the following process:
+Starting with a graph on $n$ vertices with $0$ edges at time $t=1$, 
+pick one of the $\binom{n}{2}$ possible edges at random with equal probability for each edge,
+label it $e_1$.
+At time $t=2$ pick one of the remaining $\binom{n}{2}-1$ edges, again all remaining edges being equiprobable,
+and denote it by $e_2$.
+Continue until $M$ edges have been chosen at time $t=M$.
+The graph on vertices $\{1, \dots, n\}$ with edges $\{e_1, \dots, e_M\}$ is the desired Erdös-Renyi random graph.
+
+Using these definitions Erdös and Renyi prove that,
+when increasing the number of edges $M(n)$,
+the sizes of connected components undergo distinct phases leading from small sparse components
+to one giant component and eventually a completely connected graph.
+
+Most current literature and the paper we are studying uses a slightly different approach to constructing the Erdös-Renyi random graph.
+Given a set of vertices $\{1, \dots, n\}$ and an edge-probability $\p = p(n)$
+we take every edge $(v_1, v_2)$ and add it to the set of edges of the random graph with probability $\p$ independently.
+We denote a random object constructed this way by $\Gcal(n, \p)$ and expect a realisation of the random graph to have $\binom{n}{2}\p$ edges.
+When increasing the probability $\p$ from $0$ to $1$ the resulting random graph undergoes the same so-called phase transitions
+discovered by Erdös and Renyi.
+
+While the results of the original paper hold for small and large $M(n)$,
+the critical phase transistion happening around $M(n) = \frac{n}{2}$ or $\p = \frac{1}{n}$
+was later discovered to be imprecise.
+\fxnote{Add reference from hofstad somewhere.}
+The following section will provide a more precise introduction to the different phases a random graph undergoes
+with increasing number of edges.
+
 
 \section{General results on component sizes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
