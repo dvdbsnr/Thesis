@@ -20,6 +20,9 @@ A brief introduction.
 % SECTION: The Erdös-Renyi random graph
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+This section introduces the Erdös-renyi random graph,
+talks about the original paper and establishes notation.
+
 \section{General results on component sizes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: General results on component sizes
@@ -36,8 +39,7 @@ that is
 \end{equation}
 
 The following theorem provides an upper bound on the size of $\Ccal_{\max}$, the largest component of $\Gcal$.
-See \cite[Theorem 4.4, p.125]{vanderHofstad.2016}.
-\begin{theorem}[Lower bound on largest subcritical component]
+\begin{theorem}[Lower bound on largest subcritical component, {\cite[Theorem 4.4, p.125]{vanderHofstad.2016}}]
 	Fix $\lambda < 1$. 
 	Then, for all $a > 1/I_{\lambda}$, 
 	there exists $\delta = \delta(a, \lambda)$ such that
@@ -47,8 +49,7 @@ See \cite[Theorem 4.4, p.125]{vanderHofstad.2016}.
 \end{theorem}
 
 The next theorem gives an upper bound for the size of $\Ccal_{\max}$.
-See \cite[Theorem 4.5, p.125]{vanderHofstad.2016}.
-\begin{theorem}[Upper bound on largest subcritical component]
+\begin{theorem}[Upper bound on largest subcritical component, {\cite[Theorem 4.5, p.125]{vanderHofstad.2016}}]
 	Fix $\lambda < 1$. 
 	Then, for all $a < 1/I_{\lambda}$, 
 	there exists $\delta = \delta(a, \lambda)$ such that
@@ -71,8 +72,7 @@ Any vertex is part of a large component with probability $\xi_\lambda$,
 therefore we will expect around $n \xi_\lambda$ vertices being part of large connected components.
 The following theorem now states that all of these vertices are, in fact, part of the same connected component, which we call the giant component.
 \fxnote{Add explanation for Poisson branching process}
-See \cite[Theorem 4.8, p.131]{vanderHofstad.2016}.
-\begin{theorem}[Law of large numbers for giant component]
+\begin{theorem}[Law of large numbers for giant component, {\cite[Theorem 4.8, p.131]{vanderHofstad.2016}}]
 	Fix $\lambda>1$.
 	Then, for all $\nu \in (\frac{1}{2}, 1)$, there exists $\delta = \delta(\nu, \lambda)$ such that
 	\begin{equation}
@@ -87,29 +87,23 @@ for $n \p > 1$ we expect one giant component, rapidly approaching size $n$.
 But what happens around $n \p \approx 1$?
 As it turns out, the emergence of the giant component occurs quite rapidly,
 such that shortly after $n \p = 1$ most graphs do not have any component of order between $\frac{1}{2}\n{2}{3}$ and $\n{2}{3}$.
-We switch to the language of $\mathscr{G}(n,m)$ for the following theorem.
-\begin{theorem}
-test
-\end{theorem}
 
-For an estimate on when exactly this giant component emerges, we quote \cite[Theorem 6.8, p.142]{Bollobas.2001} for
-\begin{theorem}
+The following theorem provides an approximation of the time of emergence of the giant component,
+seeing the random graph on $n$ vertices as a graph process,
+starting at $t=0$ with $0$ edges, adding one random edge at every time step.
+We would therefore expect the emergence starting around time $\binom{2}{n}\frac{1}{n} \approx \frac{1}{2}n$. 
+
+\begin{theorem}[Emergence of the giant component, {\cite[Theorem 6.8, p.142]{Bollobas.2001}}]
 	Almost every graph process $\Gcal = (\Gcal_t)_0^n$ is such that 
 	for every $t \geq t_1 = \floor{ n/2 + 2(\log n)^{1/2}\n{2}{3} }$ 
 	the graph $\Gcal_t$ has a unique component of order at least $\n{2}{3}$ and the other components have at most $\frac{1}{2}\n{2}{3}$
 \end{theorem}
 
-
-
-
-
 As it turns out, there is a so-called critical window in which the component sizes are not of size $\log n$ and there is no giant component yet.
 We call a random graph $\Gcal(n, n^{-1} + t\n{-4}{3})$ critical for $t \in \Real$.
+The next theorem provides a approximation of the size of the largest component in a critical random graph.
 
-The following theorem proves that the rescaled sequence of sizes of the biggest component in $\Gcal$ is tight.
-That is, with high probability it is contained in some compact subset of $\Real$.
-See \cite[Theorem 5.1, p.150]{vanderHofstad.2016}
-\begin{theorem}[Largest critical cluster] \label{T: largest critical cluster}
+\begin{theorem}[Largest critical cluster, {\cite[Theorem 5.1, p.150]{vanderHofstad.2016}}] \label{T: largest critical cluster}
 	Let $\lambda = 1 + t\n{-1}{3}$, with $t \in \Real$.
 	There exists a constant $b = b(t)$ such that for all $\omega > 1$,
 	\begin{equation}
@@ -117,17 +111,29 @@ See \cite[Theorem 5.1, p.150]{vanderHofstad.2016}
 	\end{equation}	
 \end{theorem}
 
-If we rescaled the size of the biggest component by $\n{-2}{3}$,
-it is with high probability contained in the compact interval $[\omega^{-1}, \omega]$.
+Therefore, rescaling the size of the largest component by $\n{-2}{3}$,
+it is contained in an interval $[\omega^{-1}, \omega]$ with hight probability.
 
-\fxnote{This should come last}
+But is it possible to provide a similar statement not only for the largest, but for all components in a critical random graph?
+Aldous notes that previous to his paper
+the convergence of the rescaled component sizes to some limit process was generally assumed to be true,
+although never explicitly proven.
+He therefore provides the following \emph{folk theorem},
+which will be proven in more precise form in the course of this thesis.
 
-
-
-
-
-
-
+\begin{folktheorem} \label{T: folk theorem}
+	Let $\Cnt(1) \geq \Cnt(2) \geq \dots$ be the ordered component sizes of
+	$\Gcal(n, n^{-1} + t\n{-4}{3})$ and let $\sigmant(j)$ be the surplus of the corresponding component.
+	Then
+	\begin{equation}
+		( \n{-2}{3} ( \Cnt(j), \sigmant(j) ), \; j \geq 1 ) 
+		\rightarrow_d
+		( (\Ct(j), \sigmat), \; j \geq 1 )
+		= ( \Ctbold, \sigmatbold ),
+	\end{equation}
+	as $n \rightarrow \infty$ for some limit $( \Ctbold, \sigmatbold )$
+	with $0 < \Ct(j) < \infty$ and $0 \leq \sigmatbold(j) < \infty$ almost surely for each $j \geq 1$.
+\end{folktheorem}
 
 
 
@@ -139,7 +145,7 @@ it is with high probability contained in the compact interval $[\omega^{-1}, \om
 In this section we state the main results of this thesis,
 which is a refinement of Theorem~\ref{T: largest critical cluster}.
 While previously the size of largest component was only estimated to be of order $\n{2}{3}$,
-the following Theorem will give a limit distribution for all component sizes, downscaled by $\n{-2}{3}$.
+the following theorem will give a limit distribution for all component sizes, downscaled by $\n{-2}{3}$.
 
 Denote by $W$ the standard Brownian motion. 
 For a fixed parameter $t \in \Real$ we call the process $\Wt$, defined by
@@ -170,7 +176,7 @@ and calling it the reflected Brownian motion with drift.
 \end{figure}
 
 See Figure~\ref{F: BM} for an example of a Brownian motion with drift for positive and negative $t$ and the corresponding reflected process.
-Note that for positive $t$ the time intervals between zeroes of $\Bt$, especially the first, are much longer than for negative $t$.
+Note that for positive $t$ the time intervals between zeroes of $\Bt$ are much longer than for negative $t$.
 We call an excursion $\gamma$ of $\Bt$ a time interval $[l(\gamma), r(\gamma)]$ for which $\Bt(l(\gamma)) = \Bt(r(\gamma)) = 0$
 and $\Bt(s) > 0$ for all $l(\gamma) < s < r(\gamma)$.
 Denote by $|\gamma| = r(\gamma) - l(\gamma)$ the length of an excursion.
@@ -201,7 +207,7 @@ We now state the main theorem of this thesis, which we will prove gradually in t
 	Then, as $n \rightarrow \infty$,
 	\begin{equation}
 	( \n{-2}{3} ( \Cnt(j), \sigmant(j) ), \; j \geq 1 ) 
-	\rightarrow_p
+	\rightarrow_d
 	( (\Ct(j), \sigmat), \; j \geq 1 )
 	= ( \Ctbold, \sigmatbold ),
 	\end{equation}
@@ -215,7 +221,7 @@ We now state the main theorem of this thesis, which we will prove gradually in t
 	$ \left( (|\gamma_j|, \mu(\gamma_j)), j \geq 1  \right) $
 	of lengths and mark-counts of excursions of $\Bt$.
 \end{theorem}
-\fxnote{Defining a limit is unnecessary, distribution to (gamma, mu) would suffice.}
+\fxfatal{ld topology must be explained or removed.}
 
 We conclude this chapter with an overview of the remaining chapters and the structure of the proof of Theorem~\ref{T: Main}.
 
