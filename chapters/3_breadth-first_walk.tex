@@ -373,7 +373,7 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 \begin{lemma} \label{L: formula an}
 	For $a_n$ as defined in Lemma~\ref{L: decomp Zn},
 	\begin{equation}
-	\an(s) = (n - s - \Zetan{\ceil(s)} - \Zn(s)) \ps .
+	\an(s) = (n - s - \Zetan{\ceil{s}} - \Zn(s)) \ps .
 	\end{equation}
 \end{lemma}
 
@@ -466,7 +466,7 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 	\end{equation}
 	Conditioning on $\SigmaAlgebra_s$,
 	the breadth-first walk $\Zn$ tells us exactly how many vertices connected to vertex $i$ until time $s$.
-	We denote by $\Ineligible(s)$ the number of vertices that are at time $s$ not eligible to be a child of $v(\ceil(s))$.
+	We denote by $\Ineligible(s)$ the number of vertices that are at time $s$ not eligible to be a child of $v(\ceil{s})$.
 	\fxnote{Its not the sum of vertices. Its the sum of the amount of vertices.}
 	Then $N-k=n-\Ineligible(s)$ at time $s$ and
 	\begin{equation}
@@ -497,7 +497,7 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 	\end{aligned}
 	\end{equation} 
 	by our definition \eqref{E: def Z} of the continuous-time breadth-first walk.
-	So $\Ineligible(s) = s + \ZetaMinus{\ceil(s)} + \Zn(s)$ which concludes the proof.
+	So $\Ineligible(s) = s + \ZetaMinus{\ceil{s}} + \Zn(s)$ which concludes the proof.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -603,18 +603,163 @@ The following statement proves a similar decomposition of the squared martingale
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fxfatal{Update title}
 
-The main goal of this section will be the use of the functional central limit theorem for martingales
-and subsequently proving Theorem~\ref{T: Z -> W}.
-As stated in Theorem~\ref{T: functional CLT martingales}, with Z as X and M as N and so on,
-\fxnote{Fix references to CLT Theorem}
-we need to make sure that our processes satisfy conditions \eqref{E: CLT cond 1} to \eqref{E: CLT cond 3}.
-\fxnote{Fix references to CLT eqs}
-\fxnote{Maybe rescale the processes here?}
+The main goal of this section will be using the functional central limit theorem for martingales
+to prove the convergence of $\rznt$ to a Brownian motion and subsequently Theorem~\ref{T: Z -> W}.
 
-We start by analysing the asymptotic behaviour of $\An$.
-This will not be used directly in Girsanovs theorem, 
-but will be helpful for later Lemmata and provide the drift of $\Wt$.
-\fxnote{Fix these sentences.}
+Therefore we analyse the asymptotic behaviour of the processes obtained in the decompositions of the last section
+and rescale them to fit $\rznt$ and the requirements of Theorem~\ref{T: functional CLT martingales}.
+We first provide a general result on the breadth-first walk.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma Zn stoch bounded: Statement
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{lemma} \label{L: Zn stoch bounded}
+	\begin{equation}
+	n^{-1/3} \supns |\Zn(s)| 
+	\enspace \text{is stochastically bounded as} \enspace n \rightarrow \infty.
+	\end{equation}
+\end{lemma}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma Zn stoch bounded: Proof
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{proof}
+	This proof will follow a truncation argument.
+	\fxnote{Find out what a truncation argument is.}
+	We define two stopping times $T^*_n$ and $T_n$ by
+	\fxnote{Are those stopping-times?}
+	\begin{align} 
+		T^*_n &:= \min \lbrace s \cond |\Zn(s)| > K \n{1}{3} \rbrace, \label{E: def T*n} \\
+		T_n &:= \min \lbrace T^*_n, \n{2}{3}s_0 \rbrace ,  \label{E: def Tn}
+	\end{align}
+	\fxnote{Define Tn, T*n nicer.}
+	for some fixed $K>0$ and use Markov's inequality to rewrite the left-hand side of Equation \eqref{E: stoch bounded} as
+	\begin{equation} \label{E: stoch bounded 2}
+	\begin{aligned}
+	\Prob( \sup_{s\leq n^{2/3} s_0} |\Zn(s)| > K \n{1}{3} ) &= \Prob( |\Zn(T_n)| > K\n{1}{3} ) \\
+	&\leq \frac{\Exp{|\Zn(T_n)}}{K}.
+	\end{aligned} 
+	\end{equation}
+	
+	To analyse $\Exp{|\Zn(T_n)|}$ we will use the decompositions established in the previous section. 
+	Lemma~\ref{L: decomp Zn} gave $\Zn = \Mn + \An$,
+	so \begin{equation} \label{E: Exp(|Zn|)}
+	\Exp{|\Zn(T_n)|} \leq \Exp{|\Mn(T_n)|} + \Exp{|\An(T_n)|}.
+	\end{equation}
+	By Lemma~\ref{L: decomp Mn}, we have $M^2_n = \Qn + \Bn$ where $\Qn$ is a martingale. 
+	The optional sampling theorem dictates that 
+	$\Exp{\Qn(\tau)} = 0$ 
+	for all stopping times $\tau$, hence 
+	\begin{align*}
+		\Exp{M^2_n(T_n)} 
+		&= \Exp{\Qn(T_n)} + \Exp{\Bn{T_n}} \\
+		&= \Exp{\Bn{T_n}} \\
+		&= \Exp{ \int_{0}^{T_n} a_n(s)ds } \\
+		&\leq \int_{0}^{\n{2}{3}s_0} \Exp{a_n(s)} ds.
+	\end{align*}
+	
+	By the definition of $a_n$ in \eqref{D: an}, we have
+	\begin{equation}
+	\begin{aligned}
+	a_n(s) &= (n - \nu_n(s)) \frac{\p}{1 - (s - \floor(s))\p} \\
+	&\leq \frac{n \p}{1 - (s - \floor(s))\p}
+	\end{aligned}
+	\end{equation}
+	which is a deterministic function of $s$. So
+	$ \Exp{a_n(s)} \leq \frac{n \p}{1 - (s - \floor(s))\p} $
+	and
+	\begin{equation}
+	\begin{aligned}
+	\int_{0}^{\n{2}{3}s_0} \Exp{a_n(s)} ds 
+	&\leq \int_{0}^{\n{2}{3}s_0}\frac{n \p}{1 - (s - \floor(s))\p}ds \\
+	&\leq 2\n{2}{3}s_0,
+	\end{aligned}
+	\end{equation}
+	where the last inequality holds for $n$ sufficiently large, since 
+	$\frac{n \p}{1 - (s - \floor(s))\p} \rightarrow 1$
+	as $n \rightarrow \infty$.
+	Now Hölders inequality gives us
+	\fxnote{Add reference to Hölder.}
+	\begin{equation} \label{E: Exp(Mn)}
+	\Exp{|\Mn(T_n)|} \leq \sqrt{\Exp{M^2_n(T_n)}} \leq (2s_0)^{1/2}\n{1}{3}.
+	\end{equation}
+	
+	We proceed to the analysis of the second term in \eqref{E: Exp(|Zn|)}.
+	The definition of $\An$ in \eqref{D: An} establishes
+	\begin{equation}
+	\begin{aligned}
+	\Exp{|\An(T_n)|} 
+	&= \Exp{|\int_{0}^{T_n}(\an(s) -1)ds |} \\
+	&\leq \Exp{\int_{0}^{T_n} |\an(s)-1|ds} \\
+	&\leq \Exp{\int_{0}^{\n{2}{3}s_0} |\an(s)-1|ds}.
+	\end{aligned}
+	\end{equation}
+	
+	We decompose $|\an(s) - 1|$ by
+	\begin{equation}
+	\begin{aligned}
+	|\an(s)-1| 
+	&= | \an(s) + \amn(s) - \amn(s) + \frac{s}{n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}} \\
+	&\quad	- \frac{s}{n} + \frac{\pp}{\n{1}{3}} - \frac{s\pp}{\n{4}{3}} | \\
+	&\leq |\an(s) - \amn(s)| + 	|\frac{s}{n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}| \\
+	&\quad    + |\amn(s) - 1 + \frac{s}{n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}|
+	\end{aligned}
+	\end{equation}
+	to evaluate
+	\begin{equation}
+	\begin{aligned}
+	\Exp{|\An(T_n)|} 
+	&\leq \Exp{\int_{0}^{\n{2}{3}s_0} |\an(s) - \amn(s)|ds} \\
+	&\quad + \Exp{\int_{0}^{\n{2}{3}s_0} |\frac{s}{n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}| ds} \\
+	&\quad + \Exp{\int_{0}^{\n{2}{3}s_0} |\amn(s) - 1 + \frac{s}{n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}|ds}.
+	\end{aligned}
+	\end{equation}
+	
+	Let us look at the terms individually. 
+	By the uniform convergence $a_n \rightarrow a'_n$ we have
+	\begin{equation}
+	\Exp{\int_{0}^{\n{2}{3}s_0} |\an(s) - \amn(s)|ds} \leq \n{2}{3}s_0 \BigO{\frac{1}{n}},
+	\end{equation}
+	we can estimate the second term by
+	\begin{equation}
+	\Exp{\int_{0}^{\n{2}{3}s_0} |\frac{s}{n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}| ds}
+	\leq \n{2}{3}s_0 \BigO{\frac{|\pp|}{\n{1}{3}}},
+	\end{equation}
+	and \eqref{E: int an <= 4s/n maxZ + O()} implies
+	\begin{equation}
+	\begin{aligned}
+	&\Exp{\int_{0}^{T_n} |\amn(s) - 1 + \frac{s}{n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}|ds} \\
+	&\leq \Exp{ \frac{4T_n}{n} \max_{u \leq T_n}|\Zn(u)| + \BigO{\frac{T_n}{n}} } \\
+	&\leq \frac{4\n{2}{3}s_0}{n} \Exp{\max_{u \leq T_n}|\Zn(u)|} + \BigO{\frac{\n{2}{3}s_0}{n}} \\
+	&\leq 4s_0 K + s_0 \BigO{\n{-1}{3}},
+	\end{aligned}
+	\end{equation}
+	\fxfatal{Fix >= / > in definition of Tn and stoch bounded definition.}
+	where the last inequality follows from the definition of $T_n$ in \eqref{E: def Tn},
+	which assures $|\Zn(s)| \leq K\n{1}{3}$ for all $s \leq T_n$. 
+	
+	Summing these three terms we arrive at
+	\begin{equation} \label{E: Exp(An)}
+	\Exp{|\An(T_n)|} \leq 4 s_0 K + s_0|\pp|\BigO{\n{1}{3}} + s_0^2\BigO{\n{1}{3}} + s_0\BigO{\n{-1}{3}}
+	\end{equation}
+	
+	We combine \eqref{E: Exp(Mn)} and \eqref{E: Exp(An)}, 
+	which results in the following upper bound for large $n$:
+	\begin{equation} \label{E: bound Zn}
+	\Exp{|\Zn{T_n}|} \leq \alpha\n{1}{3} + 4s_0K,
+	\end{equation}
+	where $\alpha = \alpha(s_0,\pp)$, but does not depend on $n$ and $K$. 
+	Substituting $\Exp{|\Zn{T_n}|}$ in \eqref{E: stoch bounded 2} we arrive at
+	\begin{equation}
+	\Prob( \sup_{s\leq n^{2/3} s_0} |\Zn(s)| > K \n{1}{3} ) \leq \frac{\alpha}{K} + \frac{4s_0}{\n{1}{3}}
+	\end{equation}
+	which proves \eqref{E: stoch bounded} by choosing $K$ and $n$ sufficiently large.
+\end{proof}
+
+
+Using this lemma we analyse the behaviour of $\An$ as $n \rightarrow \infty$
+which will provide us with an expression for the drift of $\Wt$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -634,7 +779,7 @@ but will be helpful for later Lemmata and provide the drift of $\Wt$.
 \begin{proof} \label{P: limit An}
 	We define $\amn(s)$ as
 	\begin{equation} \label{E: def a'n}
-		\amn(s) := \an(s) (1 - (s - \floor(s))\p) = (n - s - \Zetan{\ceil(s)} - \Zn(s)) \p.
+		\amn(s) := \an(s) (1 - (s - \floor(s))\p) = (n - s - \Zetan{\ceil{s}} - \Zn(s)) \p.
 	\end{equation}
 	\fxnote{Change "without the denominator"}
 	First, we show that $\an(s)$ and $\amn(s)$ become asymptotically close, uniformly in $s$, for large $n$:
@@ -642,8 +787,8 @@ but will be helpful for later Lemmata and provide the drift of $\Wt$.
 	\begin{aligned}
 	|\an(s) - \amn(s)|
 	&= |\an(s)\left( 1-(1 - (s - \floor(s))\p) \right)| \\
-	&= | \frac{(n - s - \Zetan{\ceil(s)} - \Zn(s))\p}{1-(s - \floor(s))\p} (s - \floor(s))\p) | \\
-	&= |\underbrace{\frac{\p n - \p(s + \Zetan{\ceil(s)} + \Zn(s))}{1-(s - \floor(s))\p}}_{\leq 5} 
+	&= | \frac{(n - s - \Zetan{\ceil{s}} - \Zn(s))\p}{1-(s - \floor(s))\p} (s - \floor(s))\p) | \\
+	&= |\underbrace{\frac{\p n - \p(s + \Zetan{\ceil{s}} + \Zn(s))}{1-(s - \floor(s))\p}}_{\leq 5} 
 		\underbrace{(s - \floor(s))\p}_{=\BigO{n^{-1}}} |\\
 	&= \BigO{n^{-1}}.
 	\end{aligned}
@@ -652,42 +797,42 @@ but will be helpful for later Lemmata and provide the drift of $\Wt$.
 	We substitute the definition of $\p$ in \eqref{E: def a'n} to expand
 	\begin{align*}
 	\amn(s) - 1 
-	&= \left( n - s - \Zetan{\ceil(s)} - \Zn(s) \right) \left( n^{-1} + \pp\n{-4}{3} \right) - 1 \\
+	&= \left( n - s - \Zetan{\ceil{s}} - \Zn(s) \right) \left( n^{-1} + \pp\n{-4}{3} \right) - 1 \\
 	&= t\n{-1}{3} - sn^{-1} - s\pp\n{-4}{3} \\
-	&\quad - \left( \Zetan{\ceil(s)} + \Zn(s) \right) \left( n^{-1} + \pp\n{-4}{3} \right).
+	&\quad - \left( \Zetan{\ceil{s}} + \Zn(s) \right) \left( n^{-1} + \pp\n{-4}{3} \right).
 	\end{align*}
 	Therefore
 	\begin{equation} \label{E: an zeta Z / n} 
 	\begin{aligned}
-	\left| \amn(s) - 1 + \frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}} \right|
-	&= \left| \frac{\Zetan{\ceil(s)} + \Zn(s)}{n} \left( 1 + \frac{\pp}{\n{1}{3}} \right) \right| \\
-	&\leq 2 \left| \frac{\Zetan{\ceil(s)} + \Zn(s)}{n} \right| \\
-	&\leq 2 \frac{\Zetan{\ceil(s)} + |\Zn(s)|}{n} ,  
+	\left| \amn(s) - 1 + \frac{s}{n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}} \right|
+	&= \left| \frac{\Zetan{\ceil{s}} + \Zn(s)}{n} \left( 1 + \frac{\pp}{\n{1}{3}} \right) \right| \\
+	&\leq 2 \left| \frac{\Zetan{\ceil{s}} + \Zn(s)}{n} \right| \\
+	&\leq 2 \frac{\Zetan{\ceil{s}} + |\Zn(s)|}{n} ,  
 	\end{aligned}
 	\end{equation}
 	for $\n{1}{3} \geq |\pp|$.
 	Integrating the inner part of the left-hand side over $s$ yields
 	\begin{equation}
 	\begin{aligned}
-	&\int_{0}^(s) (\amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}}) du \\
-	&\quad = \int_{0}^(s)(\amn(u) - 1) du + \frac{s^2}{2n} - \frac{s\pp}{\n{1}{3}} + \frac{s^2\pp}{2\n{4}{3}},
+	&\int_{0}^s (\amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}}) du \\
+	&\quad = \int_{0}^s(\amn(u) - 1) du + \frac{s^2}{2n} - \frac{s\pp}{\n{1}{3}} + \frac{s^2\pp}{2\n{4}{3}},
 	\end{aligned}
 	\end{equation}
 	and from \eqref{E: convergence an amn} we know
 	\begin{equation} \label{E: convergence amn An}
-	|\int_{0}^(s)(\amn(u) - 1) du - \An(s)| = \BigO{n^{-1}}.
+	|\int_{0}^s(\amn(u) - 1) du - \An(s)| = \BigO{n^{-1}}.
 	\end{equation}
 	
 	Using \eqref{E: zeta-1(i) = 1 - min(j)} and \eqref{E: an zeta Z / n}, the following inequalities hold for sufficiently large $n$:
 	\begin{equation} \label{E: int an <= 4s/n maxZ + O()}
 	\begin{aligned}
 	&\left| \An(s) + \frac{s^2}{2n} - \frac{s\pp}{\n{1}{3}}  + \frac{s^2\pp}{2\n{4}{3}}  \right| \\
-	&\quad = \left| \int_{0}^(s) \amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}} du \right| + \BigO{\frac{1}{n}} \\
-	&\quad \leq \int_{0}^(s) \left|\amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}} \right| du + \BigO{\frac{1}{n}} \\ 
-	&\quad \leq \int_{0}^(s) 2 \frac{\Zetan{\ceil{u}} + |\Zn(u)|}{n} du \\ 
-	&\quad = \frac{2}{n}  \int_{0}^(s) (1-\min_{w \leq \ceil{u}-1} \Zn{w}  + |\Zn(u)| )du \\ 
-	&\quad = \frac{2}{n}  \int_{0}^(s) (|\Zn(u)| - \min_{w \leq \ceil{u}-1} \Zn{w}) du + \BigO{\frac(s){n}} \\ 
-	&\quad \leq \frac{4s}{n} \max_{u \leq s} |\Zn(u)| + \BigO{\frac(s){n}},
+	&\quad = \left| \int_{0}^s \amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}} du \right| + \BigO{\frac{1}{n}} \\
+	&\quad \leq \int_{0}^s \left|\amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}} \right| du + \BigO{\frac{1}{n}} \\ 
+	&\quad \leq \int_{0}^s 2 \frac{\Zetan{\ceil{u}} + |\Zn(u)|}{n} du \\ 
+	&\quad = \frac{2}{n}  \int_{0}^s (1-\min_{w \leq \ceil{u}-1} \Zn{w}  + |\Zn(u)| )du \\ 
+	&\quad = \frac{2}{n}  \int_{0}^s (|\Zn(u)| - \min_{w \leq \ceil{u}-1} \Zn{w}) du + \BigO{\frac{s}{n}} \\ 
+	&\quad \leq \frac{4s}{n} \max_{u \leq s} |\Zn(u)| + \BigO{\frac{s}{n}},
 	\end{aligned}
 	\end{equation}
     the last inequality following from $\ceil{u}-1 \leq s$ for $u\leq s$, hence $|\min_{w \leq \ceil{u}-1}\Zn{w}| \leq \max_{u \leq s}|\Zn(u)|$.
@@ -705,7 +850,7 @@ but will be helpful for later Lemmata and provide the drift of $\Wt$.
     \begin{equation}
     \begin{aligned}
     &\n{-1}{3} \supns \left| \An(s) + \frac{s^2}{2n} - \frac{s\pp}{\n{1}{3}}  + \frac{s^2\pp}{2\n{4}{3}}  \right| \\
-    &\leq \n{-1}{3} \supns (\frac{4s}{n} \max_{u \leq s} |\Zn(u)| + \BigO{\frac(s){n}}) \\
+    &\leq \n{-1}{3} \supns (\frac{4s}{n} \max_{u \leq s} |\Zn(u)| + \BigO{\frac{s}{n}}) \\
     &\leq \n{-1}{3} 4 s_0 \n{-1}{3} \supns |\Zn(s)| + \n{-1}{3}\BigO{\frac{s_0 \n{2}{3}}{n}} \\
     &\leq 4 s_0 \n{-2}{3} \supns |\Zn(s)| + s_0 \BigO{\n{-2}{3}}.
     \end{aligned}
@@ -714,157 +859,22 @@ but will be helpful for later Lemmata and provide the drift of $\Wt$.
     \begin{equation} \label{E: sup Zn convergence 0}
     \n{-2}{3} \supns |\Zn(s)| \rightarrow_p 0.
     \end{equation}
-    In order to show the convergence we proceed to prove the stronger result,
-    \begin{equation}
-    n^{-1/3} \supns |\Zn(s)| 
-    \enspace \text{is stochastically bounded as} \enspace n \rightarrow \infty ,
-    \end{equation} 
-    meaning for any  $ \epsilon > 0 $  there is a $ K > 0 $
+    
+    By Lemma~\ref{L: Zn stoch bounded} we know that for any  $ \epsilon > 0 $  there is a $ K > 0 $
     such that for $n$ sufficiently large 
     \begin{equation} \label{E: stoch bounded}
     \Prob\left( n^{-1/3} \supns |\Zn(s)| > K \right) < \epsilon. 
     \end{equation}
     It is easily seen that this suffices to establish \eqref{E: sup Zn convergence 0} by computing
     \begin{equation*}
-    \begin{aligned}
-    \Prob( \n{-2}{3} \supns |\Zn(s)| > \delta)
-	&= \Prob( \n{-1}{3} \supns |\Zn(s)| > \delta \n{1}{3} ) \\
-	&\leq \Prob( \n{-1}{3} \supns |\Zn(s)| > K) \quad \text{for $n \geq (\delta K)^3$} \\
-	&< \epsilon,
-    \end{aligned}
+    	\begin{aligned}
+    		\Prob( \n{-2}{3} \supns |\Zn(s)| > \delta)
+    		&= \Prob( \n{-1}{3} \supns |\Zn(s)| > \delta \n{1}{3} ) \\
+    		&\leq \Prob( \n{-1}{3} \supns |\Zn(s)| > K) \\
+    		&< \epsilon,
+    	\end{aligned}
     \end{equation*}
-    which holds for fixed $\epsilon, \delta > 0$ and sufficiently large $n$.
-    
-    The remainder of this proof will follow a truncation argument.
-    \fxnote{Find out what a truncation argument is.}
-    We define two stopping times $T^*_n$ and $T_n$ by
-    \fxnote{Are those stopping-times?}
-    \begin{align} 
-    T^*_n &:= \min \lbrace s \cond |\Zn(s)| > K \n{1}{3} \rbrace, \label{E: def T*n} \\
-    T_n &:= \min \lbrace T^*_n, \n{2}{3}s_0 \rbrace ,  \label{E: def Tn}
-    \end{align}
-    \fxnote{Define Tn, T*n nicer.}
-    for some fixed $K>0$ and use Markov's inequality to rewrite the left-hand side of Equation \eqref{E: stoch bounded} as
-    \begin{equation} \label{E: stoch bounded 2}
-    \begin{aligned}
-    \Prob( \sup_{s\leq n^{2/3} s_0} |\Zn(s)| > K \n{1}{3} ) &= \Prob( |\Zn(T_n)| > K\n{1}{3} ) \\
-    &\leq \frac{\Exp{|\Zn(T_n)}}{K}.
-    \end{aligned} 
-    \end{equation}
-    
-    To analyse $\Exp{|\Zn(T_n)|}$ we will use the decompositions established in the previous section. 
-    Lemma~\ref{L: decomp Zn} gave $\Zn = \Mn + \An$,
-    so \begin{equation} \label{E: Exp(|Zn|)}
-    \Exp{|\Zn(T_n)|} \leq \Exp{|\Mn(T_n)|} + \Exp{|\An(T_n)|}.
-    \end{equation}
-    By Lemma~\ref{L: decomp Mn}, we have $M^2_n = \Qn + \Bn$ where $\Qn$ is a martingale. 
-    The optional sampling theorem dictates that 
-    $\Exp{\Qn(\tau)} = 0$ 
-    for all stopping times $\tau$, hence 
-    \begin{align*}
-    \Exp{M^2_n(T_n)} 
-    &= \Exp{\Qn(T_n)} + \Exp{\Bn{T_n}} \\
-    &= \Exp{\Bn{T_n}} \\
-    &= \Exp{ \int_{0}^{T_n} a_n(s)ds } \\
-    &\leq \int_{0}^{\n{2}{3}s_0} \Exp{a_n(s)} ds.
-    \end{align*}
-    
-    By the definition of $a_n$ in \eqref{D: an}, we have
-    \begin{equation}
-    \begin{aligned}
-    a_n(s) &= (n - \nu_n(s)) \frac{\p}{1 - (s - \floor(s))\p} \\
-    &\leq \frac{n \p}{1 - (s - \floor(s))\p}
-    \end{aligned}
-    \end{equation}
-    which is a deterministic function of $s$. So
-    $ \Exp{a_n(s)} \leq \frac{n \p}{1 - (s - \floor(s))\p} $
-    and
-    \begin{equation}
-    \begin{aligned}
-    \int_{0}^{\n{2}{3}s_0} \Exp{a_n(s)} ds 
-    &\leq \int_{0}^{\n{2}{3}s_0}\frac{n \p}{1 - (s - \floor(s))\p}ds \\
-    &\leq 2\n{2}{3}s_0,
-    \end{aligned}
-    \end{equation}
-    where the last inequality holds for $n$ sufficiently large, since 
-    $\frac{n \p}{1 - (s - \floor(s))\p} \rightarrow 1$
-    as $n \rightarrow \infty$.
-    Now Hölders inequality gives us
-    \fxnote{Add reference to Hölder.}
-    \begin{equation} \label{E: Exp(Mn)}
-    \Exp{|\Mn(T_n)|} \leq \sqrt{\Exp{M^2_n(T_n)}} \leq (2s_0)^{1/2}\n{1}{3}.
-    \end{equation}
-    
-    We proceed to the analysis of the second term in \eqref{E: Exp(|Zn|)}.
-    The definition of $\An$ in \eqref{D: An} establishes
-    \begin{equation}
-    \begin{aligned}
-    \Exp{|\An(T_n)|} 
-    &= \Exp{|\int_{0}^{T_n}(\an(s) -1)ds |} \\
-    &\leq \Exp{\int_{0}^{T_n} |\an(s)-1|ds} \\
-    &\leq \Exp{\int_{0}^{\n{2}{3}s_0} |\an(s)-1|ds}.
-    \end{aligned}
-    \end{equation}
-    
-    We decompose $|\an(s) - 1|$ by
-    \begin{equation}
-    \begin{aligned}
-    |\an(s)-1| 
-    &= | \an(s) + \amn(s) - \amn(s) + \frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}} \\
-    &\quad	- \frac(s){n} + \frac{\pp}{\n{1}{3}} - \frac{s\pp}{\n{4}{3}} | \\
-    &\leq |\an(s) - \amn(s)| + 	|\frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}| \\
-	&\quad    + |\amn(s) - 1 + \frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}|
-    \end{aligned}
-    \end{equation}
-    to evaluate
-    \begin{equation}
-    \begin{aligned}
-    \Exp{|\An(T_n)|} 
-    &\leq \Exp{\int_{0}^{\n{2}{3}s_0} |\an(s) - \amn(s)|ds} \\
-    &\quad + \Exp{\int_{0}^{\n{2}{3}s_0} |\frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}| ds} \\
-    &\quad + \Exp{\int_{0}^{\n{2}{3}s_0} |\amn(s) - 1 + \frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}|ds}.
-    \end{aligned}
-    \end{equation}
-    
-    Let us look at the terms individually. 
-    By the uniform convergence $a_n \rightarrow a'_n$ we have
-    \begin{equation}
-    \Exp{\int_{0}^{\n{2}{3}s_0} |\an(s) - \amn(s)|ds} \leq \n{2}{3}s_0 \BigO{\frac{1}{n}},
-    \end{equation}
-    we can estimate the second term by
-    \begin{equation}
-    \Exp{\int_{0}^{\n{2}{3}s_0} |\frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}| ds}
-    \leq \n{2}{3}s_0 \BigO{\frac{|\pp|}{\n{1}{3}}},
-    \end{equation}
-    and \eqref{E: int an <= 4s/n maxZ + O()} implies
-    \begin{equation}
-    \begin{aligned}
-    &\Exp{\int_{0}^{T_n} |\amn(s) - 1 + \frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}|ds} \\
-    &\leq \Exp{ \frac{4T_n}{n} \max_{u \leq T_n}|\Zn(u)| + \BigO{\frac{T_n}{n}} } \\
-    &\leq \frac{4\n{2}{3}s_0}{n} \Exp{\max_{u \leq T_n}|\Zn(u)|} + \BigO{\frac{\n{2}{3}s_0}{n}} \\
-    &\leq 4s_0 K + s_0 \BigO{\n{-1}{3}},
-    \end{aligned}
-    \end{equation}
-    \fxfatal{Fix >= / > in definition of Tn and stoch bounded definition.}
-    where the last inequality follows from the definition of $T_n$ in \eqref{E: def Tn},
-    which assures $|\Zn(s)| \leq K\n{1}{3}$ for all $s \leq T_n$. 
-    
-    Summing these three terms we arrive at
-    \begin{equation} \label{E: Exp(An)}
-    \Exp{|\An(T_n)|} \leq 4 s_0 K + s_0|\pp|\BigO{\n{1}{3}} + s_0^2\BigO{\n{1}{3}} + s_0\BigO{\n{-1}{3}}
-    \end{equation}
-    
-    We combine \eqref{E: Exp(Mn)} and \eqref{E: Exp(An)}, 
-    which results in the following upper bound for large $n$:
-    \begin{equation} \label{E: bound Zn}
-    \Exp{|\Zn{T_n}|} \leq \alpha\n{1}{3} + 4s_0K,
-    \end{equation}
-    where $\alpha = \alpha(s_0,\pp)$, but does not depend on $n$ and $K$. 
-    Substituting $\Exp{|\Zn{T_n}|}$ in \eqref{E: stoch bounded 2} we arrive at
-    \begin{equation}
-    \Prob( \sup_{s\leq n^{2/3} s_0} |\Zn(s)| > K \n{1}{3} ) \leq \frac{\alpha}{K} + \frac{4s_0}{\n{1}{3}}
-    \end{equation}
-    which proves \eqref{E: stoch bounded} by choosing $K$ and $n$ sufficiently large.
+    which holds for fixed $\epsilon, \delta > 0$ and $n \geq (\delta K)^3$.
 \end{proof}
 
 Having established Lemma~\ref{L: limit An} it is now easy to deduce that $\Bn$ and $\Mn$ satisfy conditions 
