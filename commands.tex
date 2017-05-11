@@ -4,6 +4,10 @@
 % General
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Probability parameter (t or theta or...)
+\newcommand{\pp}
+	{\theta}
+
 % BigO notation
 \newcommand{\BigO}[1]
 	{O\left(#1\right)}
@@ -26,9 +30,9 @@
 	
 % Brownian motion
 \newcommand{\Wt}
-	{W^t}
+	{W^{\pp}}
 \newcommand{\Bt}
-	{B^t}
+	{B^{\pp}}
 	
 % l^2 space plus
 \newcommand{\lp}
@@ -158,7 +162,7 @@
 % Graphs
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\Gnt}
-	{\mathscr{G}(n, n^{-1} + tn^{-4/3})}
+	{\mathscr{G}(n, n^{-1} + \pp n^{-4/3})}
 \newcommand{\Gcal}
 	{\mathscr{G}}
 \newcommand{\Ccal}
@@ -173,16 +177,16 @@
 	{\mathcal{C}_{#1}}
 % Component C^t_n 
 \newcommand{\Cnt}
-	{\mathcal{C}^t_n}
+	{\mathcal{C}^{\pp}_n}
 % Component C^t
 \newcommand{\Ct}
-	{\mathcal{C}^t}
+	{\mathcal{C}^{\pp}}
 % Component C^t_n bold
 \newcommand{\Cntbold}
-	{\boldsymbol{\mathcal{C}}^t_n}
+	{\boldsymbol{\mathcal{C}}^{\pp}_n}
 % Component C^t bold
 \newcommand{\Ctbold}
-	{\boldsymbol{\mathcal{C}}^t}
+	{\boldsymbol{\mathcal{C}}^{\pp}}
 	
 % Number of ineligible vertices at time s.
 \newcommand{\Ineligible}[1]
@@ -201,16 +205,16 @@
 	{Z_n}
 % Znt -> Z_n^t()
 \newcommand{\znt}
-	{Z_n^t}
+	{Z_n^{\pp}}
 % Rescaled Z
 \newcommand{\rznt}
-	{\bar{Z}^t_n}
+	{\bar{Z}^{\pp}_n}
 % Z - minZ process
 \newcommand{\zminz}
-	{B_n^t}
+	{B_n^{\pp}}
 % Rescaled Z-minZ process
 \newcommand{\rzminz}
-	{\bar{B}_n^t}
+	{\bar{B}_n^{\pp}}
 
 % An -> A_n()
 \newcommand{\An}
@@ -257,19 +261,19 @@
 
 % Surplus Edge Counting process N_n^t(.)
 \newcommand{\nnt}
-    {N_n^t}
+    {N_n^{\pp}}
 % Rescaled Surplus Edge Counting process N_n^t(.)
 \newcommand{\rnnt}
-    {\bar{N}_n^t}
+    {\bar{N}_n^{\pp}}
 % Limit N^t process 
 \newcommand{\Nt}
-	{N^t}    
+	{N^{\pp}}    
 % N in discrete time (M_n?)
 \newcommand{\Ndis}
-	{M_n^t}
+	{M_n^{\pp}}
 % N in discrete time (M_n?)
 \newcommand{\rNdis}
-	{\bar{M}_n^t}
+	{\bar{M}_n^{\pp}}
     
 % Zeta = C^-1_n()
 \newcommand{\ZetaMinus}[1]
@@ -281,16 +285,16 @@
 % Alternate processes using Skorohod
 % Rescaled Z
 \newcommand{\rzntX}
-	{\bar{\mathcal{Z}}^t_n}
+	{\bar{\mathcal{Z}}^{\pp}_n}
 % Brownian motion
 \newcommand{\WtX}
-	{\mathcal{W}^t}
+	{\mathcal{W}^{\pp}}
 % Reflected BM
 \newcommand{\BtX}
-	{\mathcal{B}^t}
+	{\mathcal{B}^{\pp}}
 % SE counting process
 \newcommand{\rnntX}
-	{\bar{\mathcal{N}}_n^t}
+	{\bar{\mathcal{N}}_n^{\pp}}
 	
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -337,10 +341,10 @@
 	
 %S Surplus sigma^t_n
 \newcommand{\sigmant}
-	{\mathcal{\sigma}^t_n}
+	{\mathcal{\sigma}^{\pp}_n}
 %S Surplus sigma^t
 \newcommand{\sigmat}
-	{\mathcal{\sigma}^t}
+	{\mathcal{\sigma}^{\pp}}
 %S Surplus sigma^t boldbold
 \newcommand{\sigmatbold}
-	{\boldsymbol{\mathcal{\sigma}}^t}
+	{\boldsymbol{\mathcal{\sigma}}^{\pp}}

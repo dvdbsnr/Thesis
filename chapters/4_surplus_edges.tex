@@ -64,12 +64,12 @@ which converges in distribution to
 
 In chapter~\ref{C: bf-walk} we examined a similar process, $B_n$, 
 which increased by one for each appearance of a new edge to a previously not connected vertex.
-Lemma~\ref{L: formula an} established that $\Bn{t} = \int_{0}^{t} \an{s}ds$ with
+Lemma~\ref{L: formula an} established that $\Bn(s) = \int_{0}^{s} \an{u}du$ with
 \begin{equation*}
-	\an{s} = (n - \Ineligible{s}) \ps,
+	\an(s) = (n - \Ineligible{s}) \ps,
 \end{equation*}
 where $\Ineligible{s}$ is the number of vertices ineligible to become a child of $v(\ceil{s})$ at time $s$.
-In terms of counting processes, we call $a_n$ the rate or conditional intensity of $B_n$.
+In terms of counting processes, we call $\an$ the rate or conditional intensity of $\Bn$.
 It is evident that $\nnt$ will have a similar rate,
 substituting the number of vertices eligible to become a child of $v(\ceil{s})$ with the number of vertices eligible to receive a surplus edge to $v(\ceil{s})$.
 
@@ -544,7 +544,7 @@ Substituting this result in \eqref{E: Estimation step 4} gives
 \begin{aligned}
 	\Exp{f(\znt, \nnt)} 
 	&\leq \Exp{f(\WtX, \rNdis) \cond \WtX, \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2\delta T M + \epsilon  + 2M\epsilon  \\
-	&\leq \Exp{f(\WtX, \rNdis) \cond \WtX } + + 2\delta T M + \epsilon  + 4M\epsilon.
+	&\leq \Exp{f(\WtX, \rNdis) \cond \WtX } + 2\delta T M + \epsilon  + 4M\epsilon.
 \end{aligned}
 \end{equation}
 

@@ -269,22 +269,22 @@ For $\mathcal{G} \in \Gnt$,
 we call the continuous-time breadth-first walk on its vertices $\znt$.
 We rescale $\znt$ on both axis to define
 \begin{equation} \label{E: def Zbar}
-\Zbar^t(s) := \n{-1}{3} \znt(\n{2}{3}s).
+\Zbar^{\pp}(s) := \n{-1}{3} \znt(\n{2}{3}s).
 \end{equation}
 For $s \geq \n{1}{3}$, 
-let $\znt(\n{2}{3}s) \equiv \znt(n)$.
+let $\znt(\n{2}{3}s) := \znt(n)$.
 \fxnote{Is equiv right here? Or just use :=?}
 We can now state the main theorem of this chapter,
-the convergence of this rescaled process to a Brownian motion.
+the convergence of this rescaled process to a Brownian motion with drift.
 
 \begin{theorem} \label{T: Z -> W}
 	Let $\znt(s)$, for $0 \leq s \leq n$, 
 	be the breadth-first walk associated with $\mathcal{G} \in \Gnt$.
 	Rescale via
 	\begin{equation*}
-	\Zbar^t(s) := \n{-1}{3} \znt(\n{2}{3}s).
+	\Zbar^\pp(s) := \n{-1}{3} \znt(\n{2}{3}s).
 	\end{equation*}
-	Then $\Zbar^t(s) \rightarrow_d \Wt$ as $n \rightarrow \infty$.
+	Then $\Zbar^\pp(s) \rightarrow_d \Wt$ as $n \rightarrow \infty$.
 \end{theorem}
 
 \fxfatal{A short explanantion of the coming proof goes here.}
@@ -294,22 +294,14 @@ the convergence of this rescaled process to a Brownian motion.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Decompositions of $\Zn$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fxfatal{Update title}
-\fxnote{is splitting the proof into 3 sections necessary?}
-\fxnote{Add introductory text}
 
-For ease of notation, we will drop the superscript $t$ from all random variables.
+In this section and the next we will now prove Theorem~\ref{T: Z -> W}.
+We begin by providing a suitable decomposition of $\rznt$ into a martingale and
+an integrable predictable process, similar to the Doob decomposition theorem.
+The latter process will later provide the downwards drift of $\Wt$,
+while we go on proving the convergence of the former to a standard Brownian motion.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Lemma Decompositions An: Statement
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-We begin with a Lemma similar to the Doob decomposition theorem,
-which states that any adapted stochastic process $X_n$ with $\Exp{X_n} < \infty$ for all $n$
-may be decomposed into a martingale and an integrable predictable process.
-When trying to decompose $\Zn$, we deal with a process in continuous time for which the restriction on the expectation still holds.
-The following Lemma will directly provide such a decomposition.
+For ease of notation, we will drop the superscript $\pp$ from all random variables.
 
 \begin{lemma} \label{L: decomp Zn}
 	The decomposition 
@@ -631,9 +623,9 @@ but will be helpful for later Lemmata and provide the drift of $\Wt$.
 \begin{lemma} \label{L: limit An}
 	For $\An$ defined in Lemma~\ref{L: decomp Zn} and fixed $s_0 \geq 0$,
 	\begin{equation} \label{E: limit An}
-	\n{-1}{3} \supns \left| \An(s) + \frac{s^2}{2}n^{-1} - st\n{-1}{3} \right| \longrightarrow_p 0
+	\n{-1}{3} \supns \left| \An(s) + \frac{s^2}{2}n^{-1} - s\pp\n{-1}{3} \right| \longrightarrow_p 0
 	\end{equation}
-	as $n \rightarrow \infty$, where $t$ is the fixed parameter of the random graph.
+	as $n \rightarrow \infty$.
 \end{lemma}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -660,25 +652,25 @@ but will be helpful for later Lemmata and provide the drift of $\Wt$.
 	We substitute the definition of $\p$ in \eqref{E: def a'n} to expand
 	\begin{align*}
 	\amn(s) - 1 
-	&= \left( n - s - \Zetan{\ceil(s)} - \Zn(s) \right) \left( n^{-1} + t\n{-4}{3} \right) - 1 \\
-	&= t\n{-1}{3} - sn^{-1} - st\n{-4}{3} \\
-	&\quad - \left( \Zetan{\ceil(s)} + \Zn(s) \right) \left( n^{-1} + t\n{-4}{3} \right).
+	&= \left( n - s - \Zetan{\ceil(s)} - \Zn(s) \right) \left( n^{-1} + \pp\n{-4}{3} \right) - 1 \\
+	&= t\n{-1}{3} - sn^{-1} - s\pp\n{-4}{3} \\
+	&\quad - \left( \Zetan{\ceil(s)} + \Zn(s) \right) \left( n^{-1} + \pp\n{-4}{3} \right).
 	\end{align*}
 	Therefore
 	\begin{equation} \label{E: an zeta Z / n} 
 	\begin{aligned}
-	\left| \amn(s) - 1 + \frac(s){n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}} \right|
-	&= \left| \frac{\Zetan{\ceil(s)} + \Zn(s)}{n} \left( 1 + \frac{t}{\n{1}{3}} \right) \right| \\
+	\left| \amn(s) - 1 + \frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}} \right|
+	&= \left| \frac{\Zetan{\ceil(s)} + \Zn(s)}{n} \left( 1 + \frac{\pp}{\n{1}{3}} \right) \right| \\
 	&\leq 2 \left| \frac{\Zetan{\ceil(s)} + \Zn(s)}{n} \right| \\
 	&\leq 2 \frac{\Zetan{\ceil(s)} + |\Zn(s)|}{n} ,  
 	\end{aligned}
 	\end{equation}
-	for $\n{1}{3} \geq |t|$.
+	for $\n{1}{3} \geq |\pp|$.
 	Integrating the inner part of the left-hand side over $s$ yields
 	\begin{equation}
 	\begin{aligned}
-	&\int_{0}^(s) (\amn(u) - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}}) du \\
-	&\quad = \int_{0}^(s)(\amn(u) - 1) du + \frac{s^2}{2n} - \frac{st}{\n{1}{3}} + \frac{s^2t}{2\n{4}{3}},
+	&\int_{0}^(s) (\amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}}) du \\
+	&\quad = \int_{0}^(s)(\amn(u) - 1) du + \frac{s^2}{2n} - \frac{s\pp}{\n{1}{3}} + \frac{s^2\pp}{2\n{4}{3}},
 	\end{aligned}
 	\end{equation}
 	and from \eqref{E: convergence an amn} we know
@@ -689,9 +681,9 @@ but will be helpful for later Lemmata and provide the drift of $\Wt$.
 	Using \eqref{E: zeta-1(i) = 1 - min(j)} and \eqref{E: an zeta Z / n}, the following inequalities hold for sufficiently large $n$:
 	\begin{equation} \label{E: int an <= 4s/n maxZ + O()}
 	\begin{aligned}
-	&\left| \An(s) + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}  + \frac{s^2t}{2\n{4}{3}}  \right| \\
-	&\quad = \left| \int_{0}^(s) \amn(u) - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}} du \right| + \BigO{\frac{1}{n}} \\
-	&\quad \leq \int_{0}^(s) \left|\amn(u) - 1 + \frac{u}{n} - \frac{t}{\n{1}{3}} + \frac{ut}{\n{4}{3}} \right| du + \BigO{\frac{1}{n}} \\ 
+	&\left| \An(s) + \frac{s^2}{2n} - \frac{s\pp}{\n{1}{3}}  + \frac{s^2\pp}{2\n{4}{3}}  \right| \\
+	&\quad = \left| \int_{0}^(s) \amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}} du \right| + \BigO{\frac{1}{n}} \\
+	&\quad \leq \int_{0}^(s) \left|\amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}} \right| du + \BigO{\frac{1}{n}} \\ 
 	&\quad \leq \int_{0}^(s) 2 \frac{\Zetan{\ceil{u}} + |\Zn(u)|}{n} du \\ 
 	&\quad = \frac{2}{n}  \int_{0}^(s) (1-\min_{w \leq \ceil{u}-1} \Zn{w}  + |\Zn(u)| )du \\ 
 	&\quad = \frac{2}{n}  \int_{0}^(s) (|\Zn(u)| - \min_{w \leq \ceil{u}-1} \Zn{w}) du + \BigO{\frac(s){n}} \\ 
@@ -699,20 +691,20 @@ but will be helpful for later Lemmata and provide the drift of $\Wt$.
 	\end{aligned}
 	\end{equation}
     the last inequality following from $\ceil{u}-1 \leq s$ for $u\leq s$, hence $|\min_{w \leq \ceil{u}-1}\Zn{w}| \leq \max_{u \leq s}|\Zn(u)|$.
-    The left-hand side of this inequality differs from the expression used in \eqref{E: limit An} by the term $\frac{s^2t}{2\n{4}{3}}$.
-    We show that this difference is negligible even after taking the supremum, by defining $A^*_n(s) := \An(s) + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}$
+    The left-hand side of this inequality differs from the expression used in \eqref{E: limit An} by the term $\frac{s^2\pp}{2\n{4}{3}}$.
+    We show that this difference is negligible even after taking the supremum, by defining $A^*_n(s) := \An(s) + \frac{s^2}{2n} - \frac{s\pp}{\n{1}{3}}$
     and evaluating
     \begin{align*}
-    &\n{-1}{3}\supns | A^*_n(s) + \frac{s^2t}{2\n{4}{3}}  | - \n{-1}{3}\supns | A^*_n(s) | \\
-    &\leq \n{-1}{3} \left( \supns | A^*_n(s) | + \supns |\frac{s^2t}{2\n{4}{3}}|  - \supns | A^*_n(s) | \right) \\
-    &= \n{-1}{3} \supns |\frac{s^2t}{2\n{4}{3}}| \\
-    &= \n{-1}{3} \frac{s_0^2t}{2} \\
+    &\n{-1}{3}\supns | A^*_n(s) + \frac{s^2\pp}{2\n{4}{3}}  | - \n{-1}{3}\supns | A^*_n(s) | \\
+    &\leq \n{-1}{3} \left( \supns | A^*_n(s) | + \supns |\frac{s^2\pp}{2\n{4}{3}}|  - \supns | A^*_n(s) | \right) \\
+    &= \n{-1}{3} \supns |\frac{s^2\pp}{2\n{4}{3}}| \\
+    &= \n{-1}{3} \frac{s_0^2\pp}{2} \\
     &\xrightarrow{n \rightarrow \infty} 0.
     \end{align*}
     We can now proceed to take the supremum and rescale both sides of the last inequality, arriving at
     \begin{equation}
     \begin{aligned}
-    &\n{-1}{3} \supns \left| \An(s) + \frac{s^2}{2n} - \frac{st}{\n{1}{3}}  + \frac{s^2t}{2\n{4}{3}}  \right| \\
+    &\n{-1}{3} \supns \left| \An(s) + \frac{s^2}{2n} - \frac{s\pp}{\n{1}{3}}  + \frac{s^2\pp}{2\n{4}{3}}  \right| \\
     &\leq \n{-1}{3} \supns (\frac{4s}{n} \max_{u \leq s} |\Zn(u)| + \BigO{\frac(s){n}}) \\
     &\leq \n{-1}{3} 4 s_0 \n{-1}{3} \supns |\Zn(s)| + \n{-1}{3}\BigO{\frac{s_0 \n{2}{3}}{n}} \\
     &\leq 4 s_0 \n{-2}{3} \supns |\Zn(s)| + s_0 \BigO{\n{-2}{3}}.
@@ -797,7 +789,7 @@ but will be helpful for later Lemmata and provide the drift of $\Wt$.
     where the last inequality holds for $n$ sufficiently large, since 
     $\frac{n \p}{1 - (s - \floor(s))\p} \rightarrow 1$
     as $n \rightarrow \infty$.
-    Now Hölder's inequality gives us
+    Now Hölders inequality gives us
     \fxnote{Add reference to Hölder.}
     \begin{equation} \label{E: Exp(Mn)}
     \Exp{|\Mn(T_n)|} \leq \sqrt{\Exp{M^2_n(T_n)}} \leq (2s_0)^{1/2}\n{1}{3}.
@@ -818,10 +810,10 @@ but will be helpful for later Lemmata and provide the drift of $\Wt$.
     \begin{equation}
     \begin{aligned}
     |\an(s)-1| 
-    &= | \an(s) + \amn(s) - \amn(s) + \frac(s){n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}} \\
-    &\quad	- \frac(s){n} + \frac{t}{\n{1}{3}} - \frac{st}{\n{4}{3}} | \\
-    &\leq |\an(s) - \amn(s)| + 	|\frac(s){n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}}| \\
-	&\quad    + |\amn(s) - 1 + \frac(s){n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}}|
+    &= | \an(s) + \amn(s) - \amn(s) + \frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}} \\
+    &\quad	- \frac(s){n} + \frac{\pp}{\n{1}{3}} - \frac{s\pp}{\n{4}{3}} | \\
+    &\leq |\an(s) - \amn(s)| + 	|\frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}| \\
+	&\quad    + |\amn(s) - 1 + \frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}|
     \end{aligned}
     \end{equation}
     to evaluate
@@ -829,8 +821,8 @@ but will be helpful for later Lemmata and provide the drift of $\Wt$.
     \begin{aligned}
     \Exp{|\An(T_n)|} 
     &\leq \Exp{\int_{0}^{\n{2}{3}s_0} |\an(s) - \amn(s)|ds} \\
-    &\quad + \Exp{\int_{0}^{\n{2}{3}s_0} |\frac(s){n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}}| ds} \\
-    &\quad + \Exp{\int_{0}^{\n{2}{3}s_0} |\amn(s) - 1 + \frac(s){n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}}|ds}.
+    &\quad + \Exp{\int_{0}^{\n{2}{3}s_0} |\frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}| ds} \\
+    &\quad + \Exp{\int_{0}^{\n{2}{3}s_0} |\amn(s) - 1 + \frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}|ds}.
     \end{aligned}
     \end{equation}
     
@@ -841,13 +833,13 @@ but will be helpful for later Lemmata and provide the drift of $\Wt$.
     \end{equation}
     we can estimate the second term by
     \begin{equation}
-    \Exp{\int_{0}^{\n{2}{3}s_0} |\frac(s){n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}}| ds}
-    \leq \n{2}{3}s_0 \BigO{\frac{|t|}{\n{1}{3}}},
+    \Exp{\int_{0}^{\n{2}{3}s_0} |\frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}| ds}
+    \leq \n{2}{3}s_0 \BigO{\frac{|\pp|}{\n{1}{3}}},
     \end{equation}
     and \eqref{E: int an <= 4s/n maxZ + O()} implies
     \begin{equation}
     \begin{aligned}
-    &\Exp{\int_{0}^{T_n} |\amn(s) - 1 + \frac(s){n} - \frac{t}{\n{1}{3}} + \frac{st}{\n{4}{3}}|ds} \\
+    &\Exp{\int_{0}^{T_n} |\amn(s) - 1 + \frac(s){n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}|ds} \\
     &\leq \Exp{ \frac{4T_n}{n} \max_{u \leq T_n}|\Zn(u)| + \BigO{\frac{T_n}{n}} } \\
     &\leq \frac{4\n{2}{3}s_0}{n} \Exp{\max_{u \leq T_n}|\Zn(u)|} + \BigO{\frac{\n{2}{3}s_0}{n}} \\
     &\leq 4s_0 K + s_0 \BigO{\n{-1}{3}},
@@ -859,16 +851,15 @@ but will be helpful for later Lemmata and provide the drift of $\Wt$.
     
     Summing these three terms we arrive at
     \begin{equation} \label{E: Exp(An)}
-    \Exp{|\An(T_n)|} \leq 4 s_0 K + s_0|t|\BigO{\n{1}{3}} + s_0^2\BigO{\n{1}{3}} + s_0\BigO{\n{-1}{3}}
+    \Exp{|\An(T_n)|} \leq 4 s_0 K + s_0|\pp|\BigO{\n{1}{3}} + s_0^2\BigO{\n{1}{3}} + s_0\BigO{\n{-1}{3}}
     \end{equation}
-    \fxnote{Fix BigO-Notation (Sapozhnikov?)}
     
     We combine \eqref{E: Exp(Mn)} and \eqref{E: Exp(An)}, 
     which results in the following upper bound for large $n$:
     \begin{equation} \label{E: bound Zn}
     \Exp{|\Zn{T_n}|} \leq \alpha\n{1}{3} + 4s_0K,
     \end{equation}
-    where $\alpha = \alpha(s_0,t)$, but does not depend on $n$ and $K$. 
+    where $\alpha = \alpha(s_0,\pp)$, but does not depend on $n$ and $K$. 
     Substituting $\Exp{|\Zn{T_n}|}$ in \eqref{E: stoch bounded 2} we arrive at
     \begin{equation}
     \Prob( \sup_{s\leq n^{2/3} s_0} |\Zn(s)| > K \n{1}{3} ) \leq \frac{\alpha}{K} + \frac{4s_0}{\n{1}{3}}
@@ -900,23 +891,22 @@ that will make them suitable for the application of Theorem~\ref{T: functional C
 	\end{equation}
 	We will show that
 	\begin{equation} \label{E: limit Bn An + c}
-	\n{-1}{3} \An(\n{-2}{3}s_0) + \frac{1}{2}s_0^2 - s_0t \longrightarrow_p 0,
+	\n{-1}{3} \An(\n{-2}{3}s_0) + \frac{1}{2}s_0^2 - s_0\pp \longrightarrow_p 0,
 	\end{equation}
-	where again $t$ denotes the probability parameter of $\Gcal$. 
-	\fxnote{Change "probability parameter"}
+	where $\pp$ denotes the probability parameter of $\Gnt$. 
 	This implies
 	\begin{equation*}
-	\n{-1}{3} \left( \n{-1}{3} \An(\n{-2}{3}s_0) + \frac{1}{2}s_0^2 - s_0t \right) \longrightarrow_p 0
+	\n{-1}{3} \left( \n{-1}{3} \An(\n{-2}{3}s_0) + \frac{1}{2}s_0^2 - s_0\pp \right) \longrightarrow_p 0
 	\end{equation*}
-	which, since $\frac{1}{2}s_0^2 - s_0t$ is a constant in $n$, proves \eqref{E: limit Bn An}.
+	which, since $\frac{1}{2}s_0^2 - s_0\pp$ is a constant in $n$, proves \eqref{E: limit Bn An}.
 	
-	Let the function $\phi_n$ be defined by $\phi_n(s) := \frac{1}{2}\n{-4}{3}s^2 - \n{-2}{3}st$.	
-	Now $\phi_n(\n{2}{3}s_0) = \frac{1}{2}s_0^2 - s_0t$ and
+	Let the function $\phi_n$ be defined by $\phi_n(s) := \frac{1}{2}\n{-4}{3}s^2 - \n{-2}{3}s\pp$.	
+	Now $\phi_n(\n{2}{3}s_0) = \frac{1}{2}s_0^2 - s_0\pp$ and
 	\begin{align*}
-	\left| \n{-1}{3} \An(\n{-2}{3}s_0) + \frac{1}{2}s_0^2 - s_0t \right| 
+	\left| \n{-1}{3} \An(\n{-2}{3}s_0) + \frac{1}{2}s_0^2 - s_0\pp \right| 
 	&= \left| \n{-1}{3} \An(\n{-2}{3}s_0) + \phi(\n{2}{3}s_0) \right| \\
 	&\leq \supns \left| \n{-1}{3} \An(s) + \phi(s) \right| \\
-	&= \n{-1}{3} \supns \left| \An(s) + \frac{s^2}{2}n^{-1} - st\n{-1}{3} \right| \\
+	&= \n{-1}{3} \supns \left| \An(s) + \frac{s^2}{2}n^{-1} - s\pp\n{-1}{3} \right| \\
 	&\longrightarrow_p 0
 	\end{align*}
 	by Lemma~\ref{L: limit An}. This gives \eqref{E: limit Bn An + c} and completes the proof.
@@ -993,7 +983,7 @@ We are now ready to prove Theorem~\ref{T: Z -> W} by applying the central limit 
 	
 	Therefore $\Mbar(s) \rightarrow_d W(s)$, the standard Brownian motion, and using \eqref{E: limit An rescaled} we obtain
 	\begin{equation}
-	\Zbar(s) = \Mbar(s) + \Abar(s) \rightarrow_d W(s) + \rho (s) = W^t(s).
+	\Zbar(s) = \Mbar(s) + \Abar(s) \rightarrow_d W(s) + \rho (s) = \Wt(s).
 	\end{equation}
 \end{proof}
 

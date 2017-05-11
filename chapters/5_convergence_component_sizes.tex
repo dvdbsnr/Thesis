@@ -543,7 +543,7 @@ The following Lemma proves that with high probability, all relevant excursions d
 	Let 
 	$\Prob(\ExcursionEvent)$ 
 	be the probability that the breadth-first walk makes an excursion $\gamma$ of length 
-	$|\gamma| > \delta\n{2}{3}$, starting after step $C\n{2}{3}$.
+	$|\gamma| > \delta\n{2}{3}$ starting after step $C\n{2}{3}$.
 	Then for all $\epsilon>0$ and $\delta > 0$ exists $C>0$ such that $\Prob(\ExcursionEvent) < \epsilon$. 
 \end{lemma}
 
@@ -561,7 +561,7 @@ The following Lemma proves that with high probability, all relevant excursions d
 	
 	Let $T$ be the time the last excursion starting before $C\n{2}{3}$ ends.
 	\fxnote{Maybe diagram goes here.}
-	The behaviour of the breadth-first walk after $T$ will be the same as the behaviour of a new walk on $\Gcal(n-T,p)$.
+	The behaviour of the breadth-first walk after $T$ will be the same as the behaviour of a new walk on $\Gcal(n-T, \p)$.
 	\fxnote{Some more explanation on this, please!}
 	We write $\Ccal \in \Gcal$ to denote a component $\Ccal$ contained in the random graph $\Gcal$,
 	and $|\Ccal|$ for its size.
@@ -570,42 +570,42 @@ The following Lemma proves that with high probability, all relevant excursions d
 	\begin{equation} \label{E: P(ExcEvent) 2}
 	\begin{aligned}
 	\Prob(\ExcursionEvent) 
-	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-T, p)}  |\Ccal|^2 \Ind{\{|\Ccal| \geq \delta\n{2}{3} \} }} \\
-	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, p)}  |\Ccal|^2 \Ind{\{|\Ccal| \geq \delta\n{2}{3} \} }} \\
-	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, p)}  |\Ccal|^2 }.
+	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-T, \p)}  |\Ccal|^2 \Ind{\{|\Ccal| \geq \delta\n{2}{3} \} }} \\
+	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, \p)}  |\Ccal|^2 \Ind{\{|\Ccal| \geq \delta\n{2}{3} \} }} \\
+	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, \p)}  |\Ccal|^2 }.
 	\end{aligned}
 	\end{equation}
 	
 	For ease of notation we consider the graph $\Gcal(k,p)$ and calculate
 	\begin{equation} \label{E: P(ExcEvent) 3}
 	\begin{aligned}
-	\Exp{\sum_{\Ccal \in \Gcal(k, p)} |\Ccal|^2 } 
-	&= \Exp{ \sum_{\Ccal \in \Gcal(k, p)} |\Ccal| \sum_{v \in \Ccal} 1} \\
-	&= \Exp{ \sum_{\Ccal \in \Gcal(k, p)} |\Ccal| \sum_{v \in \Gcal(k,p)} \Ind{\{v \in \Ccal\}} } \\
-	&= \sum_{v \in \Gcal(k,p)} \Exp{ \sum_{\Ccal \in \Gcal(k, p)} |\Ccal| \Ind{\{v \in \Ccal\}} } \\ 
-	&= \sum_{v \in \Gcal(k,p)} \Exp{|\Ccal(v)|} \\
+	\Exp{\sum_{\Ccal \in \Gcal(k, \p)} |\Ccal|^2 } 
+	&= \Exp{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \sum_{v \in \Ccal} 1} \\
+	&= \Exp{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \sum_{v \in \Gcal(k, \p)} \Ind{\{v \in \Ccal\}} } \\
+	&= \sum_{v \in \Gcal(k, \p)} \Exp{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \Ind{\{v \in \Ccal\}} } \\ 
+	&= \sum_{v \in \Gcal(k, \p)} \Exp{|\Ccal(v)|} \\
 	&= k \Exp{|\Ccal(1)|},
 	\end{aligned}
 	\end{equation}
 	where $\Ccal(v)$ denotes the component containing the vertex $v$ and the last inequality stems from the interchangeability of the vertex labels.
 	We will bound the expectation of the size of this component from above by a suitable branching process $(Y_i, \; i\geq 0)$.
 	Starting at time $0$ with one vertex, we have $Y_0 = 1$.
-	The number of children of this vertex is a $\Binom(k-1,p)$ distributed random variable, $Y_1$.
+	The number of children of this vertex is a $\Binom(k-1, \p)$ distributed random variable, $Y_1$.
 	In the next step, each child-vertex will itself have children,
-	each Binomially distributed on the remaining set of vertices with probability $p$.
+	each Binomially distributed on the remaining set of vertices with probability $ \p$.
 	We compute 
 	\begin{equation}
 	\begin{aligned}
-	Y_{2,1} &\sim \Binom(k-1-Y_1,p), \\ 
-	Y_{2,2} &\sim \Binom(k-1-Y_1-Y_{2,1},p), \\
+	Y_{2,1} &\sim \Binom(k-1-Y_1, \p), \\ 
+	Y_{2,2} &\sim \Binom(k-1-Y_1-Y_{2,1}, \p), \\
 	&\dots \\
-	Y_{2,Y_1} &\sim \Binom(k-1-Y_1-Y_{2,1}-\dots-Y_{2,Y_1-1},p) \\
+	Y_{2,Y_1} &\sim \Binom(k-1-Y_1-Y_{2,1}-\dots-Y_{2,Y_1-1}, \p) \\
 	Y_2 &= \sum_{i=1}^{Y_1} Y_{2,i}.
 	\end{aligned}
 	\end{equation}
 	The size of the component will then be the total amount of explored vertices,
 	which is the sum of all $Y_j$, $j \geq 0$.
-	To provide an upper bound we consider the branching process where each amount of children is $\Binom(k,p)$ distributed.
+	To provide an upper bound we consider the branching process where each amount of children is $\Binom(k, \p)$ distributed.
 	Define the process as follows,
 	\begin{equation}
 	\begin{aligned}
@@ -627,18 +627,18 @@ The following Lemma proves that with high probability, all relevant excursions d
 	\begin{equation}
 	\begin{aligned}
 	\Exp{Z_j} 
-	&= \Exp{Z_{j-1}}kp \\
+	&= \Exp{Z_{j-1}}k \p \\
 	&\dots \\
-	&= \Exp{Z_0}(kp)^j \\
-	&= (kp)^j.
+	&= \Exp{Z_0}(k\p)^j \\
+	&= (k\p)^j.
 	\end{aligned}		
 	\end{equation}
 	Substituting in \eqref{E: Exp C(1) <= sum Z} gives
 	\begin{equation} \label{E: Exp C(1) <= frac kp}
 	\begin{aligned}
 	\Exp{|\Ccal(1)|} 
-	&\leq \sum_{j=0}^{\infty} (kp)^j \\
-	&= \frac{1}{1-kp}.
+	&\leq \sum_{j=0}^{\infty} (k \p)^j \\
+	&= \frac{1}{1- k\p}.
 	\end{aligned}		
 	\end{equation}
 	We continue the calculation in \eqref{E: P(ExcEvent) 2} using \eqref{E: P(ExcEvent) 3} and \eqref{E: Exp C(1) <= frac kp},
@@ -646,18 +646,18 @@ The following Lemma proves that with high probability, all relevant excursions d
 	\begin{equation}
 	\begin{aligned}
 	\Prob(\ExcursionEvent) 
-	&\leq \frac{n-C\n{2}{3}}{\delta^2 \n{4}{3}} \frac{1}{1-(n-C\n{2}{3})p} \\
-	&= \frac{n-C\n{2}{3}}{\delta^2 \n{4}{3}} \frac{1}{1-(n-C\n{2}{3})(n^{-1} + t\n{-4}{3})} \\
-	&= \frac{n-C\n{2}{3}}{\delta^2 \n{4}{3}} \frac{\n{1}{3}}{C-t+Ct\n{-1}{3}} \\
-	&\leq \frac{n}{\delta^2 \n{4}{3}} \frac{\n{1}{3}}{C-t+Ct\n{-1}{3}} \\
-	&= \delta^{-2} \frac{1}{C-t+Ct\n{-1}{3}}.
+	&\leq \frac{n-C\n{2}{3}}{\delta^2 \n{4}{3}} \frac{1}{1-(n-C\n{2}{3}) \p} \\
+	&= \frac{n-C\n{2}{3}}{\delta^2 \n{4}{3}} \frac{1}{1-(n-C\n{2}{3})(n^{-1} + \pp\n{-4}{3})} \\
+	&= \frac{n-C\n{2}{3}}{\delta^2 \n{4}{3}} \frac{\n{1}{3}}{C-\pp+C\pp\n{-1}{3}} \\
+	&\leq \frac{n}{\delta^2 \n{4}{3}} \frac{\n{1}{3}}{C-\pp+C\pp\n{-1}{3}} \\
+	&= \delta^{-2} \frac{1}{C-\pp+C\pp\n{-1}{3}}.
 	\end{aligned}
 	\end{equation}
-	For fixed $C$, $\delta$ and $t$
-	this expression converges asymptotically to $\delta^{-2} \frac{1}{C-t}$ as $n \rightarrow \infty$.
+	For fixed $C$, $\delta$ and $\pp$
+	this expression converges asymptotically to $\delta^{-2} \frac{1}{C-\pp}$ as $n \rightarrow \infty$.
 	Therefore for all $\epsilon>0$ we can choose $C>0$ such that
 	\begin{equation}
-		\Prob(\ExcursionEvent) \leq \delta^{-2} \frac{1}{C-t+Ct\n{-1}{3}} < \epsilon.
+		\Prob(\ExcursionEvent) \leq \delta^{-2} \frac{1}{C-\pp+C\pp\n{-1}{3}} < \epsilon.
 	\end{equation}
 	This completes the proof.
 \end{proof}
