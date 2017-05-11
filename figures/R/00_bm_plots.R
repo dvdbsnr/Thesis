@@ -64,7 +64,7 @@ plot(plot)
 #### Plot positive t --------------------------------
 
 # Plot regular Brownian motion
-tikz('fig_bm.tex',standAlone = FALSE, width = 1.5,height = 1.5)
+tikz('output/fig_bm.tex',standAlone = FALSE, width = 1.5,height = 1.5)
 plot <- ggplot(df.pos %>% filter(variable=="bm"), 
                aes(x=step, y=value)) +
   geom_line() +
@@ -82,7 +82,7 @@ print(plot)
 dev.off()
 
 # Plot Brownian motion with drift.
-tikz('fig_bm_drift_pos.tex',standAlone = FALSE, width = 1.5,height = 1.5)
+tikz('output/fig_bm_drift_pos.tex',standAlone = FALSE, width = 1.5,height = 1.5)
 plot <- ggplot(df.pos %>% filter(variable=="bm.drift"), 
                aes(x=step, y=value)) +
   geom_line() +
@@ -100,7 +100,7 @@ print(plot)
 dev.off()
 
 # Plot Brownian motion with drift and reflection.
-tikz('fig_bm_drift_ref_pos.tex',standAlone = FALSE, width = 1.5,height = 1.5)
+tikz('output/fig_bm_drift_ref_pos.tex',standAlone = FALSE, width = 1.5,height = 1.5)
 plot <- ggplot(df.pos %>% filter(variable=="bm.drift.ref"), 
                aes(x=step, y=value)) +
   geom_line() +
@@ -141,7 +141,7 @@ df.neg <- data.frame(
 #### Plot negative t --------------------------------
 
 # Plot Brownian motion with drift.
-tikz('fig_bm_drift_neg.tex',standAlone = FALSE, width = 1.5,height = 1.5)
+tikz('output/fig_bm_drift_neg.tex',standAlone = FALSE, width = 1.5,height = 1.5)
 plot <- ggplot(df.neg %>% filter(variable=="bm.drift"), 
                aes(x=step, y=value)) +
   geom_line() +
@@ -159,7 +159,7 @@ print(plot)
 dev.off()
 
 # Plot Brownian motion with drift and reflection.
-tikz('fig_bm_drift_ref_neg.tex',standAlone = FALSE, width = 1.5,height = 1.5)
+tikz('output/fig_bm_drift_ref_neg.tex',standAlone = FALSE, width = 1.5,height = 1.5)
 plot <- ggplot(df.neg %>% filter(variable=="bm.drift.ref"), 
                aes(x=step, y=value)) +
   geom_line() +
