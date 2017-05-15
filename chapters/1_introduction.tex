@@ -46,16 +46,17 @@ label it $e_1$.
 At time $t=2$ pick one of the remaining $\binom{n}{2}-1$ edges, again all remaining edges being equiprobable,
 and denote it by $e_2$.
 Continue until $M$ edges have been chosen at time $t=M$.
-The graph on vertices $\{1, \dots, n\}$ with edges $\{e_1, \dots, e_M\}$ is the desired Erdös-Renyi random graph.
+The graph $(V,E)$ on vertices $V = \{1, \dots, n\}$ with edges $E = \{e_1, \dots, e_M\}$ is the desired Erdös-Renyi random graph.
 
 Using these definitions Erdös and Renyi prove that,
 when increasing the number of edges $M(n)$,
 the sizes of connected components undergo distinct phases leading from small sparse components and unconnected vertices
 to one giant component and eventually a completely connected graph.
 
-Most current literature and the paper we are studying uses a slightly different approach to constructing the Erdös-Renyi random graph.
+Most current literature and the paper we are studying uses a slightly different approach to the contruction of this random graph.
 Given a set of vertices $\{1, \dots, n\}$ and an edge-probability $\p = p(n)$
-we take every edge $(v_1, v_2)$ and add it to the set of edges of the random graph with probability $\p$ independently.
+we take every edge $(v_1, v_2)$ and add it to the set of edges $E$ of the random graph with probability $\p$ independently.
+We call an edge $e = (v_1, v_2)$ open if $e \in E$, closed otherwise.
 We denote a random object constructed this way by $\Gcal(n, \p)$ and expect a realisation of the random graph to have $\binom{n}{2}\p$ edges.
 When increasing the probability $\p$ from $0$ to $1$ the resulting random graph undergoes the same so-called phase transitions
 discovered by Erdös and Renyi.
