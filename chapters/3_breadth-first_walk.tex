@@ -345,13 +345,13 @@ For ease of notation, we will drop the superscript $\pp$ from all random variabl
 	
 	Looking at the right-hand side, we define $\NewEdge{I}$ as the event of a new edge appearing during the time interval $I$ and calculate
 	\begin{align*}
-	\Exp{\An{t+u} - \An(t) \cond \F{t}}
+	\Exp{\An(t+u) - \An(t) \cond \F{t}}
 	&= \Exp{ \int_{0}^{t+u} a_n(s)ds - (t+u) - \int_{0}^{t} a_n(s)ds + t \cond \F{t} } \\
 	&= \Exp{ \int_{t}^{t+u} a_n(s)ds \cond \F{t} } - u \\
 	&= \int_{t}^{t+u} \Exp{a_n(s)ds \cond \F{t}} - u \\
-	&= \int_{t}^{t+u} \Exp{ \Prob(\NewEdge{\sds} \cond \F(s)) \cond \F{t} } - u\\
+	&= \int_{t}^{t+u} \Exp{ \Prob(\NewEdge{\sds} \cond \F{s}) \cond \F{t} } - u\\
 	&= \int_{t}^{t+u} \Prob( \NewEdge{\sds} \cond \F{t} ) - u
-	\quad \text{since} \enspace \F{t} \subseteq \F(s) \enspace \forall s \in [t,t+u] \\
+	\quad \text{since} \enspace \F{t} \subseteq \F{s} \enspace \forall s \in [t,t+u] \\
 	&= \Exp{\text{Number of new edges appearing in} \enspace [t, t+u] \cond \F{t}} - u.
 	\end{align*}
 	\fxnote{Fs in Ft or Ft in Fs? Use "tower property".}
@@ -362,7 +362,7 @@ For ease of notation, we will drop the superscript $\pp$ from all random variabl
 
 For a better understanding of the processes involved, we need to find a concise expression for the probability used in \eqref{D: an}.
 The next Lemma provides such an expression for $\an(s)$ 
-dependent on $\p$, the history of the breadth-first walk up to $s$ and the distance between $s$ and $\floor(s)$, 
+dependent on $\p$, the history of the breadth-first walk up to $s$ and the distance between $s$ and $\floor{s}$, 
 the largest natural number smaller than $s$.
 \fxnote{This is redundant.}
 An ensuing corollary provides some characteristics of the resulting process $\An$.
@@ -400,7 +400,7 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 	$\Prob(\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s)$.
 	To do this, we condition over a finer $\sigma$-algebra and use the law of total expectation to arrive at a general statement.
 	$\SigmaAlgebra_s$ tells us the history of the walk until time $s$. 
-	We know, how many vertices were eligible at time $i-1$ and how many open edges to $v(i)$ were found in $[\floor(s),s]$.
+	We know, how many vertices were eligible at time $i-1$ and how many open edges to $v(i)$ were found in $[\floor{s},s]$.
 	However it is unknown, exactly which vertices are now children of $v(i)$ and which vertices are still eligible.
 	\fxnote{Is this really important? Isn't it enough to have the finer s-algebra know about the k vertices?}
 	
@@ -426,7 +426,7 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 	= \sum_{j \neq j_1, \dots j_k} \Prob( \text{$(i,j)$ opens in $[s, s+ds]$} \cond \SigmaAlgebra_s^k ) + \Smallo{ds}.
 	\end{equation}
 	For the edge $(i,j)$, all relevant information contained in $\SigmaAlgebra_s^k$ is the fact that 
-	$(i,j)$ is not yet open, the event of opening has not happened in $[\floor(s), s)$.
+	$(i,j)$ is not yet open, the event of opening has not happened in $[\floor{s}, s)$.
 	Since the opening itself, happening with probability $\p$,
 	and the uniformly distributed time of the event in $[i-1, i]$ are independent,
 	we see that
@@ -440,9 +440,9 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 	By the definition of conditional probability
 	\begin{equation}
 	\begin{aligned}
-	&\Prob( \text{$(i,j)$ opens in $[s, s+ds]$} \cond \text{$(i,j)$ did not open in $[\floor(s), s]$} ) \\
-	&\quad = \frac{\Prob( \text{$(i,j)$ opens in $[s, s+ds]$})}{\Prob(\text{$(i,j)$ did not open in $[\floor(s), s]$})} \\
-	&\quad = \frac{\p ds}{1-\p(s-\floor(s))},
+	&\Prob( \text{$(i,j)$ opens in $[s, s+ds]$} \cond \text{$(i,j)$ did not open in $[\floor{s}, s]$} ) \\
+	&\quad = \frac{\Prob( \text{$(i,j)$ opens in $[s, s+ds]$})}{\Prob(\text{$(i,j)$ did not open in $[\floor{s}, s]$})} \\
+	&\quad = \frac{\p ds}{1-\p(s-\floor{s})},
 	\end{aligned}
 	\end{equation}
 	\fxnote{Fix the formatting here.}
@@ -451,7 +451,7 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 	\begin{aligned}
 	\Prob(\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s^k) 
 	&= \sum_{j \neq j_1, \dots j_k} \ps \\
-	&= (N-k) \frac{\p ds}{1-\p(s-\floor(s))}.
+	&= (N-k) \frac{\p ds}{1-\p(s-\floor{s})}.
 	\end{aligned}
 	\end{equation}
 	Seeing that $\SigmaAlgebra_s \subseteq \SigmaAlgebra_s^k$,
@@ -662,22 +662,22 @@ We first provide a general result on the breadth-first walk.
 	By the definition of $a_n$ in \eqref{D: an}, we have
 	\begin{equation}
 	\begin{aligned}
-	a_n(s) &= (n - \nu_n(s)) \frac{\p}{1 - (s - \floor(s))\p} \\
-	&\leq \frac{n \p}{1 - (s - \floor(s))\p}
+	a_n(s) &= (n - \nu_n(s)) \frac{\p}{1 - (s - \floor{s})\p} \\
+	&\leq \frac{n \p}{1 - (s - \floor{s})\p}
 	\end{aligned}
 	\end{equation}
 	which is a deterministic function of $s$. So
-	$ \Exp{a_n(s)} \leq \frac{n \p}{1 - (s - \floor(s))\p} $
+	$ \Exp{a_n(s)} \leq \frac{n \p}{1 - (s - \floor{s})\p} $
 	and
 	\begin{equation}
 	\begin{aligned}
 	\int_{0}^{\n{2}{3}s_0} \Exp{a_n(s)} ds 
-	&\leq \int_{0}^{\n{2}{3}s_0}\frac{n \p}{1 - (s - \floor(s))\p}ds \\
+	&\leq \int_{0}^{\n{2}{3}s_0}\frac{n \p}{1 - (s - \floor{s})\p}ds \\
 	&\leq 2\n{2}{3}s_0,
 	\end{aligned}
 	\end{equation}
 	where the last inequality holds for $n$ sufficiently large, since 
-	$\frac{n \p}{1 - (s - \floor(s))\p} \rightarrow 1$
+	$\frac{n \p}{1 - (s - \floor{s})\p} \rightarrow 1$
 	as $n \rightarrow \infty$.
 	Now Hölders inequality gives us
 	\fxnote{Add reference to Hölder.}
@@ -779,17 +779,17 @@ which will provide us with an expression for the drift of $\Wt$.
 \begin{proof} \label{P: limit An}
 	We define $\amn(s)$ as
 	\begin{equation} \label{E: def a'n}
-		\amn(s) := \an(s) (1 - (s - \floor(s))\p) = (n - s - \Zetan{\ceil{s}} - \Zn(s)) \p.
+		\amn(s) := \an(s) (1 - (s - \floor{s})\p) = (n - s - \Zetan{\ceil{s}} - \Zn(s)) \p.
 	\end{equation}
 	\fxnote{Change "without the denominator"}
 	First, we show that $\an(s)$ and $\amn(s)$ become asymptotically close, uniformly in $s$, for large $n$:
 	\begin{equation} \label{E: convergence an amn}
 	\begin{aligned}
 	|\an(s) - \amn(s)|
-	&= |\an(s)\left( 1-(1 - (s - \floor(s))\p) \right)| \\
-	&= | \frac{(n - s - \Zetan{\ceil{s}} - \Zn(s))\p}{1-(s - \floor(s))\p} (s - \floor(s))\p) | \\
-	&= |\underbrace{\frac{\p n - \p(s + \Zetan{\ceil{s}} + \Zn(s))}{1-(s - \floor(s))\p}}_{\leq 5} 
-		\underbrace{(s - \floor(s))\p}_{=\BigO{n^{-1}}} |\\
+	&= |\an(s)\left( 1-(1 - (s - \floor{s})\p) \right)| \\
+	&= | \frac{(n - s - \Zetan{\ceil{s}} - \Zn(s))\p}{1-(s - \floor{s})\p} (s - \floor{s})\p) | \\
+	&= |\underbrace{\frac{\p n - \p(s + \Zetan{\ceil{s}} + \Zn(s))}{1-(s - \floor{s})\p}}_{\leq 5} 
+		\underbrace{(s - \floor{s})\p}_{=\BigO{n^{-1}}} |\\
 	&= \BigO{n^{-1}}.
 	\end{aligned}
 	\end{equation}
