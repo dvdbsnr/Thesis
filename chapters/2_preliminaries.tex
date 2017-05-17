@@ -172,7 +172,7 @@ This section will deal with the issue of proving tightness and thus convergence 
 	We denote by $\DT$ the space of \cadlag-functions on $I = [0,T]$.
 \end{definition}
 
-Considering topology and convergence on $DT$, 
+Considering topology and convergence on $\DT$, 
 we quickly observe that the known notion of distance known in $C(I)$,
 the space of continuous functions on $I$,
 where
@@ -278,9 +278,9 @@ This section will provide an overview of the needed theory.
 	$\ProbSpace$ into $(M_p(S), \mathscr{M}_p(S))$.
 \end{definition}
 
-For all coming observations, we will take $\Rplus$ as the underlying Hausdorff space with its \Bosi $\Bo = \Bo(\Rplus)$.
+For all coming observations, we will take $\Rplus$ as the underlying Hausdorff space with its \Bosi~$\Bo = \Bo(\Rplus)$.
 
-\begin{definition}[Poisson point process, {\cite[p.130]{Resnick.2008}}] \label{D: poisson process}
+\begin{definition}[Poisson point process, {\cite[p.127, p.130]{Resnick.2008}}] \label{D: poisson process}
 	We call a point process $N$ a \emph{Poisson point process} or \emph{Poisson process},
 	if
 	\begin{enumerate}
@@ -290,12 +290,21 @@ For all coming observations, we will take $\Rplus$ as the underlying Hausdorff s
 			\begin{equation*}
 				\Prob(N(A) = k) = \frac{\gamma^k}{k!}\exp(-\gamma)
 			\end{equation*}
-			where $\gamma = \gamma(A) \in [0, \infty]$ is the \emph{mean measure} or \emph{intensity} of $N$.
+			where $\gamma = \gamma(A) \in [0, \infty]$ is the \emph{mean measure} or \emph{intensity} of $N$,
+			defined by
+			\begin{equation}
+				\gamma(A) = \Exp{ N(A) }.
+			\end{equation}
 	\end{enumerate}
 	The mean measure is often given in terms of a \emph{rate} or \emph{conditional intenstiy} $\lambda$ by
 	\begin{equation}
 		\gamma(A) = \int_A \lambda(t)dt.
-	\end{equation}	
+	\end{equation}
+	We can interpret this conditional intensity as
+	\begin{equation}
+		\lambda(t)dt \approx \Exp{ N(dt) \cond \F{t} } ,
+	\end{equation}
+	where $\F{t}$ contains the history of the counting process thus far.
 \end{definition}
 
 \begin{definition}[Simple point process, {\cite[p.124]{Resnick.2008}}] \label{D: simple point process}
@@ -309,6 +318,21 @@ For all coming observations, we will take $\Rplus$ as the underlying Hausdorff s
 By \cite[Remark 2.1, p.34]{Haenggi.2013} a Poisson point process is simple if and only if
 its mean measure $\gamma$ has no discrete component,
 that is $\gamma(x) = 0$ for all $x \in \Rplus$.
+
+Given a simple point process, we can interpret its conditional intensity on an infinitesimal interval $[t, t+dt]$ as follows:
+Since points of $N$ do not coincide, we can expect $N$ to have either one or no points in $[t, t+dt]$.
+Therefore
+\begin{equation}
+\begin{aligned}
+\lambda(t)dt 
+&= \Exp{ N([t, t+dt]) | \F{t} } \\
+&= \Prob( \text{$N$ has a point in $[t, t+dt]$} \cond \F{t} ),
+\end{aligned}
+\end{equation}
+where $\F{t-}$ denotes the history of $N$ up to, but not including, $t$.
+For a rigorous treatment of the conditional intensity, see \cite[p.231ff.]{Daley.2003} and \cite[Chapter 14]{Daley.2008}.
+
+
 
 In order to talk reasonably about convergence of point processes,
 we first need to introduce a topology on the space of point measures.
