@@ -296,10 +296,19 @@ the convergence of this rescaled process to a Brownian motion with drift.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In this section and the next we will now prove Theorem~\ref{T: Z -> W}.
-We begin by providing a suitable decomposition of $\rznt$ into a martingale and
+We begin by providing a suitable decomposition of $\znt$ into a martingale and
 an integrable predictable process, similar to the Doob decomposition theorem.
 The latter process will later provide the downwards drift of $\Wt$,
 while we go on proving the convergence of the former to a standard Brownian motion.
+
+Since $\Zn$ increases by $1$ for every event of a new edge appearing in the breadth-first walk
+we may view the process as a Poisson point process on the positive real line with a certain constant downwards drift.
+This point process would then possess a conditional intensity, say $\an(s)$, such that
+\begin{equation}
+	\an(s)ds = \Exp{ \Zn(s + ds) - \Zn(s) + ds \cond \F{s} }.
+\end{equation}
+ 
+We evaluate these considerations more elaborately in the following lemma.
 
 For ease of notation, we will drop the superscript $\pp$ from all random variables.
 
@@ -337,7 +346,7 @@ For ease of notation, we will drop the superscript $\pp$ from all random variabl
 	The change of $\Zn$ between times $t$ and $t+u$ is the sum of all jumps that occurred in $[t, t+u]$,
 	minus the constant downward drift $u$:
 	\begin{align*}
-	\Exp{\Zn(t+u) - \Zn(t) \cond \F{t}} 
+	\Exp{&\Zn(t+u) - \Zn(t) \cond \F{t}} \\
 	&= \Exp{\text{Number of jumps in} \enspace [t, t+u] \cond \F{t}} - u \\
 	&= \Exp{\text{Number of new edges appearing in} \enspace [t, t+u] \cond \F{t}} - u,
 	\end{align*}
@@ -345,17 +354,19 @@ For ease of notation, we will drop the superscript $\pp$ from all random variabl
 	
 	Looking at the right-hand side, we define $\NewEdge{I}$ as the event of a new edge appearing during the time interval $I$ and calculate
 	\begin{align*}
-	\Exp{\An(t+u) - \An(t) \cond \F{t}}
+	\Exp{&\An(t+u) - \An(t) \cond \F{t}} \\
 	&= \Exp{ \int_{0}^{t+u} a_n(s)ds - (t+u) - \int_{0}^{t} a_n(s)ds + t \cond \F{t} } \\
 	&= \Exp{ \int_{t}^{t+u} a_n(s)ds \cond \F{t} } - u \\
 	&= \int_{t}^{t+u} \Exp{a_n(s)ds \cond \F{t}} - u \\
 	&= \int_{t}^{t+u} \Exp{ \Prob(\NewEdge{\sds} \cond \F{s}) \cond \F{t} } - u\\
 	&= \int_{t}^{t+u} \Prob( \NewEdge{\sds} \cond \F{t} ) - u
 	\quad \text{since} \enspace \F{t} \subseteq \F{s} \enspace \forall s \in [t,t+u] \\
+	&= \int_{t}^{t+u} \Exp{ \text{Number of new edges appearing in $[s, s+ds]$} \cond \F{t}} -u \\
 	&= \Exp{\text{Number of new edges appearing in} \enspace [t, t+u] \cond \F{t}} - u.
 	\end{align*}
 	\fxnote{Fs in Ft or Ft in Fs? Use "tower property".}
 	\fxnote{Explain "Number of new edges"="int P" more detailed.}
+	
 	
 	This proves $\Mn$ to be a martingale. 	
 \end{proof}
@@ -515,7 +526,7 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 	Since $\an(s) = (n - \Ineligible(s)) \ps \geq 0$ for all $s$,
 	the integral $\int_{0}^{t}\an(s)ds$ is a non-decreasing, continuous function in $t$.
 	Therefore $\An(t) = \int_{0}^{t}\an(s)ds -t$ is the difference of two continuous, non-decreasing functions.
-	By the Jordan Decomposition, see e.g. \cite{Mikosch2009}, $\An$ is a continuous process of bounded variation.
+	By the Jordan Decomposition, see e.g. \cite{Mikosch.2009}, $\An$ is a continuous process of bounded variation.
 	\fxnote{Add real reference}
 	
 	We remember from the definition of the continuous-time breadth-first walk in $\eqref{E: def Z}$,
