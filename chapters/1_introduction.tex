@@ -76,24 +76,27 @@ with increasing number of edges.
 % SECTION: General results on component sizes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this section we discuss previous results on component sizes in the Erdös-Renyi random graph.
+To provide an overview of the aforementioned phases, 
+which the component sizes of the Erdös-Renyi random graph pass through,
+we discuss relevant results that were established previous to \cite{Aldous.1997}.
+
 We begin with the subcritical graph, that is
-$\Gcal(n, \p)$ with $\p < \frac{1}{n}$.
+$\Gcal(n, \p)$ with $\p < \frac{1}{n}$
+or $\lambda = \p n < 1$.
 
-Define $\lambda = \p n$ and $I_{\lambda}$ as the large deviation rate functions for Poisson random variables with mean $\lambda$,
-that is
-\begin{equation}
-	I_{\lambda} = \lambda - 1 - \log(\lambda).
-\end{equation}
-
-The following theorem provides an upper bound on the size of $\Ccal_{\max}$, the largest component of $\Gcal$.
+The following theorem provides a lower bound on the size of $\Ccal_{\max}$, the largest component of $\Gcal$.
 \begin{theorem}[Lower bound on largest subcritical component, {\cite[Theorem 4.4, p.125]{vanderHofstad.2016}}]
 	Fix $\lambda < 1$. 
 	Then, for all $a > 1/I_{\lambda}$, 
 	there exists $\delta = \delta(a, \lambda)$ such that
 	\begin{equation}
-		\Prob( |\Ccal_{\max}| \geq a \log n ) = \BigO{n^{-\delta}}.
+		\Prob( |\Ccal_{\max}| \geq a \log n ) = \BigO{n^{-\delta}},
 	\end{equation}
+	where 
+	\begin{equation}
+		I_{\lambda} = \lambda - 1 - \log(\lambda).
+	\end{equation}
+	is the large deviation rate function for Poisson random variables with mean $\lambda$.
 \end{theorem}
 
 The next theorem gives an upper bound for the size of $\Ccal_{\max}$.
@@ -114,8 +117,12 @@ Together, these theorems imply
 We have established that, for $\p n < 1$, the expected largest component size will be of order $\log n$.
 
 Consider the opposite case, $\lambda = \p n > 1$. 
-Denote by $\xi_\lambda = 1 - \eta_n\lambda$ the survival probability of a Poisson branching process with mean offspring $\lambda$.
-Note that $\xi_\lambda > 0$ since $\lambda > 1$.
+
+Denote by $\xi_\lambda$ the survival probability of a Poisson branching process with mean offspring $\lambda$.
+Note that $\xi_\lambda > 0$ since $\lambda > 1$
+(For an introduction into the theory of branching processes with application in random graphs, 
+see \cite[Chapter 3, p.87ff.]{vanderHofstad.2016}).
+
 Any vertex is part of a large component with probability $\xi_\lambda$, 
 therefore we will expect around $n \xi_\lambda$ vertices being part of large connected components.
 The following theorem now states that all of these vertices are, in fact, part of the same connected component, which we call the giant component.
