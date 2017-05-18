@@ -332,7 +332,18 @@ Therefore
 where $\F{t-}$ denotes the history of $N$ up to, but not including, $t$.
 For a rigorous treatment of the conditional intensity, see \cite[p.231ff.]{Daley.2003} and \cite[Chapter 14]{Daley.2008}.
 
+The idea of the conditional intensity estimating the mean number of jumps of a counting process
+is made more clear in the following lemma.
 
+\begin{lemma}[Martingale decomposition of a counting process, {\cite[Lemma 7.2.V, p.241]{Daley.2003}}]
+	Let $N(t)$, $0 \leq t < \infty$, be a counting process adapted on the history $\F{t}$
+	with conditional intensity $\lambda(t)$.
+	Let
+	\begin{math}
+		\gamma(t) = \int_0^t \lambda(t)dt.
+	\end{math}
+	Then the process $M(t) = N(t) - \gamma(t)$ is an $\F{t}$-martingale.
+\end{lemma}
 
 In order to talk reasonably about convergence of point processes,
 we first need to introduce a topology on the space of point measures.
