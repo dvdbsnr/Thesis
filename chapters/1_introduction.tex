@@ -29,12 +29,12 @@ critical Erdös-Rényi random graph and provide an in-depth proof of the first r
 If no other reference is given, each result (or an equivalent thereof) can be found in Chapters 1 and 2 of \cite{Aldous.1997}.
 
 
-\section{The Erdös-Renyi random graph}
+\section{The Erdös-Rényi random graph}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SECTION: The Erdös-Renyi random graph
+% SECTION: The Erdös-Rényi random graph
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In their paper, Erdös and Renyi proposed a model of random graph that is now known as the Erdös-Renyi random graph.
+In their paper, Erdös and Rényi proposed a model of random graph that is now known as the Erdös-Rényi random graph.
 There are several ways to construct this random graph which we will briefly introduce,
 starting with the historic models used in this first paper 
 and continuing with the equivalent model which provides the basis for Aldous' paper and consequently this thesis.
@@ -50,7 +50,7 @@ which leads to a total number of graphs
 \begin{equation}
 	|G_{n,M}| = \binom{\binom{n}{2}}{M}.
 \end{equation}
-The Erdös-Renyi random graph $\Gcal(n, M)$ is now obtained by choosing one element of $G_{n,M}$ at random
+The Erdös-Rényi random graph $\Gcal(n, M)$ is now obtained by choosing one element of $G_{n,M}$ at random
 with equal probability for each graph, where the number of edges is usually dependent on the number of vertices, $M = M(n)$.
 
 An equivalent definition provides the following process:
@@ -60,9 +60,9 @@ label it $e_1$.
 At time $t=2$ pick one of the remaining $\binom{n}{2}-1$ edges, again all remaining edges being equiprobable,
 and denote it by $e_2$.
 Continue until $M$ edges have been chosen at time $t=M$.
-The graph $(V,E)$ on vertices $V = \{1, \dots, n\}$ with edges $E = \{e_1, \dots, e_M\}$ is the desired Erdös-Renyi random graph.
+The graph $(V,E)$ on vertices $V = \{1, \dots, n\}$ with edges $E = \{e_1, \dots, e_M\}$ is the desired Erdös-Rényi random graph.
 
-Using these definitions Erdös and Renyi prove that,
+Using these definitions Erdös and Rényi prove that,
 when increasing the number of edges $M(n)$,
 the sizes of connected components undergo distinct phases leading from small sparse components and unconnected vertices
 to one giant component and eventually a completely connected graph.
@@ -73,7 +73,7 @@ we take every edge $(v_1, v_2)$ and add it to the set of edges $E$ of the random
 We call an edge $e = (v_1, v_2)$ open if $e \in E$, closed otherwise.
 We denote a random object constructed this way by $\Gcal(n, \p)$ and expect a realisation of the random graph to have $\binom{n}{2}\p$ edges.
 When increasing the probability $\p$ from $0$ to $1$ the resulting random graph undergoes the same so-called phase transitions
-discovered by Erdös and Renyi.
+discovered by Erdös and Rényi.
 
 While the results of the original paper hold for small and large $M(n)$,
 the critical phase transistion happening around $M(n) = \frac{n}{2}$ or $\p = \frac{1}{n}$
@@ -89,7 +89,7 @@ with increasing number of edges.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 To provide an overview of the aforementioned phases, 
-which the component sizes of the Erdös-Renyi random graph pass through,
+which the component sizes of the Erdös-Rényi random graph pass through,
 we discuss relevant results that were established previous to \cite{Aldous.1997}.
 
 We begin with the subcritical graph, that is
@@ -152,7 +152,7 @@ The following theorem now states that all of these vertices are, in fact, part o
 	\subfloat[$\lambda = 0.5$]{\includegraphics[page=1,width=.31\textwidth]{figures/chapter1/ER_1000_-5}}%
 	\quad
 	\subfloat[$\lambda = 1.5$]{\includegraphics[page=1,width=.31\textwidth]{figures/chapter1/ER_1000_5}}%
-	\caption{Realizations of the Erdös-Renyi random graph on $n=1000$ vertices with different $\lambda = n \pp$.}%
+	\caption{Realizations of the Erdös-Rényi random graph on $n=1000$ vertices with different $\lambda = n \pp$.}%
 	\label{F: ER}%
 \end{figure}
 
@@ -197,7 +197,7 @@ In this critical window, the largest component of the random graph will be of or
 	\subfloat[$\pp = 0$]{\includegraphics[page=1,width=.31\textwidth]{figures/chapter1/ER_1000_0}}%
 	\quad
 	\subfloat[$\pp = 3$]{\includegraphics[page=1,width=.31\textwidth]{figures/chapter1/ER_1000_3}}%
-	\caption{Realizations of the Erdös-Renyi random graph on $n=1000$ vertices with different $\pp$.}%
+	\caption{Realizations of the Erdös-Rényi random graph on $n=1000$ vertices with different $\pp$.}%
 	\label{F: ER}%
 \end{figure}
 
