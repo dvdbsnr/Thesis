@@ -18,7 +18,7 @@ and Edgar Gilberts paper "Random graphs", \cite{Gilbert.1959},
 introduced what is now known as the \emph{Erdös-Rényi model} of random graphs.
 In this model, all vertices conect to each other with equal probabilities,
 an assumption that is not necessarily present in other random graph models that followed,
-like \emph{preferential attachment} or some other model.
+like \emph{preferential attachment} or the inhomogeneous Erdös-Rényi model.
 
 Starting with the original papers,
 the examination of sizes of connected components in such graphs was of great interest.
@@ -153,8 +153,16 @@ The following theorem now states that all of these vertices are, in fact, part o
 	\quad
 	\subfloat[$\lambda = 1.5$]{\includegraphics[page=1,width=.31\textwidth]{figures/chapter1/ER_1000_5}}%
 	\caption{Realizations of the Erdös-Rényi random graph on $n=1000$ vertices with different $\lambda = n \pp$.}%
-	\label{F: ER}%
+	\label{F: ER lambda}%
 \end{figure}
+
+Figure~\ref{F: ER lambda} provides two realizations of the random graph with different $\lambda$,
+one subcritical and one supercritical.
+Note how the largest connected components in the subcritical graph still consist of very few vertices
+(the largest component here having 9 vertices, while $\log(1000) \approx 6.9$)
+and a lot of nodes are isolated.
+In contrast, the supercritical graph features a single large component 
+and all other components are either drastically smaller in size or even still isolated vertices.
 
 For $n \p < 1$ we expect many small clusters of order at most $\log n$,
 for $n \p > 1$ we expect one giant component, approaching size $n$ with increasing $\p$.
@@ -194,12 +202,18 @@ In this critical window, the largest component of the random graph will be of or
 	\centering
 	\subfloat[$\pp = -3$]{\includegraphics[page=1,width=.31\textwidth]{figures/chapter1/ER_1000_-3}}%
 	\quad
-	\subfloat[$\pp = 0$]{\includegraphics[page=1,width=.31\textwidth]{figures/chapter1/ER_1000_0}}%
+	\subfloat[$\pp = 0$]{\includegraphics[page=1,width=.31\textwidth]{figures/chapter1/ER_1000_1}}%
 	\quad
 	\subfloat[$\pp = 3$]{\includegraphics[page=1,width=.31\textwidth]{figures/chapter1/ER_1000_3}}%
 	\caption{Realizations of the Erdös-Rényi random graph on $n=1000$ vertices with different $\pp$.}%
-	\label{F: ER}%
+	\label{F: ER p}%
 \end{figure}
+
+Figure~\ref{F: ER p} shows realizations of the critical Erdös-Rényi random graph for different parameters $\pp$.
+It is clear how the graph undergoes its transition from relatively small and simple components 
+to the emergence of a single great component, which will later, i.e. for larger $\p$,
+encompass more and more vertices as seen in Figure~\ref{F: ER lambda}.
+
 
 But is it possible to provide a similar statement not only for the largest, but for all components in a critical random graph?
 Aldous notes that previous to his paper
