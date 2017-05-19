@@ -12,9 +12,21 @@
 \chapter{Introduction}
 \fxnote{Update title.}
 
-A brief introduction.
-\lipsum[100]
+The study of randomly generated graphs started in 1959,
+when Paul Erdös and Alfréd Rényis paper "On random graphs", \cite{Erdos.1959}
+and Edgar Gilberts paper "Random graphs", \cite{Gilbert.1959},
+introduced what is now known as the \emph{Erdös-Rényi model} of random graphs.
+In this model, all vertices conect to each other with equal probabilities,
+an assumption that is not necessarily present in other random graph models that followed,
+like \emph{preferential attachment} or some other model.
 
+Starting with the original papers,
+the examination of sizes of connected components in such graphs was of great interest.
+A milestone in this study provided David Aldous 1997 paper 
+"Brownian excursions, critical random graphs and the multiplicative coalescent", \cite{Aldous.1997}.
+This thesis will provide an overview of the state of the research on component sizes in the so-called
+critical Erdös-Rényi random graph and provide an in-depth proof of the first results of this paper.
+If no other reference is given, each result (or an equivalent thereof) can be found in Chapters 1 and 2 of \cite{Aldous.1997}.
 
 
 \section{The Erdös-Renyi random graph}
@@ -116,7 +128,7 @@ Together, these theorems imply
 
 We have established that, for $\p n < 1$, the expected largest component size will be of order $\log n$.
 
-Consider the opposite case, $\lambda = \p n > 1$. 
+Consider the opposite case, the supercritical graph with $\lambda > 1$. 
 
 Denote by $\xi_\lambda$ the survival probability of a Poisson branching process with mean offspring $\lambda$.
 Note that $\xi_\lambda > 0$ since $\lambda > 1$
@@ -126,7 +138,7 @@ see \cite[Chapter 3, p.87ff.]{vanderHofstad.2016}).
 Any vertex is part of a large component with probability $\xi_\lambda$, 
 therefore we will expect around $n \xi_\lambda$ vertices being part of large connected components.
 The following theorem now states that all of these vertices are, in fact, part of the same connected component, which we call the giant component.
-\fxnote{Add explanation for Poisson branching process}
+
 \begin{theorem}[Law of large numbers for giant component, {\cite[Theorem 4.8, p.131]{vanderHofstad.2016}}]
 	Fix $\lambda>1$.
 	Then, for all $\nu \in (\frac{1}{2}, 1)$, there exists $\delta = \delta(\nu, \lambda)$ such that
@@ -135,8 +147,16 @@ The following theorem now states that all of these vertices are, in fact, part o
 	\end{equation}
 \end{theorem}
 
+\begin{figure}[h]
+	\centering
+	\subfloat[$\lambda = 0.5$]{\includegraphics[page=1,width=.31\textwidth]{figures/chapter1/ER_1000_-5}}%
+	\quad
+	\subfloat[$\lambda = 1.5$]{\includegraphics[page=1,width=.31\textwidth]{figures/chapter1/ER_1000_5}}%
+	\caption{Realizations of the Erdös-Renyi random graph on $n=1000$ vertices with different $\lambda = n \pp$.}%
+	\label{F: ER}%
+\end{figure}
 
-For $n \p < 1$ we expect many small clusters of size at most $\log n$,
+For $n \p < 1$ we expect many small clusters of order at most $\log n$,
 for $n \p > 1$ we expect one giant component, approaching size $n$ with increasing $\p$.
 But what happens around $n \p \approx 1$?
 As it turns out, the emergence of the giant component occurs quite rapidly,
@@ -148,9 +168,11 @@ starting at $t=0$ with $0$ edges, adding one random edge at every time step.
 We would therefore expect the emergence starting around time $\binom{2}{n}\frac{1}{n} \approx \frac{1}{2}n$. 
 
 \begin{theorem}[Emergence of the giant component, {\cite[Theorem 6.8, p.142]{Bollobas.2001}}]
-	Almost every graph process $\Gcal = (\Gcal_t)_0^n$ is such that 
+	Almost every graph process\footnote{%
+		We say a property $P$ is shared by almost every graph if the probability of having this property approaches $1$ as $n \rightarrow \infty$} 
+	$\Gcal = (\Gcal_t)_0^n$ is such that 
 	for every $t \geq t_1 = \floor{ n/2 + 2(\log n)^{1/2}\n{2}{3} }$ 
-	the graph $\Gcal_t$ has a unique component of order at least $\n{2}{3}$ and the other components have at most $\frac{1}{2}\n{2}{3}$
+	the graph $\Gcal_t$ has a unique component of order at least $\n{2}{3}$ and the other components have at most $\frac{1}{2}\n{2}{3}$.
 \end{theorem}
 
 As it turns out, there is a so-called critical window in which the maximum component sizes are not of order $\log n$ any more 
@@ -166,10 +188,9 @@ The next theorem provides a approximation of the size of the largest component i
 	\end{equation}	
 \end{theorem}
 
-Therefore, rescaling the size of the largest component by $\n{-2}{3}$,
-it is contained in an interval $[\omega^{-1}, \omega]$ with hight probability.
+In this critical window, the largest component of the random graph will be of order $\n{2}{3}$ with high probability.
 
-\begin{figure}%
+\begin{figure}[h]
 	\centering
 	\subfloat[$\pp = -3$]{\includegraphics[page=1,width=.31\textwidth]{figures/chapter1/ER_1000_-3}}%
 	\quad
