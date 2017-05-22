@@ -9,24 +9,187 @@
 This chapter will give a brief overview of the results obtained in the remainder of Aldous paper,
 and introduce the questions left open by the end as well as further research into these.
 
-\section{The non-uniform case}
+\section{The nonuniform case}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: The non-uniform case
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this thesis we discussed a random graph model in which all vertices were treated equally,
+that is the probability of drawing an edge $(v_i,v_j)$ was $\p$ regardless of the actual vertices $v_i$ and $v_j$.
+We call this model the uniform model.
+As it turns out, Theorem~\ref{T: Main} extends to a nonuniform random graph,
+in which every vertex has a weight or size and an edge is more likely to be drawn between two large vertices.
+
+\subsection{The nonuniform model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Description graph model
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Let $\x = (x_1, \dots, x_n)$ be a positive real vector and $\q > 0$.
+We define a random graph $\Wxq$ on vertices $\{1, \dots, n\}$ similarly to the uniform Erdös-Renyi model.
+A pair $(i, j)$ of vertices is an edge with probability
+\begin{equation}
+	p_{i,j} = 1 - \exp(-\q x_i x_j),
+\end{equation}
+independently for distinct pairs.
+Interpreting $x_i$ as the size or weight of vertex $i$, we say a component $\Ccal$ of $\Wxq$ has size
+\begin{equation}
+	C = \sum_{i \in \Ccal} x_i.
+\end{equation}
+
+We now state the equivalent of Theorem~\ref{T: Main} for the nonuniform model.
+Recall that we had to resclae the breadth-first walk on the graphs of the uniform model to fit the Brownian motion $\Bt$.
+In this case, we build the scaling into restriction on the random graph, 
+such that the component sizes themselves may converge in distribution to excursions of the Brownian motion with drift.
+For a vector $\x$, define
+\begin{equation}
+\begin{aligned}
+	\sigma_r &= \sum_{i} x_i^r \quad \text{for $r \geq 1$}, \\
+	x_* &= \max_i x_i.
+\end{aligned}
+\end{equation}
+
+\begin{theorem} \label{T: Main nonuniform}
+	For each $n$, let $\xn$ be a finite positive vector and let $\qn > 0$.
+	Suppose
+	\begin{align}
+		\frac{\sign_3}{(\sign_2)^3} &\rightarrow 1, \\
+		\qn - \frac{1}{\sign_2} &\rightarrow \pp, \\
+		\frac{x_*^{(n)}}{\sign_2} &\rightarrow 0,
+	\end{align}
+	as $n \rightarrow \infty$ for some $\pp \in (-\infty, \infty)$.
+	Let $(C^{(n)(j)}; j \geq 1)$ be the ordered component sizes of $\Wxqn$.
+	Then
+	\begin{equation}
+		(C^{(n)}(j); j \geq 1) \rightarrow_d (C^{\pp}(j); j \geq 1)
+	\end{equation}
+	with respect to the $\ld$ topology, where $(C^{\pp}(j); j \geq 1)$ are the ordered excursion lenghts of $\Bt$.
+\end{theorem}
+
+
+
+
+Note that the classical model $\Gnt$ can be derived by setting
+\begin{equation}
+\begin{aligned}
+	x_i^{(n)} &= \n{-2}{3},  \\
+	\sign_2 &= \sum_{i = 1}^{n} (\n{-2}{3})^2 = \n{-1}{3}, \\
+	\sign_3 &= n^{-1}, \\
+	\qn &= \n{1}{3} + \pp,
+\end{aligned}
+\end{equation}
+since then $\p = 1 - \exp(-(\n{1}{3} + \pp)\n{-4}{3})$.
+\fxfatal{Why?}
+
+
+\subsection{The breadth-first walk}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BF-Walk on nonuniform graph
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Theorem~\ref{T: Main nonuniform} is proven again by defining the breadth-first walk on this new random graph
+and proving its convergence to the Brownian motion with drift.
+In Chapter~\ref{C: bf-walk} we defined this walk for a deterministic unweighted graph 
+and examined its properties when applied to a random construction of a graph,
+for this model it is a better fit to describe a construction of $\Wxq$ with a simultaneous corresponding breadth-first walk.
+
+For each ordered pair $(i, j)$ of vertices, $i \neq j$, define a random variable $\Uij \sim \Exponential(\q x_j)$.
+Apply size-biased sampling to choose $v_1$.
+\fxfatal{What is size biased sampling?}
+The children of $v_1$ are now all vertices $v$ for which
+\begin{equation}
+	U_{v_1, v} \leq x_{v_1}.
+\end{equation}
+Order these vertices as $v_2, v_3, \dots$ such that $U_{v_1, v_i}$ is increasing in $i$.
+
+We begin defining the breadth-first walk $\bfw(s)$.
+Start with $\bfw(0) = 0$ and for $0 \leq s \leq x_{v_1}$ let
+\begin{equation}
+	\bfw(s) = -s + \sum_{v} x_v \Ind{\{U_{v_1, v} \leq s\}}.
+\end{equation}
+Now
+\begin{equation}
+	\bfw(x_{v_1}) = -x_{v_1} + \sum_{\text{$v$ child of $v_1$}} x_v
+\end{equation}
+
+
+While the jumps of the breadth-first walk where always of size $1$ for the uniform model,
+now they are equal to the size of the vertex connecting to the current node.
+
+We define children of further nodes inductively:
+If $v_i$ is a node in the same component as $v_1$,
+consider the set of vertices which are children to one of the vertices $v_1, \dots, v-{i-1}$
+but are not part of the set $\{v_1, \dots, v-{i-1}\}$ themselves.
+These vertices are labelled $v_i, \dots, v_{l(i)}$ for some $l(i) \geq i$.
+Now define the children of $v_i$ as the vertices 
+$v \notin \{v_1, \dots, v_{l(i)}\}$ for which $U_{v_i, v} \leq x_{v_i}$,
+label them as $v_{l(i) + 1}, v_{l(i) + 2}, \dots$ 
+and again order them such that $U_{v_i, v_j}$ is increasing in $j$.
+ 
+Write $\tau_{i-1} = \sum_{j = 1}^{i-1} x_{v_j}$ and set
+\begin{equation}
+	\bfw(\tau_{i-1} + s) = \bfw(\tau_{i-1}) - s + \sum_{\text{$v$ child of $v_i$}} x_v \Ind{\{U_{v_i, v} \leq s\}}.
+\end{equation}
+for $0 \leq s \leq x_{v_i}$.
+
+After having exhausted every vertex in the first component, 
+choose the root of the next component by size-biased sampling and continue.
+
+This construction now yields a random forest on the vertices $\{1,  \dots, n\}$
+with an ordering $\{v_1, \dots, v_n\}$ 
+as well as an associated breadth-first walk in continuous time $(\bfw(s); 0 \leq s \leq \sum_vx_v)$.
+
+We now add each edge $(v_i, v_j)$ such that $i < j \leq l(i)$ and $U_{v_i, v_j} \leq x_{v_i}$.
+It is easily seen how the resulting random graph is $\Wxq$:
+For a pair of vertices $(i, j)$, one must be traversed first by the breadth-first walk, say $i$,
+and the resulting probability of the edge $(i,j)$ being present in the final graph is equal to
+\begin{equation}
+	\Prob(U_{i,j} \leq x_i ) = 1 - \exp(q x_i x_j)
+\end{equation}
+since $U_{i,j} \sim \Exponential(qx_j)$.
+Once $j$ is choosing its children it can not form a new connection to $i$ any more.
 
 \begin{figure}[H]
 	\centering
-	\subfloat[A graph component]
-	{\input{figures/chapter6/fig_inh_component.tex}}\\
+	\subfloat[Components of $\Wxq$ with corresponding vertex sizes.]
+	{\input{figures/chapter6/fig_nonu_component.tex}}\\
 	
 	\centering
-	\subfloat[The continuous-time breadth-first walk]
-	{\input{figures/chapter6/fig_inh_bf_walk_cont.tex}}
+	\subfloat[The associated continuous-time breadth-first walk]
+	{\input{figures/chapter6/fig_nonu_bf_walk_cont.tex}}
 	
-	\caption{Continuous breadth-first walk on a single component}
-	\label{F: inh bf-walk cont}
+	\caption{Continuous breadth-first walk components of the nonuniform random graph. Dashed lines indicate the end of vertices.}
+	\label{F: nonu bf-walk}
 \end{figure} 
+
+Figure~\ref{F: nonu bf-walk} shows this construction for some sample components. 
+We may think of the vertices $v_1, v_2, \dots$ occupying consecutive intervals on the time axis,
+each the length of the interval for each vertex equal to its size.
+During this time interval we search for children of the current vertex 
+and each "birth" results in a jump of height equal to the size of the new vertex.
+
+For the birth time $\beta(j)$ of $v_j$ as child of a vertex $v_i$ we have
+\begin{equation}
+	\beta(j) = \tau_{i-1} + U_{v_i, v_j}.
+\end{equation}
+For a vertex which is the root of its component, the birth time is simultaneously the start of its time interval:
+\begin{equation}
+	\beta(j) = \tau_{j-1}.
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THEOREM 1.X for nonuniform graph
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \section{The multiplicative coalescence}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: The multiplicative coalescence
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
 \section{Further results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: Further results
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
