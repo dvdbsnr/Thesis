@@ -348,7 +348,7 @@ The following Lemma will now link excursions of $Z_n$ and $\Wt$ in the language 
 We define a random point process containing the starts and lengths of excursions of $\Bt$ together with a sequence of random point processes describing the starts and sizes of components discovered by $\rznt$.
 Let $\Ci{n,i}$ be the size of the $i$-th component and
 define $\gamma_n(i) \in \{1, \dots, n\}$ as the index for which
-$v(\gamma_n(i))$ is the last vertex of the $i-1$-th component encountered by the breadth-first walk $Z_n$.
+$v_{\gamma_n(i)}$ is the last vertex of the $i-1$-th component encountered by the breadth-first walk $Z_n$.
 For this lemma, we need to extend the definitions of $\gamma_n$ and $\Ci{n,i}$ beyond the $n$-th vertex and the last component.
 Let $i^*_n$ be the index of the last component 
 and define $\gamma_n(i^*_n + 1) := \max_{1 \leq i \leq i^*_n}\gamma_n(i) + 1$ 
@@ -716,8 +716,8 @@ which relies not on stochastic calculus but uses theory on random graphs.
 	but not the labelling of the vertices.
 	\fxnote{Alter the description of the sigma-algebra.}
 	For a component $\Ccal$ of size $\alpha\n{2}{3}$,
-	let $v(\Ccal)$ be the label of its minimal vertex and write 
-	$\ChiAn = \n{-1}{3}v(\Ccal)$.
+	let $v_{\Ccal}$ be the label of its minimal vertex and write 
+	$\ChiAn = \n{-1}{3}v_{\Ccal}$.
 	We show that $\ChiAn \rightarrow_d \Exponential(\alpha)$.
 	\fxfatal{Proof of Chi -> Exp goes here!}
 	
@@ -728,8 +728,8 @@ which relies not on stochastic calculus but uses theory on random graphs.
 	\begin{equation} \label{E: q(n,[y,infty])}
 	\begin{aligned}
 	\NComp{[y, \infty)}
-	&= \ExpBig{ \ExpBig{ \sum_{\Ccal: \; |\Ccal| \geq \delta\n{2}{3}} \Ind{\{ v(\Ccal) > y\n{1}{3} \}} \cond \SigmaAlgebra_E } } \\
-	&= \ExpBig{ \sum_{\Ccal: \; |\Ccal| \geq \delta\n{2}{3}} \Prob( v(\Ccal) > y\n{1}{3} \cond \SigmaAlgebra_E) } \\
+	&= \ExpBig{ \ExpBig{ \sum_{\Ccal: \; |\Ccal| \geq \delta\n{2}{3}} \Ind{\{ v_{\Ccal} > y\n{1}{3} \}} \cond \SigmaAlgebra_E } } \\
+	&= \ExpBig{ \sum_{\Ccal: \; |\Ccal| \geq \delta\n{2}{3}} \Prob( v_{\Ccal} > y\n{1}{3} \cond \SigmaAlgebra_E) } \\
 	&= \ExpBig{ \sum_{\Ccal: \; |\Ccal| \geq \delta\n{2}{3}} \Prob(\ChiAn > y \cond \SigmaAlgebra_E, |\Ccal| = \alpha\n{2}{3}) }
 	\end{aligned}
 	\end{equation}

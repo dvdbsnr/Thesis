@@ -22,7 +22,7 @@ We start by describing the deterministic construction of the breadth-first walk.
 Consider an arbitrary graph $\mathcal{G}$ on the set of vertices 
 $\{1, \dots , n\} $.
 We will define the breadth-first ordering
-$(v(1), \dots v(n))$
+$(v_1, \dots v_n)$
 of the vertices along with an integer-valued sequence
 $(z(i), \; 1 \leq i \leq n)$
 which we call the breadth-first walk on
@@ -41,32 +41,32 @@ Now order by levels (distance from the root) and within levels order by original
 See Figure~\ref{F: bf-walk discrete} for an example of the new ordering.
 
 For a more mathematically concise definition,
-consider the set of vertices $\{ v(1),\dots, v(i) \}$
+consider the set of vertices $\{ v_1,\dots, v_i \}$
 and define the \emph{neighbour set} $\Ni{i}$ as the vertices outside of
 \fxnote{Add emphasis when needed}
-$\{ v(1),\dots, v(i) \}$ 
+$\{ v_1,\dots, v_i \}$ 
 that are neighbours to some vertex in 
-$\{ v(1),\dots, v(i) \}$:
+$\{ v_1,\dots, v_i \}$:
 \begin{equation}
 \Ni{i} := 
-\left\lbrace v \in \{1, \dots, n\} \backslash \{ v(1),\dots, v(i) \} 
+\left\lbrace v \in \{1, \dots, n\} \backslash \{ v_1,\dots, v_i \} 
 \; | \; 
-\left(v(j), v\right) \in S \; \text{for some} \; 1 \leq j \leq i \right\rbrace
+\left(v_j, v\right) \in S \; \text{for some} \; 1 \leq j \leq i \right\rbrace
 \end{equation}
 \fxnote{Remove equation? Unnecessary?}
 \fxnote{Fix \text in braces: Space \; or \quad}
-This allows us to define the set of children of some vertex $v(i)$ as
+This allows us to define the set of children of some vertex $v_i$ as
 $\Ni{i} \backslash \Ni{i-1}$.
 First order the components as described above. 
 Now consider only the first component $\Ci{1}$.
-Define $v(1) := w_1$, the root of $\Ci{1}$ and define
-$v(2), \dots , v(1 + |\Ni{1}|)$ 
-as the neighbours of $v(1)$,
+Define $v_1 := w_1$, the root of $\Ci{1}$ and define
+$v_2, \dots , v(1 + |\Ni{1}|)$ 
+as the neighbours of $v_1$,
 in increasing order of vertex label. 
 Define the new label for all 
 $i = 2, \dots, |\Ci{1}|$,
 that is all vertices in the first component,
-inductively by listing all children (if any exist) of $v(i)$
+inductively by listing all children (if any exist) of $v_i$
 in increasing order as 
 $ v(i + |\Ni{i-1}|), \dots, v(i + |\Ni{i}|) $.
 After labelling the last vertex in $\Ci{1}$, set
@@ -78,7 +78,7 @@ Traverse all components this way.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Definitions of breadth-first walk
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-For the number of children of $v(i)$ write 
+For the number of children of $v_i$ write 
 $c(i) = |\Ni{i} \backslash\Ni{i-1}|$.
 Now define the breadth-first walk 
 $(z(i), \; 1 \leq i \leq n)$
@@ -98,8 +98,8 @@ An explanation:
 \fxnote{Change this}
 The process divides the vertex-set into three parts: 
 Explored, discovered and neutral vertices. Every vertex starts as neutral.
-At step $1$, we traverse vertex $v(1)$ and mark it as explored.
-We search for neighbours of $v(1)$, and mark these as discovered.
+At step $1$, we traverse vertex $v_1$ and mark it as explored.
+We search for neighbours of $v_1$, and mark these as discovered.
 The next vertex to explore is the vertex already discovered with the smallest label,
 and each vertex switches from neutral to discovered once it gets assigned a new label.
 Once it's neighbours are explored, it switches to explored.
@@ -140,7 +140,7 @@ We write
 \ZetaMinus{i} &:= \min \{ j \; | \; \zeta(j) \geq i \}, \label{E: zeta-1}
 \end{align}
 for the index of the last vertex in the $j$-th component (that's \eqref{E: zeta})
-and \eqref{E: zeta-1}, the index of the component containing $v(i)$.
+and \eqref{E: zeta-1}, the index of the component containing $v_i$.
 \fxnote{This sentence is a test for labelling of align-equs. Fix!}
 Now we can provide a definition of the breadth-first walk equivalent to \eqref{E: def bf-walk z}:
 \begin{equation}  \label{E: def bf-walk z*}
@@ -165,13 +165,13 @@ so
 
 We divide the proof into two cases.
 First, assume $v(i-1)$ is not the last vertex in it's component.
-Then $v(i)$ belongs to the same component and
+Then $v_i$ belongs to the same component and
 $\ZetaMinus{i} = \ZetaMinus{i-1}$.
-Vertex $v(i)$ has already been assigned a new label at step $i-1$,
-so $v(i) \in \Ni{i-1}$.
+Vertex $v_i$ has already been assigned a new label at step $i-1$,
+so $v_i \in \Ni{i-1}$.
 Going from $i-1$ to $i$,
-$\Ni{*}$ increases by the number of new neighbours of $v(i)$
-and decreases by $v(i)$ itself.
+$\Ni{*}$ increases by the number of new neighbours of $v_i$
+and decreases by $v_i$ itself.
 So
 \begin{equation}
 |\Ni{i}| - |\Ni{i-1}| = c(i) - 1,
@@ -186,7 +186,7 @@ $ |\Ni{i}| = c(i)$,
 which holds since
 $c(i) = |\Ni{i} \backslash \Ni{i-1}| = |\Ni{i}|$.
 
-Since $|\Ni{i}| = 0$ only if $v(i)$ is the last vertex in its component,
+Since $|\Ni{i}| = 0$ only if $v_i$ is the last vertex in its component,
 \fxnote{Have we shown this? Maybe add a sentence.}
 \fxnote{its or it's? Fix in whole document!}
 \eqref{E: zeta} and \eqref{E: def bf-walk z*} imply
@@ -241,12 +241,12 @@ Some more explanation on this construction:
 \fxnote{Start this paragraph nicer.}
 At time $i-1$, 
 the walk has traversed vertices
-$(v(1), \dots, v(i-1))$
+$(v_1, \dots, v(i-1))$
 and has encountered a list of vertices
-$(v(1), \dots, v(k))$
+$(v_1, \dots, v_k)$
 of length
 $k = i-1 + |\Ni{i-1}|$.
-The discrete walk now adds the children of $v(i)$,
+The discrete walk now adds the children of $v_i$,
 $c(i)$, to this list at time $i$.
 The newly defined continuous walk adds those vertices at uniformly random times in $(i-1, i)$.
 
@@ -393,11 +393,11 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: formula an}
 	Consider the walk $\Zn$ at time $s\in[i-1, i]$.
-	Let $N$ be the number of vertices that, at time $i-1$, were eligible to be children of vertex $v(i)$.
-	That is, all vertices not yet explored or discovered, and excluding $v(i)$ itself.
+	Let $N$ be the number of vertices that, at time $i-1$, were eligible to be children of vertex $v_i$.
+	That is, all vertices not yet explored or discovered, and excluding $v_i$ itself.
 	To any eligible vertex $j$ we assign a random variable $\Uij$.
 	Let all $\Uij$ be independent and identically $\mathcal{U}(0,1)$ distributed.
-	Our understanding of the process of discovering children of $v(i)$ is as follows:
+	Our understanding of the process of discovering children of $v_i$ is as follows:
 	At time $i-1+\Uij$, the edge $(i,j)$ will open with probability $\p$ and
 	$\Zn$ will make a jump of size $1$.
 	We arrive at a characterisation of our breadth-first walk, 
@@ -411,15 +411,15 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 	$\Prob(\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s)$.
 	To do this, we condition over a finer $\sigma$-algebra and use the law of total expectation to arrive at a general statement.
 	$\SigmaAlgebra_s$ tells us the history of the walk until time $s$. 
-	We know, how many vertices were eligible at time $i-1$ and how many open edges to $v(i)$ were found in $[\floor{s},s]$.
-	However it is unknown, exactly which vertices are now children of $v(i)$ and which vertices are still eligible.
+	We know, how many vertices were eligible at time $i-1$ and how many open edges to $v_i$ were found in $[\floor{s},s]$.
+	However it is unknown, exactly which vertices are now children of $v_i$ and which vertices are still eligible.
 	\fxnote{Is this really important? Isn't it enough to have the finer s-algebra know about the k vertices?}
 	
 	Let 
 	\begin{equation}
 	\begin{split}
 	\SigmaAlgebra_s^k := \sigma(&\Zn(t), t\leq s; \\
-	&\text{There are exactly $k$ children of $v(i)$ encountered thus far}, \\
+	&\text{There are exactly $k$ children of $v_i$ encountered thus far}, \\
 	&\text{and these are $j_1, \dots, j_k$}).
 	\end{split}
 	\end{equation}
@@ -487,7 +487,7 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 	At time $i-1$, the ineligible vertices are the $i-1$ vertices already explored
 	and the set $\Ni{i-1}$ of vertices already discovered as children.
 	If $v(i-1)$ is the last vertex of its component,
-	$v(i)$ itself is not part of $\Ni{i-1}$, 
+	$v_i$ itself is not part of $\Ni{i-1}$, 
 	so we need to add a term that equals $1$ if $v(i-1)$ is the last vertex of its component and $0$ otherwise.
 	Together, we arrive at
 	\begin{equation}
@@ -498,7 +498,7 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 	\Ineligible{i-1} = i-1 + \ZetaMinus{i} + \Zn(i-1).
 	\end{equation}
 	At time $i-1+u$, for $0<u<1$, 
-	new vertices were discovered as children of $v(i)$ and now add to $\Ineligible{i-1+u}$.
+	new vertices were discovered as children of $v_i$ and now add to $\Ineligible{i-1+u}$.
 	The number of ineligible vertices is now
 	\begin{equation}
 	\begin{aligned}

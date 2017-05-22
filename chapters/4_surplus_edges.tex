@@ -68,12 +68,12 @@ Lemma~\ref{L: formula an} established that $\Bn(s) = \int_{0}^{s} \an{u}du$ with
 \begin{equation*}
 	\an(s) = (n - \Ineligible{s}) \ps,
 \end{equation*}
-where $\Ineligible{s}$ is the number of vertices ineligible to become a child of $v(\ceil{s})$ at time $s$.
+where $\Ineligible{s}$ is the number of vertices ineligible to become a child of $v_{\ceil{s}}$ at time $s$.
 In terms of counting processes, we call $\an$ the rate or conditional intensity of $\Bn$.
 It is evident that $\nnt$ will have a similar rate,
-substituting the number of vertices eligible to become a child of $v(\ceil{s})$ with the number of vertices eligible to receive a surplus edge to $v(\ceil{s})$.
+substituting the number of vertices eligible to become a child of $v_{\ceil{s}}$ with the number of vertices eligible to receive a surplus edge to $v_{\ceil{s}}$.
 
-In general, at time $i-1$, the first $i$ vertices are ineligible for a surplus edge to $v(i)$.
+In general, at time $i-1$, the first $i$ vertices are ineligible for a surplus edge to $v_i$.
 The remaining $\Ineligible{i-1} - i$ vertices are candidates for an excess edge opening with probability $\p$.
 Therefore, the counting process $\nnt$ has rate
 \begin{equation} \label{E: rate Nnt}
