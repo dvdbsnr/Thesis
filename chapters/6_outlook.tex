@@ -48,6 +48,10 @@ For a vector $\x$, define
 \end{aligned}
 \end{equation}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THEOREM Main nonuniform graph
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{theorem} \label{T: Main nonuniform}
 	For each $n$, let $\xn$ be a finite positive vector and let $\qn > 0$.
 	Suppose
@@ -235,18 +239,83 @@ For a vertex which is the root of its component, the birth time is simultaneousl
 \end{equation}
 
 
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% THEOREM 1.X for nonuniform graph
+% THEOREM Z -> Wt nonuniform graph
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+There now exists a direct equivalent to Theorem~\ref{T: Z -> W} for this nonuniform graph model and its breadth-first walk.
+
+\begin{theorem} \label{T: Z -> W nonu}
+	Let $\bfwn(s), 0 \leq s \leq \sum_{v} x^{(n)}_v$ be the breadth-first walk on $\Wrg(\xn, \qn)$.
+	Define the rescaled breadth-first walk
+	\begin{equation}
+		\rbfwn(s) = \sqrt{\frac{\sign_2}{\sign_3}} \bfwn(s).
+	\end{equation}
+	Then
+	\begin{equation}
+		\rbfwn \rightarrow_d \Wt.
+	\end{equation}	
+\end{theorem}
+
+The proof of this theorem is very similar to the proof of Theorem~\ref{T: Z -> W}.
+Again we find martingale-decompositions $\bfwn = \Mn + \An$ and $\Mn^2 = \Qn + \Bn$
+and show that
+\begin{equation}
+	\sqrt{\frac{\sign_2}{\sign_3}} \sup_{s \leq s_0} \left| \An(s) + \frac{\qn\sign_3}{2\sign_2}s^2 - (\qn\sign_2 - 1)s \right| \rightarrow_p,
+\end{equation}
+\begin{equation}
+\frac{\sign_2}{\sign_3} \Bn(s_0) \rightarrow_p s_0
+\end{equation}
+\begin{equation}
+\frac{\sign_2}{\sign_3} \Exp{  \sup_{s \leq s_0} | \Mn(s) - \Mn(s-) |^2} \rightarrow 0.
+\end{equation}
+Then use Theorem~\ref{T: functional CLT martingales} to prove the convergence to Brownian motion.
+
+Proving these asymptotics requires some additional work at key steps,
+which we will not introduce here.
+A complete proof can be found in \cite[p.828ff.]{Aldous.1997}.
+
+Deducing Theorem~\ref{T: Main nonuniform} from Theorem~\ref{T: Z -> W nonu} comes with additional difficulties.
+In the uniform case, we could reconstruct the graph completely (except for vertex labels) from the breadth-first walk.
+Now this is not possible, since it is unclear where the time interval of one vertex ends and another begins.
+Equations \eqref{E: zeta(j) = min(i)} to \eqref{E: zeta-1(i) = 1 - min(j)} 
+provided us with a clear way of deciding when the $i$-th component started and ended,
+and we do not have an equivalent in $\Wrg(\x, \q)$.
+We do however have an analog of \eqref{E: (6).1} and \eqref{E: (6).2}:
+A component consists of consecutive vertices $\{v_i, v_{i+1}, \dots, v_j\}$ and the walk satisfies
+\begin{equation} \label{E: (6).1 nonu}
+	\bfw(\tau_j) = \bfw(\tau_{i-1}) - x_{v_i},
+\end{equation}
+\begin{equation} \label{E: (6).2 nonu}
+	\bfw(u) \geq \bfw(\tau_j) \quad \text{for $\tau_{i-1} < u < \tau_j$}.
+\end{equation}
+
 
 
 \section{The multiplicative coalescence}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: The multiplicative coalescence
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
