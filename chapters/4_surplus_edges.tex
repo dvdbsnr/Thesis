@@ -141,17 +141,24 @@ The rate of the counting process $\rnnt$ therefore converges in distribution to 
 \begin{figure}[ht]
 	\centering
 	\input{figures/chapter4/fig_area_points.tex}
-	\caption{The surplus edge counting process has Poisson distribution with parameter equal to the area under $\Bt$.} 
+	\caption{A counting process with conditional intensity $\Bt$.} 
 	\label{F: area points}
 \end{figure}
 
-
+Figure~\ref{F: area points} shows a realization of $\Bt$ and a counting process, say $N$, with rate $\Bt$,
+represented as marks on the x-axis.
+For any interval $I$ the number of points $N$ encounters in $I$, here $N(I) = 3$, 
+has Poisson distribution with parameter $\int_{I}\Bt(s)ds$.
 
 
 \section{Weak convergence of $(Z^t_n, N^t_n)$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Weak convergence of $(Z^t_n, N^t_n)$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We know that $\rznt \rightarrow_d \Wt$ and that the rate of $\rnnt$ converges to $\Bt$.
+But is that enough to deduce the convergence in distribution of the highly correlated pair $(\rznt, \rnnt)$ to $(\Wt, \Nt)$?
+The remainder of this chapter is now dedicated to proving this convergence.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -702,15 +709,8 @@ If a vertex connects by multiple excess edges, the process $\nnt$ makes two or m
 The rescaling \eqref{E: rescale Nnt} compresses the time axis until, in the limit process $\Nt$, 
 any distance in an interval of original length $1$ will be reduced to a single point.
 Consequently there would be a non-zero chance that the counting process has multiple coincident points.
-But by definition $\Nt$ is a Poisson counting process with continuous intensity $\Bt$,
-therefore it is simple with probability $1$, see \cite[Remark 2.1, p.34]{Haenggi.2013}.
+But since $\int_x \Bt(s)ds = 0$ for all $x \in \Rplus$, 
+$\Nt$ is simple and the probability of multiple coincident points occurring is $0$.
 We conclude that the probability of a vertex having multiple surplus edges must tend to zero.
-
-
-
-
-
-
-
 
 
