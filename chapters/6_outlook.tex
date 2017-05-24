@@ -127,13 +127,6 @@ Therefore
 the individual edge probabilities converge to zero as $n \rightarrow \infty$
 and are asymptotically close to $qx_i x_j$ since $1 - \exp(-x) \approx x$ for very small $x$.
 
-
-
-
-
- 
-
-
 The classical model $\Gnt$ can be derived by setting
 \begin{equation}
 \begin{aligned}
@@ -143,8 +136,7 @@ The classical model $\Gnt$ can be derived by setting
 	\qn &= \n{1}{3} + \pp,
 \end{aligned}
 \end{equation}
-since then $\p = 1 - \exp(-(\n{1}{3} + \pp)\n{-4}{3})$.
-\fxfatal{Why?}
+since then $p_{i,j} = 1 - \exp(-(\n{1}{3} + \pp)\n{-4}{3}) = 1 - \exp(-\p) \approx \p$ for large $n$.
 
 
 \subsection{The breadth-first walk}
@@ -255,6 +247,8 @@ For a vertex which is the root of its component, the birth time is simultaneousl
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: The multiplicative coalescence
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 
 
