@@ -6,11 +6,27 @@
 
 \chapter{Outlook} \label{C: outlook}
 
+This chapter will provide an overview over the other central issue of this paper,
+which is the multiplicative coalescence.
 
 \section{The multiplicative coalescence}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: The multiplicative coalescence
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+So far, we always considered $\pp$ as a constant which lead to a change of $\p$ only in $n$.
+We will now introduce a process that describes the random graph $\Wrg(\x, \q)$ for fix $\x$ and therefore $n$
+but variable $\q$, and therefore $p_{i,j}$.
+
+We change the notation slightly.
+Fix $\x \in \ld$.
+For a pair $(i,j)$, with $i < j$, 
+define an exponentially distributed random variable $\xi_{i,j} \sim \Exponential(1)$,
+independent for distinct pairs.
+For $\pp \in [0, \infty)$, define the random graph model $\Wrg(\x, \pp)$ as the graph where there exists an edge $(i,j)$ 
+iff $\xi_{i,j} \leq \pp x_i x_j$.
+
+
 
 
 \section{Further results}
