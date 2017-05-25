@@ -146,19 +146,19 @@ In Chapter~\ref{C: bf-walk} we defined this walk for a deterministic unweighted 
 and examined its properties when applied to a random construction of a graph,
 for this model it is a better fit to describe a construction of $\Wrg(\x, \q)$ with a simultaneous corresponding breadth-first walk.
 
-For each ordered pair $(i, j)$ of vertices, $i \neq j$, define a random variable $\Uij \sim \Exponential(\q x_j)$.
+For each ordered pair $(i, j)$ of vertices, $i \neq j$, define a random variable $\xi_{i,j} \sim \Exponential(\q x_j)$.
 Apply size-biased sampling to choose $v_1$.
 \fxfatal{What is size biased sampling?}
 The children of $v_1$ are now all vertices $v$ for which
 \begin{equation}
-	U_{v_1, v} \leq x_{v_1}.
+	\xi_{v_1, v} \leq x_{v_1}.
 \end{equation}
-Order these vertices as $v_2, v_3, \dots$ such that $U_{v_1, v_i}$ is increasing in $i$.
+Order these vertices as $v_2, v_3, \dots$ such that $\xi_{v_1, v_i}$ is increasing in $i$.
 
 We begin defining the breadth-first walk $\bfw(s)$.
 Start with $\bfw(0) = 0$ and for $0 \leq s \leq x_{v_1}$ let
 \begin{equation}
-	\bfw(s) = -s + \sum_{v} x_v \Ind{\{U_{v_1, v} \leq s\}}.
+	\bfw(s) = -s + \sum_{v} x_v \Ind{\{\xi_{v_1, v} \leq s\}}.
 \end{equation}
 Now
 \begin{equation}
@@ -175,13 +175,13 @@ consider the set of vertices which are children to one of the vertices $v_1, \do
 but are not part of the set $\{v_1, \dots, v-{i-1}\}$ themselves.
 These vertices are labelled $v_i, \dots, v_{l(i)}$ for some $l(i) \geq i$.
 Now define the children of $v_i$ as the vertices 
-$v \notin \{v_1, \dots, v_{l(i)}\}$ for which $U_{v_i, v} \leq x_{v_i}$,
+$v \notin \{v_1, \dots, v_{l(i)}\}$ for which $\xi_{v_i, v} \leq x_{v_i}$,
 label them as $v_{l(i) + 1}, v_{l(i) + 2}, \dots$ 
-and again order them such that $U_{v_i, v_j}$ is increasing in $j$.
+and again order them such that $\xi_{v_i, v_j}$ is increasing in $j$.
  
 Write $\tau_{i-1} = \sum_{j = 1}^{i-1} x_{v_j}$ and set
 \begin{equation}
-	\bfw(\tau_{i-1} + s) = \bfw(\tau_{i-1}) - s + \sum_{\text{$v$ child of $v_i$}} x_v \Ind{\{U_{v_i, v} \leq s\}}.
+	\bfw(\tau_{i-1} + s) = \bfw(\tau_{i-1}) - s + \sum_{\text{$v$ child of $v_i$}} x_v \Ind{\{\xi_{v_i, v} \leq s\}}.
 \end{equation}
 for $0 \leq s \leq x_{v_i}$.
 
@@ -192,14 +192,14 @@ This construction now yields a random forest on the vertices $\{1,  \dots, n\}$
 with an ordering $\{v_1, \dots, v_n\}$ 
 as well as an associated breadth-first walk in continuous time $(\bfw(s); 0 \leq s \leq \sum_vx_v)$.
 
-We now add each edge $(v_i, v_j)$ such that $i < j \leq l(i)$ and $U_{v_i, v_j} \leq x_{v_i}$.
+We now add each edge $(v_i, v_j)$ such that $i < j \leq l(i)$ and $\xi_{v_i, v_j} \leq x_{v_i}$.
 It is easily seen how the resulting random graph is $\Wrg(\x, \q)$:
 For a pair of vertices $(i, j)$, one must be traversed first by the breadth-first walk, say $i$,
 and the resulting probability of the edge $(i,j)$ being present in the final graph is equal to
 \begin{equation}
-	\Prob(U_{i,j} \leq x_i ) = 1 - \exp(q x_i x_j)
+	\Prob(\xi_{i,j} \leq x_i ) = 1 - \exp(q x_i x_j)
 \end{equation}
-since $U_{i,j} \sim \Exponential(qx_j)$.
+since $\xi_{i,j} \sim \Exponential(qx_j)$.
 Once $j$ is choosing its children it can not form a new connection to $i$ any more.
 
 \begin{figure}[H]
@@ -223,7 +223,7 @@ and each "birth" results in a jump of height equal to the size of the new vertex
 
 For the birth time $\beta(j)$ of $v_j$ as child of a vertex $v_i$ we have
 \begin{equation}
-	\beta(j) = \tau_{i-1} + U_{v_i, v_j}.
+	\beta(j) = \tau_{i-1} + \xi_{v_i, v_j}.
 \end{equation}
 For a vertex which is the root of its component, the birth time is simultaneously the start of its time interval:
 \begin{equation}
