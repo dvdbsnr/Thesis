@@ -9,13 +9,13 @@
 		}
 	}
 	;
-	\node [plain] [right=2.5cm of 1] (4) {$v_4$} [grow=up]
-	child { node [plain] (5) {$v_5$}
-		child { node [plain] (7) {$v_7$}
-		}
-		child { node [plain] (6) {$v_6$}
-		}
-	}
+	\node [plain] [right=1.5cm of 1] (4) {$v_4$} [grow=up]
+	child { node [plain] (5) {$v_5$} }
 	;
-	\draw (6) -- (7);
+	\draw [dotted] (1) -- (4);
+	\draw [dotted] (1) -- (5);
+	\draw [dotted] (2) -- (4);
+	\draw [dotted] (2) -- (5);
+	\draw [dotted] (3) -- (4);
+	\draw [dotted] (3) -- (5);
 \end{tikzpicture}
