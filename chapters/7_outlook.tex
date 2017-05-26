@@ -25,9 +25,36 @@ define an exponentially distributed random variable $\xi_{i,j} \sim \Exponential
 independent for distinct pairs.
 For $\pp \in [0, \infty)$, define the random graph model $\Wrg(\x, \pp)$ as the graph where there exists an edge $(i,j)$ 
 iff $\xi_{i,j} \leq \pp x_i x_j$.
+This way, we constructed a random graph process $(\Wrg(\x, \pp); 0 \leq \pp < \infty)$ 
+where the number of edges of $\Wrg(\x, \pp)$ is increasing in $\pp$.
+Let $X_i(\x, \pp)$ be the size of the $i$-th largest component of $\Wrg(\x, \pp)$ and let
+\begin{equation}
+	\X(\x, \pp) = (X_i(\x, \pp); i \geq 1).
+\end{equation}
+\fxnote{This last sentence is 1:1 paper page 818.}
 
+For a vector of vertex sizes $\x$, $(\X(\x, \pp); 0 \leq \pp < \infty)$ is a continuous time Markov chain
+on a finite state space which is entirely dependent on $\x$.
+A state at some time $\pp_0$ is a vector of component sizes, which consist of the sizes of the individual vertices:
+\begin{equation}
+	\X(\x, \pp_0) = (X_1(\x, \pp_0), X_2(\x, \pp_0), \dots) = (|\Ccal_1|, |\Ccal_2|, \dots)
+\end{equation}
+where $|\Ccal_i| = \sum_{v \in \Ccal_i} x_v$.
 
+The dynamics of this Markov chain can be described as follows.
+With increasing $\pp$ we expect new edges to form and therefore separate components to merge into larger components.
+Take two components of sizes $|\Ccal_1| = x$ and $|\Ccal_2| = y$.
+There are $xy$ different possible edges between these two that may form to directly connect them 
+and create a large component of size $x+y$.
+There is also the possibility that both form connections to a third component $\Ccal_3$, 
+which this way merges the three into one cluster.
 
+\begin{figure}[H]
+	\centering
+	\input{figures/chapter7/fig_components.tex}
+	\caption{Two components of size $x$ and $y$ have $xy$ possible edges between them.}
+	\label{F: components}
+\end{figure} 
 
 \section{Further results}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
