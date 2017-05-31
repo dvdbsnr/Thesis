@@ -662,46 +662,57 @@ The following Lemma proves that with high probability, all relevant excursions d
 	This completes the proof.
 \end{proof}
 
-We have shown that with high probability there is no mass of large excursions wandering off to infinity.
+Having shown that with high probability there is no mass of large excursions wandering off to infinity,
 \fxnote{Correct use of "with high probability"?}
 \fxnote{"Mass of large excursions" needs clarification.}
-For all $\epsilon>0$ we can find a $C>0$ such that,
-with probability $1-\epsilon$,
-all excursions of size equal to or larger than $\delta\n{2}{3}$ will start before step $C\n{2}{3}$.
-For all these excursions we can apply Lemma~\ref{L: Lemma 8} to prove that $\Xin \rightarrow_d \Xi$.
+we can now prove our main theorem.
 
-This suffices to prove the convergence of the first component of Theorem~\ref{T: Main}.
-As for the second component, surplus edges, 
-we see that the breadth-first walk converges in distribution to $\Wt$
-and excursions of the breadth-first walk and $\Bt$ match up.
-For each excursion $\gamma$ of $\Zn$, 
-the number of surplus edges has Poisson distribution with parameter dependent on $\gamma$ and $\Zn$
-as described in \eqref{E: conditional intensity final}.
-The parameters of the Poisson distributions converge in distribution to the parameters of $\Nt$,
-since for each excursion $\gamma = [a,b]$
-the counting process $\Nt$ has Poisson distribution with parameter equal to the area under $\Bt$ along $\gamma$:
-\begin{equation}
+\begin{proof}[Proof of Theorem~\ref{T: Main}]
+	
+	For all $\epsilon>0$ we can find a $C>0$ such that,
+	with probability $1-\epsilon$,
+	all excursions of size equal to or larger than $\delta\n{2}{3}$ will start before step $C\n{2}{3}$.
+	For all these excursions we can apply Lemma~\ref{L: Lemma 8} to prove that $\Xin \rightarrow_d \Xi$.
+	
+	This suffices to prove the convergence of the first component of Theorem~\ref{T: Main}.
+	As for the second component, surplus edges, 
+	we see that the breadth-first walk converges in distribution to $\Wt$
+	and excursions of the breadth-first walk and $\Bt$ match up.
+	For each excursion $\gamma$ of $\Zn$, 
+	the number of surplus edges has Poisson distribution with parameter dependent on $\gamma$ and $\Zn$
+	as described in \eqref{E: conditional intensity final}.
+	The parameters of the Poisson distributions converge in distribution to the parameters of $\Nt$,
+	since for each excursion $\gamma = [a,b]$
+	the counting process $\Nt$ has Poisson distribution with parameter equal to the area under $\Bt$ along $\gamma$:
+	\begin{equation}
 	\Nt(\gamma) \sim \Poisson(\int_{\gamma} \Bt(x) dx ).
-\end{equation}
-Two random variables $X \sim \Poisson(\Lambda_1), Y \sim \Poisson(\Lambda_2)$,
-with $\Lambda_1$ and $\Lambda_2$ random variables in $[0, \infty)$,
-are equal in distribution if $\Lambda_1 =_d \Lambda_2$
-since
-\begin{equation}
+	\end{equation}
+	Two random variables $X \sim \Poisson(\Lambda_1), Y \sim \Poisson(\Lambda_2)$,
+	with $\Lambda_1$ and $\Lambda_2$ random variables in $[0, \infty)$,
+	are equal in distribution if $\Lambda_1 =_d \Lambda_2$
+	since
+	\begin{equation}
 	\begin{aligned}
 	\Prob(X = n) 
 	&= \Exp{ \Prob(X = n \cond \Lambda_1) \cond \Lambda_1 } \\
 	&= \int_{0}^{\infty} \Prob(X = n \cond \lambda) f_{\Lambda_1}(\lambda) d\lambda \\
 	&= \Prob(Y = n) 
 	\end{aligned}
-\end{equation}
-when the probability density functions $f_{\Lambda_1}$ and $f_{\Lambda_2}$ are equal.
-Therefore do not only excursion lengths, but also the associated counts (of surplus edges and marks)
-converge in distribution.
-With these considerations we finish the proof of Theorem~\ref{T: Main}.
+	\end{equation}
+	when the probability density functions $f_{\Lambda_1}$ and $f_{\Lambda_2}$ are equal.
+	Therefore do not only excursion lengths, but also the associated counts (of surplus edges and marks)
+	converge in distribution.
+	This proves Theorem~\ref{T: Main}.
+	
+\end{proof}
 
 
 \newpage
+
+
+
+
+
 \section{Graph-theory approach}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Graph-theory approach
