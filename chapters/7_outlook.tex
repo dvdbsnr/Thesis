@@ -84,7 +84,8 @@ where we use the infinitesimal notation
 
 The main part of this thesis asserted that for fix $\pp$ the component sizes of $\Gnt$ converge to the excursion lengths of $\Bt$
 in distribution as $n \rightarrow \infty$.
-A key result of \cite{Aldous.1997} is the existence of a multiplicative coalescent which steps are distributed as the limit process found in Theorem~\ref{T: Main}.
+A key result of \cite{Aldous.1997} is the existence of at least one multiplicative coalescent process, 
+the steps of which are distributed as the limit process found in Theorem~\ref{T: Main}.
 We call a multiplicative coalescent \emph{eternal} if it is defined for all $-\infty < \pp \infty$.
 
 \begin{theorem}
@@ -95,16 +96,6 @@ We call a multiplicative coalescent \emph{eternal} if it is defined for all $-\i
 	where $\Ctbold$ is the joint distribution of excursion lengths of $\Bt$ as used in Theorem~\ref{T: Main}.
 \end{theorem}
 
-It is nontrivial that the convergence in distribution of the sizes of components of $\Gnt$ to
-excursion lengths of $\Bt$ implies the convergence in distribution of the associated multiplicative coalescent 
-with component sizes of $\Gnt$ as initial states to this limit Markov process.
-The following lemma provides an important step in the proof.
-
-\begin{lemma}
-	For each $\x \in \ld$ the construction described in Section~\ref{S: multiplicative coalescent} yields a Markov process
-	$(\X(\x, \pp); -\infty < \pp < \infty)$ on $\ld$. This process has the Feller property:
-	For each $\pp$, if $\xn \rightarrow \x$ then $\X(\xn, \pp) \rightarrow_d \X(\x, \pp)$.
-\end{lemma}
 
 \section{Further results}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -112,7 +103,7 @@ The following lemma provides an important step in the proof.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In a companion paper \cite{Aldous.1998}, 
-David Aldous and Vlada Limic try to categorize all possible versions of the eternal multiplicative coalescent,
+David Aldous and Vlada Limic categorize all possible versions of the eternal multiplicative coalescent,
 where different versions simply refer to different multiplicative coalescent processes.
 
 
