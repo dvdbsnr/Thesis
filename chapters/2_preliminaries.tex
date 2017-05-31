@@ -167,7 +167,7 @@ This section will deal with the issue of proving tightness and thus convergence 
 		\item for $t \in I$, $f(t+) = \lim_{s \downarrow t}f(s)$ exists and $f(t) = f(t+)$,
 		\item for $t \in I$, $f(t-) = \lim_{s \uparrow t}f(s)$ exists.
 	\end{enumerate}
-	These functions are right-continuous possess left limits everywhere (continue à droite, limite à gauche).
+	These functions are right-continuous and possess left limits everywhere (continue à droite, limite à gauche).
 	
 	We denote by $\DT$ the space of \cadlag-functions on $I = [0,T]$.
 \end{definition}
@@ -233,13 +233,30 @@ we need a convergence that additionally allows shifts on the x-axis.
 
 The Arzelà-Ascoli theorem, see \cite[Theorem 7.2, p.82]{Billingsley.1999},
 provides a complete characterisation of relatively compact sets in $\CT$.
-We are now ready to present a $\DT$-equivalent.
+We present a $\DT$-equivalent.
 
 \begin{theorem}[Arzelà-Ascoli in $\DT$, {\cite[Theorem 12.3, p.130]{Billingsley.1999}}] \label{T: AA in DT}
 	A necessary and sufficient condition for a set $A$ to be relatively compact in the Skorohod toplogy is that
 	\begin{enumerate}
 		\item $\sup_{x \in A} \norm{x}_T < \infty$,
 		\item $\lim_{\delta \rightarrow 0} \sup_{x \in A} w'_x(\delta) = 0$.
+	\end{enumerate}
+\end{theorem}
+
+Using this result one may prove the following theorem on tightness of series of random variables in $\DT$.
+
+\begin{theorem}[Tightness in $\DT$, {\cite[Theorem 13.2, p.139]{Billingsley.1999}}] \label{T: tightness in DT}
+	Let $\{X_n\}$ be a series of random variables in $\DT$ with distributions $\{P_n\}$.
+	The sequence is tight iff these two conditions hold:
+	\begin{enumerate}
+		\item We have
+		\begin{equation}
+		\lim_{c \rightarrow \infty} \limsup_n P_n(x: \norm{x}_T \geq c) = 0	
+		\end{equation}
+		\item for each $\epsilon > 0$:
+		\begin{equation}
+			\lim_{\delta \rightarrow 0} \limsup_n P_n(x: w'_x(\delta) \geq \epsilon ) = 0.
+		\end{equation}
 	\end{enumerate}
 \end{theorem}
 
@@ -407,6 +424,8 @@ In fact, as the next lemma shows, vague convergence does imply a pointwise conve
 	\end{equation}
 	in the sense of componentwise convergence.
 \end{lemma}
+
+
 
 
 \section{On Brownian motion}
