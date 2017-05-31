@@ -94,24 +94,8 @@ z(i) &:= z(i-1) + c(i) -1, \quad i=1, \dots , n.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Explanation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-An explanation:
-\fxnote{Change this}
-The process divides the vertex-set into three parts: 
-Explored, discovered and neutral vertices. Every vertex starts as neutral.
-At step $1$, we traverse vertex $v_1$ and mark it as explored.
-We search for neighbours of $v_1$, and mark these as discovered.
-The next vertex to explore is the vertex already discovered with the smallest label,
-and each vertex switches from neutral to discovered once it gets assigned a new label.
-Once it's neighbours are explored, it switches to explored.
-\fxnote{This whole paragraph}
-Note that after traversing every vertex of one component, 
-there are no discovered vertices left.
-The walk $z$ decreases by $1$ for each vertex traversed
-and increases by the number of new neighbours explored in each step.
 
-
-\begin{figure}[H]
-	
+\begin{figure} [H]
 	\centering
 	\subfloat[Original vertex labels]
 	{\input{figures/chapter3/fig_forest_oldlabels.tex}}\\
@@ -127,8 +111,30 @@ and increases by the number of new neighbours explored in each step.
 	\caption{Breadth-first walk on the first components of a graph}
 	\label{F: bf-walk discrete}
 \end{figure} 
-\fxnote{Fix centering of figure captions}
-\fxnote{Add more vertex labels in original ordering?}
+
+Figure~\ref{F: bf-walk discrete} shows this process for a graph example.
+The root of each component is the vertex contained with the smallest original label.
+Most other vertex labels are omitted since they do not play a role in the assignment of new labels.
+
+The process divides the vertex set into three parts: 
+Explored, discovered and neutral vertices. Every vertex starts as neutral.
+At step $1$, we traverse vertex $1$ and mark it as explored with new label $v_1$.
+We search for neighbours of $v_1$ and assign them labels to mark as discovered.
+The next vertex to explore is the vertex already discovered with the smallest label
+and each vertex switches from neutral to discovered once it gets assigned a new label.
+Once we found all its neighbours, it switches to explored.
+\fxnote{This whole paragraph}
+After traversing every vertex of one component
+there are no discovered vertices left and we continue the exploration with the neutral vertex with the smallest original label.
+
+The walk $z$ decreases by $1$ for each vertex explored
+and increases by the number of new neighbours discovered in each step.
+
+Note that surplus edges, like $(v_8, v_{10})$ in Figure~\ref{F: bf-walk discrete}, are ignored by the breadth-first walk.
+We count their occurrence with another counting process in Chapter~\ref{C: surplus edges}.
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -139,9 +145,8 @@ We write
 \zeta(j) &:= |\Ci{1}| + \dots + |\Ci{j}|, \label{E: zeta}\\ 
 \ZetaMinus{i} &:= \min \{ j \; | \; \zeta(j) \geq i \}, \label{E: zeta-1}
 \end{align}
-for the index of the last vertex in the $j$-th component (that's \eqref{E: zeta})
-and \eqref{E: zeta-1}, the index of the component containing $v_i$.
-\fxnote{This sentence is a test for labelling of align-equs. Fix!}
+for the index of the last vertex in the $j$-th component and the index of the component containing $v_i$,
+respectively.
 Now we can provide a definition of the breadth-first walk equivalent to \eqref{E: def bf-walk z}:
 \begin{equation}  \label{E: def bf-walk z*}
 \begin{aligned}
