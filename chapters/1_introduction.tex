@@ -94,7 +94,7 @@ we discuss relevant results that were established previous to \cite{Aldous.1997}
 
 We begin with the subcritical graph, that is
 $\Gcal(n, \p)$ with $\p < \frac{1}{n}$
-or $\lambda = \p n < 1$.
+or $\lambda = n \p < 1$.
 
 The following theorem provides a lower bound on the size of $\Ccal_{\max}$, the largest component of $\Gcal$.
 \begin{theorem}[Lower bound on largest subcritical component, {\cite[Theorem 4.4, p.125]{vanderHofstad.2016}}]
@@ -126,7 +126,7 @@ Together, these theorems imply
 	\frac{|\Ccal_{\max}|}{\log n} \rightarrow_p 1/I_{\lambda}.
 \end{equation}
 
-We have established that, for $\p n < 1$, the expected largest component size will be of order $\log n$.
+We have established that, for $n \p < 1$, the expected largest component size will be of order $\log n$.
 
 Consider the opposite case, the supercritical graph with $\lambda > 1$. 
 
@@ -152,7 +152,7 @@ The following theorem now states that all of these vertices are, in fact, part o
 	\subfloat[$\lambda = 0.5$]{\includegraphics[page=1,width=.31\textwidth]{figures/chapter1/ER_1000_-5}}%
 	\quad
 	\subfloat[$\lambda = 1.5$]{\includegraphics[page=1,width=.31\textwidth]{figures/chapter1/ER_1000_5}}%
-	\caption{Realizations of the Erdös-Rényi random graph on $n=1000$ vertices with different $\lambda = n \pp$.}%
+	\caption{Realizations of the Erdös-Rényi random graph on $n=1000$ vertices with different $\lambda = n \p$.}%
 	\label{F: ER lambda}%
 \end{figure}
 
