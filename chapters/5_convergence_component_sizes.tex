@@ -34,7 +34,7 @@ converges to the point process describing excursions with regard to the vague to
 
 For the proof of Theorem~\ref{T: Main} to hold, it remains to be shown that this encompasses all relevant components and excursions.
 One problem that might arise is the starting point of a component of size greater than some $\delta \n{2}{3}$, 
-which needs to be considered in the convergence, to diverge to infinity as $n \rightarrow \infty$.
+which needs to be considered in the convergence, to diverge to infinity after rescaling as $n \rightarrow \infty$.
 Since we are working in the vague topology of counting processes, 
 this would entail the component not necessarily converging in distribution to some excursion of $\Bt$.
 
@@ -82,7 +82,7 @@ the point processes of starts and lengths of excursions converge vaguely to the 
 	f_n(\tn{i}) = \min_{u \leq \tn{i}}f_n(u), 
 	\end{equation}
 	\begin{equation} \label{E: fn cond 5}
-	\max_{i: \tn{i} \leq s_0}(f_n(\tn{i}) - f_n(\tn{i+1})) \rightarrow 0 \; \text{as} \; n \rightarrow \infty, \; \text{for all} \; s_0 \leq \infty.
+	\max_{i: \tn{i} \leq s_0}(f_n(\tn{i}) - f_n(\tn{i+1})) \rightarrow 0 \; \text{as} \; n \rightarrow \infty, \; \text{for all} \; s_0 < \infty.
 	\end{equation}
 	
 	Then $\Xin \rightarrow_v \Xi$ as $n \rightarrow \infty$.
@@ -93,7 +93,7 @@ the point processes of starts and lengths of excursions converge vaguely to the 
 	$\Xin \rightarrow_v \Xi$
 	is to be interpreted as the vague convergence of counting measures
 	which, by Lemma~\ref{L: portmanteau vague},
-	this is equivalent to the convergence
+	is equivalent to the convergence
 	\begin{equation}
 	\Xin(C) \rightarrow \Xi(C)
 	\end{equation}
@@ -158,16 +158,19 @@ then show that there can not be any more excursion of $f_n$ of sufficient length
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Proof Part 1: \Xi in \Xin
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{proofpart}[$\Xi(C) \subseteq \Xin(C)$]
+\begin{proofpart}[$\Xi(C) \leq \Xin(C)$] \label{PP: Lemma Det 1}
 Let us first establish some facts about excursions of the limit function $f$.
 In the interval $[T_1, T_2]$,
 there can only be a finite number of excursion starting with length of at least $d_1$,
-at most $T_1/d_1$.
+at most $(T_2 - T_1)/d_1$.
 We call excursions of length greater than $d_1$ large, all other excursions small.
 Let
-$ \mathcal{E}^* := \{ (l_i, r_i) \; | \; i=1, \dots, k \} $
+\begin{equation}
+\mathcal{E}^* := \{ (l_i, r_i) \; | \; i=1, \dots, k \}	
+\end{equation}
+
 be the set of these excursions.
-Consider a fix
+Consider a
 $(l,r) \in \mathcal{E}^*$.
 \fxnote{Some figure showing an excursion goes here probably.}
 Since $l-r > d_1$,
@@ -176,19 +179,22 @@ such that the length of the interval
 $[l+\epsilon, r-\epsilon]$
 is still greater than $d_1$.
 
-We can also find an $\epsilon > 0$ sufficiently small,
+We show that we can find an $\epsilon > 0$ sufficiently small,
 so that for every
 $x \in [0, l-\epsilon] \cup [l+\epsilon, r-\epsilon]$,
 \begin{equation} \label{E: fx > fl + delta}
 f(x) > f(l) + \delta
 \end{equation}
-holds for some $\delta > 0$.
+holds for some $\delta > 0$:
 
 Assume this does not hold to the left of the $\epsilon$-neighbourhood of $l$.
-Then there exists some $x \in [0, l-\epsilon]$
-for which $f(x) \leq f(l) + \delta$ for every $\delta > 0$.
-This implies $f(x) \leq f(l)$,
-and by condition \eqref{E: f cond 1},
+Then for all $\delta > 0$ exists $x_{\delta} \in [0, l - \epsilon]$ such that
+$f(x_{\delta}) \leq f(l) + \delta$.
+Take $\delta_n = \frac{1}{n}$. 
+Then $x_{\delta_n}$ is a sequence in the compact interval $[0, l - \epsilon]$
+and the Bolzano–Weierstrass theorem states that there exists a convergent subsequence with limit $x \in [0, l - \epsilon]$.
+Then $f(x_{\delta}) \leq f(l) + \delta$ for all $\delta > 0$.
+This implies $f(x) \leq f(l)$ and by condition \eqref{E: f cond 1},
 $f(l) = \min_{u \leq l}f(u)$,
 so $f(x) = f(l)$.
 That leaves two possibilities:
@@ -214,56 +220,82 @@ condition \eqref{E: f cond complement zero} prevents $f$ from being constant.
 If $f(x) \geq f(r)$ for all $x \in [r, r + \epsilon]$,
 there would be another excursion that contradicts \eqref{E: f cond f(l1) > f(l2)}.
 So there must exist an $r^* \in (r, r + \epsilon]$ with $f(r^*) < f(r)$.
-Let $\delta^* := \min\{ \delta, f(r) - f(r^*) \}$,
-where $\delta$ is the constant used in the discussion of
-$[0, l-\epsilon]$ and $[l+\epsilon, r-\epsilon]$ above.
-\fxnote{delta used in the discussion above is not nice.}
 
+\bigskip
 
-We now take a look at $f_n$.
+We take a look at $f_n$.
 Fix an $x^* \in [l+\epsilon, r-\epsilon]$.
 We will now show that there exist points
 $\lnx \in [l-\epsilon, l+\epsilon]$
 and 
 $\rnx \in [r-\epsilon, r+\epsilon]$
-for which condition \eqref{E: fn cond 4} hold,
+for which condition \eqref{E: fn cond 4} holds,
 making $(\lnx, \rnx- \lnx)$ a possible element of $\Xin$.
 
-Define $\lnx := \min(\argmin_{u \leq x} f_n(u))$.
-\fxerror{Make ln(x) := sup(argmin(...))}
-By the uniform convergence $f_n \rightarrow f$,
-we can find an $N \in \Nat$,
-such that $|f_n(x) - f(x)| < \delta^* / 3$ for all
+We define 
+\begin{equation} \label{D: lnx}
+\lnx := \min\{\argmin_{u \leq x^*} f_n(u)\}
+\end{equation}
+and 
+\begin{equation} \label{D: delta star}
+\delta^* := \min\{ \delta, f(r) - f(r^*) \},
+\end{equation}
+where $\delta$ is the constant used in the discussion of
+$[0, l-\epsilon]$ and $[l+\epsilon, r-\epsilon]$ above.
+
+By the uniform convergence $f_n \rightarrow f$ we can find an $N \in \Nat$
+such that 
+\begin{equation} \label{E: fn f delta star/3}
+|f_n(x) - f(x)| < \delta^* / 3
+\end{equation} for all
 $x \in [T_1, T_2]$ and $n \geq N$.
 So for every point $x \in [0, l - \epsilon]\cup[l + \epsilon, r - \epsilon]$,
 \begin{equation} \label{E: fn(x) > fn(l)}
-f_n(x) > f(x) - \delta^* / 3 > f(l) + \delta^* - \delta^* / 3 > f(l) + \delta^* / 3 > f_n(l).
+\begin{aligned}
+f_n(x) &> 
+f(x) - \delta^* / 3 \quad \text{by \eqref{E: fn f delta star/3}}\\
+&> f(l) + \delta^* - \delta^* / 3 \quad \text{by \eqref{D: delta star}}\\
+&> f(l) + \delta^* / 3 \\
+&> f_n(l) \quad \text{by \eqref{E: fn f delta star/3}}.
+\end{aligned}
 \end{equation}
-\fxnote{Align these.}
 So $f_n$ takes its minimum over 
 $[0, l - \epsilon]\cup[l + \epsilon, r - \epsilon]$
 at $l$ or somewhere in $[l-\epsilon, l+\epsilon]$.
 \fxnote{Maybe give the interval a name.}
-Therefore $\lnx \in [l-\epsilon, l+\epsilon]$ and, 
-since we chose $\lnx$ as the smallest value for which $f_n$ attains this minimum, $\lnx = \min_{u \leq \lnx} f_n(u)$.
+Therefore $\lnx \in [l-\epsilon, l+\epsilon]$ and $f_n(\lnx) = \min_{u \leq \lnx} f_n(u)$.
 
-Now define 
-$\rnx := \inf \{ x > x^* \; | \; f_n(x) = \lnx \}$.
-By \eqref{E: fn(x) > fn(l)}, the function $f_n$ can not reach its past minimum $\lnx$
+\bigskip
+
+For the right side of the interval, define
+\begin{equation} \label{D: rnx}
+\rnx := \inf \{ x > x^* \; | \; f_n(x) = \lnx \}.
+\end{equation}
+By \eqref{E: fn(x) > fn(l)}, the function $f_n$ can not reach its past minimum $f_n(\lnx)$
 before $r-\epsilon$.
 As previously discussed,
-there exists a $r^* \in (r, r+\epsilon]$ such that $f(r) - f(r^*) \geq \delta^*$.
-Now
+there exists a $r^* \in (r, r+\epsilon]$ such that $f(r) > f(r^*)$ 
+and by \eqref{D: delta star} we have $f(r) - f(r^*) \geq \delta^*$.
+We calculate
 \begin{equation}
-l_n(x) > l(x) - \delta^* / 3 = f(r) - \delta^* / 3 \geq f(r^*) + \delta^* - \delta^* / 3 > f_n(r^*),
+\begin{aligned}
+f_n(\lnx) 
+&> f(l) - \delta^* / 3 \quad \text{by \eqref{E: fn f delta star/3}}\\
+&= f(r) - \delta^* / 3 \quad \text{by \eqref{E: f cond 1}}\\
+&\geq f(r^*) + \delta^* - \delta^* / 3 \quad \text{by \eqref{D: delta star}} \\
+&> f(r^*) + \delta^*/3 \\
+&> f_n(r^*) \quad \text{by \eqref{E: fn f delta star/3}},
+\end{aligned}
 \end{equation}
 \fxnote{Align these.}
 which implies that $\rnx$ must be smaller than $r^*$,
-thus $\rnx \in [r - \epsilon, r+ \epsilon]$.
-Since $l_n(x) = \min_{u \leq \lnx} f_n(u)$
+since $f_n$ is a continuous function and must cross $f_n(\lnx)$ before becoming smaller at $r^*$.
+Therefore $\rnx \in [r - \epsilon, r+ \epsilon]$.
+Since $f_n(l_n(x)) = \min_{u \leq \lnx} f_n(u)$
 and $\rnx$ is the first time this previous minimum is reached,
-$\rnx = \min_{u \leq \lnx} f_n(u)$.
+$f_n(\rnx) = \min_{u \leq \lnx} f_n(u)$.
 
+\bigskip
 
 We have shown that the only points satisfying condition \eqref{E: fn cond 4} must lay near the beginning and end of excursions of $f$.
 This is not sufficient as proof of the Lemma, since the sequence $\fnPoints$ might not contain any points between two large excursions,
@@ -271,7 +303,7 @@ or even not contain any points, thus skipping one or more eligible excursions.
 We will now show that \eqref{E: fn cond 3} and \eqref{E: fn cond 5} imply 
 that any set satisfying these two conditions must contain at least one element in between two large excursions of $f$.
 
-First of all, \eqref{E: fn cond 3} ensures there must exist points in $\fnPoints$ and no last element of $\fnPoints$ exists.
+First of all, \eqref{E: fn cond 3} ensures there must exist points in $\fnPoints$ and no last element of $\fnPoints$ can exist.
 
 Consider two consecutive large excursions of $f$, $(l_1, r_1)$ and $(l_2, r_2)$
 and the space between $r_1$ and $l_2$.
@@ -284,15 +316,18 @@ Any previous element of $\fnPoints$ will only yield a larger, any element after 
 This is a contradiction to \eqref{E: fn cond 5}.
 So there must be at least one point of $\fnPoints$ in between these two large excursions, no excursion can be skipped.
 
+\bigskip
+
 For any excursion $(l,r)$ of $f$, there exists $\lnx, \rnx \in \fnPoints$ in the respective $\epsilon$-neighbourhoods,
-so the excursion of $f$ is matched by an excursion of $f_n$ of equal or greater length.
+so the excursion of $f$ is matched by an excursion of $f_n$ of similar length.
 Since $l - r + 2\epsilon > d_1$,
 we have found $\tn{i} = \lnx$, $\tn{i+1} = \rnx$,
 such that $(\tn{i}, \tn{i+1} - \tn{i}) \in \Xin \cap C$
 for all $n$ greater than some $N_i = N \in \Nat$.
-Now let $N^* := \max\{N_1, \dots, N_k\}$ 
-and every excursion of $f$ in $C$ is matched by an excursion of $f_n$ in $C$,
-with $n \geq N^*$.
+Now let $N^* := \max\{N_1, \dots, N_k\}$,
+where $k$ is the finite number of elements of $\mathcal{E}^*$,
+and every excursion of $f$ in $C$ is matched by an excursion of $f_n$ in $C$
+for $n \geq N^*$.
 Therefore eventually $\Xi (C) \leq \Xin(C)$.
 \end{proofpart}
 
@@ -300,7 +335,7 @@ Therefore eventually $\Xi (C) \leq \Xin(C)$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Proof Part 2: \Xin in \Xi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{proofpart}[$\Xin(C) \subseteq \Xi(C)$] \label{PP: Xin in Xi}
+\begin{proofpart}[$\Xin(C) \leq \Xi(C)$] \label{PP: Xin in Xi} \label{PP: Lemma Det 2}
 Now that every excursion of $f$ is matched, 
 we need to show that there can not exist any additional large excursion of $f_n$.
 Considering the fact that excursions can not overlap,
@@ -328,7 +363,7 @@ the space remaining is less than $d_1$:
 l-r - \sum_{i=1}^{K} r_i - l_i < d_1.
 \end{equation}
 Let $d^* < \min \{ r_i - l_i \; | \; i = 1, \dots, K \}$
-and apply the logic of Claim~\ref{C: Xi in Xin} to the compact set
+and apply the logic of Part~\ref{PP: Lemma Det 1} to the compact set
 $[r, l] \times [d^*, d_1]$.
 For sufficiently large $n$, 
 every one of these $K$ excursions of $f$ will be matched with an excursion of $f_n$,
@@ -365,7 +400,7 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	\begin{equation} \label{E: Lemma 8 def Xin}
 	\Xin := \{ ( \n{-2}{3} \gamma_n(i), \n{-2}{3} \Ci{n,i} ) \; | \; i \geq 1 \}.
 	\end{equation}
-	Then $\Xin \rightarrow_v \Xi$ as $n \rightarrow \infty$.
+	Then $\Xin \rightarrow_d \Xi$ as $n \rightarrow \infty$ with regard to the vague topology.
 \end{lemma}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -406,8 +441,8 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	\begin{equation}
 	\sup_{s \leq s_0}|\rzntX(s) - \WtX(s)| \rightarrow 0
 	\end{equation}
-	almost surely,
-	so $\rzntX(\omega') \rightarrow \WtX(\omega')$ uniformly for almost all $\omega' \in \Omega'$. 
+	for all $s_0 < \infty$ almost surely,
+	so $\rzntX(\omega') \rightarrow \WtX(\omega')$ uniformly on bounded intervals for almost all $\omega' \in \Omega'$. 
 	Analogously we define
 	\begin{equation}
 		\BtX(s) := \WtX(s) - \min_{u \leq s}\WtX(s).
@@ -439,7 +474,7 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	\end{equation}
 	and
 	\begin{equation}
-		r(q) := \inf\{ {s \in \Real \; | \; \WtX(s) = l(q)} \}.
+		r(q) := \inf\{ {s > q \; | \; \WtX(s) = \WtX(l(q))} \}.
 	\end{equation}
 	
 	Now every rational number belongs to one excursion $(l(q), r(q))$,
@@ -451,26 +486,31 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	and note that it is countable.
 	
 	The following properties will be proven on a standard Brownian motion $W$,
-	we later use Girsanovs theorem to apply them to $\WtX$.
+	we later use Girsanov's theorem to apply them to $\WtX$.
 	
-	By \cite[Theorem 1.22, p.18]{Morters.2010},
-	$W$ is not monotonous on any interval $[a,b]$ with $0 < a < b < \infty$ almost surely.
+	By \cite[Theorem 2.8, p.38]{Morters.2010},
+	$W$ is has positive and negative values on any interval $[0,\delta]$ for $\delta > 0$ almost surely.
+	Therefore for $a \in \Rplus$, 
+	$W$ takes values greater than $W(a)$ and values smaller than $W(a)$ in the interval $[a,\delta]$,
+	for all $\delta > 0$.
 	
 	Consider two excursions $(l_1, r_2), (l_2, r_2)$ with $l_1 < l_2$.
-	If $W(l_2) = \min_{s \leq l_2} W(s) \geq f(l_1)$ then $W(s) \geq W(l_1)$ for all $l_1 < s < l_2$.
-	Therefore the must exist $\epsilon>0$ such that $W$ is monotonously increasing on $[l_1, l_1 + \epsilon]$.
-	For each $(l,r) \in \mathcal{E}$ this is not possible almost surely
-	and since $\mathcal{E}$ is countable,
+	If $W(l_2) = \min_{s \leq l_2} W(s) \geq f(l_1)$ then $W(s) \geq W(l_1)$ for all $l_1 < s < l_2$,
+	which is impossible by the considerations above.
+	For each $(l,r) \in \mathcal{E}$ this is holds almost surely
+	and since $\mathcal{E}$ is countable
 	condition \eqref{E: f cond f(l1) > f(l2)} holds with probability $1$.
 	
 	The complement of all excursion is the set of intervals
 	on which the Brownian motion is monotonously decreasing.
+	By \cite[Theorem 1.22, p.18]{Morters.2010}, 
+	$W$ is not monotonous on any interval $[a,b]$ with $0 \leq a < b < \infty$ almost surely.
 	By the same reasoning, almost surely there is no interval in between any two excursions on which $W$ is monotonously decreasing,
 	therefore condition \eqref{E: f cond complement zero} holds almost surely.
 	
 	A standard Brownian motion $W$ satisfies the conditions of Lemma~\ref{L: Deterministic Lemma} almost surely,
 	therefore $\WtX$ does so almost surely under $\tilde{\mathbb{P}}$
-	and by Girsanovs theorem likewise under $\Prob$.  
+	and by Girsanov's theorem likewise under $\Prob$.  
 
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -502,7 +542,7 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% Completing the proof
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	For a given realisation of $\rzntX(\omega')$ and $\WtX(\omega')$ 
+	For almost all realizations $\rzntX(\omega')$ and $\WtX(\omega')$ 
 	the processes and sets defined meet all conditions of Lemma~\ref{L: Deterministic Lemma}
 	and we can establish the convergence
 	\begin{equation}	
