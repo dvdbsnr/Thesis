@@ -222,6 +222,13 @@ although never explicitly proven.
 He therefore provides the following \emph{folk theorem},
 which will be proven in more precise form in the course of this thesis.
 
+For a connected component we define the number of surplus edges or the surplus by
+\begin{equation}
+	\text{surplus} = \text{number of edges} - \text{number of vertices} + 1.
+\end{equation}
+The surplus gives the maximum number of edges we can remove from the component so that it stays connected.
+A component with a surplus of zero is a tree.
+
 \begin{folktheorem} \label{T: folk theorem}
 	Let $\Cnt(1) \geq \Cnt(2) \geq \dots$ be the ordered component sizes of
 	$\Gcal(n, n^{-1} + \pp\n{-4}{3})$ and let $\sigmant(j)$ be the surplus of the corresponding component.
