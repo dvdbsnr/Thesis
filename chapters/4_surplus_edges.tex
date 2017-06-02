@@ -225,20 +225,22 @@ so for all $\epsilon>0$ there exists a compact $K \subset \DT$ such that
 \inf_n \Prob ( \rznt \in K) > 1 - \epsilon.
 \end{equation}
 
-To show that $\rnnt$ is tight, we need to prove that for all $\epsilon>0$ there exists a $K \subset \DT$ such that
+We want to show tightness of $\rnnt$ by using Theorem~\ref{T: tightness in DT}.
+If we can prove that for all $\epsilon > 0$ there exists a real number $K > 0$ such that
 \begin{equation}
-	\Prob(\rnnt \in K) > 1 - \epsilon.
+	\Prob(\norm{\rnnt}_T < K) > 1 - \epsilon
 \end{equation}
-By the Arzelá–Ascoli theorem, it suffices to show that there exists a real number $K>0$, such that
+for all $n$, we have
 \begin{equation}
-	\Prob( \sup_{s \leq T} \rnnt(s) < K ) > 1 - \epsilon. 
+	\limsup_n \Prob(\norm{\rnnt}_T \geq K) < \epsilon
 \end{equation}
-Since $\rnnt(s)$ is an increasing process in $s$, this is equivalent to
+and therefore
 \begin{equation}
-	\Prob( \rnnt(T) \geq K ) < \epsilon.
+	\lim_{K \rightarrow \infty} \limsup_n \Prob(\norm{\rnnt}_T \geq K) = 0
 \end{equation}
+which is the first condition of Theorem~\ref{T: tightness in DT}.
 
-We establish an analogous result for $\rznt$ from \eqref{E: rznt tight}.
+We first establish an analogous result for $\rznt$ from \eqref{E: rznt tight}.
 For all $\epsilon > 0$ exists $A>0$ such that for all $n$
 \begin{equation} \label{E: rznt bounded}
 \Prob(\sup_{s \leq T} |\rznt(s)| > A) < \epsilon.
@@ -286,7 +288,6 @@ We denote by $\Event{A}$ the event $\sup_{j \leq \n{2}{3}T} \zminz(j) \leq A\n{1
 &\leq \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3} \cond \Event{A}) + \epsilon, \\
 \end{aligned}	
 \end{equation}
-
 which holds since $\Prob(\neg\Event{A}) <\epsilon$.
 
 Since this probability is now conditioned on $\Event{A}$, the stochastic dominance \eqref{E: nnt stoch dominance} holds.
@@ -306,9 +307,68 @@ So
 \begin{equation}
 \Prob(\rnnt(T) \geq K) \leq \epsilon + \frac{1}{K}CTA \leq 2 \epsilon
 \end{equation}
-for large $K$.
-With high probability, $\sup_{s \leq T}\rnnt(s)$ is bounded by some $K>0$,
-hence the random variable $\rnnt$ maps into a compact subset of $\DT$ with high probability and $\rnnt$ is tight.
+for large $K$, which satisfies the first condition of Theorem~\ref{T: tightness in DT}.
+
+\bigskip
+
+To show that $\rnnt$ satisfies the second condition,
+\begin{equation} \label{E: tightness cond 2}
+\lim_{\delta \rightarrow 0} \limsup_n \Prob(w'_{\rnnt}(\delta) \geq \epsilon ) = 0,
+\end{equation}
+let us analyse $w'_{\rnnt}(\delta)$.
+For a realization $N = \rnnt(\omega)$ we have
+\begin{equation}
+w'_{N}(\delta) = \inf_{\{t_i\}} \max_{1\leq i \leq k} \sup_{s,t \in [t_{i-1}, t_i)} |N(s) - N(t)|.
+\end{equation}
+For an interval $[t_{i-1}, ti)$, 
+$\sup_{s,t \in [t_{i-1}, ti)} |N(s) - N(t)| > 0$ only if there is a jump in $[t_{i-1}, t_i)$.
+For a set $\{t_i\}$, $\max_{1\leq i \leq k} \sup_{s,t \in [t_{i-1}, t_i)} |N(s) - N(t)| = 0$ if there is no jump in any interval $[t_{i-1}, ti)$.
+Therefore
+\begin{equation}
+\inf_{\{t_i\}} \max_{1\leq i \leq k} \sup_{s,t \in [t_{i-1}, t_i)} |N(s) - N(t)| = 0
+\end{equation}
+if there exists a $\delta$-sparse set $\{t_i\}$ such that all jumps of $N$ happen on a $t_i$,
+that is if all jumps of $N$ have at least a distance of $\delta$ from each other.
+
+We again use the fact that we can stochastically dominate $\nnt$ as in \eqref{E: nnt stoch dominance}.
+For fixed $\delta$, in the interval $[0, T\n{2}{3}]$ we consider all $T/\delta$ intervals of length $\delta\n{2}{3}$.
+On these, $\nnt$ is stochastically dominated by $\sum_{j = 1}^{\delta \n{2}{3}} Y_j$ where $Y_j \sim \Binom(A\n{1}{3}, \p)$
+The probability that there exists a $\delta\n{2}{3}$-interval with two or more points is equal to the sum of the chances for each interval,
+\fxfatal{That's not true!}
+therefore
+\begin{equation}
+\begin{aligned}
+&\Prob( \text{$\exists$ $\delta\n{2}{3}$-interval with $\geq 2$ points} ) \\
+&\quad\leq \frac{2T}{\delta} \Prob( \sum_{j = 1}^{\delta \n{2}{3}} Y_j \geq 2 ) \\
+&\quad=  \frac{2T}{\delta} \Prob( Z \geq 2 ),
+\end{aligned}
+\end{equation}
+where $Z \sim \Binom(A\n{1}{3}\delta\n{2}{3}, \p) = \Binom(A\delta n, \p)$
+
+To analyse \eqref{E: tightness cond 2} we substitute $w'_{\rnnt}(\delta)$ using the variables above and have
+\begin{equation}
+\begin{aligned}
+&\limsup_n \Prob(w'_{\rnnt}(\delta) \geq \epsilon ) \\
+&\quad\leq \limsup_n \frac{2T}{\delta} \Prob( Z \geq 2 ) \\
+&\quad= \frac{2T}{\delta} \limsup_n (1 - \Prob( Z = 0 ) - \Prob( Z = 1 )) \\
+&\quad= \frac{2T}{\delta} \limsup_n (1 - (1- \p)^{A\delta n} - A\delta n \p (1 - \p)^{A\delta n - 1}) \\
+&\quad= \frac{2T}{\delta} (1 - \exp(-A\delta) - A\delta\exp(-A\delta) ) \\
+&\quad= \frac{2T}{\delta}(  1 - (1- A\delta + \frac{(A\delta)^2}{2} + \BigO{\delta^3})(1 + A\delta ) ) \\
+&\quad= \frac{2T}{\delta} \frac{3(A\delta)^2}{2} + \BigO{\delta^2} \\
+&\quad= 3TA^2\delta + \BigO{\delta^2}.
+\end{aligned}
+\end{equation}
+
+Since $T$ and $A$ are constant we have
+\begin{equation}
+	\begin{aligned}
+	\lim_{\delta \rightarrow 0} \limsup_n \Prob(w'_{\rnnt}(\delta) \geq \epsilon ) 
+	&= \lim_{\delta \rightarrow 0} ( 3TA^2\delta + \BigO{\delta^2} )\\
+	&= 0
+	\end{aligned}
+\end{equation}
+which proves $\rnnt$ to satisfy the second condition of Theorem~\ref{T: tightness in DT}
+and therefore $\rnnt$ to be a tight process in $\DT$.
 
 Since both $\rznt$ and $\rnnt$ are tight, $(\rznt, \rnnt)$ is tight.
 Thus there is a compact subset $C \subset \DT^2$ such that
@@ -501,7 +561,7 @@ these definitions maintain
 We see that, no matter the relation of $\zminz(k)$ and $\n{1}{3}\Bt(\n{-2}{3}k)$, 
 the increments of the processes differ only by the random variable $\eta_k$.
 
-Conditioning on $||\znt - \WtX|| < \delta$, for $\Ndis(k) \neq \nnt(k)$ to hold for some $k$,
+Conditioning on $||\rzntX - \WtX|| < \delta$, for $\Ndis(k) \neq \nnt(k)$ to hold for some $k$,
 there has to have been a step in which the increments of both processes were different.
 We evaluate
 \begin{equation} \label{E: Prob eta not 0}
