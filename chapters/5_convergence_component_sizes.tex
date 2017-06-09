@@ -705,7 +705,7 @@ of the whole ordered vector of component sizes and surplus edges.
 \end{proof}
 
 While this lemma provides enough information to prove the convergence with regard to the product topology of Folk Theorem~\ref{T: folk theorem},
-Theorem~\ref{T: Main} requires additional information about Brownian motion.
+Theorem~\ref{T: Main} requires additional information.
 From \cite[Lemma 25, p.843]{Aldous.1997} we cite the following lemma on excursion lengths of Brownian motion.
 \begin{lemma} \label{L: BM in ld}
 	Let $\Gamma^{\pp}$ be the set of excursions of $\Bt$ and let $|\gamma|$ be the length of an excursion $\gamma$.
@@ -714,6 +714,67 @@ From \cite[Lemma 25, p.843]{Aldous.1997} we cite the following lemma on excursio
 		\Exp{\sum_{\gamma \in \Gamma^{\pp}} |\gamma|^2} < \infty.
 	\end{equation}
 \end{lemma}
+
+Since $\sum_{\gamma \in \Gamma^{\pp}} |\gamma|^2$ is a convergent series almost surely,
+for all $\epsilon > 0$ we can find $\delta > 0$ such that
+\begin{equation}
+	\Exp{\sum_{|\gamma| < \delta} |\gamma|^2} < \epsilon.
+\end{equation}
+Then by Markov's inequality for all $\epsilon_0 > 0$ we can find $\epsilon_1 > 0$ and $\delta > 0$ such that
+\begin{equation}
+	\Prob(\sum_{|\gamma| < \delta} |\gamma|^2 > \epsilon_1) < \epsilon_0.
+\end{equation}
+
+We state and prove a similar result on excursion lengths of the rescaled breadth-first walk.
+
+\begin{lemma}
+	Denote by $\rgamman$ the excursions of $\rznt$. 
+	Then for all $\epsilon > 0$ there exists $\delta > 0$ such that
+	\begin{equation}
+		\sup_n \Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2} < \epsilon
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	We have
+	\begin{equation}
+		\Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2} 
+		= \Exp{\sum_{l(\rgamman) > C} |\rgamman|^2} 
+		+ \Exp{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2}.
+	\end{equation}
+	Consider the second term:
+	\begin{equation}
+		\Exp{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2}
+		= \Exp{\sum_{k = 0}^{\infty} \sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| \in I_{\delta, k}}} |\rgamman|^2}
+	\end{equation}
+	where $I_{\delta, k} = [ \frac{\delta}{2^{k+1}}, \frac{\delta}{2^{k}} ]$.
+	Then
+	\begin{equation}
+		\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| \in I_{\delta, k}}} |\rgamman|^2 
+		\leq \left(\frac{\delta}{2^k}\right)^2 \frac{C}{\frac{\delta}{2^{k+1}}}
+	\end{equation}
+	and since this is now an entirely deterministic term
+	\begin{equation}
+	\begin{aligned}
+	\Exp{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2} 
+	&\leq \sum_{k = 0}^{\infty} \left(\frac{\delta}{2^k}\right)^2 \frac{C}{\frac{\delta}{2^{k+1}}} \\
+	&= \sum_{k = 0}^{\infty} \frac{2C\delta}{2^k} \\
+	&= 4C\delta.
+	\end{aligned}
+	\end{equation}
+	By Lemma~\ref{L: late excursions} for all $\epsilon > 0$ we can choose $C > 0$ such that 
+	\begin{equation}
+		\Exp{ \sum_{l(\rgamman) > C} |\rgamman|^2 } < \epsilon / 2.
+	\end{equation}
+	For this $C$ choose $\delta > 0$ such that $4C\delta < \epsilon/2$.
+	Then
+	\begin{equation}
+		\Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2}  < \epsilon.
+	\end{equation}
+	Since $\delta$ and $C$ are independent of $n$ we have
+	\begin{equation}
+	\sup_n \Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2} < \epsilon.
+	\end{equation}
+\end{proof}
 
 
 \section{Finishing the proofs}
@@ -789,7 +850,7 @@ we are now able to prove Folk Theorem~\ref{T: folk theorem}.
 		\end{aligned}
 	\end{equation}
 	The conditions in the first probability assert that there are no large excursions of $\rzntX$ or $\WtX$ after $C$,
-	and that the $k$-th excursion of $\WtX$ is large.
+	that the $k$-th excursion of $\WtX$ is large and $\rzntX$ and $\WtX$ are close.
 	Since excursions of $\rzntX$ and $\WtX$ eventually match up, 
 	all $k$ relevant excursions must happen before $C$.
 	With shrinking distance between $\rzntX$ and $\WtX$ the distance between excursion lengths must become smaller as well
@@ -810,11 +871,12 @@ we are now able to prove Folk Theorem~\ref{T: folk theorem}.
 	Now convergence in probability implies convergence in distribution which completes the proof.
 \end{proof}
 
-Since we already established the distribution of the limit vector in the last proof,
-the only thing left to show is that the convergence $\n{-2}{3} \Cntbold \rightarrow_p \Ctbold$ holds with respect to the $\ld$~topology.
+We directly continue with the final proof of this thesis.
 
 \begin{proof}[Proof of Theorem~\ref{T: Main}]
-	\lipsum[100]
+	Since we already established the distribution of the limit vector in the last proof,
+	the only thing left to show is that the convergence $\n{-2}{3} \Cntbold \rightarrow_p \Ctbold$ holds with respect to the $\ld$~topology.
+	
 \end{proof}
 
 
