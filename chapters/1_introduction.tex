@@ -236,13 +236,23 @@ A component with a surplus of zero is a tree.
 	\begin{equation}
 		( \n{-2}{3} ( \Cnt(j), \sigmant(j) ), \; j \geq 1 ) 
 		\rightarrow_d
-		( (\Ct(j), \sigmat), \; j \geq 1 )
+		( (\Ct(j), \sigmat(j)), \; j \geq 1 )
 		= ( \Ctbold, \sigmatbold ),
 	\end{equation}
 	as $n \rightarrow \infty$ for some limit $( \Ctbold, \sigmatbold )$
-	with $0 < \Ct(j) < \infty$ and $0 \leq \sigmatbold(j) < \infty$ almost surely for each $j \geq 1$.
+	with $0 < \Ct(j) < \infty$ and $0 \leq \sigmat(j) < \infty$ almost surely for each $j \geq 1$.
 \end{folktheorem}
 
+The convergence is to hold with respect to the product topology, 
+where $\xn \rightarrow \x$ holds for $\xn = (x^{(n)}_1, x^{(n)}_2, \dots)$ and $\x = (x_1, x_2, \dots)$
+if for all $k \in \Nat$
+\begin{equation}
+	(x^{(n)}_1, \dots, x^{(n)}_k) \rightarrow (x_1, \dots,  x_k)
+\end{equation}
+by $x^{(n)}_i \rightarrow x_i$ for all $1 \leq i \leq k$ as $n \rightarrow \infty$.
+Note that in our theorem the $x^{(n)}_i = ( \n{-2}{3} \Cnt(i), \n{-2}{3} \sigmant(i))$ and $x_i = (\Ct(i), \sigmat(i))$ are pairs of values themselves,
+so for $x^{(n)}_i \rightarrow x_i$ we require $\n{-2}{3}  \Cnt(i) \rightarrow \Ct(i)$ and $\n{-2}{3} \sigmant(i) \rightarrow \sigmat(i)$ 
+in $\Real$ as $n \rightarrow \infty$.
 
 
 \section{Main statements of this thesis}
@@ -303,15 +313,23 @@ More formally we define $\Nt$ to be the counting process for which
 is a martingale.
 Denote by $\mu(\gamma)$ the number of marks during an excursion $\gamma$.
 
+The folk theorem states a convergence of both component sizes and surplus edges in the product topology.
+We here provide additional information on the convergence of component sizes.
+Let
+\begin{equation}
+	\ld := \{ \x = (x_1, x_2, \dots) \cond x_1 \geq x_2 \geq \dots \geq 0, \; \sideset{}{_i}\sum x^2_i < \infty \}
+\end{equation}
+and define the natural metric on $\ld$ by
+\begin{equation}
+	d(\boldsymbol{x},\boldsymbol{y}) = \sqrt{\sideset{}{_i}\sum (x_i - y_i)^2}.
+\end{equation}
+For a finite sequence like $\Cntbold = (\Cnt(j), \; j \geq 1)$ we append zeroes in order to regard it as an element on $\ld$.
+
+
 We now state the main theorem of this thesis, which we will prove gradually in the following chapters.
 \begin{theorem}[Main theorem] \label{T: Main}
-	Let 
-	$\Cnt(1) \geq \Cnt(2) \geq ... $ 
-	be the ordered component sizes of 
-	$\Gnt$
-	and let
-	$\sigmant(j)$ 
-	be the surplus of the corresponding component.
+	Let $\Cnt(1) \geq \Cnt(2) \geq ... $ be the ordered component sizes of $\Gnt$
+	and let $\sigmant(j)$ be the surplus of the corresponding component.
 	Then, as $n \rightarrow \infty$,
 	\begin{equation}
 	( \n{-2}{3} ( \Cnt(j), \sigmant(j) ), \; j \geq 1 ) 
@@ -319,7 +337,7 @@ We now state the main theorem of this thesis, which we will prove gradually in t
 	( (\Ct(j), \sigmat), \; j \geq 1 )
 	= ( \Ctbold, \sigmatbold ),
 	\end{equation}
-	where the convergence 
+	where the convergence of component sizes
 	$\n{-2}{3} \Cntbold \rightarrow_p \Ctbold$
 	holds with respect to the $\ld$ topology.
 	
@@ -329,7 +347,6 @@ We now state the main theorem of this thesis, which we will prove gradually in t
 	$ \left( (|\gamma_j|, \mu(\gamma_j)), j \geq 1  \right) $
 	of lengths and mark-counts of excursions of $\Bt$.
 \end{theorem}
-\fxfatal{ld topology must be explained or removed.}
 
 We conclude this chapter with an overview of the remaining chapters and the structure of the proof of Theorem~\ref{T: Main}.
 
