@@ -721,13 +721,13 @@ for all $\epsilon > 0$ we can find $\delta > 0$ such that
 	\Exp{\sum_{|\gamma| < \delta} |\gamma|^2} < \epsilon.
 \end{equation}
 Then by Markov's inequality for all $\epsilon_0 > 0$ we can find $\epsilon_1 > 0$ and $\delta > 0$ such that
-\begin{equation}
+\begin{equation} \label{E: sum gamma < delta}
 	\Prob(\sum_{|\gamma| < \delta} |\gamma|^2 > \epsilon_1) < \epsilon_0.
 \end{equation}
 
 We state and prove a similar result on excursion lengths of the rescaled breadth-first walk.
 
-\begin{lemma}
+\begin{lemma} \label{L: sum rgamman}
 	Denote by $\rgamman$ the excursions of $\rznt$. 
 	Then for all $\epsilon > 0$ there exists $\delta > 0$ such that
 	\begin{equation}
@@ -876,10 +876,52 @@ We directly continue with the final proof of this thesis.
 \begin{proof}[Proof of Theorem~\ref{T: Main}]
 	Since we already established the distribution of the limit vector in the last proof,
 	the only thing left to show is that the convergence $\n{-2}{3} \Cntbold \rightarrow_p \Ctbold$ holds with respect to the $\ld$~topology.
+	Define $\YnX$ and $\YX$ as in \eqref{E: def Yn} and \eqref{E: def Y} on the probability space on which $\rzntX \rightarrow_{a.s.} \WtX$.
 	
+	For $\delta > 0$ and $\epsilon_1 > 0$, denote by $\Event{\sum\gamma}$ the event that $\sum_{|\gamma| < \delta}|\gamma|^2 > \epsilon_1$.
+	By Lemma~\ref{L: BM in ld} for all $\epsilon > 0$ there exist $\delta > 0$ and $\epsilon_1 > 0$ such that
+	\begin{equation}
+		\Prob(\Event{\sum\gamma}) = \Prob( \sum_{|\gamma| < \delta}|\gamma|^2 > \epsilon_1 ) < \epsilon.
+	\end{equation}
+	
+	Similarly, denote by $\Event{\sum\rgamman}$ the event that $\sum_{|\rgamman| < \delta}|\rgamman|^2 > \epsilon_2$.
+	By Lemma~\ref{L: sum rgamman} for all $\epsilon > 0$ there exist $\delta > 0$ and $\epsilon_2 > 0$ such that
+	\begin{equation}
+	\Prob(\Event{\sum\rgamman}) = \Prob( \sum_{|\rgamman| < \delta}|\rgamman|^2 > \epsilon_2 ) < \epsilon.
+	\end{equation}
+	
+	Denote by $\Event{\gamma}$, $\Event{\rgamman}$ and $\Event{\beta}$ the events from 
+	\eqref{E: folk theorem cond znt}, \eqref{E: folk theorem cond bm2} and \eqref{E: folk theorem cond sup} 
+	respectively like in the proof of Folk Theorem~\ref{T: folk theorem}.
+	
+	Fix $\epsilon > 0$. 
+	Then for all $\alpha > 0$ we have 
+	\begin{equation} \label{E: main proof step 1}
+		\begin{aligned}
+		&\Prob( d_{2}(\YnX, \YX) > \alpha) \\
+		&\quad\leq \Prob( d_{2}(\YnX, \YX) > \alpha \cond 
+			\neg\Event{\sum\rgamman}, \neg\Event{\sum\gamma}, \neg\Event{\gamma}, \neg\Event{\rgamman}, \neg\Event{\beta}) \\
+		&\quad\quad + \Prob(\Event{\sum\rgamman}) + \Prob(\Event{\sum\gamma}) + \Prob(\Event{\gamma}) + \Prob(\Event{\rgamman}) + \Prob(\Event{\beta}).
+		\end{aligned}
+	\end{equation}
+	Choose $\delta > 0$ and $C > 0$ such that $\Prob(\Event{\gamma}) < \epsilon / 5$ and $\Prob(\Event{\rgamman}) < \epsilon / 5$.
+	For this $\delta$, choose $\epsilon_1, \epsilon_2 > 0$ with $\epsilon_1 + \epsilon_2 < \alpha$
+	such that $\Prob(\Event{\sum\rgamman}) < \epsilon / 5$ and $\Prob(\Event{\sum\gamma}) < \epsilon / 5$.
+	Now consider the conditioned probability in \eqref{E: main proof step 1}.
+	The distance between all entries of $\YnX$ and $\YX$ not starting before $C$ or with size smaller than $\delta$ 
+	will be at most $\epsilon_1 + \epsilon_2$.
+	As $\beta \rightarrow 0$ the distance of all other excursions, say $d_{\beta}$, vanishes as well.
+	Therefore choose $\beta > 0$ such that $\Prob(\Event{\beta}) < \epsilon / 5$ and $\epsilon_1 + \epsilon_2 + d_{\beta} < \alpha$.
+	Then
+	\begin{equation}
+	\Prob( d_{2}(\YnX, \YX) > \alpha \cond 
+	\neg\Event{\sum\rgamman}, \neg\Event{\sum\gamma}, \neg\Event{\gamma}, \neg\Event{\rgamman}, \Event{\beta}) = 0
+	\end{equation}
+	and 
+	\begin{math}
+	\Prob( d_{2}(\YnX, \YX) > \alpha) < \epsilon.
+	\end{math}
+	Therefore $\YnX \rightarrow_p \YX$ which implies $\Yn \rightarrow_d \Y$ with regard to the $\ld$~topology.
 \end{proof}
-
-
-
 
 
