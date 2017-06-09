@@ -569,22 +569,24 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 % What's still missing
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-It remains to be shown that we need not consider the problem of a large component wandering off to infinity.
-We prove this by analysing the behaviour of the breadth-first walk after a certain stopping time.
+It remains to be shown that we need not consider the problem of a large components discovered by the breadth-first walk
+or large excursions of the Brownian motion wandering off to infinity.
 
-\section{Late excursions of $Z_n$}
+\section{Analysis of late excursions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Late excursions of Z_n
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The following Lemma proves that with high probability, all relevant excursions do in fact take place in a compact subset of $\IntTimesInt$.
+From the previous section we assert that all excursions before time $C\n{2}{3}$, larger than $\delta\n{2}{3}$, for $C, \delta > 0$
+eventually converge.
+In this section we analyse the behaviour of $\rznt$ and its excursions after time $C$ in order to proof the convergence
+of the whole ordered vector of component sizes and surplus edges.
 
 \begin{lemma} \label{L: late excursions}
 	Let 
 	$\Prob(\ExcursionEvent)$ 
-	be the probability that the breadth-first walk makes an excursion $\gamma$ of length 
+	be the probability that the breadth-first $\znt$ walk makes an excursion $\gamma$ of length 
 	$|\gamma| > \delta\n{2}{3}$ starting after step $C\n{2}{3}$.
-	Then for all $\epsilon>0$ and $\delta > 0$ exists $C>0$ such that $\Prob(\ExcursionEvent) < \epsilon$. 
+	Then for all $\epsilon>0$ and $\delta > 0$ exists $C>0$ such that $\sup_n \Prob(\ExcursionEvent) < \epsilon$. 
 \end{lemma}
 
 \begin{proof}
@@ -702,10 +704,118 @@ The following Lemma proves that with high probability, all relevant excursions d
 	This completes the proof.
 \end{proof}
 
+While this lemma provides enough information to prove the convergence with regard to the product topology of Folk Theorem~\ref{T: folk theorem},
+Theorem~\ref{T: Main} requires additional information about Brownian motion.
+From \cite[Lemma 25, p.843]{Aldous.1997} we cite the following lemma on excursion lengths of Brownian motion.
+\begin{lemma} \label{L: BM in ld}
+	Let $\Gamma^{\pp}$ be the set of excursions of $\Bt$ and let $|\gamma|$ be the length of an excursion $\gamma$.
+	Then
+	\begin{equation}
+		\Exp{\sum_{\gamma \in \Gamma^{\pp}} |\gamma|^2} < \infty.
+	\end{equation}
+\end{lemma}
+
+
+\section{Finishing the proofs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: Finishing the proofs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Having shown that with high probability there is no mass of large excursions wandering off to infinity,
 \fxnote{Correct use of "with high probability"?}
 \fxnote{"Mass of large excursions" needs clarification.}
-we can now prove our main theorem.
+we are now able to prove Folk Theorem~\ref{T: folk theorem}.
+
+\begin{proof}[Proof of Folk Theorem~\ref{T: folk theorem}]
+	Define
+	\begin{equation} \label{E: def Yn}
+		\Yn := ((|\rgamman_1|, \rsigman_1), (|\rgamman_2|, \rsigman_2), \dots)
+	\end{equation}
+	as the excursion lengths of the rescaled breadth-first walk (i.e. the rescaled component sizes) 
+	and rescaled corresponding counts of surplus edges in $\Gnt$,
+	as well as
+	\begin{equation} \label{E: def Y}
+		\Y := ((|\gamma_1|, \sigma_1), (|\gamma_2|, \sigma_2), \dots)
+	\end{equation}
+	for the lengths of excursions and corresponding mark counts of $\Bt$, ordered by decreasing excursion length.
+	Denote by 
+	\begin{equation}
+		\begin{aligned}
+		\Ynk &:= ((|\rgamman_1|, \rsigman_1), \dots, (|\rgamman_k|, \rsigman_k)) \\
+		\Yk  &:= ((|\gamma_1|, \sigma_1), \dots, (|\gamma_k|, \sigma_k))
+		\end{aligned}
+	\end{equation}
+	the vector of the first $k$ components of the corresponding vector.
+	We want to show that for all $k \in \Nat$ we have
+	\begin{equation}
+		\Ynk \rightarrow_d \Yk.
+	\end{equation}
+	
+	Fix $k \in Nat$. 
+	We again define $\rzntX \sim \rznt$ and $\WtX \sim \Wt$ on the same probability space,
+	where $\rzntX \rightarrow_{a.s.} \WtX$.
+	Since $\Yk$ is a vector of finite length, for all $\epsilon > 0$ we can find $\delta > 0$ such that
+	\begin{equation} \label{E: folk theorem cond bm1}
+		\Prob(|\gamma_k| < \delta) < \epsilon.
+	\end{equation}
+	For a realization of the processes $\rzntX(\omega)$ and $\WtX(\omega)$ we know from Lemma~\ref{L: late excursions}
+	that for all $\epsilon> 0$ and $\delta > 0$ there exists $C > 0$ such that
+	\begin{equation} \label{E: folk theorem cond znt}
+		\sup_n \Prob( \exists \rgamman: \; l(\rgamman) > C, |\rgamman| > \delta ) < \epsilon
+	\end{equation}
+	and
+	\begin{equation} \label{E: folk theorem cond bm2}
+		\Prob(\exists \gamma: \; l(\gamma) > C, |\gamma| > \delta) < \epsilon.
+	\end{equation}
+	Since $\rzntX \rightarrow_{a.s.} \WtX$ for all $\beta > 0$ exists $N \in Nat$ such that for all $n \geq N$ we have
+	\begin{equation} \label{E: folk theorem cond sup}
+		\Prob( \sup_{s \in [0, C]} |\rzntX(s) - \WtX(s)| > \beta ) < \epsilon.
+	\end{equation}
+	
+	
+	Define $\YnX$ and $\YX$ like \eqref{E: def Yn} and \eqref{E: def Y} on this new probability space.
+	We show that $\YnkX \rightarrow_p \YkX$, i.e. for all $\alpha > 0$ we have
+	\begin{equation}
+		\Prob( d(\YnkX, \YX) > \alpha) \rightarrow 0
+	\end{equation}
+	as $n \rightarrow \infty$.
+	Denote by $\Event{\YkX}, \Event{\rgamman}, \Event{\gamma}, \Event{\beta}$ the events of 
+	\eqref{E: folk theorem cond bm1}, \eqref{E: folk theorem cond znt}, \eqref{E: folk theorem cond bm2} and \eqref{E: folk theorem cond sup} respectively.
+	Then
+	\begin{equation}
+		\begin{aligned}
+		\Prob( d(\YnkX, \YX) > \alpha) 
+		&\leq \Prob( d(\YnkX, \YX) > \alpha \cond \neg\Event{\YkX}, \neg\Event{\rgamman}, \neg\Event{\gamma}, \neg\Event{\beta}) \\
+		&\quad + \Prob(\Event{\YkX}) + \Prob(\Event{\rgamman}) + \Prob(\Event{\gamma}) + \Prob(\Event{\beta}). 
+		\end{aligned}
+	\end{equation}
+	The conditions in the first probability assert that there are no large excursions of $\rzntX$ or $\WtX$ after $C$,
+	and that the $k$-th excursion of $\WtX$ is large.
+	Since excursions of $\rzntX$ and $\WtX$ eventually match up, 
+	all $k$ relevant excursions must happen before $C$.
+	With shrinking distance between $\rzntX$ and $\WtX$ the distance between excursion lengths must become smaller as well
+	and for sufficiently large $n$ the number of surplus edges in $\YnkX$ coincides exactly with number of marks in $\YkX$.
+	Therefore for all $\alpha > 0$ we can find $\beta = \beta(\alpha)$ such that
+	\begin{equation}
+		\Prob( d(\YnkX, \YX) > \alpha \cond \neg\Event{\YkX}, \neg\Event{\rgamman}, \neg\Event{\gamma}, \neg\Event{\beta}) = 0.
+	\end{equation}
+	
+	Then for all $\epsilon > 0$ we choose $\delta > 0$ such that $\Prob(\Event{\YkX}) < \epsilon / 4$,
+	for these $\delta$ and $\epsilon$ we find $C > 0$ such that $\Prob(\Event{\rgamman}) < \epsilon / 4$ and $\Prob(\Event{\gamma}) < \epsilon / 4$
+	and finally $N \in \Nat$ such that $\Prob(\Event{\beta}) < \epsilon$ for all $n \geq N$.
+	Then
+	\begin{equation}
+		\Prob( d(\YnkX, \YX) > \alpha) \leq \epsilon
+	\end{equation}
+	which proves $\YnkX \rightarrow_p \YkX$.
+	Now convergence in probability implies convergence in distribution which completes the proof.
+\end{proof}
+
+Since we already established the distribution of the limit vector in the last proof,
+the only thing left to show is that the convergence $\n{-2}{3} \Cntbold \rightarrow_p \Ctbold$ holds with respect to the $\ld$~topology.
+
+\begin{proof}[Proof of Theorem~\ref{T: Main}]
+	\lipsum[100]
+\end{proof}
 
 
 
