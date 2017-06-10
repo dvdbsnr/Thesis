@@ -84,14 +84,13 @@ with increasing number of edges.
 % SECTION: General results on component sizes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-To provide an overview of the aforementioned phases, 
+To provide an overview of the aforementioned phases
 which the component sizes of the Erdös-Rényi random graph pass through,
 we discuss relevant results that were established previous to \cite{Aldous.1997}.
 
 We begin with the subcritical graph, that is
 $\Gcal(n, \p)$ with $\p < \frac{1}{n}$
 or $\lambda = n \p < 1$.
-
 The following theorem provides a lower bound on the size of $\Ccal_{\max}$, the largest component of $\Gcal$.
 \begin{theorem}[Lower bound on largest subcritical component, {\cite[Theorem 4.4, p.125]{vanderHofstad.2016}}]
 	Fix $\lambda < 1$. 
@@ -106,7 +105,6 @@ The following theorem provides a lower bound on the size of $\Ccal_{\max}$, the 
 	\end{equation}
 	is the large deviation rate function for Poisson random variables with mean $\lambda$.
 \end{theorem}
-
 The next theorem gives an upper bound for the size of $\Ccal_{\max}$.
 \begin{theorem}[Upper bound on largest subcritical component, {\cite[Theorem 4.5, p.125]{vanderHofstad.2016}}]
 	Fix $\lambda < 1$. 
@@ -116,21 +114,19 @@ The next theorem gives an upper bound for the size of $\Ccal_{\max}$.
 	\Prob( |\Ccal_{\max}| \leq a \log n ) = \BigO{n^{-\delta}}.
 	\end{equation}
 \end{theorem}
-
 Together, these theorems imply
 \begin{equation}
 	\frac{|\Ccal_{\max}|}{\log n} \rightarrow_p 1/I_{\lambda}.
 \end{equation}
+and therefore the expected largest component size will be of order $\log n$.
 
-We have established that, for $n \p < 1$, the expected largest component size will be of order $\log n$.
+\bigskip
 
-Consider the opposite case, the supercritical graph with $\lambda > 1$. 
-
+Consider the opposite case, the supercritical graph with $\lambda > 1$.
 Denote by $\xi_\lambda$ the survival probability of a Poisson branching process with mean offspring $\lambda$.
 Note that $\xi_\lambda > 0$ since $\lambda > 1$
 (For an introduction into the theory of branching processes with application in random graphs, 
 see \cite[Chapter 3, p.87ff.]{vanderHofstad.2016}).
-
 Any vertex is part of a large component with probability $\xi_\lambda$, 
 therefore we will expect around $n \xi_\lambda$ vertices being part of large connected components.
 The following theorem now states that all of these vertices are, in fact, part of the same connected component, which we call the giant component.
@@ -156,9 +152,11 @@ Figure~\ref{F: ER lambda} provides two realizations of the random graph with dif
 one subcritical and one supercritical.
 Note how the largest connected components in the subcritical graph still consist of very few vertices
 (the largest component here having 9 vertices, while $\log(1000) \approx 6.9$)
-and a lot of nodes are isolated.
+and a that lot of nodes are isolated.
 In contrast, the supercritical graph features a single large component 
 and all other components are either drastically smaller in size or even still isolated vertices.
+
+\bigskip
 
 For $n \p < 1$ we expect many small clusters of order at most $\log n$,
 for $n \p > 1$ we expect one giant component, approaching size $n$ with increasing $\p$.
@@ -169,11 +167,11 @@ such that shortly after $n \p = 1$ most graphs do not have any component of orde
 The following theorem provides an approximation of the time of emergence of the giant component,
 seeing the random graph on $n$ vertices as a graph process,
 starting at $t=0$ with $0$ edges, adding one random edge at every time step.
-We would therefore expect the emergence starting around time $\binom{2}{n}\frac{1}{n} \approx \frac{1}{2}n$. 
+We would therefore expect the emergence starting around time $\binom{2}{n}\frac{1}{n} \approx \frac{1}{2}n$.
+We say a property $P$ is shared by almost every graph if the probability of having this property approaches $1$ as $n \rightarrow \infty$.
 
 \begin{theorem}[Emergence of the giant component, {\cite[Theorem 6.8, p.142]{Bollobas.2001}}]
-	Almost every graph process\footnote{%
-		We say a property $P$ is shared by almost every graph if the probability of having this property approaches $1$ as $n \rightarrow \infty$} 
+	Almost every graph process
 	$\Gcal = (\Gcal_t)_0^n$ is such that 
 	for every $t \geq t_1 = \floor{ n/2 + 2(\log n)^{1/2}\n{2}{3} }$ 
 	the graph $\Gcal_t$ has a unique component of order at least $\n{2}{3}$ and the other components have at most $\frac{1}{2}\n{2}{3}$.
@@ -181,7 +179,7 @@ We would therefore expect the emergence starting around time $\binom{2}{n}\frac{
 
 As it turns out, there is a so-called critical window in which the maximum component sizes are not of order $\log n$ any more 
 but there is no single giant component yet.
-We call a random graph $\Gcal(n, n^{-1} + t\n{-4}{3})$ critical for $t \in \Real$.
+We call a random graph $\Gcal(n, n^{-1} + \pp\n{-4}{3})$ critical for $\pp \in \Real$.
 The next theorem provides a approximation of the size of the largest component in a critical random graph.
 
 \begin{theorem}[Largest critical cluster, {\cite[Theorem 5.1, p.150]{vanderHofstad.2016}}] \label{T: largest critical cluster}
@@ -206,17 +204,18 @@ In this critical window, the largest component of the random graph will be of or
 \end{figure}
 
 Figure~\ref{F: ER p} shows realizations of the critical Erdös-Rényi random graph for different parameters $\pp$.
-It is clear how the graph undergoes its transition from relatively small and simple components 
+It is evident how the graph undergoes its transition from relatively small and simple components 
 to the emergence of a single great component, which will later, i.e. for larger $\p$,
 encompass more and more vertices as seen in Figure~\ref{F: ER lambda}.
 
+\bigskip
 
 But is it possible to provide a similar statement not only for the largest, but for all components in a critical random graph?
 Aldous notes that previous to his paper
 the convergence of the rescaled component sizes to some limit process was generally assumed to be true,
 although never explicitly proven.
-He therefore provides the following \emph{folk theorem},
-which will be proven in more precise form in the course of this thesis.
+He therefore provides the following folk theorem,
+which will be proven along with a more precise version in the course of this thesis.
 
 For a connected component we define the number of surplus edges or the surplus by
 \begin{equation}
@@ -247,7 +246,8 @@ if for all $k \in \Nat$
 \end{equation}
 by $x^{(n)}_i \rightarrow x_i$ for all $1 \leq i \leq k$ as $n \rightarrow \infty$.
 Note that in our theorem the $x^{(n)}_i = ( \n{-2}{3} \Cnt(i), \n{-2}{3} \sigmant(i))$ and $x_i = (\Ct(i), \sigmat(i))$ are pairs of values themselves,
-so for $x^{(n)}_i \rightarrow x_i$ we require $\n{-2}{3}  \Cnt(i) \rightarrow \Ct(i)$ and $\n{-2}{3} \sigmant(i) \rightarrow \sigmat(i)$ 
+so for $x^{(n)}_i \rightarrow x_i$ to hold we require 
+$\n{-2}{3}  \Cnt(i) \rightarrow \Ct(i)$ and $\n{-2}{3} \sigmant(i) \rightarrow \sigmat(i)$ 
 in $\Real$ as $n \rightarrow \infty$.
 
 
@@ -257,24 +257,23 @@ in $\Real$ as $n \rightarrow \infty$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In this section we state the main results of this thesis,
-which is a refinement of Theorem~\ref{T: largest critical cluster}.
-While previously the size of largest component was only estimated to be of order $\n{2}{3}$,
-the following theorem will give a limit distribution for all component sizes, downscaled by $\n{-2}{3}$.
+which is a refinement of Folk Theorem~\ref{T: folk theorem}.
+We now identify the distribution of the limit vector precisely and state a stricter form of convergence of component sizes.
 
-Denote by $W$ the standard Brownian motion. 
+Denote by $W$ the standard Brownian motion on $\Rplus$. 
 For a fixed parameter $\pp \in \Real$ we call the process $\Wt$, defined by
 \begin{equation}
-	\Wt(s) := W(s) + \int_{0}^{s}(t-s)ds = W(s) + ts - \frac{1}{2}s^2,
+	\Wt(s) := W(s) + \int_{0}^{s}(\pp -s)ds = W(s) + \pp s - \frac{1}{2}s^2,
 \end{equation}
-the Brownian motion with drift $t-s$ at time $s$.
+the Brownian motion with drift $\pp -s$ at time $s$.
 The central object of our analysis will be the process $\Wt$ and its excursions above past minima.
-We reflect $\Wt$ at $0$, defining the process $\Bt$ by
+We reflect $\Wt$ at the x-axis to define the process $\Bt$ by
 \begin{equation}
-	\Bt(s) := \Wt(s) - \min_{u \leq s}\Wt(u)
+	\Bt(s) := \Wt(s) - \min_{u \leq s}\Wt(u).
 \end{equation}
-and calling it the reflected Brownian motion with drift.
+We call $\Bt$ the reflected Brownian motion with drift.
 
-\begin{figure}%
+\begin{figure}[h]%
 	\centering
 	\subfloat[$W(s)$]{\input{figures/chapter1/fig_bm.tex}}%
 	\quad
@@ -290,7 +289,7 @@ and calling it the reflected Brownian motion with drift.
 \end{figure}
 
 See Figure~\ref{F: BM} for an example of a Brownian motion with drift for positive and negative $\pp$ and the corresponding reflected process.
-Note that for positive $t$ the time intervals between zeroes of $\Bt$ are much longer than for negative $\pp$.
+Note that for positive $\pp$ the time intervals between zeroes of $\Bt$ are much longer than for negative $\pp$.
 We call an excursion $\gamma$ of $\Bt$ a time interval $[l(\gamma), r(\gamma)]$ for which $\Bt(l(\gamma)) = \Bt(r(\gamma)) = 0$
 and $\Bt(s) > 0$ for all $l(\gamma) < s < r(\gamma)$.
 Denote by $|\gamma| = r(\gamma) - l(\gamma)$ the length of an excursion.
