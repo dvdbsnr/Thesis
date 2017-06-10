@@ -7,20 +7,20 @@
 \chapter{The breadth-first walk} \label{C: bf-walk}
 \fxnote{Update title.}
 
+This chapter introduces the breadth-first walk, 
+a way to traverse the vertices of a given graph such that component sizes can be read from the development of a \cadlag~process. 
 
 \section{The breadth-first walk in discrete time}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: The discrete breadth-first walk
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fxnote{Update title}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Introduction
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We start by describing the deterministic construction of the breadth-first walk.
-\fxnote{More free from paper}
+We start by describing the deterministic construction of this process.
 Consider an arbitrary graph $\mathcal{G}$ on the set of vertices 
-$\{1, \dots , n\} $.
+$V = \{1, \dots , n\} $ with set of edges $E$.
 We will define the breadth-first ordering
 $(v_1, \dots v_n)$
 of the vertices along with an integer-valued sequence
@@ -32,7 +32,7 @@ $\mathcal{G}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Definition of breadth-first order
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The breadth-first order follow an algorithmic construction as follows:
+The breadth-first order derives from an algorithmic construction as follows:
 Let $\Ci{1}, \Ci{2}, \dots$ be the components of $\mathcal{G}$ in order, such that
 $w_1, w_2, \dots$, the vertices with the smallest label in the corresponding component,
 are ordered $w_1 > w_2 > \dots$. 
@@ -42,16 +42,16 @@ See Figure~\ref{F: bf-walk discrete} for an example of the new ordering.
 
 For a more mathematically concise definition,
 consider the set of vertices $\{ v_1,\dots, v_i \}$
-and define the \emph{neighbour set} $\Ni{i}$ as the vertices outside of
+and define the neighbour set $\Ni{i}$ as the vertices outside of
 \fxnote{Add emphasis when needed}
 $\{ v_1,\dots, v_i \}$ 
 that are neighbours to some vertex in 
 $\{ v_1,\dots, v_i \}$:
 \begin{equation}
 \Ni{i} := 
-\left\lbrace v \in \{1, \dots, n\} \backslash \{ v_1,\dots, v_i \} 
+\left\lbrace v \in V \backslash \{ v_1,\dots, v_i \} 
 \; | \; 
-\left(v_j, v\right) \in S \; \text{for some} \; 1 \leq j \leq i \right\rbrace
+\left(v_j, v\right) \in E \; \text{for some} \; 1 \leq j \leq i \right\rbrace
 \end{equation}
 \fxnote{Remove equation? Unnecessary?}
 \fxnote{Fix \text in braces: Space \; or \quad}
@@ -60,7 +60,7 @@ $\Ni{i} \backslash \Ni{i-1}$.
 First order the components as described above. 
 Now consider only the first component $\Ci{1}$.
 Define $v_1 := w_1$, the root of $\Ci{1}$ and define
-$v_2, \dots , v(1 + |\Ni{1}|)$ 
+$v_2, \dots , v_{|\Ni{1}|+1}$ 
 as the neighbours of $v_1$,
 in increasing order of vertex label. 
 Define the new label for all 
@@ -68,9 +68,9 @@ $i = 2, \dots, |\Ci{1}|$,
 that is all vertices in the first component,
 inductively by listing all children (if any exist) of $v_i$
 in increasing order as 
-$ v(i + |\Ni{i-1}|), \dots, v(i + |\Ni{i}|) $.
+$ v_{|\Ni{i-1}|+i}, \dots, v_{|\Ni{i}|+i} $.
 After labelling the last vertex in $\Ci{1}$, set
-$v(|\Ci{1}| + 1) := w_2$, 
+$v_{|\Ci{1}| + 1} := w_2$, 
 the root of $\Ci{2}$, and continue the construction as above.
 Traverse all components this way.
 
@@ -155,9 +155,8 @@ z^*(i) &:= |\Ni{i}| - \zeta^{-1}(i), \quad i=1, \dots , n.
 \end{aligned}
 \end{equation}
 
-We verify the equivalence by induction.
-We show that, for $i \geq 2$, increments of both functions are equal,
-so
+We verify the equivalence by induction, showing that for $i \geq 2$ increments of both functions are equal.
+We have
 \begin{equation} \label{E: equality z z*}
 \begin{aligned} 
 &\hspace{35pt} z(i) - z(i-1) = z^*(i)  -z^*(i-1) \\
@@ -169,31 +168,33 @@ so
 \fxnote{This has to hold for i >= 1, or fix the indices.}
 
 We divide the proof into two cases.
-First, assume $v(i-1)$ is not the last vertex in it's component.
+First, assume $v_{i-1}$ is not the last vertex in it's component.
 Then $v_i$ belongs to the same component and
 $\ZetaMinus{i} = \ZetaMinus{i-1}$.
 Vertex $v_i$ has already been assigned a new label at step $i-1$,
 so $v_i \in \Ni{i-1}$.
 Going from $i-1$ to $i$,
-$\Ni{*}$ increases by the number of new neighbours of $v_i$
+the neighbour set increases by the number of new neighbours of $v_i$
 and decreases by $v_i$ itself.
 So
 \begin{equation}
 |\Ni{i}| - |\Ni{i-1}| = c(i) - 1,
 \end{equation}
-which proves the equivalence.
+which provides the equality.
 
-In the second case, if $v(i-1)$ is the last vertex of it's component,
+In the second case, if $v_{i-1}$ is the last vertex of it's component,
 then $\ZetaMinus{i} = \ZetaMinus{i-1} + 1$
 and $|\Ni{i-1}| = 0$.
 Equality \eqref{E: equality z z*} reduces to
 $ |\Ni{i}| = c(i)$,
 which holds since
 $c(i) = |\Ni{i} \backslash \Ni{i-1}| = |\Ni{i}|$.
+This proves the equivalence of both processes.
+We proceed referring to the breadth-first walk as $z(i)$.
+
+\bigskip
 
 Since $|\Ni{i}| = 0$ only if $v_i$ is the last vertex in its component,
-\fxnote{Have we shown this? Maybe add a sentence.}
-\fxnote{its or it's? Fix in whole document!}
 \eqref{E: zeta} and \eqref{E: def bf-walk z*} imply
 \begin{equation} \label{E: (6).1}
 	z(\zeta (j)) = -j
@@ -206,18 +207,14 @@ and
 So, for vertices in the $j$-th component,
 the random walk takes values greater or equal to $-(j-1)$,
 until the last vertex, for which $z$ reaches a new minimum at $-j$.
-\fxnote{There are a lot of commas in this sentence.}
 Knowing this we can reconstruct sizes and indices of components via
 \begin{align}
 \zeta(j) &= \min \{ i \; | \; z(i) = -j \}, \label{E: zeta(j) = min(i)} \\
 |\Ci{j}| &= \zeta(j) - \zeta(j-1), \label{E: C(j) = zeta - zeta} \\
 \ZetaMinus{i} &= 1 - \min_{j \leq i-1}z(j). \label{E: zeta-1(i) = 1 - min(j)}
 \end{align}
-
-
 \fxnote{Maybe add some more explanation on where these formulas come from.}
 
-\fxnote{Transition to next chapter here.}
 
 \section{The breadth-first walk in continuous time}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -228,33 +225,29 @@ The last section defined the random walk for integer times,
 but to develop our theory of convergence to a Brownian motion
 we will have to construct $z(i)$ in continuous time.
 
-Define a series of independent random variables, 
+Define a sequence of independent random variables, 
 uniformly distributed on $(0,1)$, 
-$(\Uij, 1 \leq i \leq n, 1 \leq j \leq c(i))$.
-\fxnote{Series is probably a bad term, since it's already a math term.}
+$(\Uij, 1 \leq i \leq n, 1 \leq j \leq c(i))$,
+where $c(i)$ is the number of children of $v_i$.
 
-Then for each $i = 1, 2, \dots$ and $0 \leq u \leq 1$ define the process $Z$ by
+Then for each $i = 1, \dots, n$ and $0 \leq u \leq 1$ define the process $Z$ by
 \begin{equation} \label{E: def Z}
 \begin{aligned}
 Z(0) &:= 0, \\
 Z(i - 1 + u) &:= Z(i-1) - u + \sum_{1 \leq j \leq c(i)} \Ind{\{ \Uij \leq u \}}.
 \end{aligned}
 \end{equation}
-\fxfatal{Find the other indicator function and use the same method there.}
-So $Z(i) = Z(i-1) - 1 + c(i)$ 
-and $Z$ coincides with the discrete definition of the breadth-first walk at integer times.
+So $Z(i) = Z(i-1) - 1 + c(i)$ and $Z$ coincides with the discrete definition of the breadth-first walk at integer times.
 
 Some more explanation on this construction:
-\fxnote{Start this paragraph nicer.}
 At time $i-1$, 
 the walk has traversed vertices
-$(v_1, \dots, v(i-1))$
-and has encountered a list of vertices
+$(v_1, \dots, v_{i-1})$
+and has discovered a list of vertices
 $(v_1, \dots, v_k)$
 of length
 $k = i-1 + |\Ni{i-1}|$.
-The discrete walk now adds the children of $v_i$,
-$c(i)$, to this list at time $i$.
+The discrete walk now adds the children of $v_i$ to this list at time $i$.
 The newly defined continuous walk adds those vertices at uniformly random times in $(i-1, i)$.
 
 \begin{figure}[H]
@@ -269,32 +262,26 @@ The newly defined continuous walk adds those vertices at uniformly random times 
 	\caption{Continuous breadth-first walk on a single component}
 	\label{F: bf-walk cont}
 \end{figure} 
-\fxfatal{Here comes a figure and some illustration.}
 
+\bigskip
 
-For $\mathcal{G} \in \Gnt$, 
-we call the continuous-time breadth-first walk on its vertices $\znt$.
-We rescale $\znt$ on both axis to define
-\begin{equation} \label{E: def Zbar}
-\Zbar^{\pp}(s) := \n{-1}{3} \znt(\n{2}{3}s).
-\end{equation}
-For $s \geq \n{1}{3}$, 
-let $\znt(\n{2}{3}s) := \znt(n)$.
-\fxnote{Is equiv right here? Or just use :=?}
+We denote the stochastic process mapping a realization of $\Gnt$ to the corresponding breadth-first walk by $\znt$.
+\fxnote{This sentence is convoluted.}
+For $s \geq n$, 
+let $\znt(s) := \znt(n)$.
 We can now state the main theorem of this chapter,
-the convergence of this rescaled process to a Brownian motion with drift.
+the convergence of this process to a Brownian motion with drift after rescaling.
 
 \begin{theorem} \label{T: Z -> W}
 	Let $\znt(s)$, for $0 \leq s \leq n$, 
-	be the breadth-first walk associated with $\mathcal{G} \in \Gnt$.
+	be the breadth-first walk associated with $\Gnt$.
 	Rescale via
-	\begin{equation*}
-	\Zbar^\pp(s) := \n{-1}{3} \znt(\n{2}{3}s).
-	\end{equation*}
-	Then $\Zbar^\pp(s) \rightarrow_d \Wt$ as $n \rightarrow \infty$.
+	\begin{equation}
+	\rznt(s) := \n{-1}{3} \znt(\n{2}{3}s).
+	\end{equation}
+	Then $\rznt(s) \rightarrow_d \Wt$ as $n \rightarrow \infty$.
 \end{theorem}
 
-\fxfatal{A short explanantion of the coming proof goes here.}
 
 
 \section{Decompositions of $\Zn$}
@@ -314,10 +301,8 @@ This point process would then possess a conditional intensity, say $\an(s)$, suc
 \begin{equation}
 	\an(s)ds = \Exp{ \Zn(s + ds) - \Zn(s) + ds \cond \F{s} }.
 \end{equation}
- 
 We evaluate these considerations more elaborately in the following lemma.
-
-For ease of notation, we will drop the superscript $\pp$ from all random variables.
+For ease of notation we drop the superscript $\pp$ from all random variables in this chapter.
 
 \begin{lemma} \label{L: decomp Zn}
 	The decomposition 
@@ -379,11 +364,12 @@ For ease of notation, we will drop the superscript $\pp$ from all random variabl
 \end{proof}
 
 For a better understanding of the processes involved, we need to find a concise expression for the probability used in \eqref{D: an}.
-The next Lemma provides such an expression for $\an(s)$ 
-dependent on $\p$, the history of the breadth-first walk up to $s$ and the distance between $s$ and $\floor{s}$, 
-the largest natural number smaller than $s$.
-\fxnote{This is redundant.}
 An ensuing corollary provides some characteristics of the resulting process $\An$.
+Denote by $\floor{s}$ and $\ceil{s}$ the largest integer smaller than $s$ and the smallest integer larger than $s$, respectively.
+Since the original vertex labels have are no longer relevant,
+we use the notion of vertex $v_i$ and vertex $i$ interchangeably.
+\fxnote{See if this clarification is needed.}
+We denote an edge between $v_i$ and $v_j$ by $(i,j)$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lemma Formula An: Statement
@@ -401,8 +387,8 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 \begin{proof} \label{P: formula an}
 	Consider the walk $\Zn$ at time $s\in[i-1, i]$.
 	Let $N$ be the number of vertices that, at time $i-1$, were eligible to be children of vertex $v_i$.
-	That is, all vertices not yet explored or discovered, and excluding $v_i$ itself.
-	To any eligible vertex $j$ we assign a random variable $\Uij$.
+	That is all vertices not yet explored or discovered, which excludes $v_i$ itself.
+	To any eligible vertex $v_j$ we assign a random variable $\Uij$.
 	Let all $\Uij$ be independent and identically $\mathcal{U}(0,1)$ distributed.
 	Our understanding of the process of discovering children of $v_i$ is as follows:
 	At time $i-1+\Uij$, the edge $(i,j)$ will open with probability $\p$ and
@@ -413,31 +399,27 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 	\Zn(i-1+u) = \Zn(i-1) - u + \sum_{j=1}^{N} \Ind{\{\Uij \leq u, \; (i,j) \; \text{open}\}}.
 	\end{equation}
 	
-	We define $\SigmaAlgebra_s := \sigma(\Zn(t), t\leq s)$.
+	We define $\SigmaAlgebra_s := \sigma(\Zn(u), u\leq s)$.
 	The goal of this proof is to find an expression for
 	$\Prob(\text{A new edge appears in $[s, s+ds]$} \cond \SigmaAlgebra_s)$.
 	To do this, we condition over a finer $\sigma$-algebra and use the law of total expectation to arrive at a general statement.
 	$\SigmaAlgebra_s$ tells us the history of the walk until time $s$. 
-	We know, how many vertices were eligible at time $i-1$ and how many open edges to $v_i$ were found in $[\floor{s},s]$.
-	However it is unknown, exactly which vertices are now children of $v_i$ and which vertices are still eligible.
-	\fxnote{Is this really important? Isn't it enough to have the finer s-algebra know about the k vertices?}
-	
-	Let 
+	We know how many vertices were eligible at time $i-1$ and how many open edges to $v_i$ were found in $[\floor{s},s]$.
+	However, it is unknown exactly which vertices are now children of $v_i$ and which vertices are still eligible.
+	Define 
 	\begin{equation}
 	\begin{split}
-	\SigmaAlgebra_s^k := \sigma(&\Zn(t), t\leq s; \\
+	\SigmaAlgebra_s^k := \sigma(&\Zn(u), u\leq s; \\
 	&\text{There are exactly $k$ children of $v_i$ encountered thus far}, \\
 	&\text{and these are $j_1, \dots, j_k$}).
 	\end{split}
 	\end{equation}
-	\fxfatal{Definition Fsk: Fix this mess!}
 	
 	We know that $k$ of the $N$ edges eligible at time $i-1$ are already open 
 	and want to calculate the probability that one of the remaining $N-k$ edges opens in $[s, s+ds]$.
 	The probability of some edge opening is the sum of the probabilities for single edges opening
 	and some factor describing the, for small $ds$ increasingly slim, 
 	chance of two or more edges opening in the interval.
-	\fxnote{Increasingly slim is not a mathematical term.}
 	We denote by $\NewEdge{I}$ the event of a new edge appearing in an interval $I$ and write
 	\begin{equation}
 	\Prob(\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s^k)
@@ -463,8 +445,7 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 	&\quad = \frac{\p ds}{1-\p(s-\floor{s})},
 	\end{aligned}
 	\end{equation}
-	\fxnote{Fix the formatting here.}
-	and finally, omitting the $\Smallo{ds}$-term:
+	and finally, omitting the $\Smallo{ds}$-term, we have
 	\begin{equation}
 	\begin{aligned}
 	\Prob(\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s^k) 
@@ -483,19 +464,21 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 	\end{aligned}
 	\end{equation}
 	Conditioning on $\SigmaAlgebra_s$,
-	the breadth-first walk $\Zn$ tells us exactly how many vertices connected to vertex $i$ until time $s$.
-	We denote by $\Ineligible(s)$ the number of vertices that are at time $s$ not eligible to be a child of $v(\ceil{s})$.
-	\fxnote{Its not the sum of vertices. Its the sum of the amount of vertices.}
-	Then $N-k=n-\Ineligible(s)$ at time $s$ and
+	the breadth-first walk $\Zn$ tells us exactly how many vertices have connected to vertex $v_i$ until time $s$.
+	We denote by $\Ineligible{s}$ the number of vertices that are at time $s$ not eligible to be a child of $v(\ceil{s})$.
+	Then $N-k=n-\Ineligible{s}$ at time $s$ and
 	\begin{equation}
-	\an(s)ds = \Prob(\NewEdge{\sds} \cond \SigmaAlgebra_s) = (n - \Ineligible(s)) \ps ds.
+	\an(s)ds = \Prob(\NewEdge{\sds} \cond \SigmaAlgebra_s) = (n - \Ineligible{s}) \ps ds.
 	\end{equation}
-	Finally, we find a concise expression for $\Ineligible(s)$.
+	
+	\bigskip
+	
+	Finally, we find a concise expression for $\Ineligible{s}$.
 	At time $i-1$, the ineligible vertices are the $i-1$ vertices already explored
 	and the set $\Ni{i-1}$ of vertices already discovered as children.
-	If $v(i-1)$ is the last vertex of its component,
+	If $v_{i-1}$ is the last vertex of its component,
 	$v_i$ itself is not part of $\Ni{i-1}$, 
-	so we need to add a term that equals $1$ if $v(i-1)$ is the last vertex of its component and $0$ otherwise.
+	so we need to add a term that equals $1$ if $v_{i-1}$ is the last vertex of its component and $0$ otherwise.
 	Together, we arrive at
 	\begin{equation}
 	\Ineligible{i-1} = i-1 + |\Ni{i-1}| + (\ZetaMinus{i} - \ZetaMinus{i-1}).
@@ -514,8 +497,8 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 	&= i-1+u + \ZetaMinus{i} + \Zn(i-1+u),
 	\end{aligned}
 	\end{equation} 
-	by our definition \eqref{E: def Z} of the continuous-time breadth-first walk.
-	So $\Ineligible(s) = s + \ZetaMinus{\ceil{s}} + \Zn(s)$ which concludes the proof.
+	by the definition of the continuous-time breadth-first walk in \eqref{E: def Z}.
+	So $\Ineligible{s} = s + \ZetaMinus{\ceil{s}} + \Zn(s)$ which concludes the proof.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -523,21 +506,21 @@ An ensuing corollary provides some characteristics of the resulting process $\An
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{corollary}
 	The process $\An$, as defined in Lemma~\ref{L: decomp Zn}, is a continuous process of bounded variation.
-	Moreover, $\Zn$ and $\Mn$ are \cadlag processes of bounded variation.
+	Moreover, $\Zn$ and $\Mn$ are \cadlag~processes of bounded variation.
 \end{corollary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Corollary An BV: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof}
-	Since $\an(s) = (n - \Ineligible(s)) \ps \geq 0$ for all $s$,
+	Since $\an(s) = (n - \Ineligible{s}) \ps \geq 0$ for all $s$,
 	the integral $\int_{0}^{t}\an(s)ds$ is a non-decreasing, continuous function in $t$.
 	Therefore $\An(t) = \int_{0}^{t}\an(s)ds -t$ is the difference of two continuous, non-decreasing functions.
 	By the Jordan Decomposition, see e.g. \cite[Proposition 22, p.236]{Royden.1969}, $\An$ is a continuous process of bounded variation.
 	
-	We remember from the definition of the continuous-time breadth-first walk in $\eqref{E: def Z}$,
+	We remember from the definition of the continuous-time breadth-first walk in $\eqref{E: def Z}$
 	that $\Zn$ is the sum of the constant downward stream and jumps of size $1$ for every new edge.
-	By the Jordan Decomposition, $\Zn$ is of bounded variation and the jumps make it a \cadlag process.
+	By the Jordan Decomposition, $\Zn$ is of bounded variation and the jumps make it a \cadlag~process.
 	Since $\Mn = \Zn - \An$ is the difference of two functions of bounded variation is again of bounded variation.
 	Since $\An$ is continuous and $\Zn$ is \cadlag, $\Mn$ is \cadlag.
 \end{proof}
@@ -557,7 +540,7 @@ The following statement proves a similar decomposition of the squared martingale
 	\end{equation}
 	holds, where $\Qn$ is a martingale and $\Bn$ is defined by 
 	\begin{equation} \label{D: Bn}
-	\Bn{t} = \int_{0}^{t} a_n(s)ds = \An(t) + t
+	\Bn(t) = \int_{0}^{t} a_n(s)ds = \An(t) + t
 	\end{equation}
 	with $a_n$ defined in \eqref{D: an}.
 \end{lemma}
@@ -601,11 +584,11 @@ The following statement proves a similar decomposition of the squared martingale
 	$1$ if there is a jump of size $1$ at time $s$, 0 otherwise.
 	From this, we conclude that
 	\begin{align*}
-	\Mnq{t} - \Bn{t}
-	&= \sum_{0 \leq s \leq t} (\Delta \Mn(s))^2 - \Bn{t} \\
-	&= \sum_{0 \leq s \leq t} (\Delta \Zn(s))^2 - \Bn{t} \\
-	&= \sum_{0 \leq s \leq t} \Delta \Zn(s) - \Bn{t} \\
-	&= \text{Number of jumps of} \enspace \Zn \enspace \text{in} \enspace [0,t] - \Bn{t} \\
+	\Mnq{t} - \Bn(t)
+	&= \sum_{0 \leq s \leq t} (\Delta \Mn(s))^2 - \Bn(t) \\
+	&= \sum_{0 \leq s \leq t} (\Delta \Zn(s))^2 - \Bn(t) \\
+	&= \sum_{0 \leq s \leq t} \Delta \Zn(s) - \Bn(t) \\
+	&= \text{Number of jumps of} \enspace \Zn \enspace \text{in} \enspace [0,t] - \Bn(t) \\
 	&= (\text{Number of jumps of} \enspace \Zn \enspace \text{in} \enspace [0,t] - t) - \An(t) \\
 	&= \Zn(t) - \An(t),
 	\end{align*}
@@ -621,7 +604,7 @@ The following statement proves a similar decomposition of the squared martingale
 \fxfatal{Update title}
 
 The main goal of this section will be using the functional central limit theorem for martingales
-to prove the convergence of $\rznt$ to a Brownian motion and subsequently Theorem~\ref{T: Z -> W}.
+to prove the convergence in distribution of $\rznt$ to a Brownian motion and subsequently Theorem~\ref{T: Z -> W}.
 
 Therefore we analyse the asymptotic behaviour of the processes obtained in the decompositions of the last section
 and rescale them to fit $\rznt$ and the requirements of Theorem~\ref{T: functional CLT martingales}.
@@ -632,10 +615,16 @@ We first provide a general result on the breadth-first walk.
 % Lemma Zn stoch bounded: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma} \label{L: Zn stoch bounded}
-	\begin{equation}
+	\begin{math}
 	n^{-1/3} \supns |\Zn(s)| 
-	\enspace \text{is stochastically bounded as} \enspace n \rightarrow \infty.
+	\enspace \text{is stochastically bounded as} \enspace n \rightarrow \infty,
+	\end{math}
+	meaning for all $\epsilon > 0$ exist $K > 0$ and $N \in \Nat$ such that
+	\begin{equation} \label{E: stoch bounded}
+	\Prob\left( n^{-1/3} \supns |\Zn(s)| > K \right) < \epsilon
 	\end{equation}
+	for all $n \geq N$.
+	\fxnote{Sentence begins with an equation.}
 \end{lemma}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -651,7 +640,7 @@ We first provide a general result on the breadth-first walk.
 		T_n &:= \min \lbrace T^*_n, \n{2}{3}s_0 \rbrace ,  \label{E: def Tn}
 	\end{align}
 	\fxnote{Define Tn, T*n nicer.}
-	for some fixed $K>0$ and use Markov's inequality to rewrite the left-hand side of Equation \eqref{E: stoch bounded} as
+	for some fixed $K>0$ and use Markov's inequality to rewrite the left-hand side of \eqref{E: stoch bounded} as
 	\begin{equation} \label{E: stoch bounded 2}
 	\begin{aligned}
 	\Prob( \sup_{s\leq n^{2/3} s_0} |\Zn(s)| > K \n{1}{3} ) &= \Prob( |\Zn(T_n)| > K\n{1}{3} ) \\
@@ -670,8 +659,8 @@ We first provide a general result on the breadth-first walk.
 	for all stopping times $\tau$, hence 
 	\begin{align*}
 		\Exp{M^2_n(T_n)} 
-		&= \Exp{\Qn(T_n)} + \Exp{\Bn{T_n}} \\
-		&= \Exp{\Bn{T_n}} \\
+		&= \Exp{\Qn(T_n)} + \Exp{\Bn(T_n)} \\
+		&= \Exp{\Bn(T_n)} \\
 		&= \Exp{ \int_{0}^{T_n} a_n(s)ds } \\
 		&\leq \int_{0}^{\n{2}{3}s_0} \Exp{a_n(s)} ds.
 	\end{align*}
@@ -713,6 +702,25 @@ We first provide a general result on the breadth-first walk.
 	\end{aligned}
 	\end{equation}
 	
+	Defining $\amn(s)$ as
+	\begin{equation} \label{E: def a'n}
+	\begin{aligned}
+	\amn(s) &:= \an(s) (1 - (s - \floor{s})\p) \\
+	&= (n - s - \Zetan{\ceil{s}} - \Zn(s)) \p,
+	\end{aligned}
+	\end{equation}
+	we show that $\an(s)$ and $\amn(s)$ become asymptotically close, uniformly in $s$, for large $n$:
+	\begin{equation} \label{E: convergence an amn}
+	\begin{aligned}
+	|\an(s) - \amn(s)|
+	&= |\an(s)\left( 1-(1 - (s - \floor{s})\p) \right)| \\
+	&= | \frac{(n - s - \Zetan{\ceil{s}} - \Zn(s))\p}{1-(s - \floor{s})\p} (s - \floor{s})\p) | \\
+	&= |\underbrace{\frac{\p n - \p(s + \Zetan{\ceil{s}} + \Zn(s))}{1-(s - \floor{s})\p}}_{\leq 5} 
+	\underbrace{(s - \floor{s})\p}_{=\BigO{n^{-1}}} |\\
+	&= \BigO{n^{-1}}.
+	\end{aligned}
+	\end{equation}
+	The last step follows from $\p = \BigO{n^{-1}}$ and $|\Zn(s)|, |\ZetaMinus{s}| \leq n$ for all $s \leq s_0\n{2}{3}$ and $n$.
 	We decompose $|\an(s) - 1|$ by
 	\begin{equation}
 	\begin{aligned}
@@ -752,7 +760,6 @@ We first provide a general result on the breadth-first walk.
 	&\leq 4s_0 K + s_0 \BigO{\n{-1}{3}},
 	\end{aligned}
 	\end{equation}
-	\fxfatal{Fix >= / > in definition of Tn and stoch bounded definition.}
 	where the last inequality follows from the definition of $T_n$ in \eqref{E: def Tn},
 	which assures $|\Zn(s)| \leq K\n{1}{3}$ for all $s \leq T_n$. 
 	
@@ -764,10 +771,10 @@ We first provide a general result on the breadth-first walk.
 	We combine \eqref{E: Exp(Mn)} and \eqref{E: Exp(An)}, 
 	which results in the following upper bound for large $n$:
 	\begin{equation} \label{E: bound Zn}
-	\Exp{|\Zn{T_n}|} \leq \alpha\n{1}{3} + 4s_0K,
+	\Exp{|\Zn(T_n)|} \leq \alpha\n{1}{3} + 4s_0K,
 	\end{equation}
-	where $\alpha = \alpha(s_0,\pp)$, but does not depend on $n$ and $K$. 
-	Substituting $\Exp{|\Zn{T_n}|}$ in \eqref{E: stoch bounded 2} we arrive at
+	where $\alpha = \alpha(s_0,\pp)$ does not depend on $n$ and $K$. 
+	Substituting $\Exp{|\Zn(T_n)|}$ in \eqref{E: stoch bounded 2} we arrive at
 	\begin{equation}
 	\Prob( \sup_{s\leq n^{2/3} s_0} |\Zn(s)| > K \n{1}{3} ) \leq \frac{\alpha}{K} + \frac{4s_0}{\n{1}{3}}
 	\end{equation}
@@ -794,23 +801,6 @@ which will provide us with an expression for the drift of $\Wt$.
 % Lemma Limit An: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: limit An}
-	We define $\amn(s)$ as
-	\begin{equation} \label{E: def a'n}
-		\amn(s) := \an(s) (1 - (s - \floor{s})\p) = (n - s - \Zetan{\ceil{s}} - \Zn(s)) \p.
-	\end{equation}
-	\fxnote{Change "without the denominator"}
-	First, we show that $\an(s)$ and $\amn(s)$ become asymptotically close, uniformly in $s$, for large $n$:
-	\begin{equation} \label{E: convergence an amn}
-	\begin{aligned}
-	|\an(s) - \amn(s)|
-	&= |\an(s)\left( 1-(1 - (s - \floor{s})\p) \right)| \\
-	&= | \frac{(n - s - \Zetan{\ceil{s}} - \Zn(s))\p}{1-(s - \floor{s})\p} (s - \floor{s})\p) | \\
-	&= |\underbrace{\frac{\p n - \p(s + \Zetan{\ceil{s}} + \Zn(s))}{1-(s - \floor{s})\p}}_{\leq 5} 
-		\underbrace{(s - \floor{s})\p}_{=\BigO{n^{-1}}} |\\
-	&= \BigO{n^{-1}}.
-	\end{aligned}
-	\end{equation}
-	The last step follows from $\p = \BigO{n^{-1}}$ and $|\Zn(s)|, |\ZetaMinus(s)| \leq n$ for all $s \leq s_0\n{2}{3}$ and $n$.
 	We substitute the definition of $\p$ in \eqref{E: def a'n} to expand
 	\begin{align*}
 	\amn(s) - 1 
@@ -847,12 +837,12 @@ which will provide us with an expression for the drift of $\Wt$.
 	&\quad = \left| \int_{0}^s \amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}} du \right| + \BigO{\frac{1}{n}} \\
 	&\quad \leq \int_{0}^s \left|\amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}} \right| du + \BigO{\frac{1}{n}} \\ 
 	&\quad \leq \int_{0}^s 2 \frac{\Zetan{\ceil{u}} + |\Zn(u)|}{n} du \\ 
-	&\quad = \frac{2}{n}  \int_{0}^s (1-\min_{w \leq \ceil{u}-1} \Zn{w}  + |\Zn(u)| )du \\ 
-	&\quad = \frac{2}{n}  \int_{0}^s (|\Zn(u)| - \min_{w \leq \ceil{u}-1} \Zn{w}) du + \BigO{\frac{s}{n}} \\ 
+	&\quad = \frac{2}{n}  \int_{0}^s (1-\min_{w \leq \ceil{u}-1} \Zn(w)  + |\Zn(u)| )du \\ 
+	&\quad = \frac{2}{n}  \int_{0}^s (|\Zn(u)| - \min_{w \leq \ceil{u}-1} \Zn(w)) du + \BigO{\frac{s}{n}} \\ 
 	&\quad \leq \frac{4s}{n} \max_{u \leq s} |\Zn(u)| + \BigO{\frac{s}{n}},
 	\end{aligned}
 	\end{equation}
-    the last inequality following from $\ceil{u}-1 \leq s$ for $u\leq s$, hence $|\min_{w \leq \ceil{u}-1}\Zn{w}| \leq \max_{u \leq s}|\Zn(u)|$.
+    the last inequality following from $\ceil{u}-1 \leq s$ for $u\leq s$, hence $|\min_{w \leq \ceil{u}-1}\Zn(w)| \leq \max_{u \leq s}|\Zn(u)|$.
     The left-hand side of this inequality differs from the expression used in \eqref{E: limit An} by the term $\frac{s^2\pp}{2\n{4}{3}}$.
     We show that this difference is negligible even after taking the supremum, by defining $A^*_n(s) := \An(s) + \frac{s^2}{2n} - \frac{s\pp}{\n{1}{3}}$
     and evaluating
@@ -879,7 +869,7 @@ which will provide us with an expression for the drift of $\Wt$.
     
     By Lemma~\ref{L: Zn stoch bounded} we know that for any  $ \epsilon > 0 $  there is a $ K > 0 $
     such that for $n$ sufficiently large 
-    \begin{equation} \label{E: stoch bounded}
+    \begin{equation}
     \Prob\left( n^{-1/3} \supns |\Zn(s)| > K \right) < \epsilon. 
     \end{equation}
     It is easily seen that this suffices to establish \eqref{E: sup Zn convergence 0} by computing
@@ -903,7 +893,7 @@ that will make them suitable for the application of Theorem~\ref{T: functional C
 \begin{lemma} \label{L: limit Bn}
 	For $\Bn$ defined in Lemma~\ref{L: decomp Mn} and fixed $s_0 \geq 0$,
 	\begin{equation} \label{E: limit Bn}
-	\n{-2}{3} \Bn{\n{2}{3}s_0} \longrightarrow_p s_0
+	\n{-2}{3} \Bn(\n{2}{3}s_0) \longrightarrow_p s_0
 	\end{equation}
 	as $n \rightarrow \infty$.
 \end{lemma}
@@ -958,8 +948,10 @@ that will make them suitable for the application of Theorem~\ref{T: functional C
 \end{proof}
 
 
+
+\section{Convergence of rescaled processes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Definitions: Rescaled process
+% SECTION: Rescaled process
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We now define the rescaled processes 
 \begin{equation}
@@ -970,7 +962,6 @@ We now define the rescaled processes
 \Bbar(s) &= \n{-2}{3}\Bn(\n{2}{3}s),
 \end{aligned} 	
 \end{equation}
-
 to fit the previously rescaled process 
 $\Zbar$ in Theorem~\ref{T: Z -> W}, such that
 \begin{equation}
@@ -979,8 +970,7 @@ $\Zbar$ in Theorem~\ref{T: Z -> W}, such that
 \Mbar^2(s) &= \Qbar(s) + \Bbar(s).
 \end{aligned}	
 \end{equation}
-
-Rescaling Lemmata~\ref{L: limit An}, \ref{L: limit Bn} and \ref{L: limit Mn} gives us
+Rescaling Lemmas~\ref{L: limit An}, \ref{L: limit Bn} and \ref{L: limit Mn} gives us
 \begin{equation} \label{E: limit An rescaled}
 \sup_{s \leq s_0} |\Abar(s) - \rho (s)| \longrightarrow_p 0,
 \end{equation}
@@ -996,7 +986,7 @@ and
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorem Convergence \Zn: Proof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We are now ready to prove Theorem~\ref{T: Z -> W} by applying the central limit theorem for martingales, Theorem~\ref{T: functional CLT martingales}.
+We are now ready to prove Theorem~\ref{T: Z -> W}.
 
 \begin{proof}[Proof of Theorem~\ref{T: Z -> W}]
 	Let again $\Fn{t} = \sigma \{ \Zn(s), s \leq t \}$ be the filtration generated by $\Zn$.
