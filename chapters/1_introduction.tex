@@ -343,26 +343,33 @@ We now state the main theorem of this thesis, which we will prove gradually in t
 	of lengths and mark-counts of excursions of $\Bt$.
 \end{theorem}
 
+\bigskip
+
 We conclude this chapter with an overview of the remaining chapters and the structure of the proof of Theorem~\ref{T: Main}.
 
-Chapter~\ref{C: preliminaries} will develop some preliminary theory on the function spaces $C$ and $D$,
-convergence of probability measures and counting processes, which will prove useful in the coming chapters.
+Chapter~\ref{C: preliminaries} will introduce some preliminary theory on convergence of probability measures,
+the space of \cadlag~functions $\DT$ and counting processes.
 
 In Chapter~\ref{C: bf-walk} we define a way to traverse all vertices of a given graph, called the breadth-first walk $\znt$, 
 that reduces the graph to a one-dimensional random walk in which component sizes are decoded as excursions above past minima.
-We analyse its characteristics when applied to $\Gnt$ and discover that, after a certain rescaling, it converges in distribution to $\Wt$.
+We analyse its characteristics when applied to $\Gnt$ and discover that it converges in distribution to $\Wt$ after rescaling.
 
 Chapter~\ref{C: surplus edges} deals with the second coordinate $\sigmant$ in Theorem~\ref{T: Main}, the surplus edges.
 We describe a Poisson counting process $\nnt$ which tallies up all encountered excess edges and calculate its limit rate as $\Bt$.
 The remainder of this chapter will be spent proving that this convergence of rates suffices to declare the convergence of the joint distribution of
 the rescaled breadth-first walk and this counting process to $\Wt$ and $\Nt$.
 
-It remains to be proven that not only does the rescaled random walk converge in distribution to the Brownian motion with drift,
-but that the convergence of component sizes to lengths of excursions of $\Bt$ in distribution follows as well.
-In Chapter~\ref{C: convergence} we first prove that this does indeed hold if we must not expect any large components to "wander off to infinity" as $n \rightarrow \infty$ and subsequently that, with high probability, this problem does not arise in $\Gnt$.
-This completes the proof of Theorem~\ref{T: Main}.
+The final proof of Folk~Theorem~\ref{T: folk theorem} and Theorem~\ref{T: Main} happens in Chapter~\ref{C: convergence}.
+We show that the convergence in distribution of the rescaled breadth-first walk to the Brownian motion with drift
+does indeed imply convergence of excursions of certain length on finite intervals.
+We prove that we do not need to worry about large excursions "wandering off to infinity" or the total weight of smaller excursions.
+We subsequently show that the convergence of component sizes and surplus edges holds in the product topology 
+and the former additionally in the $\ld$~topology.
 
-Lastly, Chapter~\ref{C: outlook} provides an overview over the remaining statements of Aldous paper,
-which contains a non-uniform version of Theorem~\ref{T: Main} and the multiplicative coalescent, 
-a process describing the joining of components to form larger components as the parameter $\pp$ grows.
+Aldous' paper provides a similar result for a nonuniform graph model where vertices have distinct sizes
+and large vertices are more likely to connect to other vertices.
+We introduce this model and the statement of its equivalent to Theorem~\ref{T: Main} briefly in Chapter~\ref{C: nonuniform graph}.
+
+Lastly, Chapter~\ref{C: outlook} provides an overview over the remaining results of Aldous' paper,
+which feature the multiplicative coalescent, a Markov process on $\ld$ that describes the behaviour of component sizes for fixed $n$ and variable $\pp$.
 
