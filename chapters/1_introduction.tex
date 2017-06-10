@@ -13,19 +13,17 @@
 \fxnote{Update title.}
 
 The study of randomly generated graphs started in 1959,
-when Paul Erdös and Alfréd Rényis paper "On random graphs", \cite{Erdos.1959}
+when Paul Erdös and Alfréd Rényis paper "On random graphs", \cite{Erdos.1959},
 and Edgar Gilberts paper "Random graphs", \cite{Gilbert.1959},
 introduced what is now known as the \emph{Erdös-Rényi model} of random graphs.
-In this model, all vertices conect to each other with equal probabilities,
-an assumption that is not necessarily present in other random graph models that followed,
-like \emph{preferential attachment} or the inhomogeneous Erdös-Rényi model.
 
 Starting with the original papers,
 the examination of sizes of connected components in such graphs was of great interest.
-A milestone in this study provided David Aldous 1997 paper 
-"Brownian excursions, critical random graphs and the multiplicative coalescent", \cite{Aldous.1997}.
-This thesis will provide an overview of the state of the research on component sizes in the so-called
-critical Erdös-Rényi random graph and provide an in-depth proof of the first results of this paper.
+David Aldous 1997 paper "Brownian excursions, critical random graphs and the multiplicative coalescent", \cite{Aldous.1997},
+which provides the basis for this thesis,
+examines component sizes in the so-called critical Erdös-Rényi random graph as the number of vertices $n$ grows to infinity.
+
+This thesis will provide a strict proof of one of the the main results of this paper.
 If no other reference is given, each result (or an equivalent thereof) can be found in Chapters 1 and 2 of \cite{Aldous.1997}.
 
 
@@ -75,10 +73,8 @@ We denote a random object constructed this way by $\Gcal(n, \p)$ and expect a re
 When increasing the probability $\p$ from $0$ to $1$ the resulting random graph undergoes the same so-called phase transitions
 discovered by Erdös and Rényi.
 
-While the results of the original paper hold for small and large $M(n)$,
-the critical phase transistion happening around $M(n) = \frac{n}{2}$ or $\p = \frac{1}{n}$
-was later discovered to be imprecise.
-\fxnote{Add reference from hofstad somewhere.}
+These phase transitions include a sudden dramatic increase in average component size happening around $M(n) = \frac{n}{2}$ or $\p = \frac{1}{n}$
+which we study in this thesis.
 The following section will provide a more precise introduction to the different phases a random graph undergoes
 with increasing number of edges.
 
