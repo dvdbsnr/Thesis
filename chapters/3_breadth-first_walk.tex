@@ -10,11 +10,12 @@
 This chapter introduces the breadth-first walk, 
 a way to traverse the vertices of a given graph such that component sizes can be read from the development of a \cadlag~process. 
 
-\section{The breadth-first walk in discrete time}
+\section{The deterministic breadth-first walk}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: The discrete breadth-first walk
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{In discrete time}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Introduction
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -216,7 +217,7 @@ Knowing this we can reconstruct sizes and indices of components via
 \fxnote{Maybe add some more explanation on where these formulas come from.}
 
 
-\section{The breadth-first walk in continuous time}
+\subsection{In continuous time}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: The continuous-time breadth-first walk
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -263,7 +264,14 @@ The newly defined continuous walk adds those vertices at uniformly random times 
 	\label{F: bf-walk cont}
 \end{figure} 
 
-\bigskip
+
+
+\section{Convergence of the breadth-first walk}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION: The central limit theorem for martingales
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fxfatal{Update title}
+
 
 We denote the stochastic process mapping a realization of $\Gnt$ to the corresponding breadth-first walk by $\znt$.
 \fxnote{This sentence is convoluted.}
@@ -283,13 +291,12 @@ the convergence of this process to a Brownian motion with drift after rescaling.
 \end{theorem}
 
 
-
-\section{Decompositions of $\Zn$}
+\subsection{Decompositions of $\znt$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Decompositions of $\Zn$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this section and the next we will now prove Theorem~\ref{T: Z -> W}.
+In the next sections we will now prove Theorem~\ref{T: Z -> W}.
 We begin by providing a suitable decomposition of $\znt$ into a martingale and
 an integrable predictable process, similar to the Doob decomposition theorem.
 The latter process will later provide the downwards drift of $\Wt$,
@@ -597,16 +604,12 @@ The following statement proves a similar decomposition of the squared martingale
 
 
 
-\section{Convergence of the breadth-first walk}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SECTION: The central limit theorem for martingales
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fxfatal{Update title}
+\subsection{Asymptotic behaviour}
 
-The main goal of this section will be using the functional central limit theorem for martingales
+The main goal of this chapter will be using the functional central limit theorem for martingales
 to prove the convergence in distribution of $\rznt$ to a Brownian motion and subsequently Theorem~\ref{T: Z -> W}.
 
-Therefore we analyse the asymptotic behaviour of the processes obtained in the decompositions of the last section
+We analyse the asymptotic behaviour of the processes obtained in the decompositions of the last section
 and rescale them to fit $\rznt$ and the requirements of Theorem~\ref{T: functional CLT martingales}.
 We first provide a general result on the breadth-first walk.
 
@@ -949,7 +952,7 @@ that will make them suitable for the application of Theorem~\ref{T: functional C
 
 
 
-\section{Convergence of rescaled processes}
+\subsection{Convergence of rescaled processes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Rescaled process
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
