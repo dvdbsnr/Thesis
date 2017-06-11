@@ -29,17 +29,17 @@ To make sure that indeed components and excursions do match up,
 we describe them as two-dimensional point processes
 in which the first entry gives the start of an excursion or component, 
 the second the length of an excursion or the size of a component.
-The following first two Lemmata prove that this sequence of Poisson point processes describing components 
+The following two Lemmas in Section~\ref{S: matching components} prove that this sequence of Poisson point processes describing components 
 converges to the point process describing excursions with regard to the vague topology.
 
-For the proof of Theorem~\ref{T: Main} to hold, it remains to be shown that this encompasses all relevant components and excursions.
-One problem that might arise is the starting point of a component of size greater than some $\delta \n{2}{3}$, 
-which needs to be considered in the convergence, to diverge to infinity after rescaling as $n \rightarrow \infty$.
-Since we are working in the vague topology of counting processes, 
-this would entail the component not necessarily converging in distribution to some excursion of $\Bt$.
+This implies a convergence of all excursions of sufficient length on finite intervals.
+For a proof of Theorem~\ref{T: Main} to hold, it remains to be shown that we do not need to worry about "mass wandering off to infinity",
+meaning the rescaled starting points of excursions of sufficient length to diverge to infinity as $n \rightarrow \infty$.
+Another problem that might arise is the mass of all small excursions prohibiting a convergence in $\ld$.
+We deal with both problems in Section~\ref{S: late excursions} and at last prove our main theorems in Section~\ref{S: proofs}.
 
 
-\section{Matching components}
+\section{Matching components} \label{S: matching components}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Deterministic Lemma 7: Statement and Note
@@ -99,9 +99,9 @@ the point processes of starts and lengths of excursions converge vaguely to the 
 	\begin{equation}
 	\Xin(C) \rightarrow \Xi(C)
 	\end{equation}
-	for all relatively compact subsets of
-	$\IntTimesInt$,
-	where $\Xi(\partial C) = 0$.
+	for all relatively compact subsets
+	$C \subseteq \IntTimesInt$,
+	with $\Xi(\partial C) = 0$.
 	In this case, a relatively compact subset is a pair of intervals
 	$[T_1, T_2] \times [d_1, d_2]$,
 	with $T_1, T_2 \geq 0$
@@ -574,7 +574,7 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 It remains to be shown that we need not consider the problem of a large components discovered by the breadth-first walk
 or large excursions of the Brownian motion wandering off to infinity.
 
-\section{Analysis of deviant excursions}
+\section{Analysis of deviant excursions} \label{S: late excursions}
 \fxfatal{Find a better title}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Late excursions of Z_n
@@ -781,7 +781,7 @@ We state and prove a similar result on excursion lengths of the rescaled breadth
 \end{proof}
 
 
-\section{Finishing the proofs}
+\section{Finishing the proofs} \label{S: proofs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Finishing the proofs
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
