@@ -35,7 +35,7 @@ with $\nnt(0) = 0$, which increases by $1$ at each appearance of a surplus edge.
 	\label{F: Surplus Edges Tree}
 \end{figure}
 
-To understand the number of vertices which can even open such excess connections, 
+To find an expression for the number of vertices which are able to open such excess connections, 
 consider the breadth-first walk on the graph of Figure~\ref{F: Surplus Edges Tree} at time $s=2$.
 The children of $v_1$, $v_2$ to $v_4$, and the children of $v_2$, that is $v_5$ and $v_6$, are already discovered.
 We are interested in surplus edges to $v_3$.
@@ -62,9 +62,9 @@ which converges in distribution to
 \Bt(s) := \Wt(s) - \min_{u \leq s}\Wt(u). 
 \end{equation}
 
-In chapter~\ref{C: bf-walk} we examined a similar process, $B_n$, 
+In chapter~\ref{C: bf-walk} we examined a similar process, $\Bn$, 
 which increased by one for each appearance of a new edge to a previously not connected vertex.
-Lemma~\ref{L: formula an} established that $\Bn(s) = \int_{0}^{s} \an{u}du$ with
+Lemma~\ref{L: formula an} established that $\Bn(s) = \int_{0}^{s} \an(u)du$ with
 \begin{equation*}
 	\an(s) = (n - \Ineligible{s}) \ps,
 \end{equation*}
@@ -83,7 +83,7 @@ Note that this rate is only exact for the chance of encountering exactly one sur
 but an overestimation for multiple excess edges.
 If we encounter a surplus edge at some time $s \in [i-1, i)$,
 the number of eligible vertices should decrease by one.
-However, \eqref{E: rate Nnt} is constant for all $s \in [i-1, i)$.
+However, the number of ineligible vertices in \eqref{E: rate Nnt} is constant for all $s \in [i-1, i)$.
 For ease of computation we will continue with this overestimation and later argue that the difference becomes negligible as $n \rightarrow \infty$.
 
 Lemma~\ref{L: formula an} established $\Ineligible{s} = s + \Zetan{\ceil{s}} + \Zn{s}$ 
@@ -158,7 +158,7 @@ has Poisson distribution with parameter $\int_{I}\Bt(s)ds$.
 
 We know that $\rznt \rightarrow_d \Wt$ and that the rate of $\rnnt$ converges to $\Bt$.
 But is that enough to deduce the convergence in distribution of the highly correlated pair $(\rznt, \rnnt)$ to $(\Wt, \Nt)$?
-The remainder of this chapter is now dedicated to proving this convergence.
+The remainder of this chapter is dedicated to proving this convergence.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -769,7 +769,7 @@ If a vertex connects by multiple excess edges, the process $\nnt$ makes two or m
 The rescaling \eqref{E: rescale Nnt} compresses the time axis until, in the limit process $\Nt$, 
 any distance in an interval of original length $1$ will be reduced to a single point.
 Consequently there would be a non-zero chance that the counting process has multiple coincident points.
-But since $\int_x \Bt(s)ds = 0$ for all $x \in \Rplus$, 
+But since $\int_{\{x\}} \Bt(s)ds = 0$ for all $x \in \Rplus$, 
 $\Nt$ is simple and the probability of multiple coincident points occurring is $0$.
 We conclude that the probability of a vertex having multiple surplus edges must tend to zero.
 

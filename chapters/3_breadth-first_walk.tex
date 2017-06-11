@@ -10,7 +10,7 @@
 This chapter introduces the breadth-first walk, 
 a way to traverse the vertices of a given graph such that component sizes can be read from the development of a \cadlag~process. 
 
-\section{The deterministic breadth-first walk}
+\section{The breadth-first walk on a deterministic graph}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: The discrete breadth-first walk
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -264,21 +264,25 @@ The newly defined continuous walk adds those vertices at uniformly random times 
 	\label{F: bf-walk cont}
 \end{figure} 
 
+Note that, 
+since jumps are now happening at random times during their respective time interval, 
+$Z$ a stochastic process even though it is still only defined for a given deterministic graph.
 
 
-\section{Convergence of the breadth-first walk}
+\section{The breadth-first walk as a stochastic process}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: The central limit theorem for martingales
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fxfatal{Update title}
 
-
-We denote the stochastic process mapping a realization of $\Gnt$ to the corresponding breadth-first walk by $\znt$.
-\fxnote{This sentence is convoluted.}
-For $s \geq n$, 
-let $\znt(s) := \znt(n)$.
+Denote by $Z_{\Gcal}$ the continuous-time breadth-first walk on the graph $\Gcal$
+and define
+\begin{equation}
+	\znt(\omega, s) := Z_{\Gcal^{\pp}(\omega)}(s)
+\end{equation}
+where $\Gcal^{\pp}(\omega)$ is a realization of the critical random graph $\Gnt$.
 We can now state the main theorem of this chapter,
-the convergence of this process to a Brownian motion with drift after rescaling.
+the convergence in distribution of this process to a Brownian motion with drift after rescaling.
 
 \begin{theorem} \label{T: Z -> W}
 	Let $\znt(s)$, for $0 \leq s \leq n$, 
@@ -296,11 +300,11 @@ the convergence of this process to a Brownian motion with drift after rescaling.
 % SECTION: Decompositions of $\Zn$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In the next sections we will now prove Theorem~\ref{T: Z -> W}.
+In the next sections we prove Theorem~\ref{T: Z -> W}.
 We begin by providing a suitable decomposition of $\znt$ into a martingale and
-an integrable predictable process, similar to the Doob decomposition theorem.
+an integrable predictable process.
 The latter process will later provide the downwards drift of $\Wt$,
-while we go on proving the convergence of the former to a standard Brownian motion.
+while we go on proving the convergence of the martingale to a standard Brownian motion.
 
 Since $\Zn$ increases by $1$ for every event of a new edge appearing in the breadth-first walk
 we may view the process as a Poisson point process on the positive real line with a certain constant downwards drift.
