@@ -6,9 +6,8 @@
 
 \chapter{The nonuniform random graph} \label{C: nonuniform graph}
 
-In this thesis we discussed a random graph model in which all vertices were treated equally,
-that is the probability of drawing an edge $(v_i,v_j)$ was $\p$ regardless of the actual vertices $v_i$ and $v_j$.
-We call this model the uniform model.
+In this thesis we discussed a uniform random graph model in which all vertices were treated equally,
+meaning the probability of drawing an edge $(v_i,v_j)$ was $\p$ regardless of the choice of vertices $v_i$ and $v_j$.
 As it turns out, Theorem~\ref{T: Main} extends to a nonuniform random graph,
 in which every vertex has a weight or size and an edge is more likely to be drawn between two large vertices.
 
@@ -30,7 +29,7 @@ Interpreting $x_i$ as the size or weight of vertex $i$, we say a component $\Cca
 
 We now state the equivalent of Theorem~\ref{T: Main} for the nonuniform model.
 Recall that we had to resclae the breadth-first walk on the graphs of the uniform model to fit the Brownian motion $\Bt$.
-In this case, we build the scaling into restriction on the random graph, 
+In this case, we build the scaling into the restrictions on the random graph, 
 such that the component sizes themselves may converge in distribution to excursions of the Brownian motion with drift.
 For a vector $\x$, define
 \begin{equation}
@@ -61,8 +60,8 @@ For a vector $\x$, define
 	with respect to the $\ld$ topology, where $(C^{\pp}(j); j \geq 1)$ are the ordered excursion lengths of $\Bt$.
 \end{theorem}
 
-Note that this theorem does imply the number of vertices in components to converge,
-but the total size which is dependent on the number of vertices and their individual sizes.
+Note that this theorem does not imply the convergence of the number of vertices in each component,
+but its total size which is dependent on the number of vertices and their individual sizes.
 
 Consider the model $\Wrg(a\x, a^{-2}\q)$.
 For a pair $(i,j)$ the edge probability
@@ -166,13 +165,13 @@ Now
 \end{equation}
 
 
-While the jumps of the breadth-first walk where always of size $1$ for the uniform model,
+While the jumps of the breadth-first walk were always of size $1$ for the uniform model,
 now they are equal to the size of the vertex connecting to the current node.
 
 We define children of further nodes inductively:
 If $v_i$ is a node in the same component as $v_1$,
-consider the set of vertices which are children to one of the vertices $v_1, \dots, v-{i-1}$
-but are not part of the set $\{v_1, \dots, v-{i-1}\}$ themselves.
+consider the set of vertices which are children to one of the vertices $v_1, \dots, v_{i-1}$
+but are not part of the set $\{v_1, \dots, v_{i-1}\}$ themselves.
 These vertices are labelled $v_i, \dots, v_{l(i)}$ for some $l(i) \geq i$.
 Now define the children of $v_i$ as the vertices 
 $v \notin \{v_1, \dots, v_{l(i)}\}$ for which $\xi_{v_i, v} \leq x_{v_i}$,
