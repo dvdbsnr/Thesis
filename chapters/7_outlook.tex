@@ -10,8 +10,8 @@ which is the multiplicative coalescent.
 
 
 So far, we always considered $\pp$ as a constant which lead to a change of $\p$ only in $n$.
-We will now introduce a process that describes the random graph $\Wrg(\x, \q)$ for fix $\x$ and therefore $n$
-but variable $\q$, and therefore $p_{i,j}$.
+We will now introduce a process that describes the random graph $\Wrg(\x, \q)$ for fixed $\x$ and $n$
+but variable $\q$ and therefore $p_{i,j}$.
 
 We change the notation slightly.
 Fix $\x \in \ld$.
@@ -23,9 +23,9 @@ iff $\xi_{i,j} \leq \pp x_i x_j$.
 This way, we constructed a random graph process $(\Wrg(\x, \pp); 0 \leq \pp < \infty)$ 
 where the number of edges of $\Wrg(\x, \pp)$ is increasing in $\pp$.
 Let $X_i(\x, \pp)$ be the size of the $i$-th largest component of $\Wrg(\x, \pp)$ and let
-\begin{equation}
+\begin{math}
 	\X(\x, \pp) = (X_i(\x, \pp); i \geq 1).
-\end{equation}
+\end{math}
 \fxnote{This last sentence is 1:1 paper page 818.}
 
 For a vector of vertex sizes $\x$, $(\X(\x, \pp); 0 \leq \pp < \infty)$ is a continuous time Markov chain
@@ -47,7 +47,7 @@ For an initial state $\x = (x, 0, 0, \dots)$ we have a "constant" multiplicative
 	\X(\pp) = (x, 0, 0, \dots) \enspace \text{for all $-\infty < \pp < \infty$}.
 \end{equation}
 
-We say a vector $\x \in \ld$ is of finite length of $x_i = 0$ for all $i \geq N$ for some $N \in \Nat$.
+We say a vector $\x \in \ld$ is of finite length if $x_i = 0$ for all $i \geq N$ for some $N \in \Nat$.
 For a size vector $\x$ of finite length,
 the dynamics of the multiplicative coalescent starting in $\X(0) = \x$ can be expressed in martingale form as follows.
 For any vector $\x$, let $\x^{(i+j)}$ be the configuration obtained by merging the $i$-th and $j$-th components of $\x$,
@@ -81,9 +81,8 @@ We call a multiplicative coalescent \emph{eternal} if it is defined for all $-\i
 	where $\Ctbold$ is the joint distribution of excursion lengths of $\Bt$ as used in Theorem~\ref{T: Main}.
 \end{theorem}
 
-In a companion paper \cite{Aldous.1998}, 
-David Aldous and Vlada Limic categorize all possible versions of the eternal multiplicative coalescent,
-where different versions simply refer to different multiplicative coalescent processes.
+A proof of this theorem is featured in Chapter 4 of \cite{Aldous.1998}.
+A further analysis of multiplicative coalescent processes can be found in a companion paper by David Aldous and Vlada Limic, \cite{Aldous.1998}.
 
 
 
