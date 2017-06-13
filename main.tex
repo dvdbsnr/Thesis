@@ -22,6 +22,14 @@
 	\tableofcontents 
 	\newpage
 	
+	\cleardoublepage
+	% \phantomsection
+	\addcontentsline{toc}{chapter}{\listfigurename}
+	\listoffigures
+	
+	\glsaddall
+	\printnoidxglossary[title={List of Symbols}, sort=def]
+	
 	\input{chapters/1_introduction}
 	\input{chapters/2_preliminaries}
 	\input{chapters/3_breadth-first_walk}
@@ -39,11 +47,6 @@
 	
 	\bibliography{bibliography} 
 	\bibliographystyle{alpha}
-	
-	\listoffigures
-	
-	\glsaddall
-	\printnoidxglossary[title={List of Symbols}, sort=def]
 	
 	
 	
