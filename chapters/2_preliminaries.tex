@@ -14,7 +14,7 @@
 
 The central notion of this thesis is the convergence in distribution of random variables in general metric spaces.
 The results presented in this section and the next will be of special importance in the proof of Theorem~\ref{T: Joint Convergence}
-in Chapter~\ref{C: surplus edges} and of Theorems~\ref{T: folk theorem} and \eqref{T: Main} in Chapter~\ref{C: convergence}.
+in Chapter~\ref{C: surplus edges} and of Theorems~\ref{T: Main} in Chapter~\ref{C: convergence}.
 
 \begin{definition}[Weak convergence, {\cite[p.7]{Billingsley.1999}}] \label{D: weak convergence}
 	Let $\mu_n$, $\mu$ be measures on a metric space $S$ with associated \Bosi~$\mathcal{S} = \Bo(S)$.
@@ -217,7 +217,7 @@ we need a convergence that additionally allows small shifts on the x-axis.
 	\end{equation*}
 	where the infimum extends over all $\delta$-sparse sets $\{t_i\}$ and
 	\begin{equation*}
-		w_x([a,b]) := \sup_{s,t \in I[a,b]}|x(s)  -x(t)|.
+		w_x([a,b]) := \sup_{s,t \in [a,b]}|x(s)  -x(t)|.
 	\end{equation*}
 \end{definition}
 
@@ -447,9 +447,11 @@ in order to focus on the one-dimensional case we will need for our proof.
 	A_n(s) \longrightarrow_p c(s).
 	\end{equation}
 	where $c(s)$ is a continuous, increasing function on $[0, \infty)$ with $c(0) = 0$.
-	Then $M_n \longrightarrow_d X$ where $X$ is a process with sample paths in $C[0,\infty)$ and independent Gaussian increments.
+	Then $M_n \longrightarrow_d X$ where $X$ is a martingale with sample paths in $C[0,\infty)$ and independent Gaussian increments
+	and $X^2 - c$ is a martingale.
 \end{theorem}
 
+For $c(s) = s$, the limit process $X$ is the standard Brownian motion.
 
 We conclude this preliminary chapter by presenting the Girsanov's theorem,
 which will enable us to deduce certain properties of the Brownian motion with drift
