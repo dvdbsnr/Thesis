@@ -29,8 +29,11 @@ which already has opened connections to some explored node.
 We associate with $\Gcal$ a counting process $(\nnt(s), 0 \leq s \leq n)$,
 with $\nnt(0) = 0$, which increases by $1$ at each appearance of a surplus edge.
 
-\begin{figure}[ht]
-	\input{figures/chapter4/fig_tree.tex}
+\begin{figure}[h]
+	\centering
+	\scalebox{0.85}{
+		\input{figures/chapter4/fig_tree.tex}
+	}
 	\caption{A sample component} 
 	\label{F: Surplus Edges Tree}
 \end{figure}
@@ -86,7 +89,7 @@ the number of eligible vertices should decrease by one.
 However, the number of ineligible vertices in \eqref{E: rate Nnt} is constant for all $s \in [i-1, i)$.
 For ease of computation we will continue with this overestimation and later argue that the difference becomes negligible as $n \rightarrow \infty$.
 
-Lemma~\ref{L: formula an} established $\Ineligible{s} = s + \Zetan{\ceil{s}} + \Zn{s}$ 
+Lemma~\ref{L: formula an} established $\Ineligible{s} = s + \Zetan{\ceil{s}} + \Zn(s)$ 
 and using \eqref{E: zeta-1(i) = 1 - min(j)} we can rewrite
 \begin{equation*}
 \begin{aligned}
@@ -320,8 +323,8 @@ For a realization $N = \rnnt(\omega)$ we have
 \begin{equation}
 w'_{N}(\delta) = \inf_{\{t_i\}} \max_{1\leq i \leq k} \sup_{s,t \in [t_{i-1}, t_i)} |N(s) - N(t)|.
 \end{equation}
-For an interval $[t_{i-1}, ti)$, 
-$\sup_{s,t \in [t_{i-1}, ti)} |N(s) - N(t)| > 0$ only if there is a jump in $[t_{i-1}, t_i)$.
+For an interval $[t_{i-1}, t_i)$, 
+$\sup_{s,t \in [t_{i-1}, t_i)} |N(s) - N(t)| > 0$ only if there is a jump in $[t_{i-1}, t_i)$.
 For a set $\{t_i\}$, $\max_{1\leq i \leq k} \sup_{s,t \in [t_{i-1}, t_i)} |N(s) - N(t)| = 0$ if there is no jump in any interval $[t_{i-1}, ti)$.
 Therefore
 \begin{equation}
@@ -441,7 +444,7 @@ Now an argument analogous to \eqref{E: Estimation step 1} gives
 \end{aligned}
 \end{equation}
 
-By the continuity of $f$, for all $\epsilon>0$ we can choose a $\delta > 0$ such that $\norm{\WtX - \rzntX}_T < \delta$ implies
+By the uniform continuity of $f$ on the compact set $C$, for all $\epsilon>0$ we can choose a $\delta > 0$ such that $\norm{\WtX - \rzntX}_T < \delta$ implies
 that the inequality
 \begin{equation*}
 \begin{aligned}

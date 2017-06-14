@@ -597,9 +597,9 @@ of the whole ordered vector of component sizes and surplus edges.
 	\begin{aligned}
 	\Prob(\ExcursionEvent) 
 	&\leq \Exp{ \text{Number of excursions $\gamma: \; |\gamma| \geq \delta\n{2}{3},l(\gamma) \geq C\n{2}{3}$ } } \\
-	&= \Exp{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}} \Ind{\{|\gamma| \geq C\n{2}{3} \} } } \\
+	&= \Exp{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}} \Ind{\{|\gamma| \geq \delta\n{2}{3} \} } } \\
 	&\leq \Exp{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}} \frac{|\gamma|^2}{\delta^2\n{4}{3}} } \\
-	&= \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\gamma: \; l(\gamma) \geq \delta\n{2}{3}}  |\gamma|^2 }.
+	&= \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}}  |\gamma|^2 }.
 	\end{aligned}
 	\end{equation}
 	
@@ -814,7 +814,7 @@ we are now able to prove Folk Theorem~\ref{T: folk theorem}.
 		\Ynk \rightarrow_d \Yk.
 	\end{equation}
 	
-	Fix $k \in Nat$. 
+	Fix $k \in \Nat$. 
 	We again define $\rzntX \sim \rznt$ and $\WtX \sim \Wt$ on the same probability space,
 	where $\rzntX \rightarrow_{a.s.} \WtX$.
 	Since $\Yk$ is a vector of finite length, for all $\epsilon > 0$ we can find $\delta > 0$ such that
@@ -830,7 +830,7 @@ we are now able to prove Folk Theorem~\ref{T: folk theorem}.
 	\begin{equation} \label{E: folk theorem cond bm2}
 		\Prob(\exists \gamma: \; l(\gamma) > C, |\gamma| > \delta) < \epsilon.
 	\end{equation}
-	Since $\rzntX \rightarrow_{a.s.} \WtX$ for all $\beta > 0$ exists $N \in Nat$ such that for all $n \geq N$ we have
+	Since $\rzntX \rightarrow_{a.s.} \WtX$ for all $\beta > 0$ exists $N \in \Nat$ such that for all $n \geq N$ we have
 	\begin{equation} \label{E: folk theorem cond sup}
 		\Prob( \sup_{s \in [0, C]} |\rzntX(s) - \WtX(s)| > \beta ) < \epsilon.
 	\end{equation}

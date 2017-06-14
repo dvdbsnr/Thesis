@@ -162,14 +162,14 @@ We have
 \begin{aligned} 
 &\hspace{35pt} z(i) - z(i-1) = z^*(i)  -z^*(i-1) \\
 &\iff c(i) - 1 = |\Ni{i}| - \ZetaMinus{i} - |\Ni{i-1}| + \ZetaMinus{i-1} \\
-&\iff |\Ni{i}| - |\Ni{i-1}| = c(i) + \ZetaMinus{i} - \ZetaMinus{i-1}
+&\iff |\Ni{i}| - |\Ni{i-1}| = c(i) + \ZetaMinus{i} - \ZetaMinus{i-1} - 1
 \end{aligned}
 \end{equation}
 \fxnote{This equation does not look nice. Delete 1./2. row? Delete iffs?}
 \fxnote{This has to hold for i >= 1, or fix the indices.}
 
 We divide the proof into two cases.
-First, assume $v_{i-1}$ is not the last vertex in it's component.
+First, assume $v_{i-1}$ is not the last vertex in its component.
 Then $v_i$ belongs to the same component and
 $\ZetaMinus{i} = \ZetaMinus{i-1}$.
 Vertex $v_i$ has already been assigned a new label at step $i-1$,
@@ -465,7 +465,7 @@ We denote an edge between $v_i$ and $v_j$ by $(i,j)$.
 	\end{aligned}
 	\end{equation}
 	Seeing that $\SigmaAlgebra_s \subseteq \SigmaAlgebra_s^k$,
-	we apply the law of total expectation:
+	we apply the tower property:
 	\begin{equation}
 	\begin{aligned}
 	\Prob(\NewEdge{[s,s+ds]} \cond \SigmaAlgebra_s)
@@ -651,7 +651,7 @@ We first provide a general result on the breadth-first walk.
 	\begin{equation} \label{E: stoch bounded 2}
 	\begin{aligned}
 	\Prob( \sup_{s\leq n^{2/3} s_0} |\Zn(s)| > K \n{1}{3} ) &= \Prob( |\Zn(T_n)| > K\n{1}{3} ) \\
-	&\leq \frac{\Exp{|\Zn(T_n)}}{K}.
+	&\leq \frac{\Exp{|\Zn(T_n)}|}{K\n{1}{3}}.
 	\end{aligned} 
 	\end{equation}
 	
