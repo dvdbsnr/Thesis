@@ -326,22 +326,27 @@ We now state the main theorem of this thesis, which we will prove gradually in t
 	Let $\Cnt(1) \geq \Cnt(2) \geq ... $ be the ordered component sizes of $\Gnt$
 	and let $\sigmant(j)$ be the surplus of the corresponding component.
 	Then, as $n \rightarrow \infty$,
-	\begin{equation}
-	( \n{-2}{3} ( \Cnt(j), \sigmant(j) ), \; j \geq 1 ) 
-	\rightarrow_d
-	( (\Ct(j), \sigmat), \; j \geq 1 )
-	= ( \Ctbold, \sigmatbold ),
-	\end{equation}
-	where the convergence of component sizes
-	$\n{-2}{3} \Cntbold \rightarrow_p \Ctbold$
-	holds with respect to the $\ld$ topology.
-	
-	The limit
-	$\left( ( \Ct(j), \sigmat(j) ), \; j \geq 1 \right)$
-	is distributed as the sequence
-	$ \left( (|\gamma_j|, \mu(\gamma_j)), j \geq 1  \right) $
-	of lengths and mark-counts of excursions of $\Bt$.
+	\begin{enumerate}
+		\item the convergence
+		\begin{equation}
+		( \n{-2}{3} ( \Cnt(j), \sigmant(j) ), \; j \geq 1 ) 
+		\rightarrow_d
+		( \Ctbold, \sigmatbold ),
+		\end{equation}
+		holds with respect to the product topology,
+		
+		\item the convergence $\n{-2}{3} \Cntbold \rightarrow_p \Ctbold$
+		holds with respect to the $\ld$ topology and
+		
+		\item the limit
+		$( \Ctbold, \sigmatbold ) = \left( ( \Ct(j), \sigmat(j) ), \; j \geq 1 \right)$
+		is distributed as the sequence of lengths and mark-counts
+		$ \left( (|\gamma_j|, \mu(\gamma_j)), j \geq 1  \right) $
+		of excursions of $\Bt$.
+	\end{enumerate}
 \end{theorem}
+The Folk Theorem~\ref{T: folk theorem} is contained in the first statement of Theorem~\ref{T: Main}.
+
 
 \bigskip
 
@@ -359,10 +364,13 @@ We describe a Poisson counting process $\nnt$ which tallies up all encountered e
 The remainder of this chapter will be spent proving that this convergence of rates suffices to declare the convergence of the joint distribution of
 the rescaled breadth-first walk and this counting process to $\Wt$ and $\Nt$.
 
-The final proof of Folk~Theorem~\ref{T: folk theorem} and Theorem~\ref{T: Main} happens in Chapter~\ref{C: convergence}.
+The final proof of Theorem~\ref{T: Main} happens in Chapter~\ref{C: convergence}.
 We show that the convergence in distribution of the rescaled breadth-first walk to the Brownian motion with drift
 does indeed imply convergence of excursions of certain length on finite intervals.
-We prove that we do not need to worry about large excursions "wandering off to infinity" or the total weight of smaller excursions.
+A problem that remains is the possibility of large excursions "wandering off to infinity", 
+which in Aldous' paper is solved by a reference to existing random graphs results.
+We prove that we do not need to worry about these excursions or the total weight of smaller excursions
+independently of literature on random graphs. 
 We subsequently show that the convergence of component sizes and surplus edges holds in the product topology 
 and the former additionally in the $\ld$~topology.
 
@@ -372,4 +380,3 @@ We introduce this model and the statement of its equivalent to Theorem~\ref{T: M
 
 Lastly, Chapter~\ref{C: outlook} provides an overview over the remaining results of Aldous' paper,
 which feature the multiplicative coalescent, a Markov process on $\ld$ that describes the behaviour of component sizes for fixed $n$ and variable $\pp$.
-
