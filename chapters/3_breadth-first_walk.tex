@@ -364,11 +364,9 @@ For ease of notation we drop the superscript $\pp$ from all random variables in 
 	&= \int_{t}^{t+u} \Exp{ \Prob(\NewEdge{\sds} \cond \F{s}) \cond \F{t} } - u\\
 	&= \int_{t}^{t+u} \Prob( \NewEdge{\sds} \cond \F{t} ) - u
 	\quad \text{since} \enspace \F{t} \subseteq \F{s} \enspace \forall s \in [t,t+u] \\
-	&= \int_{t}^{t+u} \Exp{ \text{Number of new edges appearing in $[s, s+ds]$} \cond \F{t}} -u \\
+	&= \Exp{ \int_{t}^{t+u}  \Ind{\NewEdge{\sds}} \cond \F{t}} -u \\
 	&= \Exp{\text{Number of new edges appearing in} \enspace [t, t+u] \cond \F{t}} - u.
 	\end{align*}
-	\fxnote{Fs in Ft or Ft in Fs? Use "tower property".}
-	\fxnote{Explain "Number of new edges"="int P" more detailed.}
 	
 	
 	This proves $\Mn$ to be a martingale. 	
@@ -574,7 +572,7 @@ The following statement proves a similar decomposition of the squared martingale
 	where $\norm{\Pi} := \max_{t_i, t_{i-1} \in \Pi} (t_i - t_{i-1})$ is the mesh of the partition.
 	Then
 	\begin{equation} \label{E: def quadratic variation}
-		[M]_t = \lim_{n \rightarrow \infty} \sum_{t_i, t_{i-1} \in \Pi_n}(M_{t_i} - M_{t_{i-1}})^2.
+		\sum_{t_i, t_{i-1} \in \Pi_n}(M_{t_i} - M_{t_{i-1}})^2 \rightarrow_p [M]_t.
 	\end{equation}
 	
 	If $M_t$ is a continuous process of bounded variation, then $[M]_t = 0$ for all $t$.
