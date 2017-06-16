@@ -6,9 +6,10 @@
 %	The Erdös-Renyi random graph $\Gcal(n, \p)$ on $n$ vertices with edge probability $\p = n^{-1} + \pp \n{-4}{3}$
 %	for some $\pp \in \Real$ is called critical and its component sizes are of order $\n{2}{3}$.
 	
-	Component sizes in the critical Erdös-Renyi random graph $\Gcal(n, \p)$
-	(i.e. with edge probability $\p = n^{-1} + \pp \n{-4}{3}$ for some $\pp \in \Real$)
-	are of order $\n{2}{3}$.
+	Based on a 1997 paper by David Aldous we analyse component sizes in the critical Erdös-Renyi random graph,
+	$\Gcal(n, \p)$ with edge probability $\p = n^{-1} + \pp \n{-4}{3}$ for some $\pp \in \Real$.
+	
+	In general, component sizes will be of order $\n{2}{3}$.
 	As $n \rightarrow\infty$, the ordered component sizes and corresponding counts of surplus edges
 	(both rescaled by $\n{-2}{3}$) converge in distribution to a limit.
 	
@@ -16,5 +17,9 @@
 	and reflect this process at the $x$-axis by $\Bt(t) = \Wt(t) - \min_{s \leq t} \Wt(s)$.
 	The limit of component sizes and surplus edges is distributed as the ordered lengths of excursions of $\Bt$ above zero 
 	and marks of a Poisson point process with rate $\Bt$.
+	
+	While parts of the original paper rely on deep results on random graphs about bounds on the number of tree components, 
+	unicyclic components and complex components, 
+	we provide a self-contained proof that substantially simplifies the argument.
 	
 \end{abstract}
