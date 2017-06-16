@@ -191,8 +191,6 @@ The remainder of this chapter is dedicated to proving this convergence.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % OVERVIEW
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We begin with a quick overview of the proof.
-
 We want to show that
 \begin{equation}
 (\rznt, \rnnt) \rightarrow_d (\Wt, \Nt),
@@ -202,19 +200,45 @@ meaning
 \Exp{f(\rznt, \rnnt)} \xrightarrow{n \rightarrow \infty} \Exp{f(\Wt, \Nt)}
 \end{equation}
 for all continuous, bounded functions $f:D[0,T]^2\rightarrow\Real$.
-The main idea of our proof is conditioning the expectations of some fixed realization of the Brownian motion $\Wt$ and analysing  $\Exp{f(\znt, \nnt) \cond \Wt}$.
-We first prove that for all $\epsilon > 0$ and sufficiently large $n$,
-\begin{equation}
-	| \Exp{f(\znt, \nnt) \cond \Wt} -  \Exp{f(\Wt, \nnt) \cond \Wt} | < \epsilon
-\end{equation}
-holds.
-We then show that, conditioning on a fixed underlying Brownian motion $\Wt$, the convergence $\nnt \rightarrow_d \Nt$ holds,
-which proves
-\begin{equation}
-	\Exp{f(\Wt, \nnt) \cond \Wt} \xrightarrow{n \rightarrow \infty} \Exp{f(\Wt, \Nt ) \cond \Wt}
-\end{equation}
-since $f(\Wt, \cdot)$ is a bounded and continuous function.
-The Theorem follows by averaging over all $\Wt$ using the law of total expectation.
+
+We begin with a quick overview of the proof.
+\begin{enumerate}
+	\item We show that the process $(\rznt, \rnnt)$ is tight,
+	which allows us to restrict the expectation to
+	\begin{math}
+		\Exp{f(\rznt, \rnnt) \cond \Event{C}}
+	\end{math}
+	where
+	\begin{math}
+		\Event{C} = \{ (\rznt, \rnnt) \in C \}
+	\end{math}
+	for some compact $C \in \DT^2$.
+	
+	\item Since $\rznt \rightarrow_d \Wt$ we can define them on the same probability space such that
+	$\norm{|\rznt(s) - \Wt(s)|}_T < \delta$. 
+	Calling this event $\Event{\delta}$,
+	it suffices to look at
+	\begin{math}
+	\Exp{f(\Wt, \rnnt) \cond \Event{C}, \Event{\delta}}.
+	\end{math}
+	
+	\item If $\norm{|\rznt(s) - \Wt(s)|}_T < \delta$ then with high probability $\nnt = \Ndis$,
+	where $\Ndis$ is a discrete process with binomially distributed increments,
+	dependent on an upscaling of $\Bt$.
+	It then suffices to prove convergence of 
+	\begin{math}
+		\Exp{f(\Wt, \Ndis) \cond \Event{C}, \Event{\delta}}.
+	\end{math}	
+	
+	\item Finally we prove
+	\begin{math}
+		\Exp{f(\Wt, \Ndis)} \rightarrow \Exp{f(\Wt, \Nt)}
+	\end{math}
+	by showing that for all realizations of $\Wt$ we have
+	\begin{math}
+		\Ndis \rightarrow_d \Nt.
+	\end{math}
+\end{enumerate}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -243,13 +267,16 @@ and therefore
 \end{equation}
 which is the first condition of Theorem~\ref{T: tightness in DT}.
 
-We first establish an analogous result for $\rznt$ from \eqref{E: rznt tight}.
-For all $\epsilon > 0$ exists $A>0$ such that for all $n$
+For the second condition, we first take a look at $\rznt$.
+From \eqref{E: rznt tight} we know that for all $\epsilon > 0$ exists $A>0$ such that for all $n$
 \begin{equation} \label{E: rznt bounded}
 \Prob(\sup_{s \leq T} |\rznt(s)| > A) < \epsilon.
 \end{equation}
-
-Define $\rzminz(s) := \rznt(s) - \min_{u \leq s}\rznt(u)$, the process reflecting $\rznt$ at the x-axis.
+Define 
+\begin{equation}
+	\rzminz(s) := \rznt(s) - \min_{u \leq s}\rznt(u),
+\end{equation}
+the process reflecting $\rznt$ at the x-axis.
 Since $|\rzminz(s)| \leq 2\max_{u \leq s}|\rznt(u)|$, \eqref{E: rznt bounded} implies
 \begin{equation} \label{E: rzminz bounded}
 \Prob(\sup_{s \leq T} |\rzminz(s)| > 2A) < \epsilon.
@@ -388,23 +415,24 @@ Thus there is a compact subset $C \subset \DT^2$ such that
 \begin{proofpart}
 The next step in our proof will be showing that for all $\epsilon > 0$,
 \begin{equation}
-|\Exp{ f(\rznt, \rnnt) \cond \Wt} - \Exp{f(\Wt, \rnnt) \cond \Wt}| < \epsilon,
+|\Exp{ f(\rznt, \rnnt)} - \Exp{f(\Wt, \rnnt)}| < \epsilon
 \end{equation}
 for sufficiently large $n$.
 Recall that $f$ is a bounded function, so there exists $M>0$ such that $|f(x,y)| \leq M$ for all $(x,y) \in \DT^2$.
 We denote by $\Event{C}$ the event $(\znt, \rnnt) \in C$ and use the law of total expectation to calculate
 \begin{equation} \label{E: Estimation step 1}
 \begin{aligned}
-\Exp{ f(\rznt, \rnnt) \cond \Wt} 
-&= \Exp{f(\rznt, \rnnt) \cond \Wt, \Event{C}} \Prob(\Event{C}) \\
-&\quad + \Exp{f(\rznt, \rnnt) \cond \Wt, \neg\Event{C}} \Prob(\neg\Event{C}) \\
-&\leq \Exp{f(\rznt, \rnnt) \cond \Wt, \Event{C}}\Prob(\Event{C}) + \epsilon M.
+\Exp{ f(\rznt, \rnnt)} 
+&= \Exp{f(\rznt, \rnnt) \cond \Event{C}} \Prob(\Event{C}) \\
+&\quad + \Exp{f(\rznt, \rnnt) \cond \neg\Event{C}} \Prob(\neg\Event{C}) \\
+&\leq \Exp{f(\rznt, \rnnt) \cond \Event{C}}\Prob(\Event{C}) + \epsilon M.
 \end{aligned}
 \end{equation}
 
 Since $\rznt \rightarrow_d \Wt$, we can use the Skorohod representation theorem to define random variables 
+\fxfatal{Add Skorohod reference}
 $\WtX$, $\bar{\mathcal{Z}}^t_1$, $\bar{\mathcal{Z}}^t_2$, \dots
-on the some common probability space, such that $\WtX \sim \Wt$, $\bar{\mathcal{Z}}^t_i \sim \bar{Z}^t_i$ for all $i \in \Nat$
+on the same probability space, such that $\WtX \sim \Wt$, $\bar{\mathcal{Z}}^t_i \sim \bar{Z}^t_i$ for all $i \in \Nat$
 and $\rzntX \rightarrow_{a.s.} \WtX$ as $n \rightarrow \infty$.
 Meaning, since $\WtX$ and $\rzntX$ are random variables mapping into function spaces, we have
 \begin{equation}
@@ -438,9 +466,9 @@ By \eqref{E: Prob(Event(delta)) 1}, for sufficiently large $n$,
 Now an argument analogous to \eqref{E: Estimation step 1} gives
 \begin{equation} \label{E: Estimation step 2}
 \begin{aligned}
-\Exp{f(\rzntX, \rnntX) \cond \WtX} 
-&\leq \Exp{f(\rzntX, \rnntX) \cond \WtX, \Event{C}}\Prob(\Event{C}) + \epsilon M \\
-&\leq \Exp{f(\rzntX, \rnntX) \cond \WtX, \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2 \epsilon M.
+\Exp{f(\rzntX, \rnntX) } 
+&\leq \Exp{f(\rzntX, \rnntX) \cond \Event{C}}\Prob(\Event{C}) + \epsilon M \\
+&\leq \Exp{f(\rzntX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2 \epsilon M.
 \end{aligned}
 \end{equation}
 
@@ -456,9 +484,9 @@ f(\rzntX, \rnntX) &= f(\rzntX, \rnntX) + f(\WtX, \rnntX) - f(\WtX, \rnntX) \\
 holds. Therefore
 \begin{equation} \label{E: Estimation step 3}
 \begin{aligned}
-\Exp{f(\znt, \rnntX) \cond \WtX} 
-&\leq \Exp{f(\rzntX, \rnntX) \cond \WtX, \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2 \epsilon M \\
-&\leq \Exp{f(\WtX, \rnntX) \cond \WtX, \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + \epsilon + 2 \epsilon M.
+\Exp{f(\znt, \rnntX) } 
+&\leq \Exp{f(\rzntX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2 \epsilon M \\
+&\leq \Exp{f(\WtX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + \epsilon + 2 \epsilon M.
 \end{aligned}
 \end{equation}
 \end{proofpart}
@@ -600,56 +628,22 @@ which yields
 \begin{equation} \label{E: Estimation step 4}
 \begin{aligned}
 \Exp{f(\znt, \nnt)} 
-&\leq \Exp{f(\WtX, \nnt) \cond \WtX, \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + \epsilon + 2M\epsilon   \\
-&\leq \Exp{f(\WtX, \rNdis) \cond \WtX, \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2\delta T M + \epsilon  + 2M\epsilon  .
+&\leq \Exp{f(\WtX, \nnt) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + \epsilon + 2M\epsilon   \\
+&\leq \Exp{f(\WtX, \rNdis) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2\delta T M + \epsilon  + 2M\epsilon \\
+&\leq \Exp{f(\WtX, \rNdis)} + 2\delta T M + \epsilon  + 2M\epsilon.
 \end{aligned}
 \end{equation}
-
-We want to drop the conditioning on $\Event{C}$ and $\Event{\delta}$ from the expectation in \eqref{E: Estimation step 4}
-and calculate
-\begin{equation*}
-\begin{aligned}
-	\Exp{f(\WtX, \rNdis) \cond \WtX } 
-	&= \Exp{f(\WtX, \rNdis) \cond \WtX, \Event{C}} \Prob(\Event{C}) \\
-	&\quad + \Exp{f(\WtX, \rNdis) \cond \WtX, \neg \Event{C}} \Prob(\neg\Event{C}) \\
-	&= \Exp{f(\WtX, \rNdis) \cond \WtX, \Event{C}, \Event{\delta} } \Prob(\Event{C}) \Prob(\Event{\delta}) \\
-	&\quad + \Exp{f(\WtX, \rNdis) \cond \WtX, \Event{C}, \neg \Event{\delta}} \Prob(\Event{C}) \Prob(\neg \Event{\delta})\\
-	&\quad + \Exp{f(\WtX, \rNdis) \cond \WtX, \neg \Event{C}} \Prob(\neg\Event{C}).
-\end{aligned}
-\end{equation*}
-
-As previously established, $\Prob(\Event{C}), \Prob(\Event{\delta}) > 1 - \epsilon$ for sufficiently large $n$.
-The boundedness of $f$ implies $f(\WtX, \rNdis) \geq -M$, therefore
-\begin{equation*}
-\begin{aligned}
-	&\Exp{f(\WtX, \rNdis) \cond \WtX, \Event{C}, \Event{\delta} } \Prob(\Event{C}) \Prob(\Event{\delta}) \\
-	&\qquad = \Exp{f(\WtX, \rNdis) \cond \WtX } \\
-	&\qquad\quad - \Exp{f(\WtX, \rNdis) \cond \WtX, \Event{C}, \neg \Event{\delta}} \Prob(\Event{C}) \Prob(\neg \Event{\delta}) \\
-	&\qquad\quad - \Exp{f(\WtX, \rNdis) \cond \WtX, \neg \Event{C}} \Prob(\neg\Event{C}) \\
-	&\qquad \leq \Exp{f(\WtX, \rNdis) \cond \WtX } + 2\epsilon M.
-\end{aligned}
-\end{equation*}
-
-Substituting this result in \eqref{E: Estimation step 4} gives
-\begin{equation} \label{E: Estimation step 5}
-\begin{aligned}
-	\Exp{f(\znt, \nnt)} 
-	&\leq \Exp{f(\WtX, \rNdis) \cond \WtX, \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2\delta T M + \epsilon  + 2M\epsilon  \\
-	&\leq \Exp{f(\WtX, \rNdis) \cond \WtX } + 2\delta T M + \epsilon  + 4M\epsilon.
-\end{aligned}
-\end{equation}
-
 This inequality holds for all bounded, continuous functions $f$. 
 Therefore it holds for $-f$ as well, which implies
 \begin{equation}
 \begin{aligned}
-\Exp{-f(\znt, \nnt)} &\leq \Exp{-f(\WtX, \rNdis) \cond \WtX}+ 2\delta T M  + \epsilon + 4M\epsilon \\
-\iff  \Exp{f(\znt, \nnt)} &\geq \Exp{f(\WtX, \rNdis) \cond \WtX} - 2\delta T M  - \epsilon - 4M\epsilon,
+\Exp{-f(\znt, \nnt)} &\leq \Exp{-f(\WtX, \rNdis) \cond \WtX}+ 2\delta T M  + \epsilon + 2M\epsilon \\
+\iff  \Exp{f(\znt, \nnt)} &\geq \Exp{f(\WtX, \rNdis) \cond \WtX} - 2\delta T M  - \epsilon - 2M\epsilon,
 \end{aligned}
 \end{equation}
 and therefore
 \begin{equation} \label{E: Equality of Expectations}
-	|\Exp{f(\znt, \nnt)} - \Exp{f(\WtX, \rNdis) \cond \WtX} | \leq 2\delta T M + \epsilon  + 4M\epsilon.
+	|\Exp{f(\znt, \nnt)} - \Exp{f(\WtX, \rNdis) \cond \WtX} | \leq 2\delta T M + \epsilon  + 2M\epsilon.
 \end{equation}
 \end{proofpart}
 
@@ -660,6 +654,7 @@ and therefore
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proofpart}
 We now show that $\rNdis \rightarrow_d \Nt$.
+Fix a realization $\Wt = \Wt(\omega)$.
 Since $\nnt$ is tight and $\nnt$ is equal to $\Ndis$ with high probability,
 $\Ndis$ and $\rNdis$ are tight and it suffices proving convergence in finite dimensional distributions,
 in this case for all $0 \leq s_1 < s_2 < \dots < s_l \leq T$:
