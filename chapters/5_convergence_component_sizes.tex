@@ -471,11 +471,11 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	Consider the set of positive rational numbers.
 	For every $q \in \Rat^+$, 
 	define 
-	\begin{equation}
+	\begin{equation} \label{E: def l(q)}
 		l(q) := \sup\{ \argmin_{s < q} \WtX(s) \}
 	\end{equation}
 	and
-	\begin{equation}
+	\begin{equation} \label{E: def r(q)}
 		r(q) := \inf\{ {s > q \; | \; \WtX(s) = \WtX(l(q))} \}.
 	\end{equation}
 	
@@ -483,23 +483,28 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	while one excursion contains multiple rational numbers.
 	We define the set of excursions
 	\begin{equation}
-	\mathcal{E} := \bigcup_{q \in \Rat^+} \{ (l(q), r(q)) \}
+	\mathcal{E} := \bigcup_{q \in \Rat_+} \{ (l(q), r(q)) \}
 	\end{equation}
 	and note that it is countable.
 	
 	The following properties will be proven on a standard Brownian motion $W$,
 	we later use Girsanov's theorem to apply them to $\WtX$.
 	
+	Consider two excursions $(l_1, r_2), (l_2, r_2)$ with $l_1 < l_2$.
+	We want to show that, almost surely, for any two excursions $(l_1, r_2), (l_2, r_2)$ with $l_1 < l_2$
+	\begin{equation} \label{E: W(l2) < W(l1)}
+		W(l_2) = \min_{s \leq l_2} W(s) < W(l_1)
+	\end{equation} 
+	holds.
+	If not, there exists an excursion $(l,r)$ such that another excursion begins immediately at $r$
+	or that $W$ is constant for some time after $r$ and then starts a new excursion.
+	Fix $q \in \Rat_+$. 
+	By \eqref{E: def r(q)} $r(q)$ is a stopping time and by the strong Markov property of Brownian motion
+	$W(s) - W(r(q))$ behaves like a standard Brownian motion for $s \geq r(q)$.
 	By \cite[Theorem 2.8, p.38]{Morters.2010},
 	$W$ is has positive and negative values on any interval $[0,\delta]$ for $\delta > 0$ almost surely.
-	Therefore for $a \in \Rplus$, 
-	$W$ takes values greater than $W(a)$ and values smaller than $W(a)$ in the interval $[a,\delta]$,
-	for all $\delta > 0$.
-	
-	Consider two excursions $(l_1, r_2), (l_2, r_2)$ with $l_1 < l_2$.
-	If $W(l_2) = \min_{s \leq l_2} W(s) \geq f(l_1)$ then $W(s) \geq W(l_1)$ for all $l_1 < s < l_2$,
-	which is impossible by the considerations above.
-	For each $(l,r) \in \mathcal{E}$ this holds almost surely
+	Therefore for all $\delta > 0$ there exists $x \in (r(q), r(q) + \delta)$ with $W(x) < W(r(q))$.
+	For each $(l,r) \in \mathcal{E}$ \eqref{E: W(l2) < W(l1)} holds almost surely
 	and since $\mathcal{E}$ is countable,
 	condition \eqref{E: f cond f(l1) > f(l2)} holds with probability $1$.
 	
@@ -507,12 +512,12 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	on which the Brownian motion is monotonously decreasing.
 	By \cite[Theorem 1.22, p.18]{Morters.2010}, 
 	$W$ is not monotonous on any interval $[a,b]$ with $0 \leq a < b < \infty$ almost surely.
-	By the same reasoning, almost surely there is no interval in between any two excursions on which $W$ is monotonously decreasing,
-	therefore condition \eqref{E: f cond complement zero} holds almost surely.
+	Therefore almost surely there is no interval in between any two excursions on which $W$ is monotonously decreasing
+	and condition \eqref{E: f cond complement zero} holds almost surely.
 	
 	A standard Brownian motion $W$ satisfies the conditions of Lemma~\ref{L: Deterministic Lemma} almost surely,
 	therefore $\WtX$ does so almost surely under $\tilde{\mathbb{P}}$
-	and by Girsanov's theorem likewise under $\Prob$.  
+	and by Girsanov's theorem likewise under $\Prob$.
 
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
