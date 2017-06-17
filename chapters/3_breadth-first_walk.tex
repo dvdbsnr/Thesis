@@ -48,14 +48,12 @@ and define the neighbour set $\Ni{i}$ as the vertices outside of
 $\{ v_1,\dots, v_i \}$ 
 that are neighbours to some vertex in 
 $\{ v_1,\dots, v_i \}$:
-\begin{equation}
+\begin{equation} \label{D: Ni}
 \Ni{i} := 
 \left\lbrace v \in V \backslash \{ v_1,\dots, v_i \} 
 \; | \; 
 \left(v_j, v\right) \in E \; \text{for some} \; 1 \leq j \leq i \right\rbrace
 \end{equation}
-\fxnote{Remove equation? Unnecessary?}
-\fxnote{Fix \text in braces: Space \; or \quad}
 This allows us to define the set of children of some vertex $v_i$ as
 $\Ni{i} \backslash \Ni{i-1}$.
 First order the components as described above. 
@@ -80,7 +78,9 @@ Traverse all components this way.
 % Definitions of breadth-first walk
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 For the number of children of $v_i$ write 
-$c(i) = |\Ni{i} \backslash\Ni{i-1}|$.
+\begin{equation} \label{D: ci}
+c(i) = |\Ni{i} \backslash\Ni{i-1}|.
+\end{equation}
 Now define the breadth-first walk 
 $(z(i), \; 1 \leq i \leq n)$
 by
@@ -144,8 +144,9 @@ We count their occurrence with another counting process in Chapter~\ref{C: surpl
 We write
 \begin{align}
 \zeta(j) &:= |\Ci{1}| + \dots + |\Ci{j}|, \label{E: zeta}\\ 
-\ZetaMinus{i} &:= \min \{ j \; | \; \zeta(j) \geq i \}, \label{E: zeta-1}
+\zeta^{-1}(i) &:= \min \{ j \; | \; \zeta(j) \geq i \}, \label{E: zeta-1}
 \end{align}
+
 for the index of the last vertex in the $j$-th component and the index of the component containing $v_i$,
 respectively.
 Now we can provide a definition of the breadth-first walk equivalent to \eqref{E: def bf-walk z}:
@@ -161,8 +162,8 @@ We have
 \begin{equation} \label{E: equality z z*}
 \begin{aligned} 
 &\hspace{35pt} z(i) - z(i-1) = z^*(i)  -z^*(i-1) \\
-&\iff c(i) - 1 = |\Ni{i}| - \ZetaMinus{i} - |\Ni{i-1}| + \ZetaMinus{i-1} \\
-&\iff |\Ni{i}| - |\Ni{i-1}| = c(i) + \ZetaMinus{i} - \ZetaMinus{i-1} - 1
+&\iff c(i) - 1 = |\Ni{i}| - \zeta^{-1}(i) - |\Ni{i-1}| + \zeta^{-1}(i-1) \\
+&\iff |\Ni{i}| - |\Ni{i-1}| = c(i) + \zeta^{-1}(i) - \zeta^{-1}(i-1) - 1
 \end{aligned}
 \end{equation}
 \fxnote{This equation does not look nice. Delete 1./2. row? Delete iffs?}
@@ -171,7 +172,7 @@ We have
 We divide the proof into two cases.
 First, assume $v_{i-1}$ is not the last vertex in its component.
 Then $v_i$ belongs to the same component and
-$\ZetaMinus{i} = \ZetaMinus{i-1}$.
+$\zeta^{-1}(i) = \zeta^{-1}(i-1)$.
 Vertex $v_i$ has already been assigned a new label at step $i-1$,
 so $v_i \in \Ni{i-1}$.
 Going from $i-1$ to $i$,
@@ -184,7 +185,7 @@ So
 which provides the equality.
 
 In the second case, if $v_{i-1}$ is the last vertex of it's component,
-then $\ZetaMinus{i} = \ZetaMinus{i-1} + 1$
+then $\zeta^{-1}(i) = \zeta^{-1}(i-1) + 1$
 and $|\Ni{i-1}| = 0$.
 Equality \eqref{E: equality z z*} reduces to
 $ |\Ni{i}| = c(i)$,
@@ -212,7 +213,7 @@ Knowing this we can reconstruct sizes and indices of components via
 \begin{align}
 \zeta(j) &= \min \{ i \; | \; z(i) = -j \}, \label{E: zeta(j) = min(i)} \\
 |\Ci{j}| &= \zeta(j) - \zeta(j-1), \label{E: C(j) = zeta - zeta} \\
-\ZetaMinus{i} &= 1 - \min_{j \leq i-1}z(j). \label{E: zeta-1(i) = 1 - min(j)}
+\zeta^{-1}(i) &= 1 - \min_{j \leq i-1}z(j). \label{E: zeta-1(i) = 1 - min(j)}
 \end{align}
 \fxnote{Maybe add some more explanation on where these formulas come from.}
 
@@ -277,7 +278,7 @@ $Z$ a stochastic process even though it is still only defined for a given determ
 
 Denote by $Z_{\Gcal}$ the continuous-time breadth-first walk on the graph $\Gcal$
 and define
-\begin{equation}
+\begin{equation} \label{D: znt}
 	\znt(\omega, s) := Z_{\Gcal^{\pp}(\omega)}(s)
 \end{equation}
 where $\Gcal^{\pp}(\omega)$ is a realization of the critical random graph $\Gnt$.
@@ -474,7 +475,7 @@ We denote an edge between $v_i$ and $v_j$ by $(i,j)$.
 	\end{equation}
 	Conditioning on $\SigmaAlgebra_s$,
 	the breadth-first walk $\Zn$ tells us exactly how many vertices have connected to vertex $v_i$ until time $s$.
-	We denote by $\Ineligible{s}$ the number of vertices that are at time $s$ not eligible to be a child of $v(\ceil{s})$.
+	We denote by $\Ineligible{s}$ the number of vertices that are at time $s$ not eligible to be a child of $v(\ceil{s})$. \label{I: eta}
 	Then $N-k=n-\Ineligible{s}$ at time $s$ and
 	\begin{equation}
 	\an(s)ds = \Prob(\NewEdge{\sds} \cond \SigmaAlgebra_s) = (n - \Ineligible{s}) \ps ds.
@@ -582,7 +583,7 @@ The following statement proves a similar decomposition of the squared martingale
 	\begin{equation}
 	\Mnq{t} = \sum_{0 \leq s \leq t} (\Delta \Mn(s))^2,
 	\end{equation}
-	where $\Delta \Mn(s) := \Mn(s) - \Mn(s-)$ are the jumps of $\Mn$.
+	where $\Delta \Mn(s) := \Mn(s) - \Mn(s-)$ are the jumps of $\Mn$. \label{I: DeltaX}
 	Thus
 	\begin{equation}
 	\Mn^2 - \Bn = (\underbrace{\Mn^2 - [\Mn]}_{\text{martingale}}) + ([\Mn] - \Bn),
