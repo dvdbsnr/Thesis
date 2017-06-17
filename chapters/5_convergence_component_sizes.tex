@@ -381,7 +381,7 @@ There $\Xin(C) \leq \Xi(C)$ for sufficiently large $n$, which completes the proo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lemma 8: Statement
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The following Lemma will now link excursions of $Z_n$ and $\Wt$ in the language of Lemma~\ref{L: Deterministic Lemma}.
+The following lemma will now link excursions of $\rznt$ and $\Wt$ in the language of Lemma~\ref{L: Deterministic Lemma}.
 We define a random point process containing the starts and lengths of excursions of $\Bt$ together with a sequence of random point processes describing the starts and sizes of components discovered by $\rznt$.
 Let $\Ci{n,i}$ be the size of the $i$-th component and
 define $\gamma_n(i) \in \{1, \dots, n\}$ as the index for which
@@ -816,14 +816,14 @@ After all these technical considerations we are now ready to prove our main theo
 	as the excursion lengths of $\rzntX$ and corresponding counts of $\rnntX$,
 	as well as
 	\begin{equation} \label{E: def Y}
-		\Y := ((|\gamma_1|, \sigma_1), (|\gamma_2|, \sigma_2), \dots)
+		\Y := ((|\gamma_1|, \mu(\gamma_1)), (|\gamma_2|, \mu(\gamma_2)), \dots)
 	\end{equation}
 	for the lengths of excursions and corresponding mark counts of $\BtX$, each ordered by decreasing excursion length.
 	Denote by 
 	\begin{equation}
 		\begin{aligned}
 		\Ynk &:= ((|\rgamman_1|, \rsigman_1), \dots, (|\rgamman_k|, \rsigman_k)) \\
-		\Yk  &:= ((|\gamma_1|, \sigma_1), \dots, (|\gamma_k|, \sigma_k))
+		\Yk  &:= ((|\gamma_1|, \mu(\gamma_1)), \dots, (|\gamma_k|, \mu(\gamma_k)))
 		\end{aligned}
 	\end{equation}
 	the vector of the first $k$ components of the corresponding vector.
