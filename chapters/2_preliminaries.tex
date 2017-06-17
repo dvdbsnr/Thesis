@@ -200,7 +200,7 @@ we need a convergence that additionally allows small shifts on the x-axis.
 		\item $\sup_{t \in [0,T]}|\lambda (t) - t| = \sup_{t \in [0,T]}|t - \lambda^{-1}(t)| < \epsilon$,
 		\item  $\sup_{t \in [0,T]}|x(\lambda (t)) - y(t)| = \sup_{t \in [0,T]}|x(t) - y(\lambda^{-1}(t))| < \epsilon$.
 	\end{enumerate}
-	And writing $\norm{x}_T = \sup_{t \in [0,T]}|x(t)|$ we can provide a more compact form:
+	And writing $\norm{x}_T = \sup_{t \in [0,T]}|x(t)|$ we can provide a more compact form: \label{I: supnorm}
 	\begin{equation}
 		d(x,y) = \inf_{\lambda \in \Lambda}\{ \norm{\lambda - I}_T \vee \norm{x - y(\lambda)}_T \},
 	\end{equation}
@@ -305,7 +305,7 @@ For the next observations, we will take $\Rplus$ as the underlying Hausdorff spa
 			\end{equation}
 	\end{enumerate}
 	The mean measure is often given in terms of a \emph{rate} or \emph{conditional intensity} $\lambda$ by
-	\begin{equation}
+	\begin{equation} \label{D: def gamma(A)}
 		\gamma(A) = \int_A \lambda(t)dt.
 	\end{equation}
 	We can interpret this conditional intensity as

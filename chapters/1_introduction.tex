@@ -65,11 +65,11 @@ when increasing the number of edges $M(n)$,
 the sizes of connected components undergo distinct phases leading from small sparse components and unconnected vertices
 to one giant component and eventually a completely connected graph.
 
-Most current literature and the paper we are studying uses a slightly different approach to the contruction of this random graph.
+Most current literature and the paper we are studying uses a slightly different approach to the construction of this random graph.
 Given a set of vertices $\{1, \dots, n\}$ and an edge-probability $\p = p(n)$
 we take every edge $(v_1, v_2)$ and add it to the set of edges $E$ of the random graph with probability $\p$ independently.
 We call an edge $e = (v_1, v_2)$ open if $e \in E$, closed otherwise.
-We denote a random object constructed this way by $\Gcal(n, \p)$ and expect a realisation of the random graph to have $\binom{n}{2}\p$ edges.
+We denote a random object constructed this way by $\Gcal(n, \p)$\label{I: gnt} and expect a realisation of the random graph to have $\binom{n}{2}\p$ edges.
 When increasing the probability $\p$ from $0$ to $1$ the resulting random graph undergoes the same so-called phase transitions
 discovered by Erd\H{o}s and Rényi.
 
@@ -179,7 +179,7 @@ We say a property $P$ is shared by almost every graph if the probability of havi
 
 As it turns out, there is a so-called critical window in which the maximum component sizes are not of order $\log n$ any more 
 but there is no single giant component yet.
-We call a random graph $\Gcal(n, n^{-1} + \pp\n{-4}{3})$ critical for $\pp \in \Real$.
+We call a random graph $\Gcal(n, n^{-1} + \pp\n{-4}{3})$ critical for $\pp \in \Real$.\label{I: pp}
 The next theorem provides a approximation of the size of the largest component in a critical random graph.
 
 \begin{theorem}[Largest critical cluster, {\cite[Theorem 5.1, p.150]{vanderHofstad.2016}}] \label{T: largest critical cluster}
@@ -260,15 +260,15 @@ In this section we state the main results of this thesis,
 which is a refinement of Folk Theorem~\ref{T: folk theorem}.
 We now identify the distribution of the limit vector precisely and state a stricter form of convergence of component sizes.
 
-Denote by $W$ the standard Brownian motion on $\Rplus$. 
+Denote by $W$ the standard Brownian motion on $\Rplus$.\label{I: bm} 
 For a fixed parameter $\pp \in \Real$ we call the process $\Wt$, defined by
-\begin{equation}
+\begin{equation} \label{D: Wt}
 	\Wt(s) := W(s) + \int_{0}^{s}(\pp -s)ds = W(s) + \pp s - \frac{1}{2}s^2,
 \end{equation}
 the Brownian motion with drift $\pp -s$ at time $s$.
 The central object of our analysis will be the process $\Wt$ and its excursions above past minima.
 We reflect $\Wt$ at the x-axis to define the process $\Bt$ by
-\begin{equation}
+\begin{equation} \label{D: Bt}
 	\Bt(s) := \Wt(s) - \min_{u \leq s}\Wt(u).
 \end{equation}
 We call $\Bt$ the reflected Brownian motion with drift.
@@ -291,10 +291,10 @@ We call $\Bt$ the reflected Brownian motion with drift.
 See Figure~\ref{F: BM} for an example of a Brownian motion with drift for positive and negative $\pp$ and the corresponding reflected process.
 Note that for positive $\pp$ the time intervals between zeroes of $\Bt$ are much longer than for negative $\pp$.
 We call an excursion $\gamma$ of $\Bt$ a time interval $[l(\gamma), r(\gamma)]$ for which $\Bt(l(\gamma)) = \Bt(r(\gamma)) = 0$
-and $\Bt(s) > 0$ for all $l(\gamma) < s < r(\gamma)$.
-Denote by $|\gamma| = r(\gamma) - l(\gamma)$ the length of an excursion.
+and $\Bt(s) > 0$ for all $l(\gamma) < s < r(\gamma)$. \label{I: gamma}
+Denote by $|\gamma| = r(\gamma) - l(\gamma)$ the length of an excursion. \label{I: rgammalgamma}
 
-Additionally we define a Poisson counting process $\Nt$, 
+Additionally we define a Poisson counting process $\Nt$, \label{I: nt} 
 which equips each excursion with a number of marks,
 emerging with intensity $\Bt(s)$ at time $s$.
 Informally speaking, the chance of encountering a mark in a time interval $\sds$ is characterized by
@@ -306,12 +306,12 @@ More formally we define $\Nt$ to be the counting process for which
 	\Nt(s) - \int_{0}^{s} \Bt(s)ds
 \end{equation}
 is a martingale.
-Denote by $\mu(\gamma)$ the number of marks during an excursion $\gamma$.
+Denote by $\mu(\gamma)$ the number of marks during an excursion $\gamma$. \label{I: mugamma}
 
 The folk theorem states a convergence of both component sizes and surplus edges in the product topology.
 We here provide additional information on the convergence of component sizes.
 Let
-\begin{equation}
+\begin{equation} \label{D: ld}
 	\ld := \{ \x = (x_1, x_2, \dots) \cond x_1 \geq x_2 \geq \dots \geq 0, \; \sideset{}{_i}\sum x^2_i < \infty \}
 \end{equation}
 and define the natural metric on $\ld$ by
