@@ -2,44 +2,12 @@
 \usepackage[nopostdot, nonumberlist, toc, style = super]{glossaries}
 \makenoidxglossaries 
 
-%Numbers
-\newglossaryentry{nat}
-{
-	name={$\Nat$},
-	description={Natural numbers}
-}
-\newglossaryentry{rat}
-{
-	name={$\Rat$},
-	description={Rational numbers}
-}
-\newglossaryentry{real}
-{
-	name={$\Real$},
-	description={Real numbers}
-}
-\newglossaryentry{realpos}
-{
-	name={$\Rplus$},
-	description={Non-negative real numbers}
-}
-
 
 % Graphs
-\newglossaryentry{graph}
-{
-	name={$\mathcal{G}$},
-	description={A general graph}
-}
 \newglossaryentry{ergraphp}
 {
 	name={$\mathscr{G}(n,p)$},
 	description={Erd\"os-Renyi random graph on $n$ vertices with edge-probability $p$}
-}
-\newglossaryentry{ergraphm}
-{
-	name={$\mathscr{G}(n,m)$},
-	description={Erd\"os-Renyi random graph on $n$ vertices with $m$ edges}
 }
 \newglossaryentry{prob}
 {
@@ -47,27 +15,9 @@
 	description={Edge-probability in $\Gnt$}
 }
 
+
+
 % Processes
-\newglossaryentry{zsmall}
-{
-	name={$z(i)$},
-	description={Breadth-first walk in discrete time}
-}
-\newglossaryentry{zbig}
-{
-	name={$Z(s)$},
-	description={Breadth-first walk in continuous time}
-}
-\newglossaryentry{znt}
-{
-	name={$\znt$},
-	description={Breadth-first walk on the critical random graph}
-}
-\newglossaryentry{rznt}
-{
-	name={$\rznt$},
-	description={Rescaled breadth-first random walk}
-}
 \newglossaryentry{bm}
 {
 	name={$W$},
@@ -83,47 +33,202 @@
 	name={$\Bt$},
 	description={Reflected Brownian motion with drift}
 }
-
-% Distributions
-\newglossaryentry{Unif}
+\newglossaryentry{nt}
 {
-	name={$U[a,b]$},
-	description={Uniform distribution on $[a,b]$}
-}
-\newglossaryentry{Binom}
-{
-	name={$\Binom(n,p)$},
-	description={Binomial distribution with parameters $n$, $p$}
-}
-\newglossaryentry{Bern}
-{
-	name={$\Bern(p)$},
-	description={Bernoulli distribution with parameter $p$}
-}
-\newglossaryentry{Exponential}
-{
-	name={$\Exponential(\lambda)$},
-	description={Exponential distribution with parameter $\lambda$}
-}
-\newglossaryentry{Poisson}
-{
-	name={$\Poisson(\lambda)$},
-	description={Poisson distribution with parameter $\lambda$}
+name={$\Nt$},
+description={Counting process with rate $\Bt$}
 }
 
-%% Rest
-\newglossaryentry{Ind}
+\newglossaryentry{zsmall}
 {
-	name={$\Ind{A}$},
-	description={Indicator function of set $A$}
+	name={$z(i)$},
+	description={Breadth-first walk in discrete time}
 }
-\newglossaryentry{SigmaAlgebra}
+\newglossaryentry{zbig}
 {
-	name={$\SigmaAlgebra$},
-	description={$\sigma$-algebra}
+	name={$Z(s)$},
+	description={Breadth-first walk in continuous time, \pageref{D: znt}}
 }
-\newglossaryentry{Event}
+\newglossaryentry{znt}
 {
-	name={$\Event{X}$},
-	description={Event defined by $X$}
+	name={$\znt$},
+	description={Breadth-first walk on the critical random graph}
 }
+\newglossaryentry{rznt}
+{
+	name={$\rznt$},
+	description={Rescaled breadth-first random walk}
+}
+\newglossaryentry{bnt}
+{
+	name={$\zminz$},
+	description={Reflected breadth-first random walk}
+}
+
+\newglossaryentry{nnt}
+{
+name={$\nnt$},
+description={Surplus edge counting process}
+}
+
+\newglossaryentry{altspace}
+{
+name={$\rzntX, \WtX, \BtX, \dots$},
+description={Processes on common probability space}
+}
+
+\newglossaryentry{Ndis}
+{
+name={$\Ndis$},
+description={Discrete version of $\Nt$}
+}
+
+
+% Other objects for proofs
+
+\newglossaryentry{gamma}
+{
+	name={$\gamma$},
+	description={Excursion of $\Bt$}
+}
+\newglossaryentry{rgammalgamma}
+{
+name={$l(\gamma), r(\gamma)$},
+description={Left and right ends of excursion}
+}
+\newglossaryentry{mugamma}
+{
+name={$\mu(\gamma)$},
+description={Number of marks during excursion $\gamma$}
+}
+
+\newglossaryentry{rgamman}
+{
+name={$\rgamman$},
+description={Excursion of $\rznt$}
+}
+\newglossaryentry{sigman}
+{
+name={$\sigma_n$},
+description={Number of surplus edges during excursion}
+}
+\newglossaryentry{rsigman}
+{
+name={$\rsigman$},
+description={Rescaled number of surplus edges during excursion}
+}
+
+\newglossaryentry{Y}
+{
+name={$Y$},
+description={Ordered set of excursion lengths and mark counts of $\Bt$}
+}
+\newglossaryentry{Yn}
+{
+name={$\Yn$},
+description={Ordered set of excursion lengths and mark counts of $\rznt$}
+}
+\newglossaryentry{Yk}
+{
+name={$\Yk$},
+description={First $k$ entries of $Y$}
+}
+\newglossaryentry{Ynk}
+{
+name={$\Ynk$},
+description={First $k$ entries of $\Yn$}
+}
+
+
+\newglossaryentry{Ni}
+{
+	name={$\Ni{i}$},
+	description={Neighbours of vertex $v_i$}
+}
+\newglossaryentry{ci}
+{
+name={$c(i)$},
+description={Children of vertex $v_i$}
+}
+\newglossaryentry{zeta}
+{
+name={$\zeta(j)$},
+description={Index of last vertex of $j$-th component}
+}
+\newglossaryentry{zetaminus}
+{
+name={$\zeta^{-1}(i)$},
+description={Index of component containing $i$-th vertex}
+}
+\newglossaryentry{eta}
+{
+	name={$\Ineligible{s}$},
+	description={Number of vertices ineligible to connect to vertex $v_{\ceil{s}}$ at time $s$}
+}
+
+\newglossaryentry{Xin}
+{
+	name={$\Xin$},
+	description={Two-dimensional point process for sequence function}
+}
+\newglossaryentry{Xi}
+{
+name={$\Xi$},
+description={Two-dimensional point process for limit function}
+}
+
+\newglossaryentry{Estar}
+{
+	name={$\mathcal{E}^*$},
+	description={Finite set of large excursions in interval}
+}
+\newglossaryentry{gammani}
+{
+name={$\gamma_n(i)$},
+description={Last vertex of the $i-1$-th component}
+}
+
+
+\newglossaryentry{ld}
+{
+	name={$\ld$},
+	description={Space of infinite decreasing sequences in $\Rplus$}
+}
+\newglossaryentry{d2}
+{
+	name={$d_2$},
+	description={Distance on $\ld$}
+}
+
+\newglossaryentry{DT}
+{
+name={$\DT$},
+description={Space of \cadlag~functions on $[0,T]$}
+}
+
+\newglossaryentry{lambda}
+{
+name={$\lambda(t)$},
+description={Rate of counting process}
+}
+\newglossaryentry{altP}
+{
+name={$\tilde{\Prob}$},
+description={Equivalent probability measure}
+}
+\newglossaryentry{DeltaX}
+{
+name={$\Delta X(s)$},
+description={Jump of $X$ at time $s$}
+}
+\newglossaryentry{supnorm}
+{
+name={$\norm{X}_T$},
+description={Supremum norm of $X$ on $[0,T]$}
+}
+\newglossaryentry{deltaint}
+{
+	name={$w'_X$},
+	description={Modulus of continuity of $X$}
+}
+
