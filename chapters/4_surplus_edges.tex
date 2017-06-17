@@ -26,7 +26,7 @@ We remind ourselves that a surplus edge in a graph $\Gnt$ appears if,
 during the transition of vertices and components by the breadth-first walk,
 a vertex forms a new connection to another vertex
 which already has opened connections to some explored node.
-We associate with $\Gcal$ a counting process $(\nnt(s), 0 \leq s \leq n)$,
+We associate with $\Gcal$ a counting process $(\nnt(s), 0 \leq s \leq n)$, \label{I: nnt}
 with $\nnt(0) = 0$, which increases by $1$ at each appearance of a surplus edge.
 
 \begin{figure}[h]
@@ -53,7 +53,7 @@ and with each step taken, one more vertex is explored and thus can no longer rec
 The number of vertices eligible for an excess edge therefore corresponds to the level of the breadth-first walk above its past minimum,
 which is attained at the beginning of the component.
 Hence we will expect the probability of encountering an excess edge at time $s$ to be proportionate to
-\begin{equation}
+\begin{equation} \label{D: zminz}
 \zminz(s) := \znt(s) - \min_{u \leq s}\znt(u).
 \end{equation}
 Rescaling the counting process appropriately this probability should scale to
@@ -450,8 +450,8 @@ so for all $\epsilon > 0$:
 \Prob( \sup_{s \leq T} |\rzntX(s) - \WtX(s)| > \epsilon ) \rightarrow 0.
 \end{equation}
 
-Additionally we define
-\begin{equation}
+Additionally we define \label{I: alt processes}
+\begin{equation} 
 	\begin{aligned}
 	\BtX(t) &:= \WtX(t) - \min_{s \leq t}\WtX(s), \\
 	\bar{\mathcal{B}}^{\pp}_n(t) &:= \rzntX(t) - \min_{s \leq t}\rzntX(s), \\
@@ -518,7 +518,7 @@ holds. Therefore
 Our next objective is to establish the convergence $\rnntX \rightarrow_d \NtX$.
 For this, we describe a process $\Ndis$, which may be thought of as $\NtX$ in discrete time.
 We define $\Ndis$ by
-\begin{equation}
+\begin{equation} \label{D: Ndis}
 \begin{aligned}
 \Ndis(0) &:= 0, \\
 \Ndis(k) &:= \Ndis(k-1) + \xi_k, 
