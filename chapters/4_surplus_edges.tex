@@ -274,9 +274,12 @@ From \eqref{E: rznt tight} we know that for all $\epsilon > 0$ exists $A>0$ such
 \end{equation}
 Define 
 \begin{equation}
-	\rzminz(s) := \rznt(s) - \min_{u \leq s}\rznt(u),
+	\zminz(s) := \znt(s) - \min_{u \leq s}\znt(u),
 \end{equation}
-the process reflecting $\rznt$ at the x-axis.
+the process reflecting $\znt$ at the x-axis and its rescaling
+\begin{equation}
+	\rzminz(s) := \n{-1}{3}\zminz(\n{2}{3}s) = \rznt(s) - \min_{u \leq s}\rznt(u).
+\end{equation}
 Since $|\rzminz(s)| \leq 2\max_{u \leq s}|\rznt(u)|$, \eqref{E: rznt bounded} implies
 \begin{equation} \label{E: rzminz bounded}
 \Prob(\sup_{s \leq T} |\rzminz(s)| > 2A) < \epsilon.
@@ -447,18 +450,32 @@ so for all $\epsilon > 0$:
 \Prob( \sup_{s \leq T} |\rzntX(s) - \WtX(s)| > \epsilon ) \rightarrow 0.
 \end{equation}
 
-Additionally, we define a process $\rnntX$ on the same probability space as $\WtX$ and $\rzntX$ as a counting process with rate
+Additionally we define
+\begin{equation}
+	\begin{aligned}
+	\BtX(t) &:= \WtX(t) - \min_{s \leq t}\WtX(s), \\
+	\bar{\mathcal{B}}^{\pp}_n(t) &:= \rzntX(t) - \min_{s \leq t}\rzntX(s), \\
+	\zminzX(t) &:= \n{1}{3}\bar{\mathcal{B}}^{\pp}_n(\n{-2}{3}t)	
+	\end{aligned}
+\end{equation}
+as the equivalents of $\Bt$, $\rzminz$ and $\zminz$ on the same probability space as $\rzntX$ and $\WtX$,
+as well as $\NtX$ which is the counting process with rate $\BtX$.
+We define a process $\rnntX$ as a counting process with rate
 \begin{equation}
 \bar{\lambda}'(s) = n \p \frac{\n{-1}{3} - \min_{u \leq s} \rzntX(u) + \rzntX(s)}{1 - (\n{2}{3}s - \floor{\n{2}{3}s})\p},
 \end{equation}
 which makes it the equivalent of $\rnnt$ in this new probability space, the rate of which is defined in \eqref{E: conditional intensity final}.
-Since $\rzntX \sim \rznt$ we have $\rnntX \sim \rnnt$.
+Define the equivalent to $\nnt$ by 
+\begin{equation}
+	\nntX(s) = \rnntX(\n{-2}{3}s).
+\end{equation}
+Since $\rzntX \sim \rznt$ we have $\NtX \sim \Nt$, $\rnntX \sim \rnnt$ and $\nntX \sim \nnt$.
 
-Form here on out we substitute $\Wt$, $\rznt$ and $\rnnt$ with $\WtX$, $\rzntX$ and $\rnntX$ respectively
+Form here on out we substitute $\WtX$, $\rzntX$ and the process defined above for $\Wt$, $\rznt$ and the original processes
 and denote by $\Event{C}$ the event $(\rzntX, \rnntX) \in C$ for a compact $C \subset \DT^2$.
 By the equality in distribution, the final result on the expectation of these processes will then still hold for the original processes.
 
-Defining the norm $\norm{X}_T := \sup_{s \leq T}X(s)$, we denote by $\Event{\delta}$ the event $\norm{\WtX - \rzntX}_T < \delta$.
+We denote by $\Event{\delta}$ the event $\norm{\WtX - \rzntX}_T < \delta$.
 By \eqref{E: Prob(Event(delta)) 1}, for sufficiently large $n$, 
 \begin{equation} \label{E: Prob Event delta}
 \Prob(\Event{\delta}) > 1 - \epsilon.
@@ -477,14 +494,14 @@ that the inequality
 \begin{equation*}
 \begin{aligned}
 f(\rzntX, \rnntX) &= f(\rzntX, \rnntX) + f(\WtX, \rnntX) - f(\WtX, \rnntX) \\
-&\leq f(\WtX, \rnntX) + |f(\znt, \rnntX) - f(\WtX, \rnntX)| \\
+&\leq f(\WtX, \rnntX) + |f(\rzntX, \rnntX) - f(\WtX, \rnntX)| \\
 &\leq f(\WtX, \rnntX) + \epsilon
 \end{aligned}
 \end{equation*}
 holds. Therefore
 \begin{equation} \label{E: Estimation step 3}
 \begin{aligned}
-\Exp{f(\znt, \rnntX) } 
+\Exp{f(\rzntX, \rnntX) } 
 &\leq \Exp{f(\rzntX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2 \epsilon M \\
 &\leq \Exp{f(\WtX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + \epsilon + 2 \epsilon M.
 \end{aligned}
@@ -498,35 +515,33 @@ holds. Therefore
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{proofpart}
-Our next objective is to establish the convergence $\rnntX \rightarrow_d \Nt$.
-For this, we define a process $\Ndis$, which may be thought of as $\Nt$ in discrete time.
-While $\Nt$ is the continuous counting process with $\Bt$ as conditional intensity,
-we define $\Ndis$ by
+Our next objective is to establish the convergence $\rnntX \rightarrow_d \NtX$.
+For this, we describe a process $\Ndis$, which may be thought of as $\NtX$ in discrete time.
+We define $\Ndis$ by
 \begin{equation}
 \begin{aligned}
 \Ndis(0) &:= 0, \\
 \Ndis(k) &:= \Ndis(k-1) + \xi_k, 
 \end{aligned}
 \end{equation}
-where $\xi_k \sim \Binom(\n{1}{3}\Bt(\n{-2}{3}k), \p)$,
-the discrete steps of $\Ndis$ are dependent on an upscaling of the reflected Brownian motion $\Bt$.
+where $\xi_k \sim \Binom(\n{1}{3}\BtX(\n{-2}{3}k), \p)$,
+the discrete steps of $\Ndis$ are dependent on an upscaling of the reflected Brownian motion $\BtX$.
 
 \begin{figure}[ht]
 	\centering
 	\input{figures/chapter4/fig_mn.tex}
-	\caption{The increments of $\Ndis$ are dependent on discrete steps of $\Bt$.} 
+	\caption{The increments of $\Ndis$ are dependent on discrete steps of $\BtX$.} 
 	\label{F: Mn}
 \end{figure}
 
 We will show that, if $||\rzntX - \WtX|| < \delta$, 
-then $\Ndis(k) = \nnt(k)$ for all $k \leq \n{2}{3}T$ with high probability.
+then $\Ndis(k) = \nntX(k)$ for all $k \leq \n{2}{3}T$ with high probability.
 For this, we redefine both processes using a coupling argument.
-\fxnote{Find out what a coupling argument is.}
 At step $k$, let
 \begin{equation} \label{E: def alpha beta}
 \begin{aligned}
-\alpha_k := \min(\zminz(k), \n{1}{3}\Bt(\n{-2}{3}k)), \\
-\beta_k := \max(\zminz(k), \n{1}{3}\Bt(\n{-2}{3}k)).
+\alpha_k := \min(\zminzX(k), \n{1}{3}\BtX(\n{-2}{3}k)), \\
+\beta_k := \max(\zminzX(k), \n{1}{3}\BtX(\n{-2}{3}k)),
 \end{aligned}
 \end{equation}
 Now define random variables
@@ -546,30 +561,30 @@ So $\xi_k + \eta_k \sim \Binom(\beta_k, \p)$.
 \end{figure}
 
 Consider the two possibilities at time $k$:
-Either $\zminz(k) \leq \n{1}{3}\Bt(\n{-2}{3}k)$,
-then $\alpha_k = \zminz(k)$ and $\beta_k = \n{1}{3}\Bt(\n{-2}{3}k)$, 
+Either $\zminzX(k) \leq \n{1}{3}\BtX(\n{-2}{3}k)$,
+then $\alpha_k = \zminzX(k)$ and $\beta_k = \n{1}{3}\BtX(\n{-2}{3}k)$, 
 so 
 \begin{equation}
 \begin{aligned}
-\xi_k &=_d \nnt(k) - \nnt(k-1), \\
+\xi_k &=_d \nntX(k) - \nntX(k-1), \\
 \xi_k + \eta_k &=_d \Ndis(k) - \Ndis(k-1).
 \end{aligned}
 \end{equation}
-Or $\zminz(k) > \n{1}{3}\Bt(\n{-2}{3}k)$,
-then $\alpha_k = \n{1}{3}\Bt(\n{-2}{3}k)$ and $\beta_k = \zminz(k)$, 
+Or $\zminzX(k) > \n{1}{3}\BtX(\n{-2}{3}k)$,
+then $\alpha_k = \n{1}{3}\BtX(\n{-2}{3}k)$ and $\beta_k = \zminzX(k)$, 
 so
 \begin{equation}
 \begin{aligned}
 \xi_k &=_d \Ndis(k) - \Ndis(k-1), \\
-\xi_k + \eta_k &=_d \nnt(k) - \nnt(k-1).
+\xi_k + \eta_k &=_d \nntX(k) - \nntX(k-1).
 \end{aligned}
 \end{equation}
 
-This way, we can define $\nnt$ and $\Ndis$ by
+This way, we can define $\nntX$ and $\Ndis$ by
 \begin{equation}
-\nnt(k) - \nnt(k-1) = 
+\nntX(k) - \nntX(k-1) = 
 \begin{cases}
-\xi_k & \text{if} \enspace \zminz(k) \leq \n{1}{3}\Bt(\n{-2}{3}k), \\
+\xi_k & \text{if} \enspace \zminzX(k) \leq \n{1}{3}\BtX(\n{-2}{3}k), \\
 \xi_k + \eta_k &\text{else}
 \end{cases}
 \end{equation}
@@ -577,7 +592,7 @@ and
 \begin{equation}
 \Ndis(k) - \Ndis(k-1) = 
 \begin{cases}
-\xi_k + \eta_k & \text{if} \enspace \zminz(k) \leq \n{1}{3}\Bt(\n{-2}{3}k), \\
+\xi_k + \eta_k & \text{if} \enspace \zminzX(k) \leq \n{1}{3}\BtX(\n{-2}{3}k), \\
 \xi_k &\text{else}.
 \end{cases}
 \end{equation}
@@ -585,20 +600,20 @@ By \eqref{E: def alpha beta} and \eqref{E: def xi eta},
 these definitions maintain
 \begin{equation*}
 \begin{aligned}
-\nnt(k) - \nnt(k-1) &\sim \Binom(\zminz(k), \p), \\
-\Ndis(k) - \Ndis(k-1) &\sim \Binom(\n{1}{3} \Bt(\n{-2}{3}k), \p).
+\nntX(k) - \nntX(k-1) &\sim \Binom(\zminzX(k), \p), \\
+\Ndis(k) - \Ndis(k-1) &\sim \Binom(\n{1}{3} \BtX(\n{-2}{3}k), \p).
 \end{aligned}
 \end{equation*}
-We see that, no matter the relation of $\zminz(k)$ and $\n{1}{3}\Bt(\n{-2}{3}k)$, 
+We see that, no matter the relation of $\zminzX(k)$ and $\n{1}{3}\BtX(\n{-2}{3}k)$, 
 the increments of the processes differ only by the random variable $\eta_k$.
 
-Conditioning on $||\rzntX - \WtX|| < \delta$, for $\Ndis(k) \neq \nnt(k)$ to hold for some $k$,
+Conditioning on $||\rzntX - \WtX|| < \delta$, for $\Ndis(k) \neq \nntX(k)$ to hold for some $k$,
 there has to have been a step in which the increments of both processes were different.
 We evaluate
 \begin{equation} \label{E: Prob eta not 0}
 \begin{aligned}
-&\Prob(\exists k\leq \n{2}{3}T: \Ndis(k) \neq \nnt(k) \cond \Event{\delta}) \\
-&\quad \leq \sum_{k=1}^{\n{2}{3}T} \Prob( \Ndis(k) - \Ndis(k-1) \neq \nnt(k) - \nnt(k-1) \cond \Event{\delta}) \\
+&\Prob(\exists k\leq \n{2}{3}T: \Ndis(k) \neq \nntX(k) \cond \Event{\delta}) \\
+&\quad \leq \sum_{k=1}^{\n{2}{3}T} \Prob( \Ndis(k) - \Ndis(k-1) \neq \nntX(k) - \nntX(k-1) \cond \Event{\delta}) \\
 &\quad \leq \sum_{k=1}^{\n{2}{3}T} \Prob( \eta_k \neq 0 \cond \Event{\delta}) \\
 &\quad \leq \n{2}{3}T \max_{k \leq \n{2}{3}T} \Prob(\eta_k \neq 0 \cond \Event{\delta}).
 \end{aligned}
@@ -614,7 +629,7 @@ Using Markov's inequality gives
 and substituting in \eqref{E: Prob eta not 0} we obtain
 \begin{equation}
 \begin{aligned}
-&\Prob(\exists k\leq \n{2}{3}T: \Ndis(k) \neq \nnt(k) \cond \Event{\delta}) \\
+&\Prob(\exists k\leq \n{2}{3}T: \Ndis(k) \neq \nntX(k) \cond \Event{\delta}) \\
 &\quad \leq \n{2}{3}T \max_{k \leq \n{2}{3}T} \Prob( \eta_k \neq 0 \cond \Event{\delta} ) \\
 &\quad \leq \n{2}{3}T\delta\n{1}{3}\p \\
 &\quad \leq n \p T \delta \\
@@ -623,27 +638,27 @@ and substituting in \eqref{E: Prob eta not 0} we obtain
 \end{equation}
 for large $n$.
 
-We now define $\rNdis(s) = \n{-1}{3} \Ndis(\n{2}{3}s)$ and continue the estimation from \eqref{E: Estimation step 3},
+We now define $\rNdisX(s) = \n{-1}{3} \Ndis(\n{2}{3}s)$ and continue the estimation from \eqref{E: Estimation step 3},
 which yields
 \begin{equation} \label{E: Estimation step 4}
 \begin{aligned}
-\Exp{f(\znt, \nnt)} 
-&\leq \Exp{f(\WtX, \nnt) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + \epsilon + 2M\epsilon   \\
-&\leq \Exp{f(\WtX, \rNdis) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2\delta T M + \epsilon  + 2M\epsilon \\
-&\leq \Exp{f(\WtX, \rNdis)} + 2\delta T M + \epsilon  + 2M\epsilon.
+\Exp{f(\rzntX, \nntX)} 
+&\leq \Exp{f(\WtX, \nntX) \cond \Event{C}, \Event{\delta}} \Prob(\Event{C}) \Prob(\Event{\delta}) + \epsilon + 2M\epsilon   \\
+&\leq \Exp{f(\WtX, \rNdisX) \cond \Event{C}, \Event{\delta}} \Prob(\Event{C}) \Prob(\Event{\delta}) + 2\delta T M + \epsilon  + 2M\epsilon \\
+&\leq \Exp{f(\WtX, \rNdisX)} + 2\delta T M + \epsilon  + 2M\epsilon.
 \end{aligned}
 \end{equation}
 This inequality holds for all bounded, continuous functions $f$. 
 Therefore it holds for $-f$ as well, which implies
 \begin{equation}
 \begin{aligned}
-\Exp{-f(\znt, \nnt)} &\leq \Exp{-f(\WtX, \rNdis) \cond \WtX}+ 2\delta T M  + \epsilon + 2M\epsilon \\
-\iff  \Exp{f(\znt, \nnt)} &\geq \Exp{f(\WtX, \rNdis) \cond \WtX} - 2\delta T M  - \epsilon - 2M\epsilon,
+\Exp{-f(\rzntX, \nntX)} &\leq \Exp{-f(\WtX, \rNdisX) }+ 2\delta T M  + \epsilon + 2M\epsilon \\
+\iff  \Exp{f(\rzntX, \nntX)} &\geq \Exp{f(\WtX, \rNdisX) } - 2\delta T M  - \epsilon - 2M\epsilon,
 \end{aligned}
 \end{equation}
 and therefore
 \begin{equation} \label{E: Equality of Expectations}
-	|\Exp{f(\znt, \nnt)} - \Exp{f(\WtX, \rNdis) \cond \WtX} | \leq 2\delta T M + \epsilon  + 2M\epsilon.
+	|\Exp{f(\rzntX, \nntX)} - \Exp{f(\WtX, \rNdisX)} | \leq 2\delta T M + \epsilon  + 2M\epsilon.
 \end{equation}
 \end{proofpart}
 
@@ -653,49 +668,50 @@ and therefore
 % Proofpart 4: M ->_d N
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proofpart}
-We now show that $\rNdis \rightarrow_d \Nt$.
-Fix a realization $\Wt = \Wt(\omega)$.
-Since $\nnt$ is tight and $\nnt$ is equal to $\Ndis$ with high probability,
-$\Ndis$ and $\rNdis$ are tight and it suffices proving convergence in finite dimensional distributions,
+We now show that for any realization of $\WtX$ we have $\rNdisX \rightarrow_d \NtX$.
+Fix $\WtX = \WtX(\omega)$ and therefore $\BtX = \BtX(\omega)$.
+Since $\nntX$ is tight and $\nntX$ is equal to $\Ndis$ with high probability,
+$\Ndis$ and $\rNdisX$ are tight and it suffices proving convergence in finite dimensional distributions,
 in this case for all $0 \leq s_1 < s_2 < \dots < s_l \leq T$:
 \begin{equation} \label{E: convergence fdd}
 \begin{aligned}
-&\Prob( \rNdis(s_1) = k_1, \dots, \rNdis(s_l) = k_l ) \\
-&\quad \xrightarrow{n \rightarrow \infty}  \Prob( \Nt(s_1) = k_1, \dots, \Nt(s_l) = k_l ).
+&\Prob( \rNdisX(s_1) = k_1, \dots, \rNdisX(s_l) = k_l ) \\
+&\quad \xrightarrow{n \rightarrow \infty}  \Prob( \NtX(s_1) = k_1, \dots, \NtX(s_l) = k_l ).
 \end{aligned}
 \end{equation}
 
-Recall that $\Nt$ is a Poisson point process, continuous on $\Real$ with rate $\Bt$,
-thus the increments of $\Nt$ are independent and for all $a<b$: 
+Recall that $\NtX$ is a Poisson point process, continuous on $\Real$ with rate $\BtX$,
+thus the increments of $\NtX$ are independent and for all $a<b$: 
 \begin{equation}
-\Nt(b) - \Nt(a) \sim \Poisson( \int_{a}^{b} \Bt(s)ds).
+\NtX(b) - \NtX(a) \sim \Poisson( \int_{a}^{b} \BtX(s)ds).
 \end{equation}
-In contrast, $\Ndis$ is a discrete process whose increments are defined by $\Bt$ at integer times, 
-that is for all $k \leq T$: 
+In contrast, $\Ndis$ is a discrete process whose increments are defined by $\BtX$ at integer times, 
+that is for all $k \leq \n{2}{3}T$: 
 \begin{equation} \label{E: increments Ndis 2}
-\Ndis(k) - \Ndis(k-1) \sim \Binom(\n{1}{3}\Bt(\n{-2}{3}k), \p)
+\Ndis(k) - \Ndis(k-1) \sim \Binom(\n{1}{3}\BtX(\n{-2}{3}k), \p)
 \end{equation}
-We can evaluate the distribution of the increments of $\rNdis$ by
+We can evaluate the distribution of the increments of $\rNdisX$ by
 \begin{equation}
-\rNdis(k) - \rNdis(k-1) = \n{-1}{3}( \Ndis(\n{2}{3}k) - \Ndis(\n{2}{3}(k-1)).
+\rNdisX(s) - \rNdisX(s-1) = \n{-1}{3}( \Ndis(\n{2}{3}s) - \Ndis(\n{2}{3}(s-1))
 \end{equation}
-Between times $\n{2}{3}(k-1)$ and $\n{2}{3}k$, there are multiple integer steps,
+for $s \leq T$.
+Between times $\n{2}{3}(s-1)$ and $\n{2}{3}s$, there are multiple integer steps,
 the increment in each step as defined in \eqref{E: increments Ndis 2}. 
-Thus
+Therefore
 \begin{equation}
-\rNdis(k) - \rNdis(k-1) \sim \n{-1}{3} \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j} \Binom( \n{1}{3}\Bt(\n{-2}{3}i), \p ).
+\rNdisX(s_j) - \rNdisX(s_{j-1}) \sim \n{-1}{3} \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j} \Binom( \n{1}{3}\BtX(\n{-2}{3}i), \p ).
 \end{equation}
 Since the increments are independent, we can move the sum inside the argument of the Binomial distribution.
 Let us define 
 \begin{equation*}
-R_{n,j} := \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{1}{3}\Bt(\n{-2}{3}i)
+R_{n,j} := \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{1}{3}\BtX(\n{-2}{3}i)
 \end{equation*}
 and compute the probability in \eqref{E: convergence fdd} as
 \begin{equation} \label{E: distribution Ndis}
 \begin{aligned}
-&\Prob(\rNdis(s_1) = k_1, \dots, \rNdis(s_l) = k_l) \\
-&\quad = \Prob( \rNdis(s_j) - \rNdis(s_{j-1}) = k_j - k_{j-1}, \enspace \forall j=2,\dots,l ) \\
-&\quad = \prod_{j=2}^{l} \Prob( \n{1}{3}\rNdis(s_j) - \n{1}{3}\rNdis(s_{j-1}) = \n{1}{3}(k_j - k_{j-1})) \\
+&\Prob(\rNdisX(s_1) = k_1, \dots, \rNdisX(s_l) = k_l) \\
+&\quad = \Prob( \rNdisX(s_j) - \rNdisX(s_{j-1}) = k_j - k_{j-1}, \enspace \forall j=2,\dots,l ) \\
+&\quad = \prod_{j=2}^{l} \Prob( \n{1}{3}\rNdisX(s_j) - \n{1}{3}\rNdisX(s_{j-1}) = \n{1}{3}(k_j - k_{j-1})) \\
 &\quad = \prod_{j=2}^{l} \Prob( Y_{n,j} = \n{1}{3}(k_j - k_{j-1}) ),
 \end{aligned}
 \end{equation}
@@ -710,53 +726,60 @@ the convergence
 	X_k \rightarrow_d \Poisson(\lambda)
 \end{equation}
 holds as $k \rightarrow \infty$.
-
 To apply this theorem, we calculate the expected value of $Y_{n,j}$:
 \begin{align*}
 \Exp{Y_{n,j}} 
 &= R_{n,j} \p \\
 &= \frac{1}{n} R_{n,j} + \BigO{\n{-1}{3}}\\
-&= \frac{1}{n} \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{1}{3}\Bt(\n{-2}{3}i) + \BigO{\n{-1}{3}}\\
-&= \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{-2}{3}\Bt(\n{-2}{3}i) + \BigO{\n{-1}{3}}
+&= \frac{1}{n} \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{1}{3}\BtX(\n{-2}{3}i) + \BigO{\n{-1}{3}}\\
+&= \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{-2}{3}\BtX(\n{-2}{3}i) + \BigO{\n{-1}{3}}
 \end{align*}
-\fxfatal{Improve Riemann Sum argument.}
-
 This sum represents a partition of the interval $[s_{j-1}, s_j]$ into $\n{2}{3}(s_j - s_{j-1})$ subintervals, each of length $\n{-2}{3}$.
 Since $\n{-2}{3}i$ is an element of its correpsonding subinterval, 
-we are dealing with a Riemann sum over the continuous function $\Bt$.
-Since $\Bt$ is bounded almost surely on the compact interval $[s_{j-1}, s_j]$,
+we are dealing with a Riemann sum over the continuous function $\BtX$.
+Since $\BtX$ is bounded almost surely on the compact interval $[s_{j-1}, s_j]$,
 the sum converges to an integral and
 \begin{equation}
-\Exp{Y_{n,j}} \longrightarrow \int_{s_{j-1}}^{s_j} \Bt(u)du.
+\Exp{Y_{n,j}} \longrightarrow \int_{s_{j-1}}^{s_j} \BtX(u)du.
 \end{equation}
-
 Now applying the Poisson limit theorem yields
 \begin{equation} \label{E: convergence dist Yj}
-Y_{n,j} \rightarrow_d \Poisson( \int_{s_{j-1}}^{s_j} \Bt(u)du ) =_d \Nt(s_j) - \Nt(s_{j-1}),
+Y_{n,j} \rightarrow_d \Poisson( \int_{s_{j-1}}^{s_j} \BtX(u)du ) =_d \NtX(s_j) - \NtX(s_{j-1}),
 \end{equation}
 and, applying this convergence in \eqref{E: distribution Ndis}, we arrive at
 \begin{equation*}
 \begin{aligned}
-&\Prob(\rNdis(s_1) = k_1, \dots, \rNdis(s_l) = k_l) \\
+&\Prob(\rNdisX(s_1) = k_1, \dots, \rNdisX(s_l) = k_l) \\
 &\quad = \prod_{j=2}^{l} \Prob( Y_{n,j} = \n{1}{3}(k_j - k_{j-1}) ) \\
-&\enspace \longrightarrow \prod_{j=2}^{l} \Prob( \Nt(s_j) - \Nt(s_{j-1}) = \n{1}{3}(k_j - k_{j-1}) ) \\
-&\quad = \Prob(\Nt(s_1) = k_1, \dots, \Nt(s_l) = k_l).
+&\enspace \longrightarrow \prod_{j=2}^{l} \Prob( \NtX(s_j) - \NtX(s_{j-1}) = \n{1}{3}(k_j - k_{j-1}) ) \\
+&\quad = \Prob(\NtX(s_1) = k_1, \dots, \NtX(s_l) = k_l).
 \end{aligned}
 \end{equation*}
-This proves $\rNdis \rightarrow_d \Nt$ and consequently
-\begin{equation} \label{E: Convergence Ndis Nt}
-	\Exp{f(\WtX, \Ndis) \cond \WtX} \longrightarrow \Exp{f(\WtX, \Nt) \cond \Wt}.
-\end{equation}
-Combining \eqref{E: Equality of Expectations} and \eqref{E: Convergence Ndis Nt} yields
-\fxfatal{Add explanantion of Equality}
+
+For any fixed $\WtX(\omega)$ we therefore have $\rNdisX \rightarrow_d \NtX$.
+Since $f(\WtX, \cdot)$ is abounded continuous function this implies
 \begin{equation}
-\begin{aligned}
-&\Exp{f(\rzntX, \rnntX)} = \Exp{\Exp{f(\rzntX, \rnntX) \cond \WtX}} \\
-&\qquad \xrightarrow{n \rightarrow \infty} \Exp{\Exp{f(\WtX, \Nt) \cond \WtX}} = \Exp{f(\WtX, \Nt)},
-\end{aligned}
+	\Exp{f(\WtX(\omega), \rNdisX)} \rightarrow \Exp{f(\WtX(\omega), \NtX)}
 \end{equation}
-\fxnote{Fix formatting here.}
-which proves $(\rznt, \rnnt) \rightarrow_d (\Wt, \Nt)$ and completes the proof.
+or
+\begin{equation}
+	\Exp{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} \rightarrow_{a.s.} \Exp{f(\WtX(\omega), \NtX)\cond \WtX(\omega)}.
+\end{equation}
+by the boundedness of $f$ we can apply the dominated convergence theorem which gives
+\begin{equation}
+	\begin{aligned}
+	\Exp{f(\WtX, \NtX)}
+	&= \Exp{ \Exp{f(\WtX(\omega), \NtX) \cond \WtX(\omega)} } \\
+	&= \Exp{ \lim_{n->\infty} \Exp{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} } \\
+	&= \lim_{n->\infty} \Exp{ \Exp{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} } \\
+	&= \lim_{n->\infty} \Exp{ f(\WtX, \rNdisX) }.
+	\end{aligned}
+\end{equation}
+Finally, the closeness of $\Exp{ f(\WtX, \rNdisX) }$ and $\Exp{f(\rzntX, \nntX)}$ in \eqref{E: Equality of Expectations} implies
+\begin{equation}
+	\Exp{f(\rzntX, \nntX)} \rightarrow \Exp{f(\WtX, \NtX)}
+\end{equation}
+which completes the proof.
 \end{proofpart}
 \end{proof}
 
