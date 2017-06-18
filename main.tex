@@ -29,8 +29,14 @@
 	\addcontentsline{toc}{chapter}{\listfigurename}
 	\listoffigures
 	
+	\newglossarystyle{mylong}{%
+		\setglossarystyle{long}%
+		\renewenvironment{theglossary}%
+		{\begin{longtable}[l]{@{}p{\dimexpr 2.5cm-\tabcolsep}p{0.8\hsize}}}% <-- change the value here
+			{\end{longtable}}%
+	}
 	\glsaddall
-	\printnoidxglossary[title={List of Symbols}, sort=def]
+	\printnoidxglossary[style=mylong,title={List of Symbols}, sort=def]
 	
 	\input{chapters/1_introduction}
 	\input{chapters/2_preliminaries}
