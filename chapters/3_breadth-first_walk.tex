@@ -614,6 +614,7 @@ The following statement proves a similar decomposition of the squared martingale
 % SECTION: CONVERGENCE OF RESCALED PROCESSES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We state three technical lemmas describing the asymptotic behaviour of the processes established in the previous section.
+For proofs of these lemmas see Section~\ref{S: lemma proofs}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lemma Limit An: Statement
@@ -621,7 +622,7 @@ We state three technical lemmas describing the asymptotic behaviour of the proce
 \begin{lemma} \label{L: limit An}
 	For $\An$ defined in Lemma~\ref{L: decomp Zn} and fixed $s_0 \geq 0$,
 	\begin{equation} \label{E: limit An}
-	\n{-1}{3} \supns \left| \An(s) + \frac{s^2}{2}n^{-1} - s\pp\n{-1}{3} \right| \longrightarrow_p 0
+	\n{-1}{3} \supns \left| \An(s) + \frac{s^2}{2}n^{-1} - s\pp\n{-1}{3} \right| \rightarrow_p 0
 	\end{equation}
 	as $n \rightarrow \infty$.
 \end{lemma}
@@ -632,7 +633,7 @@ We state three technical lemmas describing the asymptotic behaviour of the proce
 \begin{lemma} \label{L: limit Bn}
 	For $\Bn$ defined in Lemma~\ref{L: decomp Mn} and fixed $s_0 \geq 0$,
 	\begin{equation} \label{E: limit Bn}
-	\n{-2}{3} \Bn(\n{2}{3}s_0) \longrightarrow_p s_0
+	\n{-2}{3} \Bn(\n{2}{3}s_0) \rightarrow_p s_0
 	\end{equation}
 	as $n \rightarrow \infty$.
 \end{lemma}
@@ -643,18 +644,11 @@ We state three technical lemmas describing the asymptotic behaviour of the proce
 \begin{lemma} \label{L: limit Mn}
 	For $\Mn$ defined in Lemma~\ref{L: decomp Zn} and fixed $s_0 \geq 0$,
 	\begin{equation} \label{E: limit Mn}
-	\n{-2}{3} \Exp{\supns |\Mn(s) - \Mn(s-)|^2} \longrightarrow 0,
+	\n{-2}{3} \Exp{\supns |\Mn(s) - \Mn(s-)|^2} \rightarrow 0,
 	\end{equation}
-	as $n\longrightarrow \infty$.
+	as $n\rightarrow \infty$.
 \end{lemma}
 
-For proofs of these lemmas see Section~\ref{S: lemma proofs}.
-
-\bigskip
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SECTION: Rescaled process
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We now define the rescaled processes 
 \begin{equation}
 \begin{aligned}
@@ -674,15 +668,15 @@ $\Zbar$ in Theorem~\ref{T: Z -> W}, such that
 \end{equation}
 Rescaling Lemmas~\ref{L: limit An}, \ref{L: limit Bn} and \ref{L: limit Mn} gives us
 \begin{equation} \label{E: limit An rescaled}
-\sup_{s \leq s_0} |\Abar(s) - \rho (s)| \longrightarrow_p 0,
+\sup_{s \leq s_0} |\Abar(s) - \rho (s)| \rightarrow_p 0,
 \end{equation}
 where $\rho (s) = st - \frac{1}{2}s^2$,
 \begin{equation} \label{E: limit Bn rescaled}
-\Bbar(s) \longrightarrow_p s_0,
+\Bbar(s) \rightarrow_p s_0,
 \end{equation}
 and
 \begin{equation} \label{E: limit Mn rescaled}
-\Exp{\sup_{s \leq s_0} | \Mbar(s) - \Mbar(s-) |^2 } \longrightarrow 0.
+\Exp{\sup_{s \leq s_0} | \Mbar(s) - \Mbar(s-) |^2 } \rightarrow 0.
 \end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -698,7 +692,7 @@ We are now ready to prove Theorem~\ref{T: Z -> W}.
 	We apply Theorem~\ref{T: functional CLT martingales} to $\Mbar$ and $\Bbar$.
 	The continuity of $\Bbar$ satisfies condition \eqref{E: cond1 CLT}, 
 	condition \eqref{E: cond2 CLT} holds from \eqref{E: limit Mn rescaled}
-	and \eqref{E: limit Bn rescaled} gives condition \eqref{E: cond3 CLT}, with $c(t) = t$.
+	and \eqref{E: limit Bn rescaled} gives condition \eqref{E: cond3 CLT}, with $c(s) = s$.
 	
 	Therefore $\Mbar(s) \rightarrow_d W(s)$, the standard Brownian motion, and using \eqref{E: limit An rescaled} we obtain
 	\begin{equation}
@@ -708,7 +702,7 @@ We are now ready to prove Theorem~\ref{T: Z -> W}.
 
 
 
-\subsection{Proofs of technical lemmas}
+\subsection{Proofs of technical lemmas} \label{S: lemma proofs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: PROOFS OF LEMMAS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -764,10 +758,7 @@ We begin with two further auxiliary lemmas.
 	for $\n{1}{3} \geq |\pp|$.
 	Integrating the inner part of the left-hand side over $s$ yields
 	\begin{equation}
-	\begin{aligned}
-	&\int_{0}^s (\amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}}) du \\
-	&\quad = \int_{0}^s(\amn(u) - 1) du + \frac{s^2}{2n} - \frac{s\pp}{\n{1}{3}} + \frac{s^2\pp}{2\n{4}{3}},
-	\end{aligned}
+	\int_{0}^s (\amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}}) du  = \int_{0}^s(\amn(u) - 1) du + \frac{s^2}{2n} - \frac{s\pp}{\n{1}{3}} + \frac{s^2\pp}{2\n{4}{3}},
 	\end{equation}
 	and from \eqref{E: convergence an amn} we know
 	\begin{equation} \label{E: convergence amn An}
@@ -781,12 +772,12 @@ We begin with two further auxiliary lemmas.
 	&\quad \leq \int_{0}^s \left|\amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}} \right| du + \BigO{\n{-1}{3}} \\ 
 	&\quad \leq \int_{0}^s 2 \frac{\Zetan{\ceil{u}} + |\Zn(u)|}{n} du + \BigO{\n{-1}{3}}\\ 
 	&\quad = \frac{2}{n}  \int_{0}^s (1-\min_{w \leq \ceil{u}-1} \Zn(w)  + |\Zn(u)| )du + \BigO{\n{-1}{3}}\\ 
-	&\quad = \frac{2}{n}  \int_{0}^s (|\Zn(u)| - \min_{w \leq \ceil{u}-1} \Zn(w)) du + \BigO{\n{-1}{3}} \\ 
+	&\quad = \frac{2}{n}  \int_{0}^s (|\Zn(u)| - \min_{w \leq \ceil{u}-1} \Zn(w)) du + \frac{2s}{n} + \BigO{\n{-1}{3}} \\ 
 	&\quad \leq \frac{4s}{n} \max_{u \leq s} |\Zn(u)| + \BigO{\n{-1}{3}},
 	\end{aligned}
 	\end{equation}
-	the last inequality following from $\ceil{u}-1 \leq s$ for $u\leq s$, 
-	which implies $|\min_{w \leq \ceil{u}-1}\Zn(w)| \leq \max_{u \leq s}|\Zn(u)|$.
+	the last inequality holds since $\ceil{u}-1 \leq s$ for $u\leq s$ 
+	and therefore $|\min_{w \leq \ceil{u}-1}\Zn(w)| \leq \max_{u \leq s}|\Zn(u)|$.
 \end{proof}
 
 
@@ -894,18 +885,22 @@ We begin with two further auxiliary lemmas.
 	&\quad + \Exp{\int_{0}^{\n{2}{3}s_0} |\amn(s) - 1 + \frac{s}{n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}|ds}.
 	\end{aligned}
 	\end{equation}
-	
 	Let us look at the terms individually. 
 	By \eqref{E: convergence an amn} we have
 	\begin{equation}
-	\Exp{\int_{0}^{\n{2}{3}s_0} |\an(s) - \amn(s)|ds} \leq \n{2}{3}s_0 \BigO{\frac{1}{n}},
+	\begin{aligned}
+	\Exp{\int_{0}^{\n{2}{3}s_0} |\an(s) - \amn(s)|ds} 
+	&\leq \n{2}{3}s_0 \BigO{n^{-1}} \\
+	&= s_0 \BigO{\n{-1}{3}},
+	\end{aligned}
 	\end{equation}
-	and we can estimate the second term by
+	we can estimate the second term by
 	\begin{equation}
+	\begin{aligned}
 	\Exp{\int_{0}^{\n{2}{3}s_0} |\frac{s}{n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}| ds}
-	\leq \n{2}{3}s_0 \BigO{\frac{|\pp|}{\n{1}{3}}}.
+	&\leq \frac{1}{2}s_0^2\n{1}{3} + s_0|\pp|\n{1}{3} + \frac{1}{2}s_0^2|\pp|
+	\end{aligned}
 	\end{equation}
-	
 	and \eqref{E: int an <= 4s/n maxZ + O()} implies
 	\begin{equation}
 	\begin{aligned}
@@ -920,9 +915,8 @@ We begin with two further auxiliary lemmas.
 	
 	Summing these three terms we arrive at
 	\begin{equation} \label{E: Exp(An)}
-	\Exp{|\An(T_n)|} \leq 4 s_0 K + s_0|\pp|\BigO{\n{1}{3}} + s_0^2\BigO{\n{1}{3}} + s_0\BigO{\n{-1}{3}}
+	\Exp{|\An(T_n)|} \leq 4 s_0 K + s_0|\pp|\BigO{\n{1}{3}} + \frac{1}{2}s_0^2\n{1}{3} + s_0|\pp|\n{1}{3} + \frac{1}{2}s_0^2|\pp| + s_0\BigO{\n{-1}{3}}
 	\end{equation}
-	
 	We combine \eqref{E: Exp(Mn)} and \eqref{E: Exp(An)}, 
 	which results in the following upper bound for large $n$:
 	\begin{equation} \label{E: bound Zn}
@@ -947,7 +941,7 @@ We begin with two further auxiliary lemmas.
 	\begin{aligned}
 	&\n{-1}{3} \supns\left| \An(s) + \frac{s^2}{2}n^{-1}  + s\theta\n{-1}{3}  \right| \\
 	&\leq\n{-1}{3} \supns \left| \An(s) + \frac{s^2}{2n} - \frac{s\pp}{\n{1}{3}}  + \frac{s^2\pp}{2\n{4}{3}}  \right| + \frac{\theta s_0^2}{2\n{1}{3}} \\
-	&\leq \n{-1}{3} \supns (\frac{4s}{n} \max_{u \leq s} |\Zn(u)|) + \BigO{\n{-1}{3}} \\
+	&\leq \n{-1}{3} \supns \left(\frac{4s}{n} \max_{u \leq s} |\Zn(u)|\right) + \BigO{\n{-1}{3}} \\
 	&\leq \n{-1}{3} 4 s_0 \n{-1}{3} \supns |\Zn(s)| + \BigO{\n{-1}{3}} \\
 	&\leq 4 s_0 \n{-2}{3} \supns |\Zn(s)| + \BigO{\n{-1}{3}}.
 	\end{aligned}
@@ -985,12 +979,11 @@ We begin with two further auxiliary lemmas.
 	\end{equation}
 	We will show that
 	\begin{equation} \label{E: limit Bn An + c}
-	\n{-1}{3} \An(\n{-2}{3}s_0) + \frac{1}{2}s_0^2 - s_0\pp \longrightarrow_p 0,
+	\n{-1}{3} \An(\n{-2}{3}s_0) + \frac{1}{2}s_0^2 - s_0\pp \rightarrow_p 0.
 	\end{equation}
-	where $\pp$ denotes the probability parameter of $\Gnt$. 
 	This implies
 	\begin{equation*}
-	\n{-1}{3} \left( \n{-1}{3} \An(\n{-2}{3}s_0) + \frac{1}{2}s_0^2 - s_0\pp \right) \longrightarrow_p 0
+	\n{-1}{3} \left( \n{-1}{3} \An(\n{-2}{3}s_0) + \frac{1}{2}s_0^2 - s_0\pp \right) \rightarrow_p 0
 	\end{equation*}
 	which, since $\frac{1}{2}s_0^2 - s_0\pp$ is a constant in $n$, proves \eqref{E: limit Bn An}.
 	
@@ -1001,7 +994,7 @@ We begin with two further auxiliary lemmas.
 	&= \left| \n{-1}{3} \An(\n{-2}{3}s_0) + \phi(\n{2}{3}s_0) \right| \\
 	&\leq \supns \left| \n{-1}{3} \An(s) + \phi(s) \right| \\
 	&= \n{-1}{3} \supns \left| \An(s) + \frac{s^2}{2}n^{-1} - s\pp\n{-1}{3} \right| \\
-	&\longrightarrow_p 0
+	&\rightarrow_p 0
 	\end{align*}
 	by Lemma~\ref{L: limit An}. This gives \eqref{E: limit Bn An + c} and completes the proof.
 \end{proof}

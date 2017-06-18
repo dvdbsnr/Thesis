@@ -171,7 +171,7 @@ The remainder of this chapter is dedicated to proving this convergence.
 	For the previously defined processes $\rznt$ and $\rnnt$,
 	the joint weak convergence
 	\begin{equation}
-	( \rznt(s), \rnnt(s); s \geq 0 ) \longrightarrow_d (\Wt(s), \Nt(s); s \geq 0)
+	( \rznt(s), \rnnt(s); s \geq 0 ) \rightarrow_d (\Wt(s), \Nt(s); s \geq 0)
 	\end{equation}
 	holds, where $\Nt$ is the counting process with conditional intensity $\Bt$,
 	i.e. the process for which
@@ -740,7 +740,7 @@ we are dealing with a Riemann sum over the continuous function $\BtX$.
 Since $\BtX$ is bounded almost surely on the compact interval $[s_{j-1}, s_j]$,
 the sum converges to an integral and
 \begin{equation}
-\Exp{Y_{n,j}} \longrightarrow \int_{s_{j-1}}^{s_j} \BtX(u)du.
+\Exp{Y_{n,j}} \rightarrow \int_{s_{j-1}}^{s_j} \BtX(u)du.
 \end{equation}
 Now applying the Poisson limit theorem yields
 \begin{equation} \label{E: convergence dist Yj}
@@ -751,7 +751,7 @@ and, applying this convergence in \eqref{E: distribution Ndis}, we arrive at
 \begin{aligned}
 &\Prob(\rNdisX(s_1) = k_1, \dots, \rNdisX(s_l) = k_l) \\
 &\quad = \prod_{j=2}^{l} \Prob( Y_{n,j} = \n{1}{3}(k_j - k_{j-1}) ) \\
-&\enspace \longrightarrow \prod_{j=2}^{l} \Prob( \NtX(s_j) - \NtX(s_{j-1}) = \n{1}{3}(k_j - k_{j-1}) ) \\
+&\enspace \rightarrow \prod_{j=2}^{l} \Prob( \NtX(s_j) - \NtX(s_{j-1}) = \n{1}{3}(k_j - k_{j-1}) ) \\
 &\quad = \Prob(\NtX(s_1) = k_1, \dots, \NtX(s_l) = k_l).
 \end{aligned}
 \end{equation*}
