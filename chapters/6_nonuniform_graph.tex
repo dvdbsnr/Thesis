@@ -188,20 +188,6 @@ for $0 \leq s \leq x_{v_i}$.
 After having exhausted every vertex in the first component, 
 choose the root of the next component by size-biased sampling and continue.
 
-This construction now yields a random forest on the vertices $\{1,  \dots, n\}$
-with an ordering $\{v_1, \dots, v_n\}$ 
-as well as an associated breadth-first walk in continuous time $(\bfw(s); 0 \leq s \leq \sum_vx_v)$.
-
-We now add each edge $(v_i, v_j)$ such that $i < j \leq l(i)$ and $\xi_{v_i, v_j} \leq x_{v_i}$.
-It is easily seen how the resulting random graph is $\Wrg(\x, \q)$:
-For a pair of vertices $(i, j)$, one must be traversed first by the breadth-first walk, say $i$,
-and the resulting probability of the edge $(i,j)$ being present in the final graph is equal to
-\begin{equation}
-	\Prob(\xi_{i,j} \leq x_i ) = 1 - \exp(q x_i x_j)
-\end{equation}
-since $\xi_{i,j} \sim \Exponential(qx_j)$.
-Once $j$ is choosing its children it can not form a new connection to $i$ any more.
-
 \begin{figure}[H]
 	\centering
 	\subfloat[Components of $\Wrg(\x, \q)$ with corresponding vertex sizes.]
@@ -214,6 +200,21 @@ Once $j$ is choosing its children it can not form a new connection to $i$ any mo
 	\caption{Continuous breadth-first walk components of the nonuniform random graph. Dashed lines indicate the end of vertices.}
 	\label{F: nonu bf-walk}
 \end{figure} 
+
+This construction yields a random forest on the vertices $\{1,  \dots, n\}$
+with an ordering $\{v_1, \dots, v_n\}$ 
+as well as an associated breadth-first walk in continuous time $(\bfw(s); 0 \leq s \leq \sum_vx_v)$.
+
+We add each edge $(v_i, v_j)$ such that $i < j \leq l(i)$ and $\xi_{v_i, v_j} \leq x_{v_i}$.
+It is easily seen how the resulting random graph is $\Wrg(\x, \q)$:
+For a pair of vertices $(i, j)$, one must be traversed first by the breadth-first walk, say $i$,
+and the resulting probability of the edge $(i,j)$ being present in the final graph is equal to
+\begin{equation}
+	\Prob(\xi_{i,j} \leq x_i ) = 1 - \exp(q x_i x_j)
+\end{equation}
+since $\xi_{i,j} \sim \Exponential(qx_j)$.
+Once $j$ is choosing its children it can not form a new connection to $i$ any more.
+
 
 Figure~\ref{F: nonu bf-walk} shows this construction for some sample components. 
 We may think of the vertices $v_1, v_2, \dots$ occupying consecutive intervals on the time axis,
