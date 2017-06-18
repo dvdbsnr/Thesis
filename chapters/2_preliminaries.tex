@@ -433,21 +433,21 @@ in order to focus on the one-dimensional case we will need for our proof.
 	Let the following conditions hold:
 	For each $T>0$,
 	\begin{equation} \label{E: cond1 CLT}
-	\lim_{n->\infty} \ExpBig{
+	\lim_{n\rightarrow\infty} \ExpBig{
 		\sup_{s \leq T} | A_n(s) - A_n(s-)|
 	} = 0,
 	\end{equation}
 	\begin{equation} \label{E: cond2 CLT}
-	\lim_{n->\infty} \ExpBig{
+	\lim_{n\rightarrow\infty} \ExpBig{
 		\sup_{s \leq T} | M_n(s) - M_n(s-)|^2
 	} = 0,
 	\end{equation}
 	and 
 	\begin{equation} \label{E: cond3 CLT}
-	A_n(s) \longrightarrow_p c(s).
+	A_n(s) \rightarrow_p c(s).
 	\end{equation}
 	where $c(s)$ is a continuous, increasing function on $[0, \infty)$ with $c(0) = 0$.
-	Then $M_n \longrightarrow_d X$ where $X$ is a martingale with sample paths in $C[0,\infty)$ and independent Gaussian increments
+	Then $M_n \rightarrow_d X$ where $X$ is a martingale with sample paths in $C[0,\infty)$ and independent Gaussian increments
 	and $X^2 - c$ is a martingale.
 \end{theorem}
 
