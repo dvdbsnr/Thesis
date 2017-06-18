@@ -152,7 +152,7 @@ Figure~\ref{F: ER lambda} provides two realizations of the random graph with dif
 one subcritical and one supercritical.
 Note how the largest connected components in the subcritical graph still consist of very few vertices
 (the largest component here having 9 vertices, while $\log(1000) \approx 6.9$)
-and a that lot of nodes are isolated.
+and how a lot of nodes are isolated.
 In contrast, the supercritical graph features a single large component 
 and all other components are either drastically smaller in size or even still isolated vertices.
 
@@ -263,7 +263,7 @@ We now identify the distribution of the limit vector precisely and state a stric
 Denote by $W$ the standard Brownian motion on $\Rplus$.\label{I: bm} 
 For a fixed parameter $\pp \in \Real$ we call the process $\Wt$, defined by
 \begin{equation} \label{D: Wt}
-	\Wt(s) := W(s) + \int_{0}^{s}(\pp -s)ds = W(s) + \pp s - \frac{1}{2}s^2,
+	\Wt(s) := W(s) + \int_{0}^{s}(\pp - u)du = W(s) + \pp s - \frac{1}{2}s^2,
 \end{equation}
 the Brownian motion with drift $\pp -s$ at time $s$.
 The central object of our analysis will be the process $\Wt$ and its excursions above past minima.
@@ -303,7 +303,7 @@ Informally speaking, the chance of encountering a mark in a time interval $\sds$
 \end{equation}
 More formally we define $\Nt$ to be the counting process for which
 \begin{equation}
-	\Nt(s) - \int_{0}^{s} \Bt(s)ds
+	\Nt(s) - \int_{0}^{s} \Bt(u)du
 \end{equation}
 is a martingale.
 Denote by $\mu(\gamma)$ the number of marks during an excursion $\gamma$. \label{I: mugamma}
@@ -318,7 +318,7 @@ and define the natural metric on $\ld$ by
 \begin{equation}
 	d_2(\boldsymbol{x},\boldsymbol{y}) = \sqrt{\sideset{}{_i}\sum (x_i - y_i)^2}.
 \end{equation}
-For a finite sequence like $\Cntbold = (\Cnt(j), \; j \geq 1)$ we append zeroes in order to regard it as an element on $\ld$.
+For a finite sequence like $\Cntbold$, the ordered component sizes of a graph on $n$ vertices, we append zeroes in order to regard it as an element on $\ld$.
 
 
 We now state the main theorem of this thesis, which we will prove gradually in the following chapters.
@@ -345,17 +345,17 @@ We now state the main theorem of this thesis, which we will prove gradually in t
 		of excursions of $\Bt$.
 	\end{enumerate}
 \end{theorem}
-The Folk Theorem~\ref{T: folk theorem} is contained in the first statement of Theorem~\ref{T: Main}.
+\begin{note}
+	The Folk Theorem~\ref{T: folk theorem} is contained in the first statement of Theorem~\ref{T: Main}.
+\end{note}
 
-
-\bigskip
 
 We conclude this chapter with an overview of the remaining chapters and the structure of the proof of Theorem~\ref{T: Main}.
 
 Chapter~\ref{C: preliminaries} will introduce some preliminary theory on convergence of probability measures,
-the space of \cadlag~functions $\DT$ and counting processes.
+the space of \cadlag~functions $\DT$, counting processes and Brownian motion.
 
-In Chapter~\ref{C: bf-walk} we define a way to traverse all vertices of a given graph, called the breadth-first walk $\znt$, 
+In Chapter~\ref{C: bf-walk} we define a way to traverse all vertices of a given graph, called the breadth-first walk $Z(s)$, 
 that reduces the graph to a one-dimensional random walk in which component sizes are decoded as excursions above past minima.
 We analyse its characteristics when applied to $\Gnt$ and discover that it converges in distribution to $\Wt$ after rescaling.
 
@@ -366,7 +366,7 @@ the rescaled breadth-first walk and this counting process to $\Wt$ and $\Nt$.
 
 The final proof of Theorem~\ref{T: Main} happens in Chapter~\ref{C: convergence}.
 We show that the convergence in distribution of the rescaled breadth-first walk to the Brownian motion with drift
-does indeed imply convergence of excursions of certain length on finite intervals.
+indeed implies convergence of excursions of certain length on finite intervals.
 A problem that remains is the possibility of large excursions "wandering off to infinity", 
 which in Aldous' paper is solved by reference to existing random graphs results.
 We prove that we do not need to worry about these excursions or the total weight of smaller excursions
