@@ -184,7 +184,7 @@ So
 \end{equation}
 which provides the equality.
 
-In the second case, if $v_{i-1}$ is the last vertex of it's component,
+In the second case, if $v_{i-1}$ is the last vertex of its component,
 then $\zeta^{-1}(i) = \zeta^{-1}(i-1) + 1$
 and $|\Ni{i-1}| = 0$.
 Equality \eqref{E: equality z z*} reduces to
@@ -711,12 +711,12 @@ In this section we prove the previously stated Lemmas~\ref{L: limit An}, \ref{L:
 We begin with two further auxiliary lemmas.
 
 \begin{lemma} \label{L: asymptotic An}
-	For $\An$ defined in Lemma~\ref{L: decomp Zn} and all $s \leq s_0\n{2}{3}$ we have
+	For all $\sigma_0 \in \Rplus$ and $\An$ defined in Lemma~\ref{L: decomp Zn} we have
 	\begin{equation}
 		\left| \An(s) + \frac{s^2}{2n} - \frac{s\pp}{\n{1}{3}}  + \frac{s^2\pp}{2\n{4}{3}}  \right|
 		\leq \frac{4s}{n} \max_{u \leq s} |\Zn(u)| + \BigO{\frac{s}{n}}
 	\end{equation}
-	for all sufficiently large $n$.
+	for all $s \leq s_0\n{2}{3}$ for sufficiently large $n$.
 \end{lemma}
 
 \begin{proof}
@@ -762,18 +762,18 @@ We begin with two further auxiliary lemmas.
 	\end{equation}
 	and from \eqref{E: convergence an amn} we know
 	\begin{equation} \label{E: convergence amn An}
-	|\int_{0}^s(\amn(u) - 1) du - \An(s)| = \BigO{n^{-1}}.
+	|\int_{0}^s(\amn(u) - 1) du - \An(s)| = \BigO{\frac{s}{n}}.
 	\end{equation}
 	Using \eqref{E: zeta-1(i) = 1 - min(j)} and \eqref{E: an zeta Z / n}, the following inequalities hold for sufficiently large $n$:
 	\begin{equation} \label{E: int an <= 4s/n maxZ + O()}
 	\begin{aligned}
 	&\left| \An(s) + \frac{s^2}{2n} - \frac{s\pp}{\n{1}{3}}  + \frac{s^2\pp}{2\n{4}{3}}  \right| \\
-	&\quad = \left| \int_{0}^s \amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}} du \right| + \BigO{\frac{s_o\n{2}{3}}{n}} \\
-	&\quad \leq \int_{0}^s \left|\amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}} \right| du + \BigO{\n{-1}{3}} \\ 
-	&\quad \leq \int_{0}^s 2 \frac{\Zetan{\ceil{u}} + |\Zn(u)|}{n} du + \BigO{\n{-1}{3}}\\ 
-	&\quad = \frac{2}{n}  \int_{0}^s (1-\min_{w \leq \ceil{u}-1} \Zn(w)  + |\Zn(u)| )du + \BigO{\n{-1}{3}}\\ 
-	&\quad = \frac{2}{n}  \int_{0}^s (|\Zn(u)| - \min_{w \leq \ceil{u}-1} \Zn(w)) du + \frac{2s}{n} + \BigO{\n{-1}{3}} \\ 
-	&\quad \leq \frac{4s}{n} \max_{u \leq s} |\Zn(u)| + \BigO{\n{-1}{3}},
+	&\quad = \left| \int_{0}^s \amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}} du \right| + \BigO{\frac{s}{n}} \\
+	&\quad \leq \int_{0}^s \left|\amn(u) - 1 + \frac{u}{n} - \frac{\pp}{\n{1}{3}} + \frac{u\pp}{\n{4}{3}} \right| du + \BigO{\frac{s}{n}} \\ 
+	&\quad \leq \int_{0}^s 2 \frac{\Zetan{\ceil{u}} + |\Zn(u)|}{n} du + \BigO{\frac{s}{n}}\\ 
+	&\quad = \frac{2}{n}  \int_{0}^s (1-\min_{w \leq \ceil{u}-1} \Zn(w)  + |\Zn(u)| )du + \BigO{\frac{s}{n}}\\ 
+	&\quad = \frac{2}{n}  \int_{0}^s (|\Zn(u)| - \min_{w \leq \ceil{u}-1} \Zn(w)) du + \frac{2s}{n} + \BigO{\frac{s}{n}} \\ 
+	&\quad \leq \frac{4s}{n} \max_{u \leq s} |\Zn(u)| + \BigO{\frac{s}{n}},
 	\end{aligned}
 	\end{equation}
 	the last inequality holds since $\ceil{u}-1 \leq s$ for $u\leq s$ 
@@ -810,7 +810,7 @@ We begin with two further auxiliary lemmas.
 	\begin{equation} \label{E: stoch bounded 2}
 	\begin{aligned}
 	\Prob( \sup_{s\leq n^{2/3} s_0} |\Zn(s)| > K \n{1}{3} ) &= \Prob( |\Zn(T_n)| > K\n{1}{3} ) \\
-	&\leq \frac{\Exp{|\Zn(T_n)}|}{K\n{1}{3}}.
+	&\leq \frac{\Exp{|\Zn(T_n)|}}{K\n{1}{3}}.
 	\end{aligned} 
 	\end{equation}
 	
@@ -906,8 +906,8 @@ We begin with two further auxiliary lemmas.
 	\begin{aligned}
 	&\Exp{\int_{0}^{T_n} |\amn(s) - 1 + \frac{s}{n} - \frac{\pp}{\n{1}{3}} + \frac{s\pp}{\n{4}{3}}|ds} \\
 	&\leq \Exp{ \frac{4T_n}{n} \max_{u \leq T_n}|\Zn(u)| + \BigO{\frac{T_n}{n}} } \\
-	&\leq \frac{4\n{2}{3}s_0}{n} \Exp{\max_{u \leq T_n}|\Zn(u)|} + \BigO{\frac{\n{2}{3}s_0}{n}} \\
-	&\leq 4s_0 K + s_0 \BigO{\n{-1}{3}},
+	&\leq \frac{4\n{2}{3}s_0}{n} \Exp{\max_{u \leq T_n}|\Zn(u)|} + \BigO{\frac{s_0\n{2}{3}}{n}} \\
+	&\leq 4s_0 K + s_0\BigO{\n{-1}{3}},
 	\end{aligned}
 	\end{equation}
 	where the last inequality follows from the definition of $T_n$ in \eqref{E: def Tn},

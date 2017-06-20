@@ -502,10 +502,9 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	By \eqref{E: def r(q)} $r(q)$ is a stopping time and by the strong Markov property of Brownian motion
 	$W(s) - W(r(q))$ behaves like a standard Brownian motion for $s \geq r(q)$.
 	By \cite[Theorem 2.8, p.38]{Morters.2010},
-	$W$ is has positive and negative values on any interval $[0,\delta]$ for $\delta > 0$ almost surely.
+	$W$ has positive and negative values on any interval $[0,\delta]$ for $\delta > 0$ almost surely.
 	Therefore for all $\delta > 0$ there exists $x \in (r(q), r(q) + \delta)$ with $W(x) < W(r(q))$.
-	For each $(l,r) \in \mathcal{E}$ \eqref{E: W(l2) < W(l1)} holds almost surely
-	and since $\mathcal{E}$ is countable,
+	Thus, \eqref{E: W(l2) < W(l1)} holds almost surely for each $(l,r) = (l(q), r(q))$ and since $\Rat$ is countable,
 	condition \eqref{E: f cond f(l1) > f(l2)} holds with probability $1$.
 	
 	The complement of all excursion is the set of intervals
@@ -691,9 +690,10 @@ of the whole ordered vector of component sizes and surplus edges.
 	\begin{aligned}
 	\Exp{|\Ccal(1)|} 
 	&\leq \sum_{j=0}^{\infty} (k \p)^j \\
-	&= \frac{1}{1- k\p}.
+	&\leq \frac{1}{(1- k\p)_+},
 	\end{aligned}		
 	\end{equation}
+	where $(1- k\p)_+$ denotes the positive part of $1- k\p$.
 	We continue the calculation in \eqref{E: P(ExcEvent) 2} using \eqref{E: P(ExcEvent) 3} and \eqref{E: Exp C(1) <= frac kp},
 	which yields
 	\begin{equation}
@@ -730,10 +730,10 @@ Aldous' paper provides a complete proof using stochastic calculus methods.
 
 Since $\sum_{\gamma \in \Gamma^{\pp}} |\gamma|^2$ is a convergent series almost surely,
 for all $\epsilon > 0$ we can find $\delta > 0$ such that
-\begin{equation}
+\begin{equation} \label{E: gamma delta epsilon}
 	\Exp{\sum_{|\gamma| < \delta} |\gamma|^2} < \epsilon.
 \end{equation}
-Then by Markov's inequality for all $\epsilon_0 > 0$ we can find $\epsilon_1 > 0$ and $\delta > 0$ such that
+Then by Markov's inequality for all $\epsilon_0 > 0$ and $\epsilon_1 > 0$ there exists $\delta > 0$ such that
 \begin{equation} \label{E: sum gamma < delta}
 	\Prob(\sum_{|\gamma| < \delta} |\gamma|^2 > \epsilon_1) < \epsilon_0.
 \end{equation}
@@ -742,10 +742,10 @@ An immediate corollary is the following equivalent of Lemma~\ref{L: late excursi
 \begin{lemma} \label{L: late excursions gamma}
 	Let $\Prob(\Event{\delta, C})$ be the probability that $\Bt$ makes an excursion $\gamma$ 
 	of length $|\gamma| > \delta$ with $l(\gamma) > C$.
-	Then for all $\epsilon > 0$ there exist $C > 0$ and $\delta > 0$ such that $\Prob(\Event{\delta, C}) < \epsilon$.
+	Then for all $\epsilon > 0$ and $\delta > 0$ there exist $C > 0$ such that $\Prob(\Event{\delta, C}) < \epsilon$.
 \end{lemma}	
 
-We state and prove a result similar to Lemma~\ref{L: BM in ld} on excursion lengths of the rescaled breadth-first walk.
+We state and prove a result similar to \eqref{E: gamma delta epsilon} on excursion lengths of the rescaled breadth-first walk.
 \begin{lemma} \label{L: sum rgamman}
 	Denote by $\rgamman$ the excursions of $\rznt$. 
 	Then for all $\epsilon > 0$ there exists $\delta > 0$ such that

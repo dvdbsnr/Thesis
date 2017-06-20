@@ -215,14 +215,14 @@ We begin with a quick overview of the proof.
 	for some compact $C \in \DT^2$.
 	
 	\item Since $\rznt \rightarrow_d \Wt$ we can define them on the same probability space such that
-	$\norm{|\rznt(s) - \Wt(s)|}_T < \delta$. 
+	$\norm{\rznt(s) - \Wt(s)}_T < \delta$. 
 	Calling this event $\Event{\delta}$,
 	it suffices to look at
 	\begin{math}
 	\Exp{f(\Wt, \rnnt) \cond \Event{C}, \Event{\delta}}.
 	\end{math}
 	
-	\item If $\norm{|\rznt(s) - \Wt(s)|}_T < \delta$ then with high probability $\nnt = \Ndis$,
+	\item If $\norm{\rznt(s) - \Wt(s)}_T < \delta$ then with high probability $\nnt = \Ndis$,
 	where $\Ndis$ is a discrete process with binomially distributed increments,
 	dependent on an upscaling of $\Bt$.
 	It then suffices to prove convergence of 
@@ -234,7 +234,7 @@ We begin with a quick overview of the proof.
 	\begin{math}
 		\Exp{f(\Wt, \Ndis)} \rightarrow \Exp{f(\Wt, \Nt)}
 	\end{math}
-	by showing that for all realizations of $\Wt$ we have
+	by showing that for almost all realizations of $\Wt$ we have
 	\begin{math}
 		\Ndis \rightarrow_d \Nt.
 	\end{math}
@@ -245,30 +245,14 @@ We begin with a quick overview of the proof.
 % Proofpart 1: Tightness of N
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proofpart}
-First, we will show that $\rnnt$ is tight as a random process with image in $\DT$.
+First, we will show that $\rnnt$ is tight as a random process with image in $\DT$ by using Theorem~\ref{T: tightness in DT}.
+We first take a closer look at $\rznt$.
 We already know that $\rznt \rightarrow_d \Wt$, which implies that $\rznt$ is tight, 
 so for all $\epsilon>0$ there exists a compact $K \subset \DT$ such that
 \begin{equation} \label{E: rznt tight}
 \inf_n \Prob ( \rznt \in K) > 1 - \epsilon.
 \end{equation}
-
-We want to show tightness of $\rnnt$ by using Theorem~\ref{T: tightness in DT}.
-If we can prove that for all $\epsilon > 0$ there exists a real number $K > 0$ such that
-\begin{equation}
-	\Prob(\norm{\rnnt}_T < K) > 1 - \epsilon
-\end{equation}
-for all $n$, we have
-\begin{equation}
-	\limsup_n \Prob(\norm{\rnnt}_T \geq K) < \epsilon
-\end{equation}
-and therefore
-\begin{equation}
-	\lim_{K \rightarrow \infty} \limsup_n \Prob(\norm{\rnnt}_T \geq K) = 0
-\end{equation}
-which is the first condition of Theorem~\ref{T: tightness in DT}.
-
-For the second condition, we first take a look at $\rznt$.
-From \eqref{E: rznt tight} we know that for all $\epsilon > 0$ exists $A>0$ such that for all $n$
+Therefore for all $\epsilon > 0$ exists $A>0$ such that for all $n$
 \begin{equation} \label{E: rznt bounded}
 \Prob(\sup_{s \leq T} |\rznt(s)| > A) < \epsilon.
 \end{equation}
@@ -289,6 +273,8 @@ Therefore, for all $\epsilon > 0$ exists an $A>0$ such that
 \Prob( \sup_{s \leq T} |\zminz(\n{2}{3}s)| \geq A\n{1}{3} ) < \epsilon
 \end{equation}
 holds for all $n \in \Nat$.
+
+\bigskip
 
 We now move to the process $\rnnt$. Consider the unscaled process $\nnt$ at time $i \in [0, \n{2}{3}T]$.
 The increment to its next step is binomially distributed on the number of vertices eligible for a surplus edge:
@@ -334,8 +320,6 @@ Markov's inequality then gives
 &\leq \frac{1}{K}CTA
 \end{align*}
 for some constant $C \in \Real$, since $n\p \rightarrow 1$ as $n \rightarrow \infty$.
-\fxnote{Fix the use of > and >= here.}
-\fxnote{Fix the use of A/K here.}
 So
 \begin{equation}
 \Prob(\rnnt(T) \geq K) \leq \epsilon + \frac{1}{K}CTA \leq 2 \epsilon
@@ -418,9 +402,10 @@ Thus there is a compact subset $C \subset \DT^2$ such that
 \begin{proofpart}
 The next step in our proof will be showing that for all $\epsilon > 0$,
 \begin{equation}
-|\Exp{ f(\rznt, \rnnt)} - \Exp{f(\Wt, \rnnt)}| < \epsilon
+|\Exp{ f(\rznt, \rnnt)} - \Exp{f(\WtX, \rnntX)}| < \epsilon
 \end{equation}
-for sufficiently large $n$.
+for sufficiently large $n$,
+where $(\WtX, \rnntX)$ is a coupling of $\Wt$ and $\rnnt$ constructed below.
 Recall that $f$ is a bounded function, so there exists $M>0$ such that $|f(x,y)| \leq M$ for all $(x,y) \in \DT^2$.
 We denote by $\Event{C}$ the event $(\znt, \rnnt) \in C$ and use the law of total expectation to calculate
 \begin{equation} \label{E: Estimation step 1}
@@ -756,23 +741,19 @@ and, applying this convergence in \eqref{E: distribution Ndis}, we arrive at
 \end{aligned}
 \end{equation*}
 
-For any fixed $\WtX(\omega)$ we therefore have $\rNdisX \rightarrow_d \NtX$.
-Since $f(\WtX, \cdot)$ is abounded continuous function this implies
+For any fixed continuous $\WtX(\omega)$ we therefore have $\rNdisX \rightarrow_d \NtX$.
+Since $f(\WtX, \cdot)$ is a bounded continuous function this implies
 \begin{equation}
-	\Exp{f(\WtX(\omega), \rNdisX)} \rightarrow \Exp{f(\WtX(\omega), \NtX)}
+	\Exp{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} \rightarrow \Exp{f(\WtX(\omega), \NtX)\cond \WtX(\omega)}.
 \end{equation}
-or
-\begin{equation}
-	\Exp{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} \rightarrow_{a.s.} \Exp{f(\WtX(\omega), \NtX)\cond \WtX(\omega)}.
-\end{equation}
-by the boundedness of $f$ we can apply the dominated convergence theorem which gives
+By the boundedness of $f$ we can apply the dominated convergence theorem which gives
 \begin{equation}
 	\begin{aligned}
 	\Exp{f(\WtX, \NtX)}
 	&= \Exp{ \Exp{f(\WtX(\omega), \NtX) \cond \WtX(\omega)} } \\
-	&= \Exp{ \lim_{n->\infty} \Exp{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} } \\
-	&= \lim_{n->\infty} \Exp{ \Exp{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} } \\
-	&= \lim_{n->\infty} \Exp{ f(\WtX, \rNdisX) }.
+	&= \Exp{ \lim_{n\rightarrow\infty} \Exp{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} } \\
+	&= \lim_{n\rightarrow\infty} \Exp{ \Exp{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} } \\
+	&= \lim_{n\rightarrow\infty} \Exp{ f(\WtX, \rNdisX) }.
 	\end{aligned}
 \end{equation}
 Finally, the closeness of $\Exp{ f(\WtX, \rNdisX) }$ and $\Exp{f(\rzntX, \nntX)}$ in \eqref{E: Equality of Expectations} implies

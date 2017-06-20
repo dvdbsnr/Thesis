@@ -14,7 +14,7 @@
 
 The central notion of this thesis is the convergence in distribution of random variables in general metric spaces.
 The results presented in this section and the next will be of special importance in the proof of Theorem~\ref{T: Joint Convergence}
-in Chapter~\ref{C: surplus edges} and of Theorems~\ref{T: Main} in Chapter~\ref{C: convergence}.
+in Chapter~\ref{C: surplus edges} and of Theorem~\ref{T: Main} in Chapter~\ref{C: convergence}.
 
 \begin{definition}[Weak convergence, {\cite[p.7]{Billingsley.1999}}] \label{D: weak convergence}
 	Let $\mu_n$, $\mu$ be measures on a metric space $S$ with associated \Bosi~$\mathcal{S} = \Bo(S)$.
@@ -213,11 +213,11 @@ we need a convergence that additionally allows small shifts on the x-axis.
 	
 	For $0 < \delta < 1$ and $x \in \DT$, define the \emph{modulus of continuity} by
 	\begin{equation*}
-		w_x'(\delta) := \inf_{\{t_i\}} \max_{1\leq i \leq k} w_x[t_{i-1}, t_i),
+		w_x'(\delta) := \inf_{\{t_i\}} \max_{1\leq i \leq k} w_x([t_{i-1}, t_i)),
 	\end{equation*}
 	where the infimum extends over all $\delta$-sparse sets $\{t_i\}$ and
 	\begin{equation*}
-		w_x([a,b]) := \sup_{s,t \in [a,b]}|x(s)  -x(t)|.
+		w_x([t_{i-1}, t_i)) := \sup_{s,t \in [t_{i-1}, t_i)}|x(s)  -x(t)|.
 	\end{equation*}
 \end{definition}
 
