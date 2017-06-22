@@ -160,7 +160,8 @@ then show that there can not be any more excursion of $f_n$ of sufficient length
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Proof Part 1: \Xi in \Xin
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{proofpart}[$\Xi(C) \leq \Xin(C)$] \label{PP: Lemma Det 1}
+\bigskip
+\begin{proof}[Part 1: $\Xi(C) \leq \Xin(C)$] \label{PP: Lemma Det 1} \renewcommand{\qedsymbol}{}
 Let us first establish some facts about excursions of the limit function $f$.
 In the interval $[T_1, T_2]$,
 there can only be a finite number of excursion starting with length of at least $d_1$,
@@ -331,13 +332,14 @@ where $k$ is the finite number of elements of $\mathcal{E}^*$,
 and every excursion of $f$ in $C$ is matched by an excursion of $f_n$ in $C$
 for $n \geq N^*$.
 Therefore eventually $\Xi (C) \leq \Xin(C)$.
-\end{proofpart}
+\end{proof}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Proof Part 2: \Xin in \Xi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{proofpart}[$\Xin(C) \leq \Xi(C)$] \label{PP: Xin in Xi} \label{PP: Lemma Det 2}
+\bigskip
+\begin{proof}[Part 2: $\Xin(C) \leq \Xi(C)$] \label{PP: Xin in Xi} \label{PP: Lemma Det 2} \renewcommand{\qedsymbol}{}
 Now that every excursion of $f$ is matched, 
 we need to show that there can not exist any additional large excursion of $f_n$.
 Considering the fact that excursions can not overlap,
@@ -373,7 +375,7 @@ so that there will be no space left for a large excursion of $f_n$ in $[r,l]$.
 Applying this logic to every one if the finitely many gaps between excursions of $f$,
 we see that there can not exist any more large excursions of $f_n$  than those already matching $f$.
 There $\Xin(C) \leq \Xi(C)$ for sufficiently large $n$, which completes the proof.
-\end{proofpart}
+\end{proof}
 \end{proof}
 
 
@@ -516,7 +518,7 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	
 	A standard Brownian motion $W$ satisfies the conditions of Lemma~\ref{L: Deterministic Lemma} almost surely,
 	therefore $\WtX$ does so almost surely under $\tilde{\mathbb{P}}$
-	and by Girsanov's theorem likewise under $\Prob$.
+	and by Girsanov's theorem (Theorem \ref{T: Girsanov}) likewise under $\Prob$.
 
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -594,7 +596,7 @@ of the whole ordered vector of component sizes and surplus edges.
 	$|\gamma| > \delta\n{2}{3}$ starting after step $C\n{2}{3}$.
 	Then for all $\epsilon>0$ and $\delta > 0$ exists $C>0$ such that $\sup_n \Prob(\ExcursionEvent) < \epsilon$. 
 \end{lemma}
-\begin{note}
+\begin{note}[Test]
 	As mentioned before, in \cite[Lemma 9, p.826]{Aldous.1997} a similar statement is proven
 	by citing bounds on the numbers of tree components, unicyclic components and complex components
 	given in \cite{Luczak.1994}.
@@ -806,7 +808,7 @@ After all these technical considerations we are now ready to prove our main theo
 	We first prove the convergence of component sizes and surplus edges to excursions and mark counts of $\Bt$ in the product topology
 	and then the convergence of component sizes to Brownian excursions in the $\ld$ topology.
 	
-	\begin{proofpart}
+	\begin{proof}
 	We again define $\rzntX \sim \rznt$ and $\WtX \sim \Wt$ on the same probability space,
 	where $\rzntX \rightarrow_{a.s.} \WtX$.
 	Define
@@ -886,10 +888,10 @@ After all these technical considerations we are now ready to prove our main theo
 	\end{equation}
 	which proves $\YnkX \rightarrow_p \YkX$.
 	Now convergence in probability implies convergence in distribution which completes the proof of the first and second statement of Theorem~\ref{T: Main}.
-	\end{proofpart}
+	\end{proof}
 
 
-	\begin{proofpart}
+	\begin{proof}
 	The only thing left to show is that the convergence $\n{-2}{3} \Cntbold \rightarrow_p \Ctbold$ holds with respect to the $\ld$~topology.
 	
 	For $\delta > 0$ and $\epsilon_1 > 0$, denote by $\Event{\sum\gamma}$ the event that $\sum_{|\gamma| < \delta}|\gamma|^2 > \epsilon_1$.
@@ -932,7 +934,7 @@ After all these technical considerations we are now ready to prove our main theo
 	\Prob( d_{2}(\YnX, \YX) > \alpha) < \epsilon.
 	\end{math}
 	Therefore $\YnX \rightarrow_p \YX$ which implies $\Yn \rightarrow_d \Y$ with regard to the $\ld$~topology.
-	\end{proofpart}
+	\end{proof}
 
 	
 \end{proof}

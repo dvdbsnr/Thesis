@@ -88,5 +88,6 @@
 
 % Claim as part of proof
 \declaretheorem[style=definition, numberwithin=theorem, name=Part]{proofpart}
+\renewenvironment{proof}[1][\proofname]{{\noindent\bfseries #1. }}{\qed}
 
 

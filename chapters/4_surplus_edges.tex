@@ -244,7 +244,7 @@ We begin with a quick overview of the proof.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Proofpart 1: Tightness of N
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{proofpart}
+\begin{proof}[Part 1]\renewcommand{\qedsymbol}{}
 First, we will show that $\rnnt$ is tight as a random process with image in $\DT$ by using Theorem~\ref{T: tightness in DT}.
 We first take a closer look at $\rznt$.
 We already know that $\rznt \rightarrow_d \Wt$, which implies that $\rznt$ is tight, 
@@ -392,14 +392,14 @@ Thus there is a compact subset $C \subset \DT^2$ such that
 \begin{equation}
 	\Prob( (\rznt, \rnnt) \in C) > 1 - \epsilon.
 \end{equation}
-\end{proofpart}
+\end{proof}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Proofpart 2: Estimation of expectation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{proofpart}
+\begin{proof}[Part 2]\renewcommand{\qedsymbol}{}
 The next step in our proof will be showing that for all $\epsilon > 0$,
 \begin{equation}
 |\Exp{ f(\rznt, \rnnt)} - \Exp{f(\WtX, \rnntX)}| < \epsilon
@@ -491,7 +491,7 @@ holds. Therefore
 &\leq \Exp{f(\WtX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + \epsilon + 2 \epsilon M.
 \end{aligned}
 \end{equation}
-\end{proofpart}
+\end{proof}
 
 
 
@@ -499,7 +499,7 @@ holds. Therefore
 % Proofpart 3: Nn ->_d N
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{proofpart}
+\begin{proof}[Part 3]\renewcommand{\qedsymbol}{}
 Our next objective is to establish the convergence $\rnntX \rightarrow_d \NtX$.
 For this, we describe a process $\Ndis$, which may be thought of as $\NtX$ in discrete time.
 We define $\Ndis$ by
@@ -645,14 +645,12 @@ and therefore
 \begin{equation} \label{E: Equality of Expectations}
 	|\Exp{f(\rzntX, \nntX)} - \Exp{f(\WtX, \rNdisX)} | \leq 2\delta T M + \epsilon  + 2M\epsilon.
 \end{equation}
-\end{proofpart}
-
-
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Proofpart 4: M ->_d N
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{proofpart}
+\begin{proof}[Part 4]\renewcommand{\qedsymbol}{}
 We now show that for any realization of $\WtX$ we have $\rNdisX \rightarrow_d \NtX$.
 Fix $\WtX = \WtX(\omega)$ and therefore $\BtX = \BtX(\omega)$.
 Since $\nntX$ is tight and $\nntX$ is equal to $\Ndis$ with high probability,
@@ -761,9 +759,10 @@ Finally, the closeness of $\Exp{ f(\WtX, \rNdisX) }$ and $\Exp{f(\rzntX, \nntX)}
 	\Exp{f(\rzntX, \nntX)} \rightarrow \Exp{f(\WtX, \NtX)}
 \end{equation}
 which completes the proof.
-\end{proofpart}
+\end{proof}
 \end{proof}
 
+\bigskip
 
 We can now assure ourselves that the overestimated probability \eqref{E: rate Nnt} is asymptotically negligible.
 Assume the chance that any vertex encounters two or more surplus edges is non-zero and does not converge to zero as $n \rightarrow \infty$.
