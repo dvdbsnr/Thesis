@@ -1,34 +1,41 @@
 
 \usepackage{setspace}
-\usepackage[nopostdot, nonumberlist, toc, style = super, order=letter]{glossaries}
+\usepackage[nopostdot, nonumberlist, toc, order=letter]{glossaries}
 
-\newglossarystyle{supergroup}{%
-	\setglossarystyle{super}%
-	\renewcommand*{\glsgroupskip}{}%
-	\renewcommand{\glossentry}[2]{%
-		\tabularnewline
-		\multicolumn{2}{c}{%
-			\bfseries\glsentryitem{##1}\glstarget{##1}{\glossentrydesc{##1}}%
-		}% 
-		\tabularnewline
-		\tabularnewline
-	}%
-	\renewcommand{\subglossentry}[3]{%
-		\setglossarystyle{long}%
-		\renewenvironment{theglossary}%
-		{\begin{longtable}[l]{@{}p{\dimexpr 2.5cm-\tabcolsep}p{0.8\hsize}}}% <-- change the value here
-			{\end{longtable}}%
-		\glssubentryitem{##2}%
-		\glstarget{##2}{\glossentryname{##2}}
-		&
-		\glossentrydesc{##2}\glspostdescription\space
-		##3\tabularnewline
-	}%
-%	\newlength\glsnamewidth
-%	\setlength{\glsnamewidth}{0.3\hsize}
-}
+%\newglossarystyle{supergroup}{%
+%	\setglossarystyle{super}%
+%	\renewcommand*{\glsgroupskip}{}%
+%	\renewcommand{\glossentry}[2]{%
+%		\tabularnewline
+%		\multicolumn{2}{c}{%
+%			\bfseries\glsentryitem{##1}\glstarget{##1}{\glossentrydesc{##1}}%
+%		}% 
+%		\tabularnewline
+%		\tabularnewline
+%	}%
+%	\renewcommand{\subglossentry}[3]{%
+%		\setglossarystyle{long}%
+%		\renewenvironment{theglossary}%
+%		{\begin{longtable}[l]{@{}p{\dimexpr 2.5cm-\tabcolsep}p{0.8\hsize}}}% <-- change the value here
+%			{\end{longtable}}%
+%		\glssubentryitem{##2}%
+%		\glstarget{##2}{\glossentryname{##2}}
+%		&
+%		\glossentrydesc{##2}\glspostdescription\space
+%		##3\tabularnewline
+%	}%
+%%	\newlength\glsnamewidth
+%%	\setlength{\glsnamewidth}{0.3\hsize}
+%}
 
 \newglossarystyle{mylong}{%
+	\setglossarystyle{indexgroup}%
+	\renewenvironment{theglossary}%
+	{\begin{longtable}[l]{@{}p{\dimexpr 2.5cm-\tabcolsep}p{0.8\hsize}}}% <-- change the value here
+		{\end{longtable}}%
+}
+
+\newglossarystyle{mylong2}{%
 	\setglossarystyle{long}%
 	\renewenvironment{theglossary}%
 	{\begin{longtable}[l]{@{}p{\dimexpr 2.5cm-\tabcolsep}p{0.8\hsize}}}% <-- change the value here
@@ -44,25 +51,27 @@
 	type=symbol,
 	sort={a},
 	name={},
-	description={Graphs}}
-
+	description={\large{\textbf{Graph notation}}}
+}
 \newglossaryentry{Bproc}{
 	type=symbol,
 	sort={b},
 	name={},
-	description={Processes}}
-
+	description={\large{\textbf{Processes}}}
+}
 \newglossaryentry{Cother1}{
 	type=symbol,
 	sort={c},
 	name={},
-	description={Distinct notation used in proofs}}
+	description={\large{\textbf{Distinct notation used in proofs}}}
+}
 
 \newglossaryentry{Dother2}{
 	type=symbol,
 	sort={d},
 	name={},
-	description={General notation}}
+	description={\large{\textbf{General notation}}}
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -72,16 +81,14 @@
 	sort={aa},
 	type=symbol,
 	name={$\mathscr{G}(n,p)$},
-	description={Erd\"os-Renyi random graph on $n$ vertices with edge-probability $p$, \pageref{I: gnt}},
-	parent=ARG
+	description={Erd\H os-Rényi random graph on $n$ vertices with edge-probability $p$, \pageref{I: gnt}}
 }
 \newglossaryentry{Bprob}
 {
 	sort={ab},
 	type=symbol,
 	name={$\p$},
-	description={Edge-probability in $\Gnt$, \pageref{I: pp}},
-	parent=ARG
+	description={Edge-probability in $\Gnt$, \pageref{I: pp}}
 }
 
 \newglossaryentry{CNi}
@@ -89,40 +96,35 @@
 	sort={ac},
 	type=symbol,
 	name={$\Ni{i}$},
-	description={Neighbours of vertex $v_i$, \pageref{D: Ni}},
-	parent=ARG
+	description={Neighbours of vertex $v_i$, \pageref{D: Ni}}
 }
 \newglossaryentry{Dci}
 {
 	sort={ad},
 	type=symbol,
 	name={$c(i)$},
-	description={Children of vertex $v_i$, \pageref{D: ci}},
-	parent=ARG
+	description={Children of vertex $v_i$, \pageref{D: ci}}
 }
 \newglossaryentry{Ezeta}
 {
 	sort={ae},
 	type=symbol,
 	name={$\zeta(j)$},
-	description={Index of last vertex of $j$-th component, \pageref{E: zeta}},
-	parent=ARG
+	description={Index of last vertex of $j$-th component, \pageref{E: zeta}}
 }
 \newglossaryentry{Fzetaminus}
 {
 	sort={af},
 	type=symbol,
 	name={$\zeta^{-1}(i)$},
-	description={Index of component containing $i$-th vertex, \pageref{E: zeta}},
-	parent=ARG
+	description={Index of component containing $i$-th vertex, \pageref{E: zeta}}
 }
 \newglossaryentry{Geta}
 {
 	sort={ag},
 	type=symbol,
 	name={$\Ineligible{s}$},
-	description={Number of vertices ineligible to connect to vertex $v_{\ceil{s}}$ at time $s$, \pageref{I: eta}},
-	parent=ARG
+	description={Number of vertices ineligible to connect to vertex $v_{\ceil{s}}$ at time $s$, \pageref{I: eta}}
 }
 
 
@@ -134,32 +136,28 @@
 	sort={ba},
 	type=symbol,
 	name={$W$},
-	description={Standard Brownian motion, \pageref{I: bm}},
-	parent=Bproc
+	description={Standard Brownian motion, \pageref{I: bm}}
 }
 \newglossaryentry{bmt}
 {
 	sort={bb},
 	type=symbol,
 	name={$\Wt$},
-	description={Brownian motion with drift, \pageref{D: Wt}},
-	parent=Bproc
+	description={Brownian motion with drift, \pageref{D: Wt}}
 }
 \newglossaryentry{bmtr}
 {
 	sort={bc},
 	type=symbol,
 	name={$\Bt$},
-	description={Reflected Brownian motion with drift, \pageref{D: Bt}},
-	parent=Bproc
+	description={Reflected Brownian motion with drift, \pageref{D: Bt}}
 }
 \newglossaryentry{nt}
 {
 	sort={bd},
 	type=symbol,
 name={$\Nt$},
-description={Counting process with rate $\Bt$, \pageref{I: nt}},
-parent=Bproc
+description={Counting process with rate $\Bt$, \pageref{I: nt}}
 }
 
 \newglossaryentry{zsmall}
@@ -167,40 +165,35 @@ parent=Bproc
 	sort={be},
 	type=symbol,
 	name={$z(i)$},
-	description={Breadth-first walk in discrete time, \pageref{E: def bf-walk z}},
-	parent=Bproc
+	description={Breadth-first walk in discrete time, \pageref{E: def bf-walk z}}
 }
 \newglossaryentry{zbig}
 {
 	sort={bf},
 	type=symbol,
 	name={$Z(s)$},
-	description={Breadth-first walk in continuous time, \pageref{E: def Z}},
-	parent=Bproc
+	description={Breadth-first walk in continuous time, \pageref{E: def Z}}
 }
 \newglossaryentry{znt}
 {
 	sort={bg},
 	type=symbol,
 	name={$\znt$},
-	description={Breadth-first walk on the critical random graph, \pageref{D: znt}},
-	parent=Bproc
+	description={Breadth-first walk on the critical random graph, \pageref{D: znt}}
 }
 \newglossaryentry{rznt}
 {
 	sort={bh},
 	type=symbol,
 	name={$\rznt$},
-	description={Rescaled breadth-first random walk, \pageref{T: Z -> W}},
-	parent=Bproc
+	description={Rescaled breadth-first random walk, \pageref{T: Z -> W}}
 }
 \newglossaryentry{bnt}
 {
 	sort={bi},
 	type=symbol,
 	name={$\zminz$},
-	description={Reflected breadth-first random walk, \pageref{D: zminz}},
-	parent=Bproc
+	description={Reflected breadth-first random walk, \pageref{D: zminz}}
 }
 
 \newglossaryentry{nnt}
@@ -208,8 +201,7 @@ parent=Bproc
 	sort={bj},
 	type=symbol,
 name={$\nnt$},
-description={Surplus edge counting process, \pageref{I: nnt}},
-parent=Bproc
+description={Surplus edge counting process, \pageref{I: nnt}}
 }
 
 \newglossaryentry{altspace}
@@ -217,8 +209,7 @@ parent=Bproc
 	sort={bk},
 	type=symbol,
 name={$\rzntX, \WtX, \BtX, \dots$},
-description={Processes on common probability space, \pageref{I: alt processes}},
-parent=Bproc
+description={Processes on common probability space, \pageref{I: alt processes}}
 }
 
 \newglossaryentry{Ndis}
@@ -226,8 +217,7 @@ parent=Bproc
 	sort={bl},
 	type=symbol,
 name={$\Ndis$},
-description={Discrete version of $\NtX$, \pageref{D: Ndis}},
-parent=Bproc
+description={Discrete version of $\NtX$, \pageref{D: Ndis}}
 }
 
 
@@ -242,24 +232,28 @@ parent=Bproc
 	sort={ca},
 	type=symbol,
 	name={$\gamma$},
-	description={Excursion of $\Bt$, \pageref{I: gamma}},
-	parent=Cother1
+	description={Excursion of $\Bt$, \pageref{I: gamma}}
 }
 \newglossaryentry{rgammalgamma}
 {
 	sort={cb},
 	type=symbol,
 name={$l(\gamma), r(\gamma)$},
-description={Left and right ends of excursion, \pageref{I: rgammalgamma}},
-parent=Cother1
+description={Left and right ends of excursion, \pageref{I: rgammalgamma}}
+}
+\newglossaryentry{rqlq}
+{
+sort={cb},
+type=symbol,
+name={$l(q), r(q)$},
+description={Left and right ends of excursion around $q \in \Rat$, \pageref{E: def l(q)}}
 }
 \newglossaryentry{mugamma}
 {
 	sort={cc},
 	type=symbol,
 name={$\mu(\gamma)$},
-description={Number of marks during excursion $\gamma$, \pageref{I: mugamma}},
-parent=Cother1
+description={Number of marks during excursion $\gamma$, \pageref{I: mugamma}}
 }
 
 \newglossaryentry{rgamman}
@@ -267,24 +261,21 @@ parent=Cother1
 	sort={cd},
 	type=symbol,
 name={$\rgamman$},
-description={Excursion of $\rznt$, \pageref{L: sum rgamman}},
-parent=Cother1
+description={Excursion of $\rznt$, \pageref{L: sum rgamman}}
 }
 \newglossaryentry{sigman}
 {
 	sort={ce},
 	type=symbol,
 name={$\sigma_n$},
-description={Number of surplus edges during excursion, \pageref{T: Main}},
-parent=Cother1
+description={Number of surplus edges during excursion, \pageref{T: Main}}
 }
 \newglossaryentry{rsigman}
 {
 	sort={cf},
 	type=symbol,
 name={$\rsigman$},
-description={Rescaled number of surplus edges during excursion, \pageref{E: def Yn}},
-parent=Cother1
+description={Rescaled number of surplus edges during excursion, \pageref{E: def Yn}}
 }
 
 \newglossaryentry{Y}
@@ -292,32 +283,28 @@ parent=Cother1
 	sort={cg},
 	type=symbol,
 name={$Y$},
-description={Ordered set of excursion lengths and mark counts of $\Bt$, \pageref{E: def Y}},
-parent=Cother1
+description={Ordered set of excursion lengths and mark counts of $\Bt$, \pageref{E: def Y}}
 }
 \newglossaryentry{Yn}
 {
 	sort={ch},
 	type=symbol,
 name={$\Yn$},
-description={Ordered set of excursion lengths and mark counts of $\rznt$, \pageref{E: def Yn}},
-parent=Cother1
+description={Ordered set of excursion lengths and mark counts of $\rznt$, \pageref{E: def Yn}}
 }
 \newglossaryentry{Yk}
 {
 	sort={ci},
 	type=symbol,
 name={$\Yk$},
-description={First $k$ entries of $Y$, \pageref{E: def Yk Ynk}},
-parent=Cother1
+description={First $k$ entries of $Y$, \pageref{E: def Yk Ynk}}
 }
 \newglossaryentry{Ynk}
 {
 	sort={cj},
 	type=symbol,
 name={$\Ynk$},
-description={First $k$ entries of $\Yn$, \pageref{E: def Yk Ynk}},
-parent=Cother1
+description={First $k$ entries of $\Yn$, \pageref{E: def Yk Ynk}}
 }
 
 \newglossaryentry{Xin}
@@ -325,16 +312,14 @@ parent=Cother1
 	sort={ck},
 	type=symbol,
 	name={$\Xin$},
-	description={Two-dimensional point process for sequence function, \pageref{L: Deterministic Lemma}},
-	parent=Cother1
+	description={Two-dimensional point process for sequence function, \pageref{L: Deterministic Lemma}}
 }
 \newglossaryentry{Xi}
 {
 	sort={cl},
 	type=symbol,
 name={$\Xi$},
-description={Two-dimensional point process for limit function, \pageref{L: Deterministic Lemma}},
-parent=Cother1
+description={Two-dimensional point process for limit function, \pageref{L: Deterministic Lemma}}
 }
 
 \newglossaryentry{Estar}
@@ -342,16 +327,14 @@ parent=Cother1
 	sort={cm},
 	type=symbol,
 	name={$\mathcal{E}^*$},
-	description={Finite set of large excursions in interval, \pageref{L: Deterministic Lemma}},
-	parent=Cother1
+	description={Finite set of large excursions in interval, \pageref{L: Deterministic Lemma}}
 }
 \newglossaryentry{gammani}
 {
 	sort={cn},
 	type=symbol,
 name={$\gamma_n(i)$},
-description={Last vertex of the $i-1$-th component, \pageref{L: Lemma 8}},
-parent=Cother1
+description={Last vertex of the $i-1$-th component, \pageref{L: Lemma 8}}
 }
 
 
@@ -362,16 +345,14 @@ parent=Cother1
 	sort={da},
 	type=symbol,
 	name={$\ld$},
-	description={Space of infinite decreasing sequences in $\Rplus$, \pageref{D: ld}},
-	parent=Dother2
+	description={Space of square-summable infinite decreasing sequences in $\Rplus$, \pageref{D: ld}}
 }
 \newglossaryentry{d2}
 {
 	sort={db},
 	type=symbol,
 	name={$d_2$},
-	description={Distance on $\ld$, \pageref{D: ld}},
-	parent=Dother2
+	description={Distance on $\ld$, \pageref{D: ld}}
 }
 
 \newglossaryentry{DT}
@@ -379,8 +360,7 @@ parent=Cother1
 	sort={dc},
 	type=symbol,
 name={$\DT$},
-description={Space of \cadlag~functions on $[0,T]$, \pageref{D: DT}},
-parent=Dother2
+description={Space of \cadlag~functions on $[0,T]$, \pageref{D: DT}}
 }
 
 \newglossaryentry{lambda}
@@ -388,31 +368,27 @@ parent=Dother2
 	sort={dd},
 	type=symbol,
 name={$\lambda(t)$},
-description={Rate of counting process, \pageref{D: def gamma(A)}},
-parent=Dother2
+description={Rate of counting process, \pageref{D: def gamma(A)}}
 }
 \newglossaryentry{DeltaX}
 {
 	sort={de},
 	type=symbol,
 name={$\Delta X(s)$},
-description={Jump of $X$ at time $s$, \pageref{I: DeltaX}},
-parent=Dother2
+description={Jump of $X$ at time $s$, \pageref{I: DeltaX}}
 }
 \newglossaryentry{supnorm}
 {
 	sort={df},
 	type=symbol,
 name={$\norm{X}_T$},
-description={Supremum norm of $X$ on $[0,T]$, \pageref{I: supnorm}},
-parent=Dother2
+description={Supremum norm of $X$ on $[0,T]$, \pageref{I: supnorm}}
 }
 \newglossaryentry{deltaint}
 {
 	sort={dg},
 	type=symbol,
 	name={$w'_X$},
-	description={Modulus of continuity of $X$, \pageref{D: modulus of continuity}},
-	parent=Dother2
+	description={Modulus of continuity of $X$, \pageref{D: modulus of continuity}}
 }
 
