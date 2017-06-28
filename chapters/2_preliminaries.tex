@@ -30,7 +30,7 @@ We say a random variable $X$ in $(S, \mathcal{S})$,
 defined on a probability space $\ProbSpace$,
 has distribution or law $P$ if
 \begin{equation}
-	P(A) := \Prob(X \in A)
+	P(A) = \Prob(X \in A)
 \end{equation}
 for all $A \in \mathcal{S}$.
 
@@ -51,7 +51,7 @@ The main goal of this chapter is now to find necessary and sufficient conditions
 for the convergence in distribution of a given sequence of random variables 
 or equivalently the weak convergence of their distribution measures.
 
-A first useful reference provides the so-called Portmanteau theorem.
+A first useful reference provides the Portmanteau theorem.
 \begin{theorem}[Portmanteau, {\cite[Theorem 2.1, p.16]{Billingsley.1999}}] \label{T: portmanteau weak}
 	Let $P_n$, $P$ be probability measures on $(S, \mathcal{S})$.
 	The following conditions are equivalent:
@@ -72,16 +72,17 @@ A powerful tool to prove weak convergence of measures is relative compactness.
 	We call $\Pi$ \emph{relatively compact} if for every sequence in $\Pi$ there exists a convergent subsequence.
 	That is, for all sequences $\{P_n\} \subset \Pi$ there exists $\{P_{n_i} \} \subset \Pi$
 	and a probability measure $Q$ on $(S, \mathcal{S})$, not necessarily in $\Pi$,
-	such that $P_{n_i} \Rightarrow_i Q$.
+	such that $P_{n_i} \Rightarrow Q$ as $i \rightarrow \infty$.
 	
 	We call a sequence of probability measures $\{P_n\}$ relatively compact if
 	for every subsequence $\{P_{n_i}\}$ there exists a further subsequence
 	$\{P_{n_{i_k}}\}$ and a probability measure $Q$ such that
-	$P_{n_{i_k}} \Rightarrow_k Q$.
+	$P_{n_{i_k}} \Rightarrow Q$ as $k \rightarrow \infty$.
 \end{definition}
 For function spaces we have one additional requirement to identify the limit of a relatively compact sequence of probability measures.
 \begin{definition}[Finite dimensional distributions, {\cite[p.11]{Billingsley.1999}}] \label{D: fidi distributions}
-	Let $X: \Omega \times \Rplus \rightarrow \mathbb{X}$ be a stochastic process with distribution $P$.
+	Let $X: \Omega \times \Rplus \rightarrow \mathbb{X}$ 
+	be a stochastic process with distribution $P$ and $\mathbb{X}$ a measurable space.
 	For $t_1, \dots, t_k \in \Rplus$ we denote by \emph{finite-dimensional distributions} of $X$ 
 	the push forward measures 
 	\begin{equation}
@@ -113,8 +114,9 @@ Relative compactness is closely linked to another property of series of measures
 We call a measure $\mu$ on a metric space tight,
 if for all $\epsilon > 0$ there exists a compact $K$ such that
 \begin{equation}
-	\mu(K^c) < \epsilon.
+	\mu(K^c) < \epsilon,
 \end{equation}
+where $K^c$ denotes the complement of $K$.
 This carries over to families of probability measures as follows:
 \begin{definition}[Tightness of families of probability measures, {\cite[p.59]{Billingsley.1999}}] \label{D: tightness}
 	A family $\Pi$ of probability measures on a metric space $(S, \mathcal{S})$ is \emph{tight} 
@@ -243,7 +245,7 @@ Using this result one may prove the following theorem on tightness of series of 
 		\begin{equation}
 		\lim_{c \rightarrow \infty} \limsup_n P_n(x: \norm{x}_T \geq c) = 0	
 		\end{equation}
-		\item for each $\epsilon > 0$:
+		\item and for each $\epsilon > 0$
 		\begin{equation}
 			\lim_{\delta \rightarrow 0} \limsup_n P_n(x: w'_x(\delta) \geq \epsilon ) = 0.
 		\end{equation}
@@ -301,7 +303,7 @@ For the next observations, we will take $\Rplus$ as the underlying Hausdorff spa
 			where $\gamma = \gamma(A) \in [0, \infty]$ is the \emph{mean measure} or \emph{intensity} of $N$,
 			defined by
 			\begin{equation}
-				\gamma(A) = \Exp{ N(A) }.
+				\gamma(A) = \ExpBig{ N(A) }.
 			\end{equation}
 	\end{enumerate}
 	The mean measure is often given in terms of a \emph{rate} or \emph{conditional intensity} $\lambda$ by
@@ -310,7 +312,7 @@ For the next observations, we will take $\Rplus$ as the underlying Hausdorff spa
 	\end{equation}
 	We can interpret this conditional intensity as
 	\begin{equation}
-		\lambda(t)dt \approx \Exp{ N(dt) \cond \F{t} } ,
+		\lambda(t)dt \approx \ExpBig{ N(dt) \cond \F{t} } ,
 	\end{equation}
 	where $\F{t}$ contains the history of the counting process thus far.
 \end{definition}
@@ -449,11 +451,10 @@ in order to focus on the one-dimensional case we will need for our proof.
 	where $c(s)$ is a continuous, increasing function on $[0, \infty)$ with $c(0) = 0$.
 	Then $M_n \rightarrow_d X$ where $X$ is a martingale with sample paths in $C[0,\infty)$ and independent Gaussian increments
 	and $X^2 - c$ is a martingale.
+	For $c(s) = s$, the limit process $X$ is the standard Brownian motion.
 \end{theorem}
 
-For $c(s) = s$, the limit process $X$ is the standard Brownian motion.
-
-We conclude this preliminary chapter by presenting the Girsanov's theorem,
+We conclude this preliminary chapter by presenting Girsanov's theorem,
 which will enable us to deduce certain properties of the Brownian motion with drift
 and prove Lemma~\ref{L: Lemma 8} in Chapter~\ref{C: convergence}.
 
@@ -466,10 +467,10 @@ and prove Lemma~\ref{L: Lemma 8} in Chapter~\ref{C: convergence}.
 	Define
 	\begin{align}
 	\tilde{W}(s) &:= W(s) + \int_0^s \Theta(u)du, \label{E: Girsanov def W tilde} \\ 
-	X(s) &:= \exp \left\{ -\int_{0}^{s} \Theta(u) dW(u) - \frac{1}{2} \int_0^s \Theta^2(u)du \right\}. \label{E: Girsanov def X}
+	X(s) &:=  \exp\left( -\int_{0}^{s} \Theta(u) dW(u) - \frac{1}{2} \int_0^s \Theta^2(u)du \right). \label{E: Girsanov def X}
 	\end{align}
-	If $X(s)$ a martingale, particularly $\Exp{X(s)} = \Exp{X(0)} = 1$ for all $s$,
-	the measure $\mathbb{Q}$ defined by
+	If $X(s)$ a martingale, particularly $\ExpBig{X(s)} = \ExpBig{X(0)} = 1$ for all $s$,
+	the measure $\tilde{\mathbb{P}}$ defined by
 	\begin{equation} \label{E: Girsanov def P tilde}
 	\tilde{\mathbb{P}}(A) := \int_A X(\omega) d\mathbb{P}(\omega), \; \text{for all} \; A \in \mathcal{F}
 	\end{equation}

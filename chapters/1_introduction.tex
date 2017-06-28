@@ -23,7 +23,7 @@ David Aldous 1997 paper "Brownian excursions, critical random graphs and the mul
 which provides the basis for this thesis,
 examines component sizes in the so-called critical Erd\H{o}s-Rényi random graph as the number of vertices $n$ grows to infinity.
 
-This thesis will provide a strict proof of one of the the main results of this paper.
+This thesis will provide a strict proof of one of the main results of this paper.
 If no other reference is given, each result (or an equivalent thereof) can be found in Chapters 1 and 2 of \cite{Aldous.1997}.
 
 
@@ -33,6 +33,7 @@ If no other reference is given, each result (or an equivalent thereof) can be fo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In their paper, Erd\H{o}s and Rényi proposed a model of random graph that is now known as the Erd\H{o}s-Rényi random graph.
+\fxnote{random graph/s?}
 There are several ways to construct this random graph which we will briefly introduce,
 starting with the historic models used in this first paper 
 and continuing with the equivalent model which provides the basis for Aldous' paper and consequently this thesis.
@@ -65,14 +66,16 @@ when increasing the number of edges $M(n)$,
 the sizes of connected components undergo distinct phases leading from small sparse components and unconnected vertices
 to one giant component and eventually a completely connected graph.
 
-Most current literature and the paper we are studying uses a slightly different approach to the construction of this random graph.
+Most current literature and the paper we are studying work with a slightly different, closely related model introduced by Gilbert.
 Given a set of vertices $\{1, \dots, n\}$ and an edge-probability $\p = p(n)$
 we take every edge $(v_1, v_2)$ and add it to the set of edges $E$ of the random graph with probability $\p$ independently.
 We call an edge $e = (v_1, v_2)$ open if $e \in E$, closed otherwise.
 We denote a random object constructed this way by $\Gcal(n, \p)$\label{I: gnt} and expect a realisation of the random graph to have $\binom{n}{2}\p$ edges.
+Note that both $\Gcal(n, M(n))$ and $\Gcal(n, p)$ are called the Erd\H{o}s-Rényi random graph 
+and for $M(n)$ close to $\binom{n}{2}\p$ the models are practically interchangeable in most analyses, see \cite[p.38]{Bollobas.2001}.
+
 When increasing the probability $\p$ from $0$ to $1$ the resulting random graph undergoes the same so-called phase transitions
 discovered by Erd\H{o}s and Rényi.
-
 These phase transitions include a sudden dramatic increase in average component size happening around $M(n) = \frac{n}{2}$ or $\p = \frac{1}{n}$
 which we study in this thesis.
 The following section will provide a more precise introduction to the different phases a random graph undergoes
@@ -90,7 +93,7 @@ we discuss relevant results that were established previous to \cite{Aldous.1997}
 
 We begin with the subcritical graph, that is
 $\Gcal(n, \p)$ with $\p < \frac{1}{n}$
-or $\lambda = n \p < 1$.
+or $\lambda := n \p < 1$.
 The following theorem provides a lower bound on the size of $\Ccal_{\max}$, the largest component of $\Gcal$.
 \begin{theorem}[Lower bound on largest subcritical component, {\cite[Theorem 4.4, p.125]{vanderHofstad.2016}}]
 	Fix $\lambda < 1$. 
@@ -101,7 +104,7 @@ The following theorem provides a lower bound on the size of $\Ccal_{\max}$, the 
 	\end{equation}
 	where 
 	\begin{equation}
-		I_{\lambda} = \lambda - 1 - \log(\lambda).
+		I_{\lambda} = \lambda - 1 - \log(\lambda)
 	\end{equation}
 	is the large deviation rate function for Poisson random variables with mean $\lambda$.
 \end{theorem}
@@ -116,7 +119,7 @@ The next theorem gives an upper bound for the size of $\Ccal_{\max}$.
 \end{theorem}
 Together, these theorems imply
 \begin{equation}
-	\frac{|\Ccal_{\max}|}{\log n} \rightarrow_p 1/I_{\lambda}.
+	\frac{|\Ccal_{\max}|}{\log n} \rightarrow_p 1/I_{\lambda}
 \end{equation}
 and therefore the expected largest component size will be of order $\log n$.
 
@@ -165,7 +168,7 @@ As it turns out, the emergence of the giant component occurs quite rapidly,
 such that shortly after $n \p = 1$ most graphs do not have any component of order between $\frac{1}{2}\n{2}{3}$ and $\n{2}{3}$.
 
 The following theorem provides an approximation of the time of emergence of the giant component,
-seeing the random graph on $n$ vertices as a graph process,
+seeing the random graph on $n$ vertices as a graph process $(\Gcal_t)_0^n$,
 starting at $t=0$ with $0$ edges, adding one random edge at every time step.
 We would therefore expect the emergence starting around time $\binom{2}{n}\frac{1}{n} \approx \frac{1}{2}n$.
 We say a property $P$ is shared by almost every graph if the probability of having this property approaches $1$ as $n \rightarrow \infty$.
@@ -177,10 +180,10 @@ We say a property $P$ is shared by almost every graph if the probability of havi
 	the graph $\Gcal_t$ has a unique component of order at least $\n{2}{3}$ and the other components have at most $\frac{1}{2}\n{2}{3}$.
 \end{theorem}
 
-As it turns out, there is a so-called critical window in which the maximum component sizes are not of order $\log n$ any more 
+Subsequently, there is a so-called critical window in which the maximum component sizes are not of order $\log n$ any more 
 but there is no single giant component yet.
 We call a random graph $\Gcal(n, n^{-1} + \pp\n{-4}{3})$ critical for $\pp \in \Real$.\label{I: pp}
-The next theorem provides a approximation of the size of the largest component in a critical random graph.
+The next theorem provides an approximation of the size of the largest component in a critical random graph.
 
 \begin{theorem}[Largest critical cluster, {\cite[Theorem 5.1, p.150]{vanderHofstad.2016}}] \label{T: largest critical cluster}
 	Let $\lambda = 1 + \pp\n{-1}{3}$, with $\pp \in \Real$.
@@ -219,7 +222,7 @@ which will be proven along with a more precise version in the course of this the
 
 For a connected component we define the number of surplus edges or the surplus by
 \begin{equation}
-	\text{surplus} = \text{number of edges} - \text{number of vertices} + 1.
+	\text{surplus} := \text{number of edges} - \text{number of vertices} + 1.
 \end{equation}
 The surplus gives the maximum number of edges we can remove from the component so that it stays connected.
 A component with a surplus of zero is a tree.
@@ -316,7 +319,7 @@ Let
 \end{equation}
 and define the natural metric on $\ld$ by
 \begin{equation}
-	d_2(\boldsymbol{x},\boldsymbol{y}) = \sqrt{\sideset{}{_i}\sum (x_i - y_i)^2}.
+	d_2(\boldsymbol{x},\boldsymbol{y}) := \sqrt{\sideset{}{_i}\sum (x_i - y_i)^2}.
 \end{equation}
 For a finite sequence like $\Cntbold$, the ordered component sizes of a graph on $n$ vertices, we append zeroes in order to regard it as an element on $\ld$.
 

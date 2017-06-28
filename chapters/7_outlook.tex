@@ -17,7 +17,7 @@ Fix $\x \in \ld$.
 For a pair $(i,j)$, with $i < j$, 
 define an exponentially distributed random variable $\xi_{i,j} \sim \Exponential(1)$,
 independent for distinct pairs.
-For $\pp \in [0, \infty)$, define the random graph model $\Wrg(\x, \pp)$ as the graph where there exists an edge $(i,j)$ 
+For $\pp \in [0, \infty)$, define the random graph model $\Wrg(\x, \pp)$ as the graph in which there exists an edge $(i,j)$ 
 iff $\xi_{i,j} \leq \pp x_i x_j$.
 This way, we constructed a random graph process $(\Wrg(\x, \pp); 0 \leq \pp < \infty)$ 
 where the number of edges of $\Wrg(\x, \pp)$ is increasing in $\pp$.
@@ -25,7 +25,6 @@ Let $X_i(\x, \pp)$ be the size of the $i$-th largest component of $\Wrg(\x, \pp)
 \begin{math}
 	\X(\x, \pp) = (X_i(\x, \pp); i \geq 1).
 \end{math}
-\fxnote{This last sentence is 1:1 paper page 818.}
 
 For a vector of vertex sizes $\x$, $(\X(\x, \pp); 0 \leq \pp < \infty)$ is a continuous time Markov chain
 on a finite state space which is entirely dependent on $\x$.
@@ -57,13 +56,13 @@ such that there is a new cluster of size $x_i + x_j$ inserted next to some clust
 Define the filtration $\F{\pp} = \sigma\{ \X(u); u \leq \pp \}$.
 Then for all test functions $g: \ld \rightarrow \Real$ we have
 \begin{equation}
-	\Exp{\Delta g(\X(\pp)) \cond \F{\pp}}
-	= \sum_i \sum_{j > i} X_i(\pp) X_j(\pp) \left( g(\X^{(i+j)}(\pp) - g(\X(\pp)) \right)d\pp,
+	\ExpBig{\Delta g(\X(\pp)) \cond \F{\pp}}
+	= \sum_i \sum_{j > i} X_i(\pp) X_j(\pp) \left( g(\X^{(i+j)}(\pp)) - g(\X(\pp)) \right)d\pp,
 \end{equation}
 where we use the infinitesimal notation
 \begin{equation}
 \begin{aligned}
-	&\qquad \quad \Exp{\Delta Y(t) \cond \F{t}} = A(t)dt \\ 
+	&\qquad \quad \ExpBig{\Delta Y(t) \cond \F{t}} = A(t)dt \\ 
 	&\iff M(t) = Y(t) - \int_{0}^{t}A(s)ds \enspace \text{is a local martingale.}
 \end{aligned}
 \end{equation}

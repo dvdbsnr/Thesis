@@ -36,7 +36,7 @@ This implies a convergence of all excursions of sufficient length on finite inte
 For a proof of Theorem~\ref{T: Main} to hold, it remains to be shown that we do not need to worry about "mass wandering off to infinity",
 meaning the rescaled starting points of excursions of sufficient length to diverge to infinity as $n \rightarrow \infty$.
 Another problem that might arise is the mass of all small excursions prohibiting a convergence in $\ld$.
-We deal with both problems in Section~\ref{S: late excursions} and at last prove our main theorems in Section~\ref{S: proofs}.
+We deal with both problems in Section~\ref{S: late excursions} and at last prove our main theorem in Section~\ref{S: proofs}.
 
 
 \section{Matching components} \label{S: matching components}
@@ -47,7 +47,7 @@ We deal with both problems in Section~\ref{S: late excursions} and at last prove
 
 We start with a deterministic Lemma.
 Given a continuous function $f$ with properties similar to a Brownian motion
-and a sequence of functions $f_n$ converging uniformly to $f$,
+and a sequence of functions $f_n$ converging to $f$ uniformly on bounded intervals,
 we can define a set of excursions on each $f_n$ such that
 the point processes of starts and lengths of excursions converge vaguely to the point processes of starts and lengths of excursions on $f$.
 
@@ -140,7 +140,6 @@ We begin by elaborating what the conditions
 mean for the points in
 $\Xi$ and $\Xin$.
 \fxfatal{Some stuff about excursions goes here.}
-
 To prove the Lemma, 
 we fix some bounded subset of
 $\IntTimesInt$,
@@ -160,8 +159,7 @@ then show that there can not be any more excursion of $f_n$ of sufficient length
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Proof Part 1: \Xi in \Xin
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bigskip
-\begin{proof}[Part 1: $\Xi(C) \leq \Xin(C)$] \label{PP: Lemma Det 1} \renewcommand{\qedsymbol}{}
+\begin{proof}[Part 1 ($\Xi(C) \leq \Xin(C)$)] \label{PP: Lemma Det 1} \renewcommand{\qedsymbol}{}
 Let us first establish some facts about excursions of the limit function $f$.
 In the interval $[T_1, T_2]$,
 there can only be a finite number of excursion starting with length of at least $d_1$,
@@ -175,7 +173,6 @@ Let
 be the set of these excursions.
 Consider a
 $(l,r) \in \mathcal{E}^*$.
-\fxnote{Some figure showing an excursion goes here probably.}
 Since $l-r > d_1$,
 we can find an $\epsilon > 0$
 such that the length of the interval
@@ -246,8 +243,9 @@ and
 where $\delta$ is the constant used in the discussion of
 $[0, l-\epsilon]$ and $[l+\epsilon, r-\epsilon]$ above.
 
-By the uniform convergence $f_n \rightarrow f$ we can find an $N \in \Nat$
-such that 
+By the convergence $f_n \rightarrow f$, 
+which is uniform on the compact interval $[T_1, T_2]$, 
+we can find an $N \in \Nat$ such that 
 \begin{equation} \label{E: fn f delta star/3}
 |f_n(x) - f(x)| < \delta^* / 3
 \end{equation} for all
@@ -255,11 +253,11 @@ $x \in [T_1, T_2]$ and $n \geq N$.
 So for every point $x \in [0, l - \epsilon]\cup[l + \epsilon, r - \epsilon]$,
 \begin{equation} \label{E: fn(x) > fn(l)}
 \begin{aligned}
-f_n(x) &> 
-f(x) - \delta^* / 3 \quad \text{by \eqref{E: fn f delta star/3}}\\
-&> f(l) + \delta^* - \delta^* / 3 \quad \text{by \eqref{D: delta star}}\\
-&> f(l) + \delta^* / 3 \\
-&> f_n(l) \quad \text{by \eqref{E: fn f delta star/3}}.
+f_n(x) 
+&> f(x) - \delta^* / 3  &\text{by \eqref{E: fn f delta star/3}\;}\\
+&> f(l) + \delta^* - \delta^* / 3  &\text{by \eqref{D: delta star}\;}\\
+&> f(l) + \delta^* / 3 &\\
+&> f_n(l)  &\text{by \eqref{E: fn f delta star/3}}.
 \end{aligned}
 \end{equation}
 So $f_n$ takes its minimum over 
@@ -283,11 +281,11 @@ We calculate
 \begin{equation}
 \begin{aligned}
 f_n(\lnx) 
-&> f(l) - \delta^* / 3 \quad \text{by \eqref{E: fn f delta star/3}}\\
-&= f(r) - \delta^* / 3 \quad \text{by \eqref{E: f cond 1}}\\
-&\geq f(r^*) + \delta^* - \delta^* / 3 \quad \text{by \eqref{D: delta star}} \\
+&> f(l) - \delta^* / 3 \quad &\text{by \eqref{E: fn f delta star/3}\;}\\
+&= f(r) - \delta^* / 3 \quad &\text{by \eqref{E: f cond 1}\;\;\;}\\
+&\geq f(r^*) + \delta^* - \delta^* / 3 \quad &\text{by \eqref{D: delta star}\;} \\
 &> f(r^*) + \delta^*/3 \\
-&> f_n(r^*) \quad \text{by \eqref{E: fn f delta star/3}},
+&> f_n(r^*) \quad &\text{by \eqref{E: fn f delta star/3}},
 \end{aligned}
 \end{equation}
 \fxnote{Align these.}
@@ -338,8 +336,7 @@ Therefore eventually $\Xi (C) \leq \Xin(C)$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Proof Part 2: \Xin in \Xi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bigskip
-\begin{proof}[Part 2: $\Xin(C) \leq \Xi(C)$] \label{PP: Xin in Xi} \label{PP: Lemma Det 2} \renewcommand{\qedsymbol}{}
+\begin{proof}[Part 2 ($\Xin(C) \leq \Xi(C)$)] \label{PP: Xin in Xi} \label{PP: Lemma Det 2} \renewcommand{\qedsymbol}{}
 Now that every excursion of $f$ is matched, 
 we need to show that there can not exist any additional large excursion of $f_n$.
 Considering the fact that excursions can not overlap,
@@ -457,7 +454,7 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	
 	By the definition of $\BtX$, 
 	$\XiX$ is the $\Xi$ in Lemma~\ref{L: Deterministic Lemma} with $f = \WtX$.
-	As $f_n$ we take $\rznt$ and define $\tn{i} = \n{-2}{3} \gamma(n,i)$, that is, 
+	As $f_n$ we take $\rznt$ and define $\tn{i} := \n{-2}{3} \gamma(n,i)$, that is, 
 	the elements of $\fnPoints$ to be the end-points of components,
 	rescaled to match $\rzntX$.
 	This way $\XinX$ coincides with $\Xin$ in Lemma~\ref{L: Deterministic Lemma}.
@@ -517,7 +514,8 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	and condition \eqref{E: f cond complement zero} holds almost surely.
 	
 	A standard Brownian motion $W$ satisfies the conditions of Lemma~\ref{L: Deterministic Lemma} almost surely,
-	therefore $\WtX$ does so almost surely under $\tilde{\mathbb{P}}$
+	therefore $\WtX$ does so almost surely under $\tilde{\mathbb{P}}$,
+	the equivalent probability measure defined in \eqref{E: Girsanov def P tilde},
 	and by Girsanov's theorem (Theorem \ref{T: Girsanov}) likewise under $\Prob$.
 
 	
@@ -608,10 +606,10 @@ of the whole ordered vector of component sizes and surplus edges.
 	\begin{equation} \label{E: P(ExcEvent) 1}
 	\begin{aligned}
 	\Prob(\ExcursionEvent) 
-	&\leq \Exp{ \text{Number of excursions $\gamma: \; |\gamma| \geq \delta\n{2}{3},l(\gamma) \geq C\n{2}{3}$ } } \\
-	&= \Exp{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}} \Ind{\{|\gamma| \geq \delta\n{2}{3} \} } } \\
-	&\leq \Exp{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}} \frac{|\gamma|^2}{\delta^2\n{4}{3}} } \\
-	&= \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}}  |\gamma|^2 }.
+	&\leq \ExpBig{ \text{Number of excursions $\gamma: \; |\gamma| \geq \delta\n{2}{3},l(\gamma) \geq C\n{2}{3}$ } } \\
+	&= \ExpBig{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}} \Ind{\{|\gamma| \geq \delta\n{2}{3} \} } } \\
+	&\leq \ExpBig{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}} \frac{|\gamma|^2}{\delta^2\n{4}{3}} } \\
+	&= \frac{1}{\delta^2\n{4}{3}} \ExpBig{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}}  |\gamma|^2 }.
 	\end{aligned}
 	\end{equation}
 	
@@ -624,21 +622,21 @@ of the whole ordered vector of component sizes and surplus edges.
 	\begin{equation} \label{E: P(ExcEvent) 2}
 	\begin{aligned}
 	\Prob(\ExcursionEvent) 
-	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-T, \p)}  |\Ccal|^2  } \\
-	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, \p)}  |\Ccal|^2  } \\
-	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, \p)}  |\Ccal|^2 }.
+	&\leq \frac{1}{\delta^2\n{4}{3}} \ExpBig{ \sum_{\Ccal \in \Gcal(n-T, \p)}  |\Ccal|^2  } \\
+	&\leq \frac{1}{\delta^2\n{4}{3}} \ExpBig{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, \p)}  |\Ccal|^2  } \\
+	&\leq \frac{1}{\delta^2\n{4}{3}} \ExpBig{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, \p)}  |\Ccal|^2 }.
 	\end{aligned}
 	\end{equation}
 	
 	For ease of notation we consider the graph $\Gcal(k,\p)$ and calculate
 	\begin{equation} \label{E: P(ExcEvent) 3}
 	\begin{aligned}
-	\Exp{\sum_{\Ccal \in \Gcal(k, \p)} |\Ccal|^2 } 
-	&= \Exp{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \sum_{v \in \Ccal} 1} \\
-	&= \Exp{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \sum_{v \in \Gcal(k, \p)} \Ind{\{v \in \Ccal\}} } \\
-	&= \sum_{v \in \Gcal(k, \p)} \Exp{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \Ind{\{v \in \Ccal\}} } \\ 
-	&= \sum_{v \in \Gcal(k, \p)} \Exp{|\Ccal(v)|} \\
-	&= k \Exp{|\Ccal(1)|},
+	\ExpBig{\sum_{\Ccal \in \Gcal(k, \p)} |\Ccal|^2 } 
+	&= \ExpBig{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \sum_{v \in \Ccal} 1} \\
+	&= \ExpBig{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \sum_{v \in \Gcal(k, \p)} \Ind{\{v \in \Ccal\}} } \\
+	&= \sum_{v \in \Gcal(k, \p)} \ExpBig{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \Ind{\{v \in \Ccal\}} } \\ 
+	&= \sum_{v \in \Gcal(k, \p)} \ExpBig{|\Ccal(v)|} \\
+	&= k \ExpBig{|\Ccal(1)|},
 	\end{aligned}
 	\end{equation}
 	where $\Ccal(v)$ denotes the component containing the vertex $v$ and the last inequality stems from the interchangeability of the vertex labels.
@@ -675,22 +673,22 @@ of the whole ordered vector of component sizes and surplus edges.
 	\end{equation}
 	which gives
 	\begin{equation} \label{E: Exp C(1) <= sum Z}
-		\Exp{|\Ccal(1)|} \leq \sum_{j=0}^{\infty}\Exp{Z_j}.
+		\ExpBig{|\Ccal(1)|} \leq \sum_{j=0}^{\infty}\ExpBig{Z_j}.
 	\end{equation}	
 	For $j\geq0$ we calculate the expectation of $Z_j$ by
 	\begin{equation}
 	\begin{aligned}
-	\Exp{Z_j} 
-	&= \Exp{Z_{j-1}}k \p \\
-	&\dots \\
-	&= \Exp{Z_0}(k\p)^j \\
+	\ExpBig{Z_j} 
+	&= \ExpBig{Z_{j-1}}k \p \\
+	&= \dots \\
+	&= \ExpBig{Z_0}(k\p)^j \\
 	&= (k\p)^j.
 	\end{aligned}		
 	\end{equation}
 	Substituting in \eqref{E: Exp C(1) <= sum Z} gives
 	\begin{equation} \label{E: Exp C(1) <= frac kp}
 	\begin{aligned}
-	\Exp{|\Ccal(1)|} 
+	\ExpBig{|\Ccal(1)|} 
 	&\leq \sum_{j=0}^{\infty} (k \p)^j \\
 	&\leq \frac{1}{(1- k\p)_+},
 	\end{aligned}		
@@ -726,14 +724,14 @@ Aldous' paper provides a complete proof using stochastic calculus methods.
 	Let $\Gamma^{\pp}$ be the set of excursions of $\Bt$ and let $|\gamma|$ be the length of an excursion $\gamma$.
 	Then
 	\begin{equation}
-		\Exp{\sum_{\gamma \in \Gamma^{\pp}} |\gamma|^2} < \infty.
+		\ExpBig{\sum_{\gamma \in \Gamma^{\pp}} |\gamma|^2} < \infty.
 	\end{equation}
 \end{lemma}
 
 Since $\sum_{\gamma \in \Gamma^{\pp}} |\gamma|^2$ is a convergent series almost surely,
 for all $\epsilon > 0$ we can find $\delta > 0$ such that
 \begin{equation} \label{E: gamma delta epsilon}
-	\Exp{\sum_{|\gamma| < \delta} |\gamma|^2} < \epsilon.
+	\ExpBig{\sum_{|\gamma| < \delta} |\gamma|^2} < \epsilon.
 \end{equation}
 Then by Markov's inequality for all $\epsilon_0 > 0$ and $\epsilon_1 > 0$ there exists $\delta > 0$ such that
 \begin{equation} \label{E: sum gamma < delta}
@@ -752,20 +750,20 @@ We state and prove a result similar to \eqref{E: gamma delta epsilon} on excursi
 	Denote by $\rgamman$ the excursions of $\rznt$. 
 	Then for all $\epsilon > 0$ there exists $\delta > 0$ such that
 	\begin{equation}
-		\sup_n \Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2} < \epsilon
+		\sup_n \ExpBig{\sum_{|\rgamman| < \delta} |\rgamman|^2} < \epsilon.
 	\end{equation}
 \end{lemma}
 \begin{proof}
 	We have
 	\begin{equation}
-		\Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2} 
-		= \Exp{\sum_{l(\rgamman) > C} |\rgamman|^2} 
-		+ \Exp{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2}.
+		\ExpBig{\sum_{|\rgamman| < \delta} |\rgamman|^2} 
+		= \ExpBig{\sum_{l(\rgamman) > C} |\rgamman|^2} 
+		+ \ExpBig{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2}.
 	\end{equation}
 	Consider the second term:
 	\begin{equation}
-		\Exp{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2}
-		= \Exp{\sum_{k = 0}^{\infty} \sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| \in I_{\delta, k}}} |\rgamman|^2}
+		\ExpBig{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2}
+		= \ExpBig{\sum_{k = 0}^{\infty} \sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| \in I_{\delta, k}}} |\rgamman|^2}
 	\end{equation}
 	where $I_{\delta, k} = [ \frac{\delta}{2^{k+1}}, \frac{\delta}{2^{k}} ]$.
 	Then
@@ -773,10 +771,10 @@ We state and prove a result similar to \eqref{E: gamma delta epsilon} on excursi
 		\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| \in I_{\delta, k}}} |\rgamman|^2 
 		\leq \left(\frac{\delta}{2^k}\right)^2 \frac{C}{\frac{\delta}{2^{k+1}}}
 	\end{equation}
-	and since this is now an entirely deterministic term
+	and since this is now an entirely deterministic term we have
 	\begin{equation}
 	\begin{aligned}
-	\Exp{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2} 
+	\ExpBig{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2} 
 	&\leq \sum_{k = 0}^{\infty} \left(\frac{\delta}{2^k}\right)^2 \frac{C}{\frac{\delta}{2^{k+1}}} \\
 	&= \sum_{k = 0}^{\infty} \frac{2C\delta}{2^k} \\
 	&= 4C\delta.
@@ -784,16 +782,16 @@ We state and prove a result similar to \eqref{E: gamma delta epsilon} on excursi
 	\end{equation}
 	By Lemma~\ref{L: late excursions} for all $\epsilon > 0$ we can choose $C > 0$ such that 
 	\begin{equation}
-		\Exp{ \sum_{l(\rgamman) > C} |\rgamman|^2 } < \epsilon / 2.
+		\ExpBig{ \sum_{l(\rgamman) > C} |\rgamman|^2 } < \epsilon / 2.
 	\end{equation}
 	For this $C$ choose $\delta > 0$ such that $4C\delta < \epsilon/2$.
 	Then
 	\begin{equation}
-		\Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2}  < \epsilon.
+		\ExpBig{\sum_{|\rgamman| < \delta} |\rgamman|^2}  < \epsilon.
 	\end{equation}
 	Since $\delta$ and $C$ are independent of $n$ we have
 	\begin{equation}
-	\sup_n \Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2} < \epsilon.
+	\sup_n \ExpBig{\sum_{|\rgamman| < \delta} |\rgamman|^2} < \epsilon.
 	\end{equation}
 \end{proof}
 
@@ -808,7 +806,7 @@ After all these technical considerations we are now ready to prove our main theo
 	We first prove the convergence of component sizes and surplus edges to excursions and mark counts of $\Bt$ in the product topology
 	and then the convergence of component sizes to Brownian excursions in the $\ld$ topology.
 	
-	\begin{proof}
+	\begin{proof}[Part 1]\renewcommand{\qedsymbol}{}
 	We again define $\rzntX \sim \rznt$ and $\WtX \sim \Wt$ on the same probability space,
 	where $\rzntX \rightarrow_{a.s.} \WtX$.
 	Define
@@ -891,7 +889,7 @@ After all these technical considerations we are now ready to prove our main theo
 	\end{proof}
 
 
-	\begin{proof}
+	\begin{proof}[Part 2]\renewcommand{\qedsymbol}{}
 	The only thing left to show is that the convergence $\n{-2}{3} \Cntbold \rightarrow_p \Ctbold$ holds with respect to the $\ld$~topology.
 	
 	For $\delta > 0$ and $\epsilon_1 > 0$, denote by $\Event{\sum\gamma}$ the event that $\sum_{|\gamma| < \delta}|\gamma|^2 > \epsilon_1$.

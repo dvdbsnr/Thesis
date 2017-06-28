@@ -9,9 +9,9 @@
 \chapter{Surplus edges} \label{C: surplus edges}
 \fxnote{Update title.}
 
-The goal of this chapter will be to first examine under which circumstances surplus edges can arise during the breadth-first walk,
-then finding an expression for the probability of encountering one 
-and finally proving the joint convergence of $\rznt$ and the surplus edge counting process to $\Wt$ and some limit process dependent on the realisation of $\Wt$.
+The first goal of this chapter will be to examine under which circumstances surplus edges can arise during the breadth-first walk 
+and consequently finding an expression for the probability of encountering one.
+We then prove the joint convergence of $\rznt$ and the surplus edge counting process to $\Wt$ and some limit process dependent on the realisation of $\Wt$.
 
 
 \section{Counting surplus edges}
@@ -22,8 +22,7 @@ and finally proving the joint convergence of $\rznt$ and the surplus edge counti
 We begin by describing a way to analyse the appearance of surplus edges.
 In Chapter~\ref{C: bf-walk} we defined the breadth-first walk $Z_n$, 
 which counted new connections to previously not connected vertices.
-We remind ourselves that a surplus edge in a graph $\Gnt$ appears if,
-during the transition of vertices and components by the breadth-first walk,
+We remind ourselves that a surplus edge in a graph $\Gnt$ appears if
 a vertex forms a new connection to another vertex
 which already has opened connections to some explored node.
 We associate with $\Gcal$ a counting process $(\nnt(s), 0 \leq s \leq n)$, \label{I: nnt}
@@ -109,13 +108,13 @@ We now rescale the counting process via
 We calculate the rate of this rescaled process.
 Recall that the conditional intensity $\bar{\lambda}(s)$ of the process $\rnnt(s)$ must satisfy
 \begin{equation}
-\Exp{\rnnt(s)} = \int_{0}^{s} \bar{\lambda}(u) du.
+\ExpBig{\rnnt(s)} = \int_{0}^{s} \bar{\lambda}(u) du.
 \end{equation}
 Using \eqref{E: rescale Nnt} we evaluate the above integral in terms of $\lambda(s)$:
 \begin{equation*}
 \begin{aligned}
-\Exp{\rnnt(s)}
-&= \Exp{\nnt(\n{2}{3}s)} \\
+\ExpBig{\rnnt(s)}
+&= \ExpBig{\nnt(\n{2}{3}s)} \\
 &= \int_{0}^{\n{2}{3}s} \lambda(u) du \\
 &= \int_{0}^{s} \n{2}{3} \lambda(\n{2}{3}u) du.
 \end{aligned}
@@ -127,7 +126,7 @@ Comparing both integrands gives us
 &= \n{2}{3} \lambda(\n{2}{3}s) \\
 &= \n{2}{3} \frac{1 - \min_{u \leq \n{2}{3}s} \znt(u) + \znt(\n{2}{3}s)}{1 - (\n{2}{3}s - \floor{\n{2}{3}s})\p} \p \\
 &= \n{2}{3} \frac{1 - \n{1}{3} \min_{u \leq s} \rznt(u) + \n{1}{3}\rznt(s)}{1 - (\n{2}{3}s - \floor{\n{2}{3}s})\p} \p \\
-&= n \p \frac{\n{-1}{3} - \min_{u \leq s} \rznt(u) + \rznt(s)}{1 - (\n{2}{3}s - \floor{\n{2}{3}s})\p}
+&= n \p \frac{\n{-1}{3} - \min_{u \leq s} \rznt(u) + \rznt(s)}{1 - (\n{2}{3}s - \floor{\n{2}{3}s})\p}.
 \end{aligned}
 \end{equation}
 
@@ -197,7 +196,7 @@ We want to show that
 \end{equation}
 meaning 
 \begin{equation}
-\Exp{f(\rznt, \rnnt)} \xrightarrow{n \rightarrow \infty} \Exp{f(\Wt, \Nt)}
+\ExpBig{f(\rznt, \rnnt)} \xrightarrow{n \rightarrow \infty} \ExpBig{f(\Wt, \Nt)}
 \end{equation}
 for all continuous, bounded functions $f:D[0,T]^2\rightarrow\Real$.
 
@@ -206,7 +205,7 @@ We begin with a quick overview of the proof.
 	\item We show that the process $(\rznt, \rnnt)$ is tight,
 	which allows us to restrict the expectation to
 	\begin{math}
-		\Exp{f(\rznt, \rnnt) \cond \Event{C}}
+		\ExpBig{f(\rznt, \rnnt) \cond \Event{C}}
 	\end{math}
 	where
 	\begin{math}
@@ -219,7 +218,7 @@ We begin with a quick overview of the proof.
 	Calling this event $\Event{\delta}$,
 	it suffices to look at
 	\begin{math}
-	\Exp{f(\Wt, \rnnt) \cond \Event{C}, \Event{\delta}}.
+	\ExpBig{f(\Wt, \rnnt) \cond \Event{C}, \Event{\delta}}.
 	\end{math}
 	
 	\item If $\norm{\rznt(s) - \Wt(s)}_T < \delta$ then with high probability $\nnt = \Ndis$,
@@ -227,12 +226,12 @@ We begin with a quick overview of the proof.
 	dependent on an upscaling of $\Bt$.
 	It then suffices to prove convergence of 
 	\begin{math}
-		\Exp{f(\Wt, \Ndis) \cond \Event{C}, \Event{\delta}}.
+		\ExpBig{f(\Wt, \Ndis) \cond \Event{C}, \Event{\delta}}.
 	\end{math}	
 	
 	\item Finally we prove
 	\begin{math}
-		\Exp{f(\Wt, \Ndis)} \rightarrow \Exp{f(\Wt, \Nt)}
+		\ExpBig{f(\Wt, \Ndis)} \rightarrow \ExpBig{f(\Wt, \Nt)}
 	\end{math}
 	by showing that for almost all realizations of $\Wt$ we have
 	\begin{math}
@@ -250,7 +249,7 @@ We first take a closer look at $\rznt$.
 We already know that $\rznt \rightarrow_d \Wt$, which implies that $\rznt$ is tight, 
 so for all $\epsilon>0$ there exists a compact $K \subset \DT$ such that
 \begin{equation} \label{E: rznt tight}
-\inf_n \Prob ( \rznt \in K) > 1 - \epsilon.
+\inf_{n \in \Nat}\Prob ( \rznt \in K) > 1 - \epsilon.
 \end{equation}
 Therefore for all $\epsilon > 0$ exists $A>0$ such that for all $n$
 \begin{equation} \label{E: rznt bounded}
@@ -314,7 +313,7 @@ Markov's inequality then gives
 \begin{align*}
 \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3} \cond \Event{A}) 
 &\leq \Prob( \sum_{j=1}^{T\n{2}{3}} Y_j \geq K) \\
-&\leq \frac{1}{K}T\n{2}{3} \Exp{Y_1} \\
+&\leq \frac{1}{K}T\n{2}{3} \ExpBig{Y_1} \\
 &= \frac{1}{K}T\n{2}{3} \p A\n{1}{3} \\
 &= \frac{1}{K}n\p TA \\
 &\leq \frac{1}{K}CTA
@@ -330,7 +329,7 @@ for large $K$, which satisfies the first condition of Theorem~\ref{T: tightness 
 
 To show that $\rnnt$ satisfies the second condition,
 \begin{equation} \label{E: tightness cond 2}
-\lim_{\delta \rightarrow 0} \limsup_n \Prob(w'_{\rnnt}(\delta) \geq \epsilon ) = 0,
+\lim_{\delta \rightarrow 0} \limsup_{n \in \Nat}\Prob(w'_{\rnnt}(\delta) \geq \epsilon ) = 0,
 \end{equation}
 let us analyse $w'_{\rnnt}(\delta)$.
 For a realization $N = \rnnt(\omega)$ we have
@@ -360,15 +359,15 @@ therefore
 &\quad=  \frac{2T}{\delta} \Prob( Z \geq 2 ),
 \end{aligned}
 \end{equation}
-where $Z \sim \Binom(A\n{1}{3}\delta\n{2}{3}, \p) = \Binom(A\delta n, \p)$
+where $Z \sim \Binom(A\n{1}{3}\delta\n{2}{3}, \p) = \Binom(A\delta n, \p).$
 
 To analyse \eqref{E: tightness cond 2} we substitute $w'_{\rnnt}(\delta)$ using the variables above and have
 \begin{equation}
 \begin{aligned}
-&\limsup_n \Prob(w'_{\rnnt}(\delta) \geq \epsilon ) \\
-&\quad\leq \limsup_n \frac{2T}{\delta} \Prob( Z \geq 2 ) \\
-&\quad= \frac{2T}{\delta} \limsup_n (1 - \Prob( Z = 0 ) - \Prob( Z = 1 )) \\
-&\quad= \frac{2T}{\delta} \limsup_n (1 - (1- \p)^{A\delta n} - A\delta n \p (1 - \p)^{A\delta n - 1}) \\
+&\limsup_{n \in \Nat}\Prob(w'_{\rnnt}(\delta) \geq \epsilon ) \\
+&\quad\leq \limsup_{n \in \Nat}\frac{2T}{\delta} \Prob( Z \geq 2 ) \\
+&\quad= \frac{2T}{\delta} \limsup_{n \in \Nat}(1 - \Prob( Z = 0 ) - \Prob( Z = 1 )) \\
+&\quad= \frac{2T}{\delta} \limsup_{n \in \Nat}(1 - (1- \p)^{A\delta n} - A\delta n \p (1 - \p)^{A\delta n - 1}) \\
 &\quad= \frac{2T}{\delta} (1 - \exp(-A\delta) - A\delta\exp(-A\delta) ) \\
 &\quad= \frac{2T}{\delta}(  1 - (1- A\delta + \frac{(A\delta)^2}{2} + \BigO{\delta^3})(1 + A\delta ) ) \\
 &\quad= \frac{2T}{\delta} \frac{3(A\delta)^2}{2} + \BigO{\delta^2} \\
@@ -379,7 +378,7 @@ To analyse \eqref{E: tightness cond 2} we substitute $w'_{\rnnt}(\delta)$ using 
 Since $T$ and $A$ are constant we have
 \begin{equation}
 	\begin{aligned}
-	\lim_{\delta \rightarrow 0} \limsup_n \Prob(w'_{\rnnt}(\delta) \geq \epsilon ) 
+	\lim_{\delta \rightarrow 0} \limsup_{n \in \Nat}\Prob(w'_{\rnnt}(\delta) \geq \epsilon ) 
 	&= \lim_{\delta \rightarrow 0} ( 3TA^2\delta + \BigO{\delta^2} )\\
 	&= 0
 	\end{aligned}
@@ -400,9 +399,9 @@ Thus there is a compact subset $C \subset \DT^2$ such that
 % Proofpart 2: Estimation of expectation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof}[Part 2]\renewcommand{\qedsymbol}{}
-The next step in our proof will be showing that for all $\epsilon > 0$,
+In the next step of our proof we will be showing that for all $\epsilon > 0$,
 \begin{equation}
-|\Exp{ f(\rznt, \rnnt)} - \Exp{f(\WtX, \rnntX)}| < \epsilon
+|\ExpBig{ f(\rznt, \rnnt)} - \ExpBig{f(\WtX, \rnntX)}| < \epsilon
 \end{equation}
 for sufficiently large $n$,
 where $(\WtX, \rnntX)$ is a coupling of $\Wt$ and $\rnnt$ constructed below.
@@ -410,10 +409,10 @@ Recall that $f$ is a bounded function, so there exists $M>0$ such that $|f(x,y)|
 We denote by $\Event{C}$ the event $(\znt, \rnnt) \in C$ and use the law of total expectation to calculate
 \begin{equation} \label{E: Estimation step 1}
 \begin{aligned}
-\Exp{ f(\rznt, \rnnt)} 
-&= \Exp{f(\rznt, \rnnt) \cond \Event{C}} \Prob(\Event{C}) \\
-&\quad + \Exp{f(\rznt, \rnnt) \cond \neg\Event{C}} \Prob(\neg\Event{C}) \\
-&\leq \Exp{f(\rznt, \rnnt) \cond \Event{C}}\Prob(\Event{C}) + \epsilon M.
+\ExpBig{ f(\rznt, \rnnt)} 
+&= \ExpBig{f(\rznt, \rnnt) \cond \Event{C}} \Prob(\Event{C}) \\
+&\quad + \ExpBig{f(\rznt, \rnnt) \cond \neg\Event{C}} \Prob(\neg\Event{C}) \\
+&\leq \ExpBig{f(\rznt, \rnnt) \cond \Event{C}}\Prob(\Event{C}) + \epsilon M.
 \end{aligned}
 \end{equation}
 
@@ -426,7 +425,7 @@ Meaning, since $\WtX$ and $\rzntX$ are random variables mapping into function sp
 \begin{equation}
 \sup_{s \leq T} |\rzntX(s) - \WtX(s)| \rightarrow_{a.s.} 0,
 \end{equation}
-which additionally implies
+which  implies
 \begin{equation} 
 \sup_{s \leq T} |\rzntX(s) - \WtX(s)| \rightarrow_p 0,
 \end{equation}
@@ -434,7 +433,6 @@ so for all $\epsilon > 0$:
 \begin{equation} \label{E: Prob(Event(delta)) 1}
 \Prob( \sup_{s \leq T} |\rzntX(s) - \WtX(s)| > \epsilon ) \rightarrow 0.
 \end{equation}
-
 Additionally we define \label{I: alt processes}
 \begin{equation} 
 	\begin{aligned}
@@ -468,9 +466,9 @@ By \eqref{E: Prob(Event(delta)) 1}, for sufficiently large $n$,
 Now an argument analogous to \eqref{E: Estimation step 1} gives
 \begin{equation} \label{E: Estimation step 2}
 \begin{aligned}
-\Exp{f(\rzntX, \rnntX) } 
-&\leq \Exp{f(\rzntX, \rnntX) \cond \Event{C}}\Prob(\Event{C}) + \epsilon M \\
-&\leq \Exp{f(\rzntX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2 \epsilon M.
+\ExpBig{f(\rzntX, \rnntX) } 
+&\leq \ExpBig{f(\rzntX, \rnntX) \cond \Event{C}}\Prob(\Event{C}) + \epsilon M \\
+&\leq \ExpBig{f(\rzntX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2 \epsilon M.
 \end{aligned}
 \end{equation}
 
@@ -486,9 +484,9 @@ f(\rzntX, \rnntX) &= f(\rzntX, \rnntX) + f(\WtX, \rnntX) - f(\WtX, \rnntX) \\
 holds. Therefore
 \begin{equation} \label{E: Estimation step 3}
 \begin{aligned}
-\Exp{f(\rzntX, \rnntX) } 
-&\leq \Exp{f(\rzntX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2 \epsilon M \\
-&\leq \Exp{f(\WtX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + \epsilon + 2 \epsilon M.
+\ExpBig{f(\rzntX, \rnntX) } 
+&\leq \ExpBig{f(\rzntX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2 \epsilon M \\
+&\leq \ExpBig{f(\WtX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + \epsilon + 2 \epsilon M.
 \end{aligned}
 \end{equation}
 \end{proof}
@@ -564,7 +562,6 @@ so
 \xi_k + \eta_k &=_d \nntX(k) - \nntX(k-1).
 \end{aligned}
 \end{equation}
-
 This way, we can define $\nntX$ and $\Ndis$ by
 \begin{equation}
 \nntX(k) - \nntX(k-1) = 
@@ -609,7 +606,7 @@ $\eta_k \leq_{\text{st.}} \zeta \sim \Binom(\delta\n{1}{3}, \p)$ for all $k \leq
 
 Using Markov's inequality gives
 \begin{equation}
-\Prob( \eta_k \neq 0 \cond \Event{\delta} ) \leq \Prob( \zeta_k \geq 1 ) \leq \Exp{\zeta_k} = \delta\n{1}{3}\p,
+\Prob( \eta_k \neq 0 \cond \Event{\delta} ) \leq \Prob( \zeta_k \geq 1 ) \leq \ExpBig{\zeta_k} = \delta\n{1}{3}\p,
 \end{equation}
 and substituting in \eqref{E: Prob eta not 0} we obtain
 \begin{equation}
@@ -627,23 +624,23 @@ We now define $\rNdisX(s) = \n{-1}{3} \Ndis(\n{2}{3}s)$ and continue the estimat
 which yields
 \begin{equation} \label{E: Estimation step 4}
 \begin{aligned}
-\Exp{f(\rzntX, \nntX)} 
-&\leq \Exp{f(\WtX, \nntX) \cond \Event{C}, \Event{\delta}} \Prob(\Event{C}) \Prob(\Event{\delta}) + \epsilon + 2M\epsilon   \\
-&\leq \Exp{f(\WtX, \rNdisX) \cond \Event{C}, \Event{\delta}} \Prob(\Event{C}) \Prob(\Event{\delta}) + 2\delta T M + \epsilon  + 2M\epsilon \\
-&\leq \Exp{f(\WtX, \rNdisX)} + 2\delta T M + \epsilon  + 2M\epsilon.
+\ExpBig{f(\rzntX, \nntX)} 
+&\leq \ExpBig{f(\WtX, \nntX) \cond \Event{C}, \Event{\delta}} \Prob(\Event{C}) \Prob(\Event{\delta}) + \epsilon + 2M\epsilon   \\
+&\leq \ExpBig{f(\WtX, \rNdisX) \cond \Event{C}, \Event{\delta}} \Prob(\Event{C}) \Prob(\Event{\delta}) + 2\delta T M + \epsilon  + 2M\epsilon \\
+&\leq \ExpBig{f(\WtX, \rNdisX)} + 2\delta T M + \epsilon  + 2M\epsilon.
 \end{aligned}
 \end{equation}
 This inequality holds for all bounded, continuous functions $f$. 
 Therefore it holds for $-f$ as well, which implies
 \begin{equation}
 \begin{aligned}
-\Exp{-f(\rzntX, \nntX)} &\leq \Exp{-f(\WtX, \rNdisX) }+ 2\delta T M  + \epsilon + 2M\epsilon \\
-\iff  \Exp{f(\rzntX, \nntX)} &\geq \Exp{f(\WtX, \rNdisX) } - 2\delta T M  - \epsilon - 2M\epsilon,
+\ExpBig{-f(\rzntX, \nntX)} &\leq \ExpBig{-f(\WtX, \rNdisX) }+ 2\delta T M  + \epsilon + 2M\epsilon \\
+\iff  \ExpBig{f(\rzntX, \nntX)} &\geq \ExpBig{f(\WtX, \rNdisX) } - 2\delta T M  - \epsilon - 2M\epsilon,
 \end{aligned}
 \end{equation}
 and therefore
 \begin{equation} \label{E: Equality of Expectations}
-	|\Exp{f(\rzntX, \nntX)} - \Exp{f(\WtX, \rNdisX)} | \leq 2\delta T M + \epsilon  + 2M\epsilon.
+	|\ExpBig{f(\rzntX, \nntX)} - \ExpBig{f(\WtX, \rNdisX)} | \leq 2\delta T M + \epsilon  + 2M\epsilon.
 \end{equation}
 \end{proof}
 
@@ -671,7 +668,7 @@ thus the increments of $\NtX$ are independent and for all $a<b$:
 In contrast, $\Ndis$ is a discrete process whose increments are defined by $\BtX$ at integer times, 
 that is for all $k \leq \n{2}{3}T$: 
 \begin{equation} \label{E: increments Ndis 2}
-\Ndis(k) - \Ndis(k-1) \sim \Binom(\n{1}{3}\BtX(\n{-2}{3}k), \p)
+\Ndis(k) - \Ndis(k-1) \sim \Binom(\n{1}{3}\BtX(\n{-2}{3}k), \p).
 \end{equation}
 We can evaluate the distribution of the increments of $\rNdisX$ by
 \begin{equation}
@@ -703,7 +700,7 @@ Note that $Y_{n,j} =_d \sum_{k=1}^{R_{n,j}} \xi_k$, with $\xi_k \sim \Bern(\p)$.
 
 In the next step we use the Poisson limit theorem, see for example \cite[Theorem 3.7, p.79]{Klenke.2006},
 which states that for a series of binomially distributed random variables $X_k \sim \Binom(N_k, p_k)$
-with $\Exp{X_k} = N_k p_k \rightarrow \lambda \in \Real$ as $k \rightarrow \infty$,
+with $\ExpBig{X_k} = N_k p_k \rightarrow \lambda \in \Real$ as $k \rightarrow \infty$,
 the convergence 
 \begin{equation}
 	X_k \rightarrow_d \Poisson(\lambda)
@@ -711,11 +708,11 @@ the convergence
 holds as $k \rightarrow \infty$.
 To apply this theorem, we calculate the expected value of $Y_{n,j}$:
 \begin{align*}
-\Exp{Y_{n,j}} 
+\ExpBig{Y_{n,j}} 
 &= R_{n,j} \p \\
 &= \frac{1}{n} R_{n,j} + \BigO{\n{-1}{3}}\\
 &= \frac{1}{n} \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{1}{3}\BtX(\n{-2}{3}i) + \BigO{\n{-1}{3}}\\
-&= \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{-2}{3}\BtX(\n{-2}{3}i) + \BigO{\n{-1}{3}}
+&= \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{-2}{3}\BtX(\n{-2}{3}i) + \BigO{\n{-1}{3}}.
 \end{align*}
 This sum represents a partition of the interval $[s_{j-1}, s_j]$ into $\n{2}{3}(s_j - s_{j-1})$ subintervals, each of length $\n{-2}{3}$.
 Since $\n{-2}{3}i$ is an element of its corresponding subinterval, 
@@ -723,7 +720,7 @@ we are dealing with a Riemann sum over the continuous function $\BtX$.
 Since $\BtX$ is bounded almost surely on the compact interval $[s_{j-1}, s_j]$,
 the sum converges to an integral and
 \begin{equation}
-\Exp{Y_{n,j}} \rightarrow \int_{s_{j-1}}^{s_j} \BtX(u)du.
+\ExpBig{Y_{n,j}} \rightarrow \int_{s_{j-1}}^{s_j} \BtX(u)du.
 \end{equation}
 Now applying the Poisson limit theorem yields
 \begin{equation} \label{E: convergence dist Yj}
@@ -742,21 +739,21 @@ and, applying this convergence in \eqref{E: distribution Ndis}, we arrive at
 For any fixed continuous $\WtX(\omega)$ we therefore have $\rNdisX \rightarrow_d \NtX$.
 Since $f(\WtX, \cdot)$ is a bounded continuous function this implies
 \begin{equation}
-	\Exp{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} \rightarrow \Exp{f(\WtX(\omega), \NtX)\cond \WtX(\omega)}.
+	\ExpBig{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} \rightarrow \ExpBig{f(\WtX(\omega), \NtX)\cond \WtX(\omega)}.
 \end{equation}
 By the boundedness of $f$ we can apply the dominated convergence theorem which gives
 \begin{equation}
 	\begin{aligned}
-	\Exp{f(\WtX, \NtX)}
-	&= \Exp{ \Exp{f(\WtX(\omega), \NtX) \cond \WtX(\omega)} } \\
-	&= \Exp{ \lim_{n\rightarrow\infty} \Exp{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} } \\
-	&= \lim_{n\rightarrow\infty} \Exp{ \Exp{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} } \\
-	&= \lim_{n\rightarrow\infty} \Exp{ f(\WtX, \rNdisX) }.
+	\ExpBig{f(\WtX, \NtX)}
+	&= \ExpBig{ \ExpBig{f(\WtX(\omega), \NtX) \cond \WtX(\omega)} } \\
+	&= \ExpBig{ \lim_{n\rightarrow\infty} \ExpBig{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} } \\
+	&= \lim_{n\rightarrow\infty} \ExpBig{ \ExpBig{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} } \\
+	&= \lim_{n\rightarrow\infty} \ExpBig{ f(\WtX, \rNdisX) }.
 	\end{aligned}
 \end{equation}
-Finally, the closeness of $\Exp{ f(\WtX, \rNdisX) }$ and $\Exp{f(\rzntX, \nntX)}$ in \eqref{E: Equality of Expectations} implies
+Finally, the closeness of $\ExpBig{ f(\WtX, \rNdisX) }$ and $\ExpBig{f(\rzntX, \nntX)}$ in \eqref{E: Equality of Expectations} implies
 \begin{equation}
-	\Exp{f(\rzntX, \nntX)} \rightarrow \Exp{f(\WtX, \NtX)}
+	\ExpBig{f(\rzntX, \nntX)} \rightarrow \ExpBig{f(\WtX, \NtX)}
 \end{equation}
 which completes the proof.
 \end{proof}
