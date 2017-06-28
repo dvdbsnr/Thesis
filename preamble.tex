@@ -88,7 +88,13 @@
 \declaretheorem[style=definition, numbered=no]{note}
 
 % Claim as part of proof
-\declaretheorem[style=definition, numberwithin=theorem, name=Part]{proofpart}
-\renewenvironment{proof}[1][\proofname]{{\noindent\bfseries #1. }}{\qed}
-
-
+%\declaretheorem[style=definition, numberwithin=theorem, name=Part]{proofpart}
+%\renewenvironment{proof}[1][\proofname]{{\noindent\bfseries #1. }}{\qed}
+\renewenvironment{proof}[1][\proofname]{%
+	\par\pushQED{\qed}\normalfont%
+	\topsep6\p@\@plus6\p@\relax
+	\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{:}]%
+	\ignorespaces
+}{%
+	\popQED\endtrivlist\@endpefalse
+}
