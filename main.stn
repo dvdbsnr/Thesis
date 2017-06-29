@@ -2,6 +2,7 @@
 \glossaryentry{b?\glossentry{Bproc}|setentrycounter[]{page}\glsnumberformat}{vi}
 \glossaryentry{c?\glossentry{Cother1}|setentrycounter[]{page}\glsnumberformat}{vi}
 \glossaryentry{d?\glossentry{Dother2}|setentrycounter[]{page}\glsnumberformat}{vi}
+\glossaryentry{e?\glossentry{Econvergence}|setentrycounter[]{page}\glsnumberformat}{vi}
 \glossaryentry{aa?\glossentry{Aergraphp}|setentrycounter[]{page}\glsnumberformat}{vi}
 \glossaryentry{ab?\glossentry{Bprob}|setentrycounter[]{page}\glsnumberformat}{vi}
 \glossaryentry{ac?\glossentry{CNi}|setentrycounter[]{page}\glsnumberformat}{vi}
@@ -43,3 +44,10 @@
 \glossaryentry{de?\glossentry{DeltaX}|setentrycounter[]{page}\glsnumberformat}{vi}
 \glossaryentry{df?\glossentry{supnorm}|setentrycounter[]{page}\glsnumberformat}{vi}
 \glossaryentry{dg?\glossentry{deltaint}|setentrycounter[]{page}\glsnumberformat}{vi}
+\glossaryentry{eaa?\glossentry{cR}|setentrycounter[]{page}\glsnumberformat}{vi}
+\glossaryentry{eba?\glossentry{cFunction}|setentrycounter[]{page}\glsnumberformat}{vi}
+\glossaryentry{ebb?\glossentry{cweak}|setentrycounter[]{page}\glsnumberformat}{vi}
+\glossaryentry{ebc?\glossentry{cvague}|setentrycounter[]{page}\glsnumberformat}{vi}
+\glossaryentry{ec?\glossentry{cprob}|setentrycounter[]{page}\glsnumberformat}{vi}
+\glossaryentry{ed?\glossentry{cdis}|setentrycounter[]{page}\glsnumberformat}{vi}
+\glossaryentry{ee?\glossentry{cas}|setentrycounter[]{page}\glsnumberformat}{vi}
