@@ -108,13 +108,13 @@ We now rescale the counting process via
 We calculate the rate of this rescaled process.
 Recall that the conditional intensity $\bar{\lambda}(s)$ of the process $\rnnt(s)$ must satisfy
 \begin{equation}
-\ExpBig{\rnnt(s)} = \int_{0}^{s} \bar{\lambda}(u) du.
+\Exp{\rnnt(s)} = \int_{0}^{s} \bar{\lambda}(u) du.
 \end{equation}
 Using \eqref{E: rescale Nnt} we evaluate the above integral in terms of $\lambda(s)$:
 \begin{equation*}
 \begin{aligned}
-\ExpBig{\rnnt(s)}
-&= \ExpBig{\nnt(\n{2}{3}s)} \\
+\Exp{\rnnt(s)}
+&= \Exp{\nnt(\n{2}{3}s)} \\
 &= \int_{0}^{\n{2}{3}s} \lambda(u) du \\
 &= \int_{0}^{s} \n{2}{3} \lambda(\n{2}{3}u) du.
 \end{aligned}
@@ -196,7 +196,7 @@ We want to show that
 \end{equation}
 meaning 
 \begin{equation}
-\ExpBig{f(\rznt, \rnnt)} \xrightarrow{n \rightarrow \infty} \ExpBig{f(\Wt, \Nt)}
+\Exp{f(\rznt, \rnnt)} \xrightarrow{n \rightarrow \infty} \Exp{f(\Wt, \Nt)}
 \end{equation}
 for all continuous, bounded functions $f:D[0,T]^2\rightarrow\Real$.
 
@@ -205,7 +205,7 @@ We begin with a quick overview of the proof.
 	\item We show that the process $(\rznt, \rnnt)$ is tight,
 	which allows us to restrict the expectation to
 	\begin{math}
-		\ExpBig{f(\rznt, \rnnt) \cond \Event{C}}
+		\Exp{f(\rznt, \rnnt) \cond \Event{C}}
 	\end{math}
 	where
 	\begin{math}
@@ -218,7 +218,7 @@ We begin with a quick overview of the proof.
 	Calling this event $\Event{\delta}$,
 	it suffices to look at
 	\begin{math}
-	\ExpBig{f(\Wt, \rnnt) \cond \Event{C}, \Event{\delta}}.
+	\Exp{f(\Wt, \rnnt) \cond \Event{C}, \Event{\delta}}.
 	\end{math}
 	
 	\item If $\norm{\rznt(s) - \Wt(s)}_T < \delta$ then with high probability $\nnt = \Ndis$,
@@ -226,12 +226,12 @@ We begin with a quick overview of the proof.
 	dependent on an upscaling of $\Bt$.
 	It then suffices to prove convergence of 
 	\begin{math}
-		\ExpBig{f(\Wt, \Ndis) \cond \Event{C}, \Event{\delta}}.
+		\Exp{f(\Wt, \Ndis) \cond \Event{C}, \Event{\delta}}.
 	\end{math}	
 	
 	\item Finally we prove
 	\begin{math}
-		\ExpBig{f(\Wt, \Ndis)} \rightarrow \ExpBig{f(\Wt, \Nt)}
+		\Exp{f(\Wt, \Ndis)} \rightarrow \Exp{f(\Wt, \Nt)}
 	\end{math}
 	by showing that for almost all realizations of $\Wt$ we have
 	\begin{math}
@@ -313,7 +313,7 @@ Markov's inequality then gives
 \begin{align*}
 \Prob(\nnt(\n{2}{3}T) \geq K\n{1}{3} \cond \Event{A}) 
 &\leq \Prob( \sum_{j=1}^{T\n{2}{3}} Y_j \geq K) \\
-&\leq \frac{1}{K}T\n{2}{3} \ExpBig{Y_1} \\
+&\leq \frac{1}{K}T\n{2}{3} \Exp{Y_1} \\
 &= \frac{1}{K}T\n{2}{3} \p A\n{1}{3} \\
 &= \frac{1}{K}n\p TA \\
 &\leq \frac{1}{K}CTA
@@ -401,7 +401,7 @@ Thus there is a compact subset $C \subset \DT^2$ such that
 \begin{proof}[Part 2]\renewcommand{\qedsymbol}{}
 In the next step of our proof we will be showing that for all $\epsilon > 0$,
 \begin{equation}
-|\ExpBig{ f(\rznt, \rnnt)} - \ExpBig{f(\WtX, \rnntX)}| < \epsilon
+|\Exp{ f(\rznt, \rnnt)} - \Exp{f(\WtX, \rnntX)}| < \epsilon
 \end{equation}
 for sufficiently large $n$,
 where $(\WtX, \rnntX)$ is a coupling of $\Wt$ and $\rnnt$ constructed below.
@@ -409,10 +409,10 @@ Recall that $f$ is a bounded function, so there exists $M>0$ such that $|f(x,y)|
 We denote by $\Event{C}$ the event $(\znt, \rnnt) \in C$ and use the law of total expectation to calculate
 \begin{equation} \label{E: Estimation step 1}
 \begin{aligned}
-\ExpBig{ f(\rznt, \rnnt)} 
-&= \ExpBig{f(\rznt, \rnnt) \cond \Event{C}} \Prob(\Event{C}) \\
-&\quad + \ExpBig{f(\rznt, \rnnt) \cond \neg\Event{C}} \Prob(\neg\Event{C}) \\
-&\leq \ExpBig{f(\rznt, \rnnt) \cond \Event{C}}\Prob(\Event{C}) + \epsilon M.
+\Exp{ f(\rznt, \rnnt)} 
+&= \Exp{f(\rznt, \rnnt) \cond \Event{C}} \Prob(\Event{C}) \\
+&\quad + \Exp{f(\rznt, \rnnt) \cond \neg\Event{C}} \Prob(\neg\Event{C}) \\
+&\leq \Exp{f(\rznt, \rnnt) \cond \Event{C}}\Prob(\Event{C}) + \epsilon M.
 \end{aligned}
 \end{equation}
 
@@ -466,9 +466,9 @@ By \eqref{E: Prob(Event(delta)) 1}, for sufficiently large $n$,
 Now an argument analogous to \eqref{E: Estimation step 1} gives
 \begin{equation} \label{E: Estimation step 2}
 \begin{aligned}
-\ExpBig{f(\rzntX, \rnntX) } 
-&\leq \ExpBig{f(\rzntX, \rnntX) \cond \Event{C}}\Prob(\Event{C}) + \epsilon M \\
-&\leq \ExpBig{f(\rzntX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2 \epsilon M.
+\Exp{f(\rzntX, \rnntX) } 
+&\leq \Exp{f(\rzntX, \rnntX) \cond \Event{C}}\Prob(\Event{C}) + \epsilon M \\
+&\leq \Exp{f(\rzntX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2 \epsilon M.
 \end{aligned}
 \end{equation}
 
@@ -484,9 +484,9 @@ f(\rzntX, \rnntX) &= f(\rzntX, \rnntX) + f(\WtX, \rnntX) - f(\WtX, \rnntX) \\
 holds. Therefore
 \begin{equation} \label{E: Estimation step 3}
 \begin{aligned}
-\ExpBig{f(\rzntX, \rnntX) } 
-&\leq \ExpBig{f(\rzntX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2 \epsilon M \\
-&\leq \ExpBig{f(\WtX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + \epsilon + 2 \epsilon M.
+\Exp{f(\rzntX, \rnntX) } 
+&\leq \Exp{f(\rzntX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + 2 \epsilon M \\
+&\leq \Exp{f(\WtX, \rnntX) \cond \Event{C}, \Event{\delta}}\Prob(\Event{C})\Prob(\Event{\delta}) + \epsilon + 2 \epsilon M.
 \end{aligned}
 \end{equation}
 \end{proof}
@@ -606,7 +606,7 @@ $\eta_k \leq_{\text{st.}} \zeta \sim \Binom(\delta\n{1}{3}, \p)$ for all $k \leq
 
 Using Markov's inequality gives
 \begin{equation}
-\Prob( \eta_k \neq 0 \cond \Event{\delta} ) \leq \Prob( \zeta_k \geq 1 ) \leq \ExpBig{\zeta_k} = \delta\n{1}{3}\p,
+\Prob( \eta_k \neq 0 \cond \Event{\delta} ) \leq \Prob( \zeta_k \geq 1 ) \leq \Exp{\zeta_k} = \delta\n{1}{3}\p,
 \end{equation}
 and substituting in \eqref{E: Prob eta not 0} we obtain
 \begin{equation}
@@ -624,23 +624,23 @@ We now define $\rNdisX(s) = \n{-1}{3} \Ndis(\n{2}{3}s)$ and continue the estimat
 which yields
 \begin{equation} \label{E: Estimation step 4}
 \begin{aligned}
-\ExpBig{f(\rzntX, \nntX)} 
-&\leq \ExpBig{f(\WtX, \nntX) \cond \Event{C}, \Event{\delta}} \Prob(\Event{C}) \Prob(\Event{\delta}) + \epsilon + 2M\epsilon   \\
-&\leq \ExpBig{f(\WtX, \rNdisX) \cond \Event{C}, \Event{\delta}} \Prob(\Event{C}) \Prob(\Event{\delta}) + 2\delta T M + \epsilon  + 2M\epsilon \\
-&\leq \ExpBig{f(\WtX, \rNdisX)} + 2\delta T M + \epsilon  + 2M\epsilon.
+\Exp{f(\rzntX, \nntX)} 
+&\leq \Exp{f(\WtX, \nntX) \cond \Event{C}, \Event{\delta}} \Prob(\Event{C}) \Prob(\Event{\delta}) + \epsilon + 2M\epsilon   \\
+&\leq \Exp{f(\WtX, \rNdisX) \cond \Event{C}, \Event{\delta}} \Prob(\Event{C}) \Prob(\Event{\delta}) + 2\delta T M + \epsilon  + 2M\epsilon \\
+&\leq \Exp{f(\WtX, \rNdisX)} + 2\delta T M + \epsilon  + 2M\epsilon.
 \end{aligned}
 \end{equation}
 This inequality holds for all bounded, continuous functions $f$. 
 Therefore it holds for $-f$ as well, which implies
 \begin{equation}
 \begin{aligned}
-\ExpBig{-f(\rzntX, \nntX)} &\leq \ExpBig{-f(\WtX, \rNdisX) }+ 2\delta T M  + \epsilon + 2M\epsilon \\
-\iff  \ExpBig{f(\rzntX, \nntX)} &\geq \ExpBig{f(\WtX, \rNdisX) } - 2\delta T M  - \epsilon - 2M\epsilon,
+\Exp{-f(\rzntX, \nntX)} &\leq \Exp{-f(\WtX, \rNdisX) }+ 2\delta T M  + \epsilon + 2M\epsilon \\
+\iff  \Exp{f(\rzntX, \nntX)} &\geq \Exp{f(\WtX, \rNdisX) } - 2\delta T M  - \epsilon - 2M\epsilon,
 \end{aligned}
 \end{equation}
 and therefore
 \begin{equation} \label{E: Equality of Expectations}
-	|\ExpBig{f(\rzntX, \nntX)} - \ExpBig{f(\WtX, \rNdisX)} | \leq 2\delta T M + \epsilon  + 2M\epsilon.
+	|\Exp{f(\rzntX, \nntX)} - \Exp{f(\WtX, \rNdisX)} | \leq 2\delta T M + \epsilon  + 2M\epsilon.
 \end{equation}
 \end{proof}
 
@@ -700,7 +700,7 @@ Note that $Y_{n,j} =_d \sum_{k=1}^{R_{n,j}} \xi_k$, with $\xi_k \sim \Bern(\p)$.
 
 In the next step we use the Poisson limit theorem, see for example \cite[Theorem 3.7, p.79]{Klenke.2006},
 which states that for a series of binomially distributed random variables $X_k \sim \Binom(N_k, p_k)$
-with $\ExpBig{X_k} = N_k p_k \rightarrow \lambda \in \Real$ as $k \rightarrow \infty$,
+with $\Exp{X_k} = N_k p_k \rightarrow \lambda \in \Real$ as $k \rightarrow \infty$,
 the convergence 
 \begin{equation}
 	X_k \rightarrow_d \Poisson(\lambda)
@@ -708,7 +708,7 @@ the convergence
 holds as $k \rightarrow \infty$.
 To apply this theorem, we calculate the expected value of $Y_{n,j}$:
 \begin{align*}
-\ExpBig{Y_{n,j}} 
+\Exp{Y_{n,j}} 
 &= R_{n,j} \p \\
 &= \frac{1}{n} R_{n,j} + \BigO{\n{-1}{3}}\\
 &= \frac{1}{n} \sum_{i=\n{2}{3}s_{j-1}+1}^{\n{2}{3}s_j}\n{1}{3}\BtX(\n{-2}{3}i) + \BigO{\n{-1}{3}}\\
@@ -720,7 +720,7 @@ we are dealing with a Riemann sum over the continuous function $\BtX$.
 Since $\BtX$ is bounded almost surely on the compact interval $[s_{j-1}, s_j]$,
 the sum converges to an integral and
 \begin{equation}
-\ExpBig{Y_{n,j}} \rightarrow \int_{s_{j-1}}^{s_j} \BtX(u)du.
+\Exp{Y_{n,j}} \rightarrow \int_{s_{j-1}}^{s_j} \BtX(u)du.
 \end{equation}
 Now applying the Poisson limit theorem yields
 \begin{equation} \label{E: convergence dist Yj}
@@ -739,21 +739,21 @@ and, applying this convergence in \eqref{E: distribution Ndis}, we arrive at
 For any fixed continuous $\WtX(\omega)$ we therefore have $\rNdisX \rightarrow_d \NtX$.
 Since $f(\WtX, \cdot)$ is a bounded continuous function this implies
 \begin{equation}
-	\ExpBig{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} \rightarrow \ExpBig{f(\WtX(\omega), \NtX)\cond \WtX(\omega)}.
+	\Exp{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} \rightarrow \Exp{f(\WtX(\omega), \NtX)\cond \WtX(\omega)}.
 \end{equation}
 By the boundedness of $f$ we can apply the dominated convergence theorem which gives
 \begin{equation}
 	\begin{aligned}
-	\ExpBig{f(\WtX, \NtX)}
-	&= \ExpBig{ \ExpBig{f(\WtX(\omega), \NtX) \cond \WtX(\omega)} } \\
-	&= \ExpBig{ \lim_{n\rightarrow\infty} \ExpBig{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} } \\
-	&= \lim_{n\rightarrow\infty} \ExpBig{ \ExpBig{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} } \\
-	&= \lim_{n\rightarrow\infty} \ExpBig{ f(\WtX, \rNdisX) }.
+	\Exp{f(\WtX, \NtX)}
+	&= \Exp{ \Exp{f(\WtX(\omega), \NtX) \cond \WtX(\omega)} } \\
+	&= \Exp{ \lim_{n\rightarrow\infty} \Exp{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} } \\
+	&= \lim_{n\rightarrow\infty} \Exp{ \Exp{f(\WtX(\omega), \rNdisX) \cond \WtX(\omega)} } \\
+	&= \lim_{n\rightarrow\infty} \Exp{ f(\WtX, \rNdisX) }.
 	\end{aligned}
 \end{equation}
-Finally, the closeness of $\ExpBig{ f(\WtX, \rNdisX) }$ and $\ExpBig{f(\rzntX, \nntX)}$ in \eqref{E: Equality of Expectations} implies
+Finally, the closeness of $\Exp{ f(\WtX, \rNdisX) }$ and $\Exp{f(\rzntX, \nntX)}$ in \eqref{E: Equality of Expectations} implies
 \begin{equation}
-	\ExpBig{f(\rzntX, \nntX)} \rightarrow \ExpBig{f(\WtX, \NtX)}
+	\Exp{f(\rzntX, \nntX)} \rightarrow \Exp{f(\WtX, \NtX)}
 \end{equation}
 which completes the proof.
 \end{proof}

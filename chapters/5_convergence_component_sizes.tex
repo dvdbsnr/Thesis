@@ -606,10 +606,10 @@ of the whole ordered vector of component sizes and surplus edges.
 	\begin{equation} \label{E: P(ExcEvent) 1}
 	\begin{aligned}
 	\Prob(\ExcursionEvent) 
-	&\leq \ExpBig{ \text{Number of excursions $\gamma: \; |\gamma| \geq \delta\n{2}{3},l(\gamma) \geq C\n{2}{3}$ } } \\
-	&= \ExpBig{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}} \Ind{\{|\gamma| \geq \delta\n{2}{3} \} } } \\
-	&\leq \ExpBig{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}} \frac{|\gamma|^2}{\delta^2\n{4}{3}} } \\
-	&= \frac{1}{\delta^2\n{4}{3}} \ExpBig{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}}  |\gamma|^2 }.
+	&\leq \Exp{ \text{Number of excursions $\gamma: \; |\gamma| \geq \delta\n{2}{3},l(\gamma) \geq C\n{2}{3}$ } } \\
+	&= \Exp{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}} \Ind{\{|\gamma| \geq \delta\n{2}{3} \} } } \\
+	&\leq \Exp{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}} \frac{|\gamma|^2}{\delta^2\n{4}{3}} } \\
+	&= \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}}  |\gamma|^2 }.
 	\end{aligned}
 	\end{equation}
 	
@@ -622,21 +622,21 @@ of the whole ordered vector of component sizes and surplus edges.
 	\begin{equation} \label{E: P(ExcEvent) 2}
 	\begin{aligned}
 	\Prob(\ExcursionEvent) 
-	&\leq \frac{1}{\delta^2\n{4}{3}} \ExpBig{ \sum_{\Ccal \in \Gcal(n-T, \p)}  |\Ccal|^2  } \\
-	&\leq \frac{1}{\delta^2\n{4}{3}} \ExpBig{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, \p)}  |\Ccal|^2  } \\
-	&\leq \frac{1}{\delta^2\n{4}{3}} \ExpBig{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, \p)}  |\Ccal|^2 }.
+	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-T, \p)}  |\Ccal|^2  } \\
+	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, \p)}  |\Ccal|^2  } \\
+	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, \p)}  |\Ccal|^2 }.
 	\end{aligned}
 	\end{equation}
 	
 	For ease of notation we consider the graph $\Gcal(k,\p)$ and calculate
 	\begin{equation} \label{E: P(ExcEvent) 3}
 	\begin{aligned}
-	\ExpBig{\sum_{\Ccal \in \Gcal(k, \p)} |\Ccal|^2 } 
-	&= \ExpBig{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \sum_{v \in \Ccal} 1} \\
-	&= \ExpBig{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \sum_{v \in \Gcal(k, \p)} \Ind{\{v \in \Ccal\}} } \\
-	&= \sum_{v \in \Gcal(k, \p)} \ExpBig{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \Ind{\{v \in \Ccal\}} } \\ 
-	&= \sum_{v \in \Gcal(k, \p)} \ExpBig{|\Ccal(v)|} \\
-	&= k \ExpBig{|\Ccal(1)|},
+	\Exp{\sum_{\Ccal \in \Gcal(k, \p)} |\Ccal|^2 } 
+	&= \Exp{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \sum_{v \in \Ccal} 1} \\
+	&= \Exp{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \sum_{v \in \Gcal(k, \p)} \Ind{\{v \in \Ccal\}} } \\
+	&= \sum_{v \in \Gcal(k, \p)} \Exp{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \Ind{\{v \in \Ccal\}} } \\ 
+	&= \sum_{v \in \Gcal(k, \p)} \Exp{|\Ccal(v)|} \\
+	&= k \Exp{|\Ccal(1)|},
 	\end{aligned}
 	\end{equation}
 	where $\Ccal(v)$ denotes the component containing the vertex $v$ and the last inequality stems from the interchangeability of the vertex labels.
@@ -673,22 +673,22 @@ of the whole ordered vector of component sizes and surplus edges.
 	\end{equation}
 	which gives
 	\begin{equation} \label{E: Exp C(1) <= sum Z}
-		\ExpBig{|\Ccal(1)|} \leq \sum_{j=0}^{\infty}\ExpBig{Z_j}.
+		\Exp{|\Ccal(1)|} \leq \sum_{j=0}^{\infty}\Exp{Z_j}.
 	\end{equation}	
 	For $j\geq0$ we calculate the expectation of $Z_j$ by
 	\begin{equation}
 	\begin{aligned}
-	\ExpBig{Z_j} 
-	&= \ExpBig{Z_{j-1}}k \p \\
+	\Exp{Z_j} 
+	&= \Exp{Z_{j-1}}k \p \\
 	&= \dots \\
-	&= \ExpBig{Z_0}(k\p)^j \\
+	&= \Exp{Z_0}(k\p)^j \\
 	&= (k\p)^j.
 	\end{aligned}		
 	\end{equation}
 	Substituting in \eqref{E: Exp C(1) <= sum Z} gives
 	\begin{equation} \label{E: Exp C(1) <= frac kp}
 	\begin{aligned}
-	\ExpBig{|\Ccal(1)|} 
+	\Exp{|\Ccal(1)|} 
 	&\leq \sum_{j=0}^{\infty} (k \p)^j \\
 	&\leq \frac{1}{(1- k\p)_+},
 	\end{aligned}		
@@ -724,14 +724,14 @@ Aldous' paper provides a complete proof using stochastic calculus methods.
 	Let $\Gamma^{\pp}$ be the set of excursions of $\Bt$ and let $|\gamma|$ be the length of an excursion $\gamma$.
 	Then
 	\begin{equation}
-		\ExpBig{\sum_{\gamma \in \Gamma^{\pp}} |\gamma|^2} < \infty.
+		\Exp{\sum_{\gamma \in \Gamma^{\pp}} |\gamma|^2} < \infty.
 	\end{equation}
 \end{lemma}
 
 Since $\sum_{\gamma \in \Gamma^{\pp}} |\gamma|^2$ is a convergent series almost surely,
 for all $\epsilon > 0$ we can find $\delta > 0$ such that
 \begin{equation} \label{E: gamma delta epsilon}
-	\ExpBig{\sum_{|\gamma| < \delta} |\gamma|^2} < \epsilon.
+	\Exp{\sum_{|\gamma| < \delta} |\gamma|^2} < \epsilon.
 \end{equation}
 Then by Markov's inequality for all $\epsilon_0 > 0$ and $\epsilon_1 > 0$ there exists $\delta > 0$ such that
 \begin{equation} \label{E: sum gamma < delta}
@@ -750,20 +750,20 @@ We state and prove a result similar to \eqref{E: gamma delta epsilon} on excursi
 	Denote by $\rgamman$ the excursions of $\rznt$. 
 	Then for all $\epsilon > 0$ there exists $\delta > 0$ such that
 	\begin{equation}
-		\sup_n \ExpBig{\sum_{|\rgamman| < \delta} |\rgamman|^2} < \epsilon.
+		\sup_n \Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2} < \epsilon.
 	\end{equation}
 \end{lemma}
 \begin{proof}
 	We have
 	\begin{equation}
-		\ExpBig{\sum_{|\rgamman| < \delta} |\rgamman|^2} 
-		= \ExpBig{\sum_{l(\rgamman) > C} |\rgamman|^2} 
-		+ \ExpBig{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2}.
+		\Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2} 
+		= \Exp{\sum_{l(\rgamman) > C} |\rgamman|^2} 
+		+ \Exp{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2}.
 	\end{equation}
 	Consider the second term:
 	\begin{equation}
-		\ExpBig{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2}
-		= \ExpBig{\sum_{k = 0}^{\infty} \sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| \in I_{\delta, k}}} |\rgamman|^2}
+		\Exp{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2}
+		= \Exp{\sum_{k = 0}^{\infty} \sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| \in I_{\delta, k}}} |\rgamman|^2}
 	\end{equation}
 	where $I_{\delta, k} = [ \frac{\delta}{2^{k+1}}, \frac{\delta}{2^{k}} ]$.
 	Then
@@ -774,7 +774,7 @@ We state and prove a result similar to \eqref{E: gamma delta epsilon} on excursi
 	and since this is now an entirely deterministic term we have
 	\begin{equation}
 	\begin{aligned}
-	\ExpBig{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2} 
+	\Exp{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2} 
 	&\leq \sum_{k = 0}^{\infty} \left(\frac{\delta}{2^k}\right)^2 \frac{C}{\frac{\delta}{2^{k+1}}} \\
 	&= \sum_{k = 0}^{\infty} \frac{2C\delta}{2^k} \\
 	&= 4C\delta.
@@ -782,16 +782,16 @@ We state and prove a result similar to \eqref{E: gamma delta epsilon} on excursi
 	\end{equation}
 	By Lemma~\ref{L: late excursions} for all $\epsilon > 0$ we can choose $C > 0$ such that 
 	\begin{equation}
-		\ExpBig{ \sum_{l(\rgamman) > C} |\rgamman|^2 } < \epsilon / 2.
+		\Exp{ \sum_{l(\rgamman) > C} |\rgamman|^2 } < \epsilon / 2.
 	\end{equation}
 	For this $C$ choose $\delta > 0$ such that $4C\delta < \epsilon/2$.
 	Then
 	\begin{equation}
-		\ExpBig{\sum_{|\rgamman| < \delta} |\rgamman|^2}  < \epsilon.
+		\Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2}  < \epsilon.
 	\end{equation}
 	Since $\delta$ and $C$ are independent of $n$ we have
 	\begin{equation}
-	\sup_n \ExpBig{\sum_{|\rgamman| < \delta} |\rgamman|^2} < \epsilon.
+	\sup_n \Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2} < \epsilon.
 	\end{equation}
 \end{proof}
 

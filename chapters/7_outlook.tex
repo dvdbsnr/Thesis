@@ -56,13 +56,13 @@ such that there is a new cluster of size $x_i + x_j$ inserted next to some clust
 Define the filtration $\F{\pp} = \sigma\{ \X(u); u \leq \pp \}$.
 Then for all test functions $g: \ld \rightarrow \Real$ we have
 \begin{equation}
-	\ExpBig{\Delta g(\X(\pp)) \cond \F{\pp}}
+	\Exp{\Delta g(\X(\pp)) \cond \F{\pp}}
 	= \sum_i \sum_{j > i} X_i(\pp) X_j(\pp) \left( g(\X^{(i+j)}(\pp)) - g(\X(\pp)) \right)d\pp,
 \end{equation}
 where we use the infinitesimal notation
 \begin{equation}
 \begin{aligned}
-	&\qquad \quad \ExpBig{\Delta Y(t) \cond \F{t}} = A(t)dt \\ 
+	&\qquad \quad \Exp{\Delta Y(t) \cond \F{t}} = A(t)dt \\ 
 	&\iff M(t) = Y(t) - \int_{0}^{t}A(s)ds \enspace \text{is a local martingale.}
 \end{aligned}
 \end{equation}
