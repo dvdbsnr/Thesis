@@ -66,10 +66,11 @@
 	{\: | \:}
 % Expected value, regular brackets
 \newcommand{\Exp}[1]
-	{\mathbb{E}[#1]}
-% Expected value, big fitted brackets
-\newcommand{\ExpBig}[1]
 	{\mathbb{E} \left[ #1 \right]}
+% Expected value, big fitted brackets
+\newcommand{\ExpSm}[1]
+	{\mathbb{E}[#1]}
+
 % Ceiling
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 % Floor
@@ -404,33 +405,32 @@
 \newcommand{\xsn}
 	{x_*^{(n)}}
 
-% Yn vector
-\newcommand{\Yn}
-	{{Y}^{(n)}}
-% Y vector
-\newcommand{\Y}
-	{{Y}}
-% Ynk vector
-\newcommand{\Ynk}
-	{{Y}^{(n)}_k}
-% Yk vector
-\newcommand{\Yk}
-	{{Y}_k}
 % gamma_n: Rescaled excursion of rznt
 \newcommand{\rgamman}
-	{\bar{\gamma}^{(n)}}
+	{\bar{\gamma}}
 \newcommand{\rsigman}
-	{\bar{\sigma}^{(n)}}
+	{\bar{\sigma}}
 
-% YnX vector
-\newcommand{\YnX}
-{Y^{(n)}_k}
+% Yn vector
+\newcommand{\Yn}
+{Y_n}
 % Y vector
-\newcommand{\YX}
+\newcommand{\Y}
 {Y}
 % Yn vector
-\newcommand{\YnkX}
-{Y^{(n)}_k}
+\newcommand{\Ynk}
+{Y_n^{(k)}}
 % Y vector
-\newcommand{\YkX}
-{Y_k}
+\newcommand{\Yk}
+{Y^{(k)}}
+% Yn vector
+\newcommand{\YnX}
+{Y'_n}
+% Y vector
+\newcommand{\YX}
+{Y'}
+
+\newcommand{\myrel}[2]
+	{\mathrel{\overset{\makebox[0pt]{\mbox{\tiny #1}}}{#2}}}
+\newcommand{\myeq}[1]
+	{\myrel{#1}{=}}

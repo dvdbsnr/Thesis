@@ -46,9 +46,9 @@ We denote by $G_{n,M}$ the set of graphs on $n$ vertices with $M$ edges that are
 \end{enumerate}
 A graph in $G_{n,M}$ can be constructed by choosing $M$ out of the $\binom{n}{2}$ possible edges between the vertices,
 which leads to a total number of graphs
-\begin{equation}
+\begin{equation*}
 	|G_{n,M}| = \binom{\binom{n}{2}}{M}.
-\end{equation}
+\end{equation*}
 The Erd\H{o}s-Rényi random graph $\Gcal(n, M)$ is now obtained by choosing one element of $G_{n,M}$ at random
 with equal probability for each graph, where the number of edges is usually dependent on the number of vertices, $M = M(n)$.
 
@@ -99,13 +99,13 @@ The following theorem provides a lower bound on the size of $\Ccal_{\max}$, the 
 	Fix $\lambda < 1$. 
 	Then, for all $a > 1/I_{\lambda}$, 
 	there exists $\delta = \delta(a, \lambda)$ such that
-	\begin{equation}
+	\begin{equation*}
 		\Prob( |\Ccal_{\max}| \geq a \log n ) = \BigO{n^{-\delta}},
-	\end{equation}
+	\end{equation*}
 	where 
-	\begin{equation}
+	\begin{equation*}
 		I_{\lambda} = \lambda - 1 - \log(\lambda)
-	\end{equation}
+	\end{equation*}
 	is the large deviation rate function for Poisson random variables with mean $\lambda$.
 \end{theorem}
 The next theorem gives an upper bound for the size of $\Ccal_{\max}$.
@@ -113,14 +113,14 @@ The next theorem gives an upper bound for the size of $\Ccal_{\max}$.
 	Fix $\lambda < 1$. 
 	Then, for all $a < 1/I_{\lambda}$, 
 	there exists $\delta = \delta(a, \lambda)$ such that
-	\begin{equation}
+	\begin{equation*}
 	\Prob( |\Ccal_{\max}| \leq a \log n ) = \BigO{n^{-\delta}}.
-	\end{equation}
+	\end{equation*}
 \end{theorem}
 Together, these theorems imply
-\begin{equation} \label{I: conv prob}
+\begin{equation*} \label{I: conv prob}
 	\frac{|\Ccal_{\max}|}{\log n} \rightarrow_p 1/I_{\lambda}
-\end{equation}
+\end{equation*}
 and therefore the expected largest component size will be of order $\log n$.
 
 \bigskip
@@ -137,9 +137,9 @@ The following theorem now states that all of these vertices are, in fact, part o
 \begin{theorem}[Law of large numbers for giant component, {\cite[Theorem 4.8, p.131]{vanderHofstad.2016}}]
 	Fix $\lambda>1$.
 	Then, for all $\nu \in (\frac{1}{2}, 1)$, there exists $\delta = \delta(\nu, \lambda)$ such that
-	\begin{equation}
+	\begin{equation*}
 		\Prob\left( \left| |\Ccal_{\max}| - n \xi_\lambda \right| \geq n^{\nu}\right) = \BigO{n^{-\delta}}.
-	\end{equation}
+	\end{equation*}
 \end{theorem}
 
 \begin{figure}[h]
@@ -188,9 +188,9 @@ The next theorem provides an approximation of the size of the largest component 
 \begin{theorem}[Largest critical cluster, {\cite[Theorem 5.1, p.150]{vanderHofstad.2016}}] \label{T: largest critical cluster}
 	Let $\lambda = 1 + \pp\n{-1}{3}$, with $\pp \in \Real$.
 	There exists a constant $b = b(\pp)$ such that for all $\omega > 1$,
-	\begin{equation}
+	\begin{equation*}
 		\Prob\left( \omega^{-1} \n{2}{3} \leq |\Ccal_{\max}| \leq \omega \n{2}{3}\right) \geq 1 - \frac{b}{\omega}.
-	\end{equation}	
+	\end{equation*}	
 \end{theorem}
 
 In this critical window, the largest component of the random graph will be of order $\n{2}{3}$ with high probability.
@@ -244,9 +244,9 @@ A component with a surplus of zero is a tree.
 The convergence is to hold with respect to the product topology, 
 where $\xn \rightarrow \x$ holds for $\xn = (x^{(n)}_1, x^{(n)}_2, \dots)$ and $\x = (x_1, x_2, \dots)$
 if for all $k \in \Nat$
-\begin{equation}
+\begin{equation*}
 	(x^{(n)}_1, \dots, x^{(n)}_k) \rightarrow (x_1, \dots,  x_k)
-\end{equation}
+\end{equation*}
 by $x^{(n)}_i \rightarrow x_i$ for all $1 \leq i \leq k$ as $n \rightarrow \infty$.
 Note that in our theorem the $x^{(n)}_i = ( \n{-2}{3} \Cnt(i), \n{-2}{3} \sigmant(i))$ and $x_i = (\Ct(i), \sigmat(i))$ are pairs of values themselves,
 so for $x^{(n)}_i \rightarrow x_i$ to hold we require 
@@ -274,7 +274,6 @@ We reflect $\Wt$ at the x-axis to define the process $\Bt$ by
 \begin{equation} \label{D: Bt}
 	\Bt(s) := \Wt(s) - \min_{u \leq s}\Wt(u).
 \end{equation}
-We call $\Bt$ the reflected Brownian motion with drift.
 
 \begin{figure}[h]%
 	\centering
@@ -291,23 +290,25 @@ We call $\Bt$ the reflected Brownian motion with drift.
 	\label{F: BM}%
 \end{figure}
 
-See Figure~\ref{F: BM} for an example of a Brownian motion with drift for positive and negative $\pp$ and the corresponding reflected process.
-Note that for positive $\pp$ the time intervals between zeroes of $\Bt$ are much longer than for negative $\pp$.
-We call an excursion $\gamma$ of $\Bt$ a time interval $[l(\gamma), r(\gamma)]$ for which $\Bt(l(\gamma)) = \Bt(r(\gamma)) = 0$
+We call $\Bt$ the reflected Brownian motion with drift
+and call an excursion $\gamma$ of $\Bt$ a time interval $[l(\gamma), r(\gamma)]$ for which $\Bt(l(\gamma)) = \Bt(r(\gamma)) = 0$
 and $\Bt(s) > 0$ for all $l(\gamma) < s < r(\gamma)$. \label{I: gamma}
 Denote by $|\gamma| = r(\gamma) - l(\gamma)$ the length of an excursion. \label{I: rgammalgamma}
+
+See Figure~\ref{F: BM} for an example of a Brownian motion with drift for positive and negative $\pp$ and the corresponding reflected process.
+Note that for positive $\pp$ the time intervals between zeroes of $\Bt$ are much longer than for negative $\pp$.
 
 Additionally we define a Poisson counting process $\Nt$, \label{I: nt} 
 which equips each excursion with a number of marks,
 emerging with intensity $\Bt(s)$ at time $s$.
 Informally speaking, the chance of encountering a mark in a time interval $\sds$ is characterized by
-\begin{equation}
+\begin{equation*}
 	\Prob( \text{Some mark emerges in} \; \sds \cond \Bt(u), u \leq s ) = \Bt(s)ds.
-\end{equation}
+\end{equation*}
 More formally we define $\Nt$ to be the counting process for which
-\begin{equation}
+\begin{equation*}
 	\Nt(s) - \int_{0}^{s} \Bt(u)du
-\end{equation}
+\end{equation*}
 is a martingale.
 Denote by $\mu(\gamma)$ the number of marks during an excursion $\gamma$. \label{I: mugamma}
 
@@ -330,11 +331,11 @@ We now state the main theorem of this thesis, which we will prove gradually in t
 	Then, as $n \rightarrow \infty$,
 	\begin{enumerate}
 		\item the convergence
-		\begin{equation}
+		\begin{equation*}
 		( \n{-2}{3} ( \Cnt(j), \sigmant(j) ), \; j \geq 1 ) 
 		\rightarrow_d
 		( \Ctbold, \sigmatbold ),
-		\end{equation}
+		\end{equation*}
 		holds with respect to the product topology,
 		
 		\item the convergence $\n{-2}{3} \Cntbold \rightarrow_d \Ctbold$

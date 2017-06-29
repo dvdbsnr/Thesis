@@ -7,7 +7,6 @@
 
 This chapter will provide an overview over the other central issue of \cite{Aldous.1997},
 the multiplicative coalescent introduced in Chapters 1.5 and 4.
-
 So far, we always considered $\pp$ as a constant which lead to a change of $\p$ only in $n$.
 We will now introduce a process that describes the random graph $\Wrg(\x, \q)$ for fixed $\x$ and $n$
 but variable $\q$ and therefore $p_{i,j}$.
@@ -29,9 +28,9 @@ Let $X_i(\x, \pp)$ be the size of the $i$-th largest component of $\Wrg(\x, \pp)
 For a vector of vertex sizes $\x$, $(\X(\x, \pp); 0 \leq \pp < \infty)$ is a continuous time Markov chain
 on a finite state space which is entirely dependent on $\x$.
 A state at some time $\pp_0$ is a vector of component sizes, which consist of the sizes of the individual vertices:
-\begin{equation}
+\begin{equation*}
 	\X(\x, \pp_0) = (X_1(\x, \pp_0), X_2(\x, \pp_0), \dots) = (|\Ccal_1|, |\Ccal_2|, \dots)
-\end{equation}
+\end{equation*}
 where $|\Ccal_i| = \sum_{v \in \Ccal_i} x_v$.
 
 The dynamics of this Markov chain can be described as follows.
@@ -41,31 +40,31 @@ There are $xy$ different possible edges between these two that may form to direc
 and create a large component of size $x+y$.
 We call a Markov process with finite state space in $\ld$ and dynamics as described above a \emph{multiplicative coalescent}.
 For an initial state $\x = (x, 0, 0, \dots)$ we have a "constant" multiplicative coalescent with
-\begin{equation}
+\begin{equation*}
 	\X(\pp) = (x, 0, 0, \dots) \enspace \text{for all $-\infty < \pp < \infty$}.
-\end{equation}
+\end{equation*}
 
 We say a vector $\x \in \ld$ is of finite length if $x_i = 0$ for all $i \geq N$ for some $N \in \Nat$.
 For a size vector $\x$ of finite length,
 the dynamics of the multiplicative coalescent starting in $\X(0) = \x$ can be expressed in martingale form as follows.
 For any vector $\x$, let $\x^{(i+j)}$ be the configuration obtained by merging the $i$-th and $j$-th components of $\x$,
 such that there is a new cluster of size $x_i + x_j$ inserted next to some cluster $x_u$:
-\begin{equation}
+\begin{equation*}
 	\x^{(i+j)} = (x_1, \dots, x_{u-1}, x_i + x_j, x_u, \dots, x_{i-1}, x_{i+1}, \dots, x_{j-1}, x_{j+1}, \dots).
-\end{equation}
+\end{equation*}
 Define the filtration $\F{\pp} = \sigma\{ \X(u); u \leq \pp \}$.
 Then for all test functions $g: \ld \rightarrow \Real$ we have
-\begin{equation}
+\begin{equation*}
 	\Exp{\Delta g(\X(\pp)) \cond \F{\pp}}
 	= \sum_i \sum_{j > i} X_i(\pp) X_j(\pp) \left( g(\X^{(i+j)}(\pp)) - g(\X(\pp)) \right)d\pp,
-\end{equation}
+\end{equation*}
 where we use the infinitesimal notation
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	&\qquad \quad \Exp{\Delta Y(t) \cond \F{t}} = A(t)dt \\ 
 	&\iff M(t) = Y(t) - \int_{0}^{t}A(s)ds \enspace \text{is a local martingale.}
 \end{aligned}
-\end{equation}
+\end{equation*}
 
 A key result of \cite{Aldous.1997} is the existence of at least one multiplicative coalescent process, 
 the steps of which are distributed as the limit process found in Theorem~\ref{T: Main}.

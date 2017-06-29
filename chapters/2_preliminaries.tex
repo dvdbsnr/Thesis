@@ -20,35 +20,35 @@ in Chapter~\ref{C: surplus edges} and of Theorem~\ref{T: Main} in Chapter~\ref{C
 	Let $\mu_n$, $\mu$ be measures on a metric space $S$ with associated \Bosi~$\mathcal{S} = \Bo(S)$.
 	Denote by $\Cb(S)$ the space of bounded, continuous functions $f: S \rightarrow \Real$.
 	We say $\mu_n$ \emph{converges weakly} to $\mu$, $\mu_n \Rightarrow \mu$, if
-	\begin{equation}
+	\begin{equation*}
 		\int_S fd\mu_n \rightarrow \int_S fd\mu
-	\end{equation}
+	\end{equation*}
 	as $n \rightarrow \infty$ for all $f \in \Cb(S)$.
 \end{definition}
 
 We say a random variable $X$ in $(S, \mathcal{S})$, 
 defined on a probability space $\ProbSpace$,
 has distribution or law $P$ if
-\begin{equation}
+\begin{equation*}
 	P(A) = \Prob(X \in A)
-\end{equation}
+\end{equation*}
 for all $A \in \mathcal{S}$.
 
 For a series of random variables in the same metric space to converge in distribution 
 does not require them to be defined on the same probability space.
 Let $X_n$, $X$ be random variables in a metric space $(S, \mathcal{S})$,
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	X: \ProbSpace &\rightarrow (S, \mathcal{S}), \\
 	X_i: (\Omega_i, \SigmaAlgebra_i, \Prob_i) &\rightarrow (S, \mathcal{S}),
 \end{aligned}
-\end{equation}
+\end{equation*}
 with associated distributions $P_n$, $P$.
 Now $X_n$ converges in distribution to $X$, $X_n \rightarrow_d X$,
 if their distribution measures converge weakly, $P_n \Rightarrow P$.
 
 We will make use of the following theorem to link convergence in distribution of random variables to almost sure convergence of random variables on the same probability space.
-\begin{theorem}[Skorohod, {\cite[Theorem 3.30, p.56]{Kallenberg.1997}}]
+\begin{theorem}[Skorohod, {\cite[Theorem 3.30, p.56]{Kallenberg.1997}}] \label{T: Skorohod}
 	Let $X_n$, $X$ be random elements in a metric space $(S, \mathcal{S})$ such that $X_n \rightarrow_d X$. 
 	Then, on a suitable probability space, there exist some random elements $\mathcal{X}_n \sim X_n$ and $\mathcal{X} \sim X$
 	such that $\mathcal{X}_n \rightarrow_{a.s.} \mathcal{X}$.
@@ -57,8 +57,8 @@ We will make use of the following theorem to link convergence in distribution of
 The main goal of this chapter is now to find necessary and sufficient conditions
 for the convergence in distribution of a given sequence of random variables 
 or equivalently the weak convergence of their distribution measures.
-
 A first useful reference provides the Portmanteau theorem.
+
 \begin{theorem}[Portmanteau, {\cite[Theorem 2.1, p.16]{Billingsley.1999}}] \label{T: portmanteau weak}
 	Let $P_n$, $P$ be probability measures on $(S, \mathcal{S})$.
 	The following conditions are equivalent:
@@ -90,9 +90,9 @@ For function spaces we have one additional requirement to identify the limit of 
 	be a stochastic process with distribution $P$ and $\mathbb{X}$ a measurable space.
 	For $t_1, \dots, t_k \in \Rplus$ we denote by \emph{finite-dimensional distributions} of $X$ 
 	the push forward measures 
-	\begin{equation}
+	\begin{equation*}
 		P\pi^{-1}_{t_1, \dots, t_k}(A) := \Prob\{ X(t_1) \in A_1, \dots, X(t_k) \in A_k \}
-	\end{equation}
+	\end{equation*}
 	for $A = A_1 \times \dots \times A_k \subseteq \mathbb{X}^k$.
 \end{definition}
 
@@ -100,9 +100,9 @@ Now consider a relatively compact sequence of stochastic processes $\{X_n\}$
 with distributions $\{P_n\}$
 and a stochastic process $X$ with distribution $P$,
 such that
-\begin{equation}
+\begin{equation*}
 	P_n\pi^{-1}_{t_1, \dots, t_k} \Rightarrow P\pi^{-1}_{t_1, \dots, t_k}
-\end{equation}
+\end{equation*}
 for all $k$ and $t_1, \dots, t_k \in \Rplus$.
 Since $\{P_n\}$ is relatively compact,
 we know that every subsequence contains a further subsequence converging to some probability measure $Q$.
@@ -118,9 +118,9 @@ for the convergence in distribution to hold.
 Relative compactness is closely linked to another property of series of measures, tightness.
 We call a measure $\mu$ on a metric space tight,
 if for all $\epsilon > 0$ there exists a compact $K$ such that
-\begin{equation}
+\begin{equation*}
 	\mu(K^c) < \epsilon,
-\end{equation}
+\end{equation*}
 where $K^c$ denotes the complement of $K$.
 This carries over to families of probability measures as follows:
 \begin{definition}[Tightness of families of probability measures, {\cite[p.59]{Billingsley.1999}}] \label{D: tightness}
@@ -175,12 +175,12 @@ Considering topology and convergence on $\DT$,
 we quickly observe that the known notion of distance known in $C(I)$,
 the space of continuous functions on $I$,
 where
-\begin{equation}
+\begin{equation*}
 	f_n \rightarrow f \iff \sup_{t \in I} |f_n(t) - f(t)| \rightarrow 0,
-\end{equation}
+\end{equation*}
 is not sufficient for $\DT$.
 Consider the functions
-\begin{equation}
+\begin{equation*}
 	\begin{aligned}
 	f_n(t) &= 
 		\begin{cases} 
@@ -193,7 +193,7 @@ Consider the functions
 		1 & t \geq x.
 		\end{cases} \\
 	\end{aligned}
-\end{equation}
+\end{equation*}
 For $x_n \rightarrow x$ we would expect $f_n$ to converge to $f$,
 however $\sup_{t \in I}|f_n(t) - f(t)| = 1$ whenever $x_n \neq x$.
 
@@ -210,9 +210,9 @@ we need a convergence that additionally allows small shifts on the x-axis.
 		\item  $\sup_{t \in [0,T]}|x(\lambda (t)) - y(t)| = \sup_{t \in [0,T]}|x(t) - y(\lambda^{-1}(t))| < \epsilon$.
 	\end{enumerate}
 	And writing $\norm{x}_T = \sup_{t \in [0,T]}|x(t)|$ we can provide a more compact form: \label{I: supnorm}
-	\begin{equation}
+	\begin{equation*}
 		d(x,y) = \inf_{\lambda \in \Lambda}\{ \norm{\lambda - I}_T \vee \norm{x - y(\lambda)}_T \},
-	\end{equation}
+	\end{equation*}
 	where $I:[0,T] \rightarrow [0,T]$ is the identity map.
 \end{definition}
 
@@ -220,13 +220,13 @@ we need a convergence that additionally allows small shifts on the x-axis.
 	We call a set $\{t_i\}$, with $ 0 = t_0 < t_1 < \dots < t_k = T $,
 	\emph{$\delta$-sparse} if $\min_{1\leq i \leq k} (t_i - t_{i-1}) > \delta$.
 	For $0 < \delta < 1$ and $x \in \DT$, define the \emph{modulus of continuity} by
-	\begin{equation*}
+	\begin{equation}
 		w_x'(\delta) := \inf_{\{t_i\}} \max_{1\leq i \leq k} w_x([t_{i-1}, t_i)),
-	\end{equation*}
+	\end{equation}
 	where the infimum extends over all $\delta$-sparse sets $\{t_i\}$ and
-	\begin{equation*}
+	\begin{equation}
 		w_x([t_{i-1}, t_i)) := \sup_{s,t \in [t_{i-1}, t_i)}|x(s)  -x(t)|.
-	\end{equation*}
+	\end{equation}
 \end{definition}
 
 The Arzelà-Ascoli theorem, see \cite[Theorem 7.2, p.82]{Billingsley.1999},
@@ -248,13 +248,13 @@ Using this result one may prove the following theorem on tightness of series of 
 	The sequence is tight iff these two conditions hold:
 	\begin{enumerate}
 		\item We have
-		\begin{equation}
+		\begin{equation*}
 		\lim_{c \rightarrow \infty} \limsup_{n \in \Nat}P_n(x: \norm{x}_T \geq c) = 0	
-		\end{equation}
+		\end{equation*}
 		\item and for each $\epsilon > 0$
-		\begin{equation}
+		\begin{equation*}
 			\lim_{\delta \rightarrow 0} \limsup_{n \in \Nat}P_n(x: w'_x(\delta) \geq \epsilon ) = 0.
-		\end{equation}
+		\end{equation*}
 	\end{enumerate}
 \end{theorem}
 
@@ -273,9 +273,9 @@ This section will provide an overview of the needed theory.
 	and $\Bo(S)$ its \Bosi.
 	Let $\{x_i, i \geq 1\}$ be a collection of points of $S$.
 	Let
-	\begin{equation}
+	\begin{equation*}
 		\mu := \sum_{i \geq 1} \delta_{x_i},
-	\end{equation}
+	\end{equation*}
 	with $\delta_x$ the Dirac measure of $x \in S$,
 	be locally compact, that is, 
 	if $C \in \Bo(S)$ is compact then $\mu(C) < \infty$.
@@ -292,7 +292,6 @@ This section will provide an overview of the needed theory.
 	$\ProbSpace$ into $(M_p(S), \mathscr{M}_p(S))$.
 \end{definition}
 
-\bigskip
 
 For the next observations, we will take $\Rplus$ as the underlying Hausdorff space with its \Bosi~$\Bo = \Bo(\Rplus)$.
 
@@ -308,26 +307,26 @@ For the next observations, we will take $\Rplus$ as the underlying Hausdorff spa
 			\end{equation*}
 			where $\gamma = \gamma(A) \in [0, \infty]$ is the \emph{mean measure} or \emph{intensity} of $N$,
 			defined by
-			\begin{equation}
-				\gamma(A) = \Exp{ N(A) }.
-			\end{equation}
+			\begin{equation*}
+				\gamma(A) := \Exp{ N(A) }.
+			\end{equation*}
 	\end{enumerate}
 	The mean measure is often given in terms of a \emph{rate} or \emph{conditional intensity} $\lambda$ by
 	\begin{equation} \label{D: def gamma(A)}
 		\gamma(A) = \int_A \lambda(t)dt.
 	\end{equation}
 	We can interpret this conditional intensity as
-	\begin{equation}
+	\begin{equation*}
 		\lambda(t)dt \approx \Exp{ N(dt) \cond \F{t} } ,
-	\end{equation}
+	\end{equation*}
 	where $\F{t}$ contains the history of the counting process thus far.
 \end{definition}
 
 \begin{definition}[Simple point process, {\cite[p.124]{Resnick.2008}}] \label{D: simple point process}
 	A point process $N$ on $\Rplus$ is called \emph{simple} if 
-	\begin{equation}
+	\begin{equation*}
 		\Prob( N({x}) > 1 ) = 0
-	\end{equation}
+	\end{equation*}
 	for all $x \in \Rplus$.
 \end{definition}
 
@@ -371,9 +370,9 @@ in which the integrals only have to converge for functions with compact support.
 	
 	Let $\mu, \mu_1, \mu_2, \dots$ be point measures on $S$.
 	We say $\mu_n$ \emph{converge vaguely} to $\mu$, $\mu_n \rightarrow_v \mu$, if
-	\begin{equation}
+	\begin{equation*}
 		\int_{S} fd\mu_n \xrightarrow{n \rightarrow \infty} \int_{S} fd\mu
-	\end{equation}
+	\end{equation*}
 	for all $f \in \CK(S)$.
 \end{definition}
 
@@ -400,17 +399,17 @@ In fact, as the next lemma shows, vague convergence does imply a pointwise conve
 	Let $\mu, \mu_1, \mu_2, \dots$ be point measures on $S$ and $\mu_n \rightarrow_v \mu$.
 	For compact $K$ with $\mu(\partial K) = 0$ and $n \geq N(K)$
 	there exist a labelling of points of $\mu_n$ and $\mu$ in $K$ such that
-	\begin{equation}
+	\begin{equation*}
 	\begin{aligned}
 		\mu_n(\cdot \cap K) &= \sum_{i=1}^{M} \delta_{x_i^{(n)}}, \\
 		\mu(\cdot \cap K) &= \sum_{i=1}^{M} \delta_{x_i},
 	\end{aligned}
-	\end{equation}
+	\end{equation*}
 	and in $S^M$
-	\begin{equation}
+	\begin{equation*}
 		( x_i^{(n)}, 1 \leq i \leq M ) \xrightarrow{n \rightarrow \infty}
 		( x_i, 1 \leq i \leq M  ) 
-	\end{equation}
+	\end{equation*}
 	in the sense of componentwise convergence.
 \end{lemma}
 
@@ -467,9 +466,9 @@ and prove Lemma~\ref{L: Lemma 8} in Chapter~\ref{C: convergence}.
 \begin{theorem}[Girsanov's theorem, {\cite[Theorem 4.2.2, p.66]{Lamberton.2000}}] \label{T: Girsanov}
 	Let $(W(s))_{0 \leq s \leq T}$ be a standard Brownian motion on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$.
 	Let $(\Theta(s))_{0 \leq s \leq T}$ be an adapted process satisfying
-	\begin{equation} \label{E: Girsanov cond Theta}
+	\begin{equation*} \label{E: Girsanov cond Theta}
 	\int_{0}^{T} \Theta^2(u)du < \infty.
-	\end{equation}
+	\end{equation*}
 	Define
 	\begin{align}
 	\tilde{W}(s) &:= W(s) + \int_0^s \Theta(u)du, \label{E: Girsanov def W tilde} \\ 
@@ -491,10 +490,10 @@ By \cite[Remark 4.2.3, p.66]{Lamberton.2000}, a sufficient condition for $X(t)$ 
 \end{equation}
 
 We can apply this Theorem to the Brownian motion with drift $W^t$ as follows:
-Recall the definition
-\begin{equation}
+Recall that
+\begin{equation*}
 \Wt(s) = W(s) + \pp s - \frac{1}{2} s^2 = W(s) + \int_0^s (\pp-u)du.
-\end{equation}
+\end{equation*}
 For $T<\infty$, $\Theta(s) := \pp-s$ satisfies \eqref{E: Novikov},
 therefore $X(s)$, as defined in \eqref{E: Girsanov def X}, is a martingale and
 $\Wt$ is a standard Brownian motion under the probability measure $\tilde{\mathbb{P}}$ defined in \eqref{E: Girsanov def P tilde}.
@@ -507,7 +506,6 @@ the probability measures $\mathbb{P}$ and $\tilde{\mathbb{P}}$ agree which event
 \end{aligned}
 \end{equation}
 for all $A \in \mathcal{F}$.
-
 When trying to prove that certain properties hold for $\Wt$ under $\mathbb{P}$ almost surely,
 it suffices to prove these properties holding for a standard Brownian motion almost surely.
 Since $\Wt$ is a standard Brownian motion under $\tilde{\mathbb{P}}$ we can apply \eqref{E: P0 = Q0}

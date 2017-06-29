@@ -20,7 +20,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In Chapter~\ref{C: bf-walk} we have shown that the rescaled breadth-first walk $\rznt$ on $\Gnt$
-converges in distribution to the Brownian motion with drift $\Bt$.
+converges in distribution to $\Bt$, the Brownian motion with drift.
 Intuitively it is clear that Theorem~\ref{T: Main} should follow:
 Component sizes are coded into the breadth-first walk as excursions above past minima,
 excursions of $\Bt$ are excursions of $\Wt$ above past minima.
@@ -29,7 +29,7 @@ To make sure that indeed components and excursions do match up,
 we describe them as two-dimensional point processes
 in which the first entry gives the start of an excursion or component, 
 the second the length of an excursion or the size of a component.
-The following two Lemmas in Section~\ref{S: matching components} prove that this sequence of Poisson point processes describing components 
+The following two Lemmas in Section~\ref{S: matching components} prove that this sequence of point processes describing components 
 converges to the point process describing excursions with regard to the vague topology.
 
 This implies a convergence of all excursions of sufficient length on finite intervals.
@@ -49,11 +49,11 @@ We start with a deterministic Lemma.
 Given a continuous function $f$ with properties similar to a Brownian motion
 and a sequence of functions $f_n$ converging to $f$ uniformly on bounded intervals,
 we can define a set of excursions on each $f_n$ such that
-the point processes of starts and lengths of excursions converge vaguely to the point processes of starts and lengths of excursions on $f$.
+the point processes of starts and lengths of excursions converge vaguely to the point process of starts and lengths of excursions on $f$.
 
 \begin{lemma} \label{L: Deterministic Lemma}
 	Let $f:[0, \infty) \rightarrow \Real$ be a continuous function. 
-	Let $\mathcal{E}$ be the set of non-empty intervals 
+	Let $E$ be the set of non-empty intervals 
 	$e=[l,r] \subset \Real_{\geq 0}$
 	such that
 	\begin{equation} \label{E: f cond 1}
@@ -62,21 +62,19 @@ the point processes of starts and lengths of excursions converge vaguely to the 
 	\begin{equation} \label{E: f cond 2}
 	f(l) < f(s) \quad \forall l < s < r.
 	\end{equation}
-	Define $\Xi := \lbrace (l, r-l) \; | \; (l, r) \in \mathcal{E} \rbrace$.
+	Define $\Xi := \lbrace (l, r-l) \; | \; (l, r) \in E \rbrace$.
 	
-	Suppose that for intervals $(l_1, r_1), (l_2, r_2) \in \mathcal{E}$ with $l_1 < l_2$ we have 
+	Suppose that for intervals $(l_1, r_1), (l_2, r_2) \in E$ with $l_1 < l_2$ we have 
 	\begin{equation} \label{E: f cond f(l1) > f(l2)}
 	f(l_1) > f(l_2)
 	\end{equation}
-	and the complement of $\cup_{e \in \mathcal{E}} (l,r)$ has Lebesgue measure zero,
+	and the complement of $\cup_{e \in E} (l,r)$ has Lebesgue measure zero,
 	\begin{equation} \label{E: f cond complement zero}
-	\mu \left( \left( \cup_{e \in \mathcal{E}} (l,r) \right)^c\right) = 0.
+	\mu \left( \left( \cup_{e \in E} (l,r) \right)^c\right) = 0.
 	\end{equation}
 	
 	Let $f_n \rightarrow f$ as $n \rightarrow \infty$ uniformly on bounded intervals.
-	Now define $\Xin := \lbrace (\tn{i}, \tn{i+1} - \tn{i}) \; | \; i \geq 1 \rbrace$
-	for any sequence of sets of points $\fnPoints := (\tn{i}, i \geq 1)$ satisfying the following conditions:
-	
+	Let $\fnPoints := (\tn{i}, i \geq 1)$ be a sequence of sets of points satisfying the following conditions:
 	\begin{equation} \label{E: fn cond 3}
 	0 = \tn{1} < \tn{2} < ... \; \text{and} \; \lim_{i \rightarrow \infty} \tn{i} = \infty,
 	\end{equation}
@@ -84,9 +82,9 @@ the point processes of starts and lengths of excursions converge vaguely to the 
 	f_n(\tn{i}) = \min_{u \leq \tn{i}}f_n(u), 
 	\end{equation}
 	\begin{equation} \label{E: fn cond 5}
-	\max_{i: \tn{i} \leq s_0}(f_n(\tn{i}) - f_n(\tn{i+1})) \rightarrow 0 \; \text{as} \; n \rightarrow \infty, \; \text{for all} \; s_0 < \infty.
+	\max_{\tn{i} \leq s_0}(f_n(\tn{i}) - f_n(\tn{i+1})) \rightarrow 0 \; \text{as} \; n \rightarrow \infty, \; \text{for all} \; s_0 < \infty.
 	\end{equation}
-	
+	Define $\Xin := \lbrace (\tn{i}, \tn{i+1} - \tn{i}) \; | \; i \geq 1 \rbrace$.
 	Then $\Xin \rightarrow_v \Xi$ as $n \rightarrow \infty$.
 \end{lemma}
 
@@ -96,9 +94,9 @@ the point processes of starts and lengths of excursions converge vaguely to the 
 	is to be interpreted as the vague convergence of counting measures
 	which, by Lemma~\ref{L: portmanteau vague},
 	is equivalent to the convergence
-	\begin{equation}
+	\begin{equation*}
 	\Xin(C) \rightarrow \Xi(C)
-	\end{equation}
+	\end{equation*}
 	for all relatively compact subsets
 	$C \subseteq \IntTimesInt$,
 	with $\Xi(\partial C) = 0$.
@@ -140,8 +138,8 @@ we fix some bounded subset of
 $\IntTimesInt$,
 $C := [T_1, T_2] \times [d_1, d_2]$,
 and show that, for sufficiently large $n$,
-$\Xin(C) = \Xi(C)$,
-that is,
+we have $\Xin(C) = \Xi(C)$.
+That is,
 there are exactly as many excursions of $f_n$ starting in
 $(T_1, T_2)$, 
 with length in $(d_1, d_2)$,
@@ -161,13 +159,12 @@ there can only be a finite number of excursion starting with length of at least 
 at most $(T_2 - T_1)/d_1$.
 We call excursions of length greater than $d_1$ large, all other excursions small.
 Let
-\begin{equation}
-\mathcal{E}^* := \{ (l_i, r_i) \; | \; i=1, \dots, k \}	
-\end{equation}
-
+\begin{equation*}
+E^* := \{ (l_i, r_i) \; | \; i=1, \dots, k \}	
+\end{equation*}
 be the set of these excursions.
 Consider a
-$(l,r) \in \mathcal{E}^*$.
+$(l,r) \in E^*$.
 Since $l-r > d_1$,
 we can find an $\epsilon > 0$
 such that the length of the interval
@@ -188,7 +185,7 @@ $f(x_{\delta}) \leq f(l) + \delta$.
 Take $\delta_n = \frac{1}{n}$. 
 Then $x_{\delta_n}$ is a sequence in the compact interval $[0, l - \epsilon]$
 and the Bolzano–Weierstrass theorem states that there exists a convergent subsequence with limit $x \in [0, l - \epsilon]$.
-Then $f(x_{\delta}) \leq f(l) + \delta$ for all $\delta > 0$.
+Then $f(x) \leq f(l) + \delta$ for all $\delta > 0$.
 This implies $f(x) \leq f(l)$ and by condition \eqref{E: f cond 1},
 $f(l) = \min_{u \leq l}f(u)$,
 so $f(x) = f(l)$.
@@ -199,7 +196,7 @@ a contradiction to \eqref{E: f cond complement zero}.
 Second, there is an interval
 $[x', l']$, with $x\leq x'<l' \leq l$,
 such that $f(y) > f(x)$ for all $y \in (x',l')$.
-That makes $(x',l')$ another excursion in $\mathcal{E}$,
+That makes $(x',l')$ another excursion in $E$,
 but $f(x') = f(l)$,
 which is a contradiction to condition \eqref{E: f cond f(l1) > f(l2)}.
 
@@ -258,14 +255,13 @@ f_n(x)
 So $f_n$ takes its minimum over 
 $[0, l - \epsilon]\cup[l + \epsilon, r - \epsilon]$
 at $l$ or somewhere in $[l-\epsilon, l+\epsilon]$.
-\fxnote{Maybe give the interval a name.}
 Therefore $\lnx \in [l-\epsilon, l+\epsilon]$ and $f_n(\lnx) = \min_{u \leq \lnx} f_n(u)$.
 
 \bigskip
 
 For the right side of the interval, define
 \begin{equation} \label{D: rnx}
-\rnx := \inf \{ x > x^* \; | \; f_n(x) = \lnx \}.
+\rnx := \inf \{ x > x^* \; | \; f_n(x) = f_n(\lnx) \}.
 \end{equation}
 By \eqref{E: fn(x) > fn(l)}, the function $f_n$ can not reach its past minimum $f_n(\lnx)$
 before $r-\epsilon$.
@@ -273,7 +269,7 @@ As previously discussed,
 there exists a $r^* \in (r, r+\epsilon]$ such that $f(r) > f(r^*)$ 
 and by \eqref{D: delta star} we have $f(r) - f(r^*) \geq \delta^*$.
 We calculate
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 f_n(\lnx) 
 &> f(l) - \delta^* / 3 \quad &\text{by \eqref{E: fn f delta star/3}\;}\\
@@ -282,8 +278,7 @@ f_n(\lnx)
 &> f(r^*) + \delta^*/3 \\
 &> f_n(r^*) \quad &\text{by \eqref{E: fn f delta star/3}},
 \end{aligned}
-\end{equation}
-\fxnote{Align these.}
+\end{equation*}
 which implies that $\rnx$ must be smaller than $r^*$,
 since $f_n$ is a continuous function and must cross $f_n(\lnx)$ before becoming smaller at $r^*$.
 Therefore $\rnx \in [r - \epsilon, r+ \epsilon]$.
@@ -298,16 +293,14 @@ This is not sufficient as proof of the Lemma, since the sequence $\fnPoints$ mig
 or even not contain any points, thus skipping one or more eligible excursions.
 We will now show that \eqref{E: fn cond 3} and \eqref{E: fn cond 5} imply 
 that any set satisfying these two conditions must contain at least one element in between two large excursions of $f$.
-
 First of all, \eqref{E: fn cond 3} ensures there must exist points in $\fnPoints$ and no last element of $\fnPoints$ can exist.
 
 Consider two consecutive large excursions of $f$, $(l_1, r_1)$ and $(l_2, r_2)$
 and the space between $r_1$ and $l_2$.
 Suppose there is no element of $\fnPoints$ in $[r_1-\epsilon, l_2+\epsilon]$ for all $\epsilon>0$.
-The latest element of $\fnPoints$ was located at or before $l_1$, the next will be at or around $r_2$.
+The latest element of $\fnPoints$ was located around $l_1$, the next will be around $r_2$.
 We know $f(r_1)=f(l_1) > f(l_2)$, so there is $\delta>0$ such that for all large $n$,
 $|f_n(l^*) - f_n(r^*)|> \delta$ for all $l^*$ and $r^*$ in the sufficiently small $\epsilon$-neighbourhoods around $l_1$ and $r_2$.
-
 Any previous element of $\fnPoints$ will only yield a larger, any element after $r_2$ only a smaller $f_n$-value.
 This is a contradiction to \eqref{E: fn cond 5}.
 So there must be at least one point of $\fnPoints$ in between these two large excursions, no excursion can be skipped.
@@ -321,7 +314,7 @@ we have found $\tn{i} = \lnx$, $\tn{i+1} = \rnx$,
 such that $(\tn{i}, \tn{i+1} - \tn{i}) \in \Xin \cap C$
 for all $n$ greater than some $N_i = N \in \Nat$.
 Now let $N^* := \max\{N_1, \dots, N_k\}$,
-where $k$ is the finite number of elements of $\mathcal{E}^*$,
+where $k$ is the finite number of elements of $E^*$,
 and every excursion of $f$ in $C$ is matched by an excursion of $f_n$ in $C$
 for $n \geq N^*$.
 Therefore eventually $\Xi (C) \leq \Xin(C)$.
@@ -331,43 +324,44 @@ Therefore eventually $\Xi (C) \leq \Xin(C)$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Proof Part 2: \Xin in \Xi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{proof}[Part 2 ($\Xin(C) \leq \Xi(C)$)] \label{PP: Xin in Xi} \label{PP: Lemma Det 2} \renewcommand{\qedsymbol}{}
+\begin{proof}[Part 2 ($\Xin(C) \leq \Xi(C)$)] \label{PP: Xin in Xi} \label{PP: Lemma Det 2} 
 Now that every excursion of $f$ is matched, 
 we need to show that there can not exist any additional large excursion of $f_n$.
 Considering the fact that excursions can not overlap,
 the only possibility for an additional large excursion is the space between two large excursions.
 For a pair of large excursions,
-$(l_i, r_i)$ and $(l_{i+1}, r_{i+1})$,
+$(l_1, r_1)$ and $(l_{2}, r_{2})$,
 there is only enough space in between them if
-$r_i - l_{i+1} > d_1$.
-Consider such an interval $[r,l]$ of length greater than $d_1$.
+$l_2 - r_{1} > d_1$.
+Assume the interval $(r_2,l_1)$ is of length greater than $d_1$.
 By condition \eqref{E: f cond complement zero} the space must be filled with smaller excursions of $f$.
-There is an at most countable number of these,
-\fxnote{Why?}
-let $\mathcal{E^*} := \{ (l_i, r_i) \; | \; i \in \Nat \}$
-be the set of such excursions starting in $(r,l)$ with length less than or equal to $d_1$.
+There is an at most countable number of these 
+(around each rational number $q$ in the interval we can construct only one excursion, we elaborate on this argument in the proof of Lemma~\ref{L: Lemma 8}),
+therefore let $E^* := \{ (l_i, r_i) \; | \; i \in \Nat \}$
+be the set of such excursions starting in $(r_2,l_1)$ with length less than or equal to $d_1$.
 We know
-\begin{equation} 
-\sum_{i=1}^{\infty} r_i - l_i = l - r > d_1,
-\end{equation}
+\begin{equation*} 
+\sum_{i=1}^{\infty} r_i - l_i = l_2 - r_1 > d_1,
+\end{equation*}
 so we can choose a finite set of excursions
-$\{ (l_i, r_i) \; | \; i = 1, \dots, K \}$
+$\{ (l_{i_j}, r_{i_j}) \; | \; j = 1, \dots, K \}$
 such that, 
-if we exclude these from the interval $[r,l]$, 
+if we exclude these from the interval $(r_2,l_1)$, 
 the space remaining is less than $d_1$:
-\begin{equation}
-l-r - \sum_{i=1}^{K} r_i - l_i < d_1.
-\end{equation}
-Let $d^* < \min \{ r_i - l_i \; | \; i = 1, \dots, K \}$
+\begin{equation*}
+l_2 - r_1 - \sum_{j=1}^{K} r_{i_j} - l_{i_j} < d_1.
+\end{equation*}
+Let $d^* < \min \{ r_{i_j} - l_{i_j} \; | \; j = 1, \dots, K \}$
 and apply the logic of Part~\ref{PP: Lemma Det 1} to the compact set
 $[r, l] \times [d^*, d_1]$.
 For sufficiently large $n$, 
 every one of these $K$ excursions of $f$ will be matched with an excursion of $f_n$,
 so that there will be no space left for a large excursion of $f_n$ in $[r,l]$.
-Applying this logic to every one if the finitely many gaps between excursions of $f$,
-we see that there can not exist any more large excursions of $f_n$  than those already matching $f$.
-There $\Xin(C) \leq \Xi(C)$ for sufficiently large $n$, which completes the proof.
+Applying this logic to every one of the finitely many gaps between large excursions of $f$,
+we see that there can not exist any more large excursions of $f_n$ than those already matching $f$.
+Therefore $\Xin(C) \leq \Xi(C)$ for sufficiently large $n$, which completes the proof.
 \end{proof}
+\phantom\qedhere
 \end{proof}
 
 
@@ -379,12 +373,15 @@ The following lemma will now link excursions of $\rznt$ and $\Wt$ in the languag
 We define a random point process containing the starts and lengths of excursions of $\Bt$ together with a sequence of random point processes describing the starts and sizes of components discovered by $\rznt$.
 Let $\Ci{n,i}$ be the size of the $i$-th component and
 define $\gamma_n(i) \in \{1, \dots, n\}$ as the index for which
-$v_{\gamma_n(i)}$ is the last vertex of the $i-1$-th component encountered by the breadth-first walk $Z_n$.
+$v_{\gamma_n(i)}$ is the last vertex of the $i-1$-th component encountered by the breadth-first walk $Z_n$,
+with $\gamma_n(1) = 0$.
+
 For this lemma, we need to extend the definitions of $\gamma_n$ and $\Ci{n,i}$ beyond the $n$-th vertex and the last component.
 Let $i^*_n$ be the index of the last component 
-and define $\gamma_n(i^*_n + 1) := \max_{1 \leq i \leq i^*_n}\gamma_n(i) + 1$ 
+and define $\gamma_n(i^*_n + 1) := n$ 
 and consequently $\gamma_n(j) := \gamma_n(j-1) + 1$ for all $j > i^*_n + 1$.
 For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
+Vertex $n$ is the last vertex of the last component and with every step beyond $n$, $\gamma_n(j)$ increases by one with a component of size one.
 
 
 \begin{lemma} \label{L: Lemma 8}
@@ -429,8 +426,8 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	\end{aligned}
 	\end{equation}
 	
-	We apply the reasoning used in the proof of Theorem~\ref{T: Joint Convergence} once more,
-	and use the Skorohod representation theorem to construct random variables
+	We apply the Skorohod representation theorem once more
+	to construct random variables
 	$\rzntX$ and $\WtX$ on a probability space $(\Omega', \mathcal{F}', \mathbb{P}')$,
 	which converge almost surely.
 	Almost sure convergence implies
@@ -439,12 +436,11 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	\end{equation}
 	for all $s_0 < \infty$ almost surely,
 	so $\rzntX(\omega') \rightarrow \WtX(\omega')$ uniformly on bounded intervals for almost all $\omega' \in \Omega'$. 
-	Analogously we define
+	Analogously we have
 	\begin{equation}
 		\BtX(s) := \WtX(s) - \min_{u \leq s}\WtX(s).
 	\end{equation}
-	
-	On the same probability space, we now define $\XinX$ and $\XiX$ as in \eqref{E: Lemma 8 def XiWt} and \eqref{E: Lemma 8 def Xi Xin}.
+	On the same probability space, define $\XinX$ and $\XiX$ as in \eqref{E: Lemma 8 def XiWt} and \eqref{E: Lemma 8 def Xi Xin}.
 	Since $\rznt \sim \rzntX$ and $\Wt \sim \WtX$ we have $\Xin \sim \XinX$ and $\Xi \sim \XiX$.
 	
 	By the definition of $\BtX$, 
@@ -456,7 +452,6 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	
 	We still need to show that conditions \eqref{E: f cond 1} to \eqref{E: f cond complement zero} hold for $\WtX$
 	and conditions \eqref{E: fn cond 3} to \eqref{E: fn cond 5} hold for the breadth-first walk.
-	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% Conditions on BM
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -483,7 +478,6 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	
 	The following properties will be proven on a standard Brownian motion $W$,
 	we later use Girsanov's theorem to apply them to $\WtX$.
-	
 	Consider two excursions $(l_1, r_2), (l_2, r_2)$ with $l_1 < l_2$.
 	We want to show that, almost surely, for any two excursions $(l_1, r_2), (l_2, r_2)$ with $l_1 < l_2$
 	\begin{equation} \label{E: W(l2) < W(l1)}
@@ -493,7 +487,8 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	If not, there exists an excursion $(l,r)$ such that another excursion begins immediately at $r$
 	or that $W$ is constant for some time after $r$ and then starts a new excursion.
 	Fix $q \in \Rat_+$. 
-	By \eqref{E: def r(q)} $r(q)$ is a stopping time and by the strong Markov property of Brownian motion
+	By \eqref{E: def r(q)} $r(q)$ is a stopping time and by the strong Markov property of Brownian motion,
+	see \cite[Theorem 2.16, p.43]{Morters.2010},
 	$W(s) - W(r(q))$ behaves like a standard Brownian motion for $s \geq r(q)$.
 	By \cite[Theorem 2.8, p.38]{Morters.2010},
 	$W$ has positive and negative values on any interval $[0,\delta]$ for $\delta > 0$ almost surely.
@@ -520,12 +515,10 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	We now show that conditions 
 	\eqref{E: fn cond 3} to \eqref{E: fn cond 5}
 	hold for the random walk $Z_n$ and $t_{n,i} = \n{-2}{3} \gamma_n(i)$.
-	
 	The breadth-first walk $\znt$ is a discrete process, therefore for all $n \in \Nat$ and $i \geq 2$:
-	\begin{equation}
+	\begin{equation*}
 		\tn{i} - \tn{i-1} = \n{-2}{3}\gamma_n(i) - \n{-2}{3}\gamma_n(i-1) \geq \n{-2}{3} > 0.
-	\end{equation}
-	\fxnote{fix scaling?}
+	\end{equation*}
 	By definition of $\gamma_n(i)$,
 	$\lim_{i \rightarrow \infty} \gamma_n(i) = \infty$ for all $n$
 	which establishes condition \eqref{E: fn cond 3}.
@@ -534,10 +527,10 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	which ensures \eqref{E: fn cond 4}.
 	The difference between the levels of $\znt$ at the end of two consecutive components is always $1$,
 	so 
-	\begin{equation}
-		\max_{i: \tn{i} \leq s_0}(\rzntX(\tn{i}) - \rzntX(\tn{i+1})) = \n{-1}{3} \xrightarrow{n \rightarrow \infty} 0
-	\end{equation}
-	for all $s_0 > 0$.
+	\begin{equation*}
+		\max_{i: \tn{i} \leq s_0}(\rzntX(\tn{i}) - \rzntX(\tn{i+1})) = \n{-1}{3} \rightarrow 0
+	\end{equation*}
+	for all $s_0 > 0$ as $n \rightarrow \infty$.
 	
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -546,22 +539,22 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 	For almost all realizations $\rzntX(\omega')$ and $\WtX(\omega')$ 
 	the processes and sets defined meet all conditions of Lemma~\ref{L: Deterministic Lemma}
 	and we can establish the convergence
-	\begin{equation}	
+	\begin{equation*}	
 		\XinX_{\rzntX(\omega')} \rightarrow_v \XiX_{\WtX(\omega')}.
-	\end{equation}
+	\end{equation*}
 	This convergence holds almost surely, so
-	\begin{equation}
+	\begin{equation*}
 		\XinX \rightarrow_{a.s.} \XiX
-	\end{equation}
+	\end{equation*}
 	with regard to the vague topology.
 	Since almost sure convergence implies convergence in distribution we have
-	\begin{equation}
+	\begin{equation*}
 		\XinX \rightarrow_d \XiX
-	\end{equation}
+	\end{equation*}
 	and therefore
-	\begin{equation}
+	\begin{equation*}
 		\Xin \rightarrow_d \Xi
-	\end{equation}
+	\end{equation*}
 	with regard to the vague topology, which completes the proof.	
 \end{proof}
 
@@ -570,26 +563,23 @@ For component sizes, let $\Ci{n,i} := 1$ for all $i > i^*$.
 % What's still missing
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-It remains to be shown that we need not consider the problem of a large components discovered by the breadth-first walk
-or large excursions of the Brownian motion wandering off to infinity.
-
 \section{Analysis of atypical excursions} \label{S: late excursions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Late excursions of Z_n
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-From the previous section we assert that all excursions before time $C\n{2}{3}$, larger than $\delta\n{2}{3}$, for $C, \delta > 0$
+From the previous section we assert that for any $C, \delta > 0$ all excursions before time $C\n{2}{3}$ and larger than $\delta\n{2}{3}$ 
 eventually converge.
-In this section we analyse the behaviour of $\rznt$ and its excursions after time $C$ in order to proof the convergence
-of the whole ordered vector of component sizes and surplus edges.
+This does not suffice as proof of the convergence with regard to the product topology of Folk Theorem~\ref{T: folk theorem} or with regard to the $\ld$ topology of Theorem~\ref{T: Main}.
+In this section we analyse the behaviour of $\znt$ and its excursions after time $C\n{2}{3}$ or of size less than $\delta\n{2}{3}$. 
 
 \begin{lemma} \label{L: late excursions}
 	Let 
 	$\Prob(\ExcursionEvent)$ 
-	be the probability that the breadth-first walk $\znt$ makes an excursion $\gamma$ of length 
-	$|\gamma| > \delta\n{2}{3}$ starting after step $C\n{2}{3}$.
-	Then for all $\epsilon>0$ and $\delta > 0$ exists $C>0$ such that $\sup_n \Prob(\ExcursionEvent) < \epsilon$. 
+	be the probability that the breadth-first walk $\znt$ makes an excursion $\gamma_n$ of length 
+	$|\gamma_n| > \delta\n{2}{3}$ starting after step $C\n{2}{3}$.
+	Then for all $\epsilon>0$ and $\delta > 0$ exists $C>0$ such that $\sup_{n \in \Nat} \Prob(\ExcursionEvent) < \epsilon$. 
 \end{lemma}
-\begin{note}[Test]
+\begin{note}
 	As mentioned before, in \cite[Lemma 9, p.826]{Aldous.1997} a similar statement is proven
 	by citing bounds on the numbers of tree components, unicyclic components and complex components
 	given in \cite{Luczak.1994}.
@@ -601,10 +591,10 @@ of the whole ordered vector of component sizes and surplus edges.
 	\begin{equation} \label{E: P(ExcEvent) 1}
 	\begin{aligned}
 	\Prob(\ExcursionEvent) 
-	&\leq \Exp{ \text{Number of excursions $\gamma: \; |\gamma| \geq \delta\n{2}{3},l(\gamma) \geq C\n{2}{3}$ } } \\
-	&= \Exp{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}} \Ind{\{|\gamma| \geq \delta\n{2}{3} \} } } \\
-	&\leq \Exp{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}} \frac{|\gamma|^2}{\delta^2\n{4}{3}} } \\
-	&= \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\gamma: \; l(\gamma) \geq C\n{2}{3}}  |\gamma|^2 }.
+	&\leq \Exp{ \text{Number of excursions $\gamma_n: \; |\gamma_n| \geq \delta\n{2}{3},l(\gamma_n) \geq C\n{2}{3}$ } } \\
+	&= \Exp{ \sum_{\gamma_n: \; l(\gamma_n) \geq C\n{2}{3}} \Ind{\{|\gamma_n| \geq \delta\n{2}{3} \} } } \\
+	&\leq \Exp{ \sum_{\gamma_n: \; l(\gamma_n) \geq C\n{2}{3}} \frac{|\gamma_n|^2}{\delta^2\n{4}{3}} } \\
+	&= \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\gamma_n: \; l(\gamma_n) \geq C\n{2}{3}}  |\gamma_n|^2 }.
 	\end{aligned}
 	\end{equation}
 	
@@ -618,11 +608,9 @@ of the whole ordered vector of component sizes and surplus edges.
 	\begin{aligned}
 	\Prob(\ExcursionEvent) 
 	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-T, \p)}  |\Ccal|^2  } \\
-	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, \p)}  |\Ccal|^2  } \\
-	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, \p)}  |\Ccal|^2 }.
+	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, \p)}  |\Ccal|^2  }.
 	\end{aligned}
 	\end{equation}
-	
 	For ease of notation we consider the graph $\Gcal(k,\p)$ and calculate
 	\begin{equation} \label{E: P(ExcEvent) 3}
 	\begin{aligned}
@@ -641,7 +629,7 @@ of the whole ordered vector of component sizes and surplus edges.
 	In the next step, each child-vertex will itself have children,
 	each Binomially distributed on the remaining set of vertices with probability $ \p$.
 	We compute 
-	\begin{equation}
+	\begin{equation*}
 	\begin{aligned}
 	Y_{2,1} &\sim \Binom(k-1-Y_1, \p), \\ 
 	Y_{2,2} &\sim \Binom(k-1-Y_1-Y_{2,1}, \p), \\
@@ -649,29 +637,29 @@ of the whole ordered vector of component sizes and surplus edges.
 	Y_{2,Y_1} &\sim \Binom(k-1-Y_1-Y_{2,1}-\dots-Y_{2,Y_1-1}, \p) \\
 	Y_2 &= \sum_{i=1}^{Y_1} Y_{2,i}.
 	\end{aligned}
-	\end{equation}
+	\end{equation*}
 	The size of the component will then be the total amount of explored vertices,
 	which is the sum of all $Y_j$, $j \geq 0$.
 	To provide an upper bound we consider the branching process where each amount of children is $\Binom(k, \p)$ distributed.
 	Define the process as follows,
-	\begin{equation}
+	\begin{equation*}
 	\begin{aligned}
 	Z_0 &:= 1, \\
 	Z_j &:= \sum_{i=1}^{Z_{j-1}} Z_{j,i},
 	\end{aligned}
-	\end{equation}
+	\end{equation*}
 	where $Z_{j,i} \sim\Binom(k,p)$ for all $i,j \geq 1$.
 	Then the process $(Y_i, \; i\geq 0)$ is stochastically dominated by 
 	$(Z_i, \; i\geq 0)$ and
-	\begin{equation}
+	\begin{equation*}
 	|\Ccal(1)| \leq_{\text{st.}} Z_0 + Z_1 + Z_2 + \dots
-	\end{equation}
+	\end{equation*}
 	which gives
 	\begin{equation} \label{E: Exp C(1) <= sum Z}
 		\Exp{|\Ccal(1)|} \leq \sum_{j=0}^{\infty}\Exp{Z_j}.
 	\end{equation}	
 	For $j\geq0$ we calculate the expectation of $Z_j$ by
-	\begin{equation}
+	\begin{equation*}
 	\begin{aligned}
 	\Exp{Z_j} 
 	&= \Exp{Z_{j-1}}k \p \\
@@ -679,7 +667,7 @@ of the whole ordered vector of component sizes and surplus edges.
 	&= \Exp{Z_0}(k\p)^j \\
 	&= (k\p)^j.
 	\end{aligned}		
-	\end{equation}
+	\end{equation*}
 	Substituting in \eqref{E: Exp C(1) <= sum Z} gives
 	\begin{equation} \label{E: Exp C(1) <= frac kp}
 	\begin{aligned}
@@ -691,7 +679,7 @@ of the whole ordered vector of component sizes and surplus edges.
 	where $(1- k\p)_+$ denotes the positive part of $1- k\p$.
 	We continue the calculation in \eqref{E: P(ExcEvent) 2} using \eqref{E: P(ExcEvent) 3} and \eqref{E: Exp C(1) <= frac kp},
 	which yields
-	\begin{equation}
+	\begin{equation*}
 	\begin{aligned}
 	\Prob(\ExcursionEvent) 
 	&\leq \frac{n-C\n{2}{3}}{\delta^2 \n{4}{3}} \frac{1}{1-(n-C\n{2}{3}) \p} \\
@@ -700,13 +688,13 @@ of the whole ordered vector of component sizes and surplus edges.
 	&\leq \frac{n}{\delta^2 \n{4}{3}} \frac{\n{1}{3}}{C-\pp+C\pp\n{-1}{3}} \\
 	&= \delta^{-2} \frac{1}{C-\pp+C\pp\n{-1}{3}}.
 	\end{aligned}
-	\end{equation}
+	\end{equation*}
 	For fixed $C$, $\delta$ and $\pp$
 	this expression converges asymptotically to $\delta^{-2} \frac{1}{C-\pp}$ as $n \rightarrow \infty$.
 	Therefore for all $\epsilon>0$ we can choose $C>0$ such that
-	\begin{equation}
+	\begin{equation*}
 		\Prob(\ExcursionEvent) \leq \delta^{-2} \frac{1}{C-\pp+C\pp\n{-1}{3}} < \epsilon
-	\end{equation}
+	\end{equation*}
 	for all $n$. 
 	This completes the proof.
 \end{proof}
@@ -718,9 +706,9 @@ Aldous' paper provides a complete proof using stochastic calculus methods.
 \begin{lemma} \label{L: BM in ld}
 	Let $\Gamma^{\pp}$ be the set of excursions of $\Bt$ and let $|\gamma|$ be the length of an excursion $\gamma$.
 	Then
-	\begin{equation}
+	\begin{equation*}
 		\Exp{\sum_{\gamma \in \Gamma^{\pp}} |\gamma|^2} < \infty.
-	\end{equation}
+	\end{equation*}
 \end{lemma}
 
 Since $\sum_{\gamma \in \Gamma^{\pp}} |\gamma|^2$ is a convergent series almost surely,
@@ -730,7 +718,7 @@ for all $\epsilon > 0$ we can find $\delta > 0$ such that
 \end{equation}
 Then by Markov's inequality for all $\epsilon_0 > 0$ and $\epsilon_1 > 0$ there exists $\delta > 0$ such that
 \begin{equation} \label{E: sum gamma < delta}
-	\Prob(\sum_{|\gamma| < \delta} |\gamma|^2 > \epsilon_1) < \epsilon_0.
+	\Prob\left(\sum_{|\gamma| < \delta} |\gamma|^2 > \epsilon_1\right) < \epsilon_0.
 \end{equation}
 An immediate corollary is the following equivalent of Lemma~\ref{L: late excursions} for the Brownian motion.
 
@@ -742,52 +730,53 @@ An immediate corollary is the following equivalent of Lemma~\ref{L: late excursi
 
 We state and prove a result similar to \eqref{E: gamma delta epsilon} on excursion lengths of the rescaled breadth-first walk.
 \begin{lemma} \label{L: sum rgamman}
-	Denote by $\rgamman$ the excursions of $\rznt$. 
+	Denote by $\rgamman_n$ the excursions of $\rznt$. 
 	Then for all $\epsilon > 0$ there exists $\delta > 0$ such that
-	\begin{equation}
-		\sup_n \Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2} < \epsilon.
-	\end{equation}
+	\begin{equation*}
+		\sup_{n \in \Nat} \mathbb{E}\Bigg[\sum_{|\rgamman_n| < \delta} |\rgamman_n|^2\Bigg] < \epsilon.
+	\end{equation*}
 \end{lemma}
 \begin{proof}
-	We have
-	\begin{equation}
-		\Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2} 
-		= \Exp{\sum_{l(\rgamman) > C} |\rgamman|^2} 
-		+ \Exp{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2}.
-	\end{equation}
+	For $C > 0$ we have
+	\begin{equation*}
+		\mathbb{E}\Bigg[\sum_{|\rgamman_n| < \delta} |\rgamman_n|^2\Bigg]
+		\leq \mathbb{E}\Bigg[\sum_{l(\rgamman_n) > C} |\rgamman_n|^2\Bigg] 
+		+ \mathbb{E}\Bigg[\sum_{\substack{l(\rgamman_n) \leq C \\ |\rgamman_n| < \delta}} |\rgamman_n|^2\Bigg].
+	\end{equation*}
 	Consider the second term:
-	\begin{equation}
-		\Exp{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2}
-		= \Exp{\sum_{k = 0}^{\infty} \sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| \in I_{\delta, k}}} |\rgamman|^2}
-	\end{equation}
+	\begin{equation*}
+		\mathbb{E}\Bigg[\sum_{\substack{l(\rgamman_n) \leq C \\ |\rgamman_n| < \delta}} |\rgamman_n|^2\Bigg]
+		= \mathbb{E}\Bigg[\sum_{k = 0}^{\infty} \sum_{\substack{l(\rgamman_n) \leq C \\ |\rgamman_n| \in I_{\delta, k}}} |\rgamman_n|^2\Bigg]
+	\end{equation*}
 	where $I_{\delta, k} = [ \frac{\delta}{2^{k+1}}, \frac{\delta}{2^{k}} ]$.
-	Then
-	\begin{equation}
-		\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| \in I_{\delta, k}}} |\rgamman|^2 
-		\leq \left(\frac{\delta}{2^k}\right)^2 \frac{C}{\frac{\delta}{2^{k+1}}}
-	\end{equation}
+	For $k \in \Nat$ we have at most $C2^{k+1}\delta^{-1}$ excursions in $[0, C]$ with length in $I_{\delta, k}$.
+	Therefore
+	\begin{equation*}
+		\sum_{\substack{l(\rgamman_n) \leq C \\ |\rgamman_n| \in I_{\delta, k}}} |\rgamman_n|^2 
+		\leq \left(\frac{\delta}{2^k}\right)^2 \frac{C2^{k+1}}{\delta}
+	\end{equation*}
 	and since this is now an entirely deterministic term we have
-	\begin{equation}
+	\begin{equation*}
 	\begin{aligned}
-	\Exp{\sum_{\substack{l(\rgamman) \leq C \\ |\rgamman| < \delta}} |\rgamman|^2} 
-	&\leq \sum_{k = 0}^{\infty} \left(\frac{\delta}{2^k}\right)^2 \frac{C}{\frac{\delta}{2^{k+1}}} \\
+	\mathbb{E}\Bigg[\sum_{\substack{l(\rgamman_n) \leq C \\ |\rgamman_n| < \delta}} |\rgamman_n|^2\Bigg] 
+	&\leq \sum_{k = 0}^{\infty} \left(\frac{\delta}{2^k}\right)^2 \frac{C2^{k+1}}{\delta} \\
 	&= \sum_{k = 0}^{\infty} \frac{2C\delta}{2^k} \\
 	&= 4C\delta.
 	\end{aligned}
-	\end{equation}
+	\end{equation*}
 	By Lemma~\ref{L: late excursions} for all $\epsilon > 0$ we can choose $C > 0$ such that 
-	\begin{equation}
-		\Exp{ \sum_{l(\rgamman) > C} |\rgamman|^2 } < \epsilon / 2.
-	\end{equation}
+	\begin{equation*}
+		\mathbb{E}\Bigg[ \sum_{l(\rgamman_n) > C} |\rgamman_n|^2 \Bigg] < \epsilon / 2.
+	\end{equation*}
 	For this $C$ choose $\delta > 0$ such that $4C\delta < \epsilon/2$.
 	Then
-	\begin{equation}
-		\Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2}  < \epsilon.
-	\end{equation}
+	\begin{equation*}
+		\mathbb{E}\Bigg[\sum_{|\rgamman_n| < \delta} |\rgamman_n|^2\Bigg]  < \epsilon.
+	\end{equation*}
 	Since $\delta$ and $C$ are independent of $n$ we have
-	\begin{equation}
-	\sup_n \Exp{\sum_{|\rgamman| < \delta} |\rgamman|^2} < \epsilon.
-	\end{equation}
+	\begin{equation*}
+	\sup_{n \in \Nat} \mathbb{E}\Bigg[\sum_{|\rgamman_n| < \delta} |\rgamman_n|^2\Bigg] < \epsilon.
+	\end{equation*}
 \end{proof}
 
 
@@ -806,36 +795,36 @@ After all these technical considerations we are now ready to prove our main theo
 	where $\rzntX \rightarrow_{a.s.} \WtX$.
 	Define
 	\begin{equation} \label{E: def Yn}
-		\Yn := ((|\rgamman_1|, \rsigman_1), (|\rgamman_2|, \rsigman_2), \dots)
+		\Yn := \left((|\rgamman_{n,1}|, \rsigman_1), (|\rgamman_{n,2}|, \rsigman_2), \dots\right)
 	\end{equation}
 	as the excursion lengths of $\rzntX$ and corresponding counts of $\rnntX$,
 	as well as
 	\begin{equation} \label{E: def Y}
-		\Y := ((|\gamma_1|, \mu(\gamma_1)), (|\gamma_2|, \mu(\gamma_2)), \dots)
+		\Y := \left((|\gamma_1|, \mu(\gamma_1)), (|\gamma_2|, \mu(\gamma_2)), \dots\right)
 	\end{equation}
 	for the lengths of excursions and corresponding mark counts of $\BtX$, each ordered by decreasing excursion length.
 	Denote by 
 	\begin{equation} \label{E: def Yk Ynk}
 		\begin{aligned}
-		\Ynk &:= ((|\rgamman_1|, \rsigman_1), \dots, (|\rgamman_k|, \rsigman_k)) \\
-		\Yk  &:= ((|\gamma_1|, \mu(\gamma_1)), \dots, (|\gamma_k|, \mu(\gamma_k)))
+		\Ynk &:= \left((|\rgamman_{n,1}|, \rsigman_1), \dots, (|\rgamman_{n,k}|, \rsigman_k)\right) \\
+		\Yk  &:= \left((|\gamma_1|, \mu(\gamma_1)), \dots, (|\gamma_k|, \mu(\gamma_k))\right)
 		\end{aligned}
 	\end{equation}
 	the vector of the first $k$ components of the corresponding vector.
 	We want to show that for all $k \in \Nat$ we have
-	\begin{equation}
+	\begin{equation*}
 		\Ynk \rightarrow_d \Yk.
-	\end{equation}
+	\end{equation*}
 	
 	Fix $k \in \Nat$. 
 	Since $\Yk$ is a vector of finite length, for all $\epsilon > 0$ we can find $\delta > 0$ such that
 	\begin{equation} \label{E: folk theorem cond bm1}
 		\Prob(|\gamma_k| < \delta) < \epsilon.
 	\end{equation}
-	For a realization of the processes $\rzntX(\omega)$ and $\WtX(\omega)$ we know from Lemma~\ref{L: late excursions}
+	From Lemma~\ref{L: late excursions} we know
 	that for all $\epsilon> 0$ and $\delta > 0$ there exists $C > 0$ such that
 	\begin{equation} \label{E: folk theorem cond znt}
-		\sup_n \Prob( \exists \rgamman: \; l(\rgamman) > C, |\rgamman| > \delta ) < \epsilon
+		\sup_{n \in \Nat} \Prob\left( \exists \rgamman_n: \; l(\rgamman_n) > C, |\rgamman_n| > \delta \right) < \epsilon
 	\end{equation}
 	and Lemma~\ref{L: late excursions gamma} gives
 	\begin{equation} \label{E: folk theorem cond bm2}
@@ -843,93 +832,97 @@ After all these technical considerations we are now ready to prove our main theo
 	\end{equation}
 	Since $\rzntX \rightarrow_{a.s.} \WtX$ for all $\beta > 0$, there exists $N \in \Nat$ such that for all $n \geq N$ we have
 	\begin{equation} \label{E: folk theorem cond sup}
-		\Prob( \sup_{s \in [0, C]} |\rzntX(s) - \WtX(s)| > \beta ) < \epsilon.
+		\Prob\left( \sup_{s \in [0, C]} |\rzntX(s) - \WtX(s)| > \beta \right) < \epsilon.
 	\end{equation}
-	
-	We show that $\YnkX \rightarrow_p \YkX$, i.e. for all $\alpha > 0$ we have
-	\begin{equation}
-		\Prob( d(\YnkX, \YX) > \alpha) \rightarrow 0
-	\end{equation}
+	We show that $\Ynk \rightarrow_p \Yk$, i.e. for all $\alpha > 0$ we have
+	\begin{equation*}
+		\Prob( d(\Ynk, \Yk) > \alpha) \rightarrow 0
+	\end{equation*}
 	as $n \rightarrow \infty$.
-	Denote by $\Event{\YkX}, \Event{\rgamman}, \Event{\gamma}, \Event{\beta}$ the events in 
+	Denote by $\Event{\Yk}, \Event{\rgamman_n}, \Event{\gamma}, \Event{\beta}$ the events in 
 	\eqref{E: folk theorem cond bm1}, \eqref{E: folk theorem cond znt}, \eqref{E: folk theorem cond bm2} and \eqref{E: folk theorem cond sup} respectively.
 	Then
-	\begin{equation}
+	\begin{equation*}
 		\begin{aligned}
-		\Prob( d(\YnkX, \YX) > \alpha) 
-		&\leq \Prob( d(\YnkX, \YX) > \alpha \cond \neg\Event{\YkX}, \neg\Event{\rgamman}, \neg\Event{\gamma}, \neg\Event{\beta}) \\
-		&\quad + \Prob(\Event{\YkX}) + \Prob(\Event{\rgamman}) + \Prob(\Event{\gamma}) + \Prob(\Event{\beta}). 
+		\Prob( d(\Ynk, \Yk) > \alpha) 
+		&\leq \Prob( d(\Ynk, \Yk) > \alpha \cond \neg\Event{\Yk}, \neg\Event{\rgamman_n}, \neg\Event{\gamma}, \neg\Event{\beta}) \\
+		&\quad + \Prob(\Event{\Yk}) + \Prob(\Event{\rgamman_n}) + \Prob(\Event{\gamma}) + \Prob(\Event{\beta}). 
 		\end{aligned}
-	\end{equation}
+	\end{equation*}
 	The conditions in the first probability assert that there are no large excursions of $\rzntX$ or $\WtX$ after $C$,
 	that the $k$-th excursion of $\WtX$ is large and $\rzntX$ and $\WtX$ are close.
 	Since excursions of $\rzntX$ and $\WtX$ eventually match up, 
 	all $k$ relevant excursions must happen before $C$.
-	With shrinking distance between $\rzntX$ and $\WtX$ the distance between excursion lengths must become smaller as well
-	and for sufficiently large $n$ the number of surplus edges in $\YnkX$ coincides exactly with number of marks in $\YkX$.
+	With shrinking distance $\beta$ between $\rzntX$ and $\WtX$ the distance between excursion lengths must become smaller as well
+	and for sufficiently large $n$ the number of surplus edges in $\Ynk$ coincides exactly with number of marks in $\Yk$.
 	Therefore for all $\alpha > 0$ we can find $\beta = \beta(\alpha)$ such that
-	\begin{equation}
-		\Prob( d(\YnkX, \YX) > \alpha \cond \neg\Event{\YkX}, \neg\Event{\rgamman}, \neg\Event{\gamma}, \neg\Event{\beta}) = 0.
-	\end{equation}
+	\begin{equation*}
+		\Prob( d(\Ynk, \Yk) > \alpha \cond \neg\Event{\Yk}, \neg\Event{\rgamman_n}, \neg\Event{\gamma}, \neg\Event{\beta}) = 0.
+	\end{equation*}
 	
-	Then for all $\epsilon > 0$ we choose $\delta > 0$ such that $\Prob(\Event{\YkX}) < \epsilon / 4$,
-	for these $\delta$ and $\epsilon$ we find $C > 0$ such that $\Prob(\Event{\rgamman}) < \epsilon / 4$ and $\Prob(\Event{\gamma}) < \epsilon / 4$
+	Then for all $\epsilon > 0$ we choose $\delta > 0$ such that $\Prob(\Event{\Yk}) < \epsilon / 4$,
+	for these $\delta$ and $\epsilon$ we find $C > 0$ such that $\Prob(\Event{\rgamman_n}) < \epsilon / 4$ and $\Prob(\Event{\gamma}) < \epsilon / 4$
 	and finally $N \in \Nat$ such that $\Prob(\Event{\beta}) < \epsilon$ for all $n \geq N$.
 	Then
-	\begin{equation}
-		\Prob( d(\YnkX, \YX) > \alpha) \leq \epsilon
-	\end{equation}
-	which proves $\YnkX \rightarrow_p \YkX$.
+	\begin{equation*}
+		\Prob( d(\Ynk, \Yk) > \alpha) \leq \epsilon
+	\end{equation*}
+	which proves $\Ynk \rightarrow_p \Yk$.
 	Now convergence in probability implies convergence in distribution which completes the proof of the first and second statement of Theorem~\ref{T: Main}.
 	\end{proof}
 
 
-	\begin{proof}[Part 2]\renewcommand{\qedsymbol}{}
-	The only thing left to show is that the convergence $\n{-2}{3} \Cntbold \rightarrow_p \Ctbold$ holds with respect to the $\ld$~topology.
-	
+
+	\begin{proof}[Part 2]
+	The only thing left to show is that the convergence of component sizes holds with respect to the $\ld$~topology.
+	Define
+	\begin{equation}
+	\begin{aligned}
+	\YnX &:= \left(|\rgamman_{n,1}|, |\rgamman_{n,2}|, \dots\right), \\
+	\YX &:= \left(|\gamma_1|, |\gamma_2|, \dots\right).
+	\end{aligned}
+	\end{equation}
 	For $\delta > 0$ and $\epsilon_1 > 0$, denote by $\Event{\sum\gamma}$ the event that $\sum_{|\gamma| < \delta}|\gamma|^2 > \epsilon_1$.
 	By Lemma~\ref{L: BM in ld} for all $\epsilon > 0$ there exist $\delta > 0$ and $\epsilon_1 > 0$ such that
-	\begin{equation}
-	\Prob(\Event{\sum\gamma}) = \Prob( \sum_{|\gamma| < \delta}|\gamma|^2 > \epsilon_1 ) < \epsilon.
-	\end{equation}
-	
-	Similarly, denote by $\Event{\sum\rgamman}$ the event that $\sum_{|\rgamman| < \delta}|\rgamman|^2 > \epsilon_2$.
+	\begin{equation*}
+	\Prob\left(\Event{\sum\gamma}\right) = \Prob\left( \sum_{|\gamma| < \delta}|\gamma|^2 > \epsilon_1 \right) < \epsilon.
+	\end{equation*}
+	Similarly, denote by $\Event{\sum\rgamman_n}$ the event that $\sum_{|\rgamman_n| < \delta}|\rgamman_n|^2 > \epsilon_2$.
 	By Lemma~\ref{L: sum rgamman} for all $\epsilon > 0$ there exist $\delta > 0$ and $\epsilon_2 > 0$ such that
-	\begin{equation}
-	\Prob(\Event{\sum\rgamman}) = \Prob( \sum_{|\rgamman| < \delta}|\rgamman|^2 > \epsilon_2 ) < \epsilon.
-	\end{equation}
-	
+	\begin{equation*}
+	\Prob\left(\Event{\sum\rgamman_n}\right) = \Prob\left( \sum_{|\rgamman_n| < \delta}|\rgamman_n|^2 > \epsilon_2 \right) < \epsilon.
+	\end{equation*}
 	Fix $\epsilon > 0$. 
 	Then for all $\alpha > 0$ we have 
 	\begin{equation} \label{E: main proof step 1}
 	\begin{aligned}
-	&\Prob( d_{2}(\YnX, \YX) > \alpha) \\
-	&\quad\leq \Prob( d_{2}(\YnX, \YX) > \alpha \cond 
-	\neg\Event{\sum\rgamman}, \neg\Event{\sum\gamma}, \neg\Event{\gamma}, \neg\Event{\rgamman}, \neg\Event{\beta}) \\
-	&\quad\quad + \Prob(\Event{\sum\rgamman}) + \Prob(\Event{\sum\gamma}) + \Prob(\Event{\gamma}) + \Prob(\Event{\rgamman}) + \Prob(\Event{\beta}).
+	\Prob\left( d_{2}(\YnX, \YX) > \alpha\right)
+	&\leq \Prob\left( d_{2}(\YnX, \YX) > \alpha \cond 
+	\neg\Event{\sum\rgamman_n}, \neg\Event{\sum\gamma}, \neg\Event{\gamma}, \neg\Event{\rgamman_n}, \neg\Event{\beta}\right) \\
+	&\quad + \Prob(\Event{\sum\rgamman_n}) + \Prob(\Event{\sum\gamma}) + \Prob(\Event{\gamma}) + \Prob(\Event{\rgamman_n}) + \Prob(\Event{\beta}).
 	\end{aligned}
 	\end{equation}
-	Choose $\delta > 0$ and $C > 0$ such that $\Prob(\Event{\gamma}) < \epsilon / 5$ and $\Prob(\Event{\rgamman}) < \epsilon / 5$.
+	Choose $\delta > 0$ and $C > 0$ such that $\Prob(\Event{\gamma}) < \epsilon / 5$ and $\Prob(\Event{\rgamman_n}) < \epsilon / 5$.
 	For this $\delta$, choose $\epsilon_1, \epsilon_2 > 0$ with $\epsilon_1 + \epsilon_2 < \alpha$
-	such that $\Prob(\Event{\sum\rgamman}) < \epsilon / 5$ and $\Prob(\Event{\sum\gamma}) < \epsilon / 5$.
+	such that $\Prob(\Event{\sum\rgamman_n}) < \epsilon / 5$ and $\Prob(\Event{\sum\gamma}) < \epsilon / 5$.
 	Now consider the conditioned probability in \eqref{E: main proof step 1}.
 	The distance between all entries of $\YnX$ and $\YX$ not starting before $C$ or with size smaller than $\delta$ 
 	will be at most $\epsilon_1 + \epsilon_2$.
 	As $\beta \rightarrow 0$ the distance of all other excursions, say $d_{\beta}$, vanishes as well.
 	Therefore choose $\beta > 0$ such that $\Prob(\Event{\beta}) < \epsilon / 5$ and $\epsilon_1 + \epsilon_2 + d_{\beta} < \alpha$.
 	Then
-	\begin{equation}
-	\Prob( d_{2}(\YnX, \YX) > \alpha \cond 
-	\neg\Event{\sum\rgamman}, \neg\Event{\sum\gamma}, \neg\Event{\gamma}, \neg\Event{\rgamman}, \Event{\beta}) = 0
-	\end{equation}
+	\begin{equation*}
+	\Prob\left( d_{2}(\YnX, \YX) > \alpha \cond 
+	\neg\Event{\sum\rgamman_n}, \neg\Event{\sum\gamma}, \neg\Event{\gamma}, \neg\Event{\rgamman_n}, \Event{\beta}\right) = 0
+	\end{equation*}
 	and 
 	\begin{math}
 	\Prob( d_{2}(\YnX, \YX) > \alpha) < \epsilon.
 	\end{math}
-	Therefore $\YnX \rightarrow_p \YX$ which implies $\Yn \rightarrow_d \Y$ with regard to the $\ld$~topology.
+	Therefore $\YnX \rightarrow_p \YX$ which implies $\YnX \rightarrow_d \YX$ with regard to the $\ld$~topology.
 	\end{proof}
 
-	
+	\phantom\qedhere
 \end{proof}
 
 
