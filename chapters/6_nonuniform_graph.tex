@@ -147,8 +147,8 @@ and examined its properties when applied to a random construction of a graph.
 For this model it is a better fit to describe a construction of $\Wrg(\x, \q)$ with a simultaneous corresponding breadth-first walk.
 
 For each ordered pair $(i, j)$ of vertices, $i \neq j$, define a random variable $\xi_{i,j} \sim \Exponential(\q x_j)$.
-Apply size-biased sampling to choose $v_1$.
-\fxfatal{What is size biased sampling?}
+The first vertex $v_1$ is chosen via size-biased sampling, that is, the probability of choosing any vertex is proportional to its size
+(see Section 3.3 of \cite{Aldous.1997} for details).
 The children of $v_1$ are now all vertices $v$ for which
 \begin{equation}
 	\xi_{v_1, v} \leq x_{v_1}.
