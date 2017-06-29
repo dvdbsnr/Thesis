@@ -821,7 +821,7 @@ We begin with two further auxiliary lemmas.
 	\Exp{|\Zn(T_n)|} \leq \Exp{|\Mn(T_n)|} + \Exp{|\An(T_n)|}.
 	\end{equation}
 	By Lemma~\ref{L: decomp Mn}, we have $M^2_n = \Qn + \Bn$ where $\Qn$ is a martingale. 
-	The optional sampling theorem dictates that 
+	The optional sampling theorem (see \cite[Theorem 10.11, p.203]{Klenke.2006}) dictates that 
 	$\Exp{\Qn(\tau)} = 0$ 
 	for all stopping times $\tau$, hence 
 	\begin{align*}
@@ -852,7 +852,7 @@ We begin with two further auxiliary lemmas.
 	where the last inequality holds for $n$ sufficiently large, since 
 	$\frac{n \p}{1 - (s - \floor{s})\p} \rightarrow 1$
 	as $n \rightarrow \infty$.
-	Now Hölders inequality gives us
+	Now Hölders inequality (see \cite[p.113]{Royden.1969}) gives us
 	\begin{equation} \label{E: Exp(Mn)}
 	\Exp{|\Mn(T_n)|} \leq \sqrt{\Exp{M^2_n(T_n)}} \leq (2s_0)^{1/2}\n{1}{3}.
 	\end{equation}
