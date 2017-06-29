@@ -65,8 +65,8 @@ A first useful reference provides the Portmanteau theorem.
 	\begin{enumerate}
 		\item $P_n \Rightarrow P$,
 		\item $\int_S fdP_n \rightarrow \int_S fdP$ for all $f \in \Cb(S)$,
-		\item $\limsup_n P_n(F) \leq P(F)$ for all closed $F$,
-		\item $\liminf_n P_n(G) \geq P(G)$ for all open $G$,
+		\item $\limsup_{n \in \Nat}P_n(F) \leq P(F)$ for all closed $F$,
+		\item $\liminf_{n \in \Nat}P_n(G) \geq P(G)$ for all open $G$,
 		\item $P_n(A) \rightarrow P(A)$ for all $A$ with $P(\partial A) = 0$.
 	\end{enumerate}
 \end{theorem}
@@ -249,11 +249,11 @@ Using this result one may prove the following theorem on tightness of series of 
 	\begin{enumerate}
 		\item We have
 		\begin{equation}
-		\lim_{c \rightarrow \infty} \limsup_n P_n(x: \norm{x}_T \geq c) = 0	
+		\lim_{c \rightarrow \infty} \limsup_{n \in \Nat}P_n(x: \norm{x}_T \geq c) = 0	
 		\end{equation}
 		\item and for each $\epsilon > 0$
 		\begin{equation}
-			\lim_{\delta \rightarrow 0} \limsup_n P_n(x: w'_x(\delta) \geq \epsilon ) = 0.
+			\lim_{\delta \rightarrow 0} \limsup_{n \in \Nat}P_n(x: w'_x(\delta) \geq \epsilon ) = 0.
 		\end{equation}
 	\end{enumerate}
 \end{theorem}
@@ -387,7 +387,7 @@ the following lemma may be seen as an equivalent Portmanteau Theorem in the sens
 		\item $\mu_n \rightarrow_v \mu$,
 		\item $\mu_n(B) \rightarrow \mu(B)$ for all relatively compact (i.e. with compact closure) $B$ 
 			for which $\mu(\partial(B)) = 0$.
-		\item $\limsup_n \mu_n(K) \leq \mu(K)$ and $\liminf_n \mu_n(G) \geq \mu(G)$
+		\item $\limsup_{n \in \Nat}\mu_n(K) \leq \mu(K)$ and $\liminf_{n \in \Nat}\mu_n(G) \geq \mu(G)$
 			for all compact $K$ and all open, relatively compact $G$.
 	\end{enumerate}
 \end{lemma}
