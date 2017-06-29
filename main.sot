@@ -93,13 +93,13 @@
 \glossentry{supnorm}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{vi}}}%
 \glossentry{deltaint}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{vi}}}%
+\glossentry{stochdom}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{vi}}}\glsgroupskip
 \glsgroupheading{E}\relax \glsresetentrylist %
 \glossentry{Econvergence}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{vi}}}%
 \glossentry{cR}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{vi}}}%
-\glossentry{cProd}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{vi}}}%
 \glossentry{cFunction}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{vi}}}%
