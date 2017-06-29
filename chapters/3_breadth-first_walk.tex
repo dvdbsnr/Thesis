@@ -253,6 +253,7 @@ The discrete walk now adds the children of $v_i$ to this list at time $i$.
 The newly defined continuous walk adds those vertices at uniformly random times in $(i-1, i)$.
 
 \begin{figure}[H]
+	
 	\centering
 	\subfloat[A graph component]
 	{\input{figures/chapter3/fig_component.tex}}\\
@@ -355,7 +356,7 @@ For ease of notation we drop the superscript $\pp$ from all random variables in 
 	\end{align*}
 	since every new edge corresponds to a jump of size $1$ in $\Zn$.
 	
-	Looking at the right-hand side, we define $\NewEdge{I}$ as the event of a new edge appearing during the time interval $I$ and calculate
+	Looking at the right-hand side, we define $\NewEdge{I}$\label{I: Event} as the event of a new edge appearing during the time interval $I$ and calculate
 	\begin{align*}
 	&\Exp{\An(t+u) - \An(t) \cond \F{t}} \\
 	&\quad= \Exp{ \int_{0}^{t+u} a_n(s)ds - (t+u) - \int_{0}^{t} a_n(s)ds + t \cond \F{t} } \\
