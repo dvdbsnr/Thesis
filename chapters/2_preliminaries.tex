@@ -47,6 +47,13 @@ with associated distributions $P_n$, $P$.
 Now $X_n$ converges in distribution to $X$, $X_n \rightarrow_d X$,
 if their distribution measures converge weakly, $P_n \Rightarrow P$.
 
+We will make use of the following theorem to link convergence in distribution of random variables to almost sure convergence of random variables on the same probability space.
+\begin{theorem}[Skorohod, {\cite[Theorem 3.30, p.56]{Kallenberg.1997}}]
+	Let $X_n$, $X$ be random elements in a metric space $(S, \mathcal{S})$ such that $X_n \rightarrow_d X$. 
+	Then, on a suitable probability space, there exist some random elements $\mathcal{X}_n \sim X_n$ and $\mathcal{X} \sim X$
+	such that $\mathcal{X}_n \rightarrow_{a.s.} \mathcal{X}$.
+\end{theorem}
+
 The main goal of this chapter is now to find necessary and sufficient conditions
 for the convergence in distribution of a given sequence of random variables 
 or equivalently the weak convergence of their distribution measures.
@@ -63,8 +70,6 @@ A first useful reference provides the Portmanteau theorem.
 		\item $P_n(A) \rightarrow P(A)$ for all $A$ with $P(\partial A) = 0$.
 	\end{enumerate}
 \end{theorem}
-
-\bigskip
 
 A powerful tool to prove weak convergence of measures is relative compactness.
 \begin{definition}[Relative compactness, {\cite[p.57]{Billingsley.1999}}] \label{D: rel compactness}
@@ -132,7 +137,9 @@ and therefore an effective means of proving convergence in distribution.
 	Let $P_n$ be a series of probability measures on a metric space $(S, \mathcal{S})$. 
 	If $P_n$ is tight, it is relatively compact.
 \end{theorem}
+
 We summarize this theorem and our considerations above in the following lemma.
+
 \begin{lemma} \label{L: tightness and fidi}
 	Let $X, X_n$ be stochastic processes with distributions $P, P_n$.
 	If $\{X_n\}$  is tight and
@@ -210,9 +217,8 @@ we need a convergence that additionally allows small shifts on the x-axis.
 \end{definition}
 
 \begin{definition}[Modulus of continuity, {\cite[p.122]{Billingsley.1999}}] \label{D: modulus of continuity}
-	A set $\{t_i\}$, where $ 0 = t_0 < t_1 < \dots < t_k = T $,
-	is called \emph{$\delta$-sparse} if $\min_{1\leq i \leq k} (t_i - t_{i-1}) > \delta$.
-	
+	We call a set $\{t_i\}$, with $ 0 = t_0 < t_1 < \dots < t_k = T $,
+	\emph{$\delta$-sparse} if $\min_{1\leq i \leq k} (t_i - t_{i-1}) > \delta$.
 	For $0 < \delta < 1$ and $x \in \DT$, define the \emph{modulus of continuity} by
 	\begin{equation*}
 		w_x'(\delta) := \inf_{\{t_i\}} \max_{1\leq i \leq k} w_x([t_{i-1}, t_i)),
@@ -224,7 +230,7 @@ we need a convergence that additionally allows small shifts on the x-axis.
 \end{definition}
 
 The Arzelà-Ascoli theorem, see \cite[Theorem 7.2, p.82]{Billingsley.1999},
-provides a complete characterisation of relatively compact sets in $\CT$.
+provides a complete character\-isation of relatively compact sets in $\CT$.
 We present a $\DT$-equivalent.
 
 \begin{theorem}[Arzelà-Ascoli in $\DT$, {\cite[Theorem 12.3, p.130]{Billingsley.1999}}] \label{T: AA in DT}
