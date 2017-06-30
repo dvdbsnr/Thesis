@@ -209,7 +209,7 @@ we need a convergence that additionally allows small shifts on the x-axis.
 		\item $\sup_{t \in [0,T]}|\lambda (t) - t| = \sup_{t \in [0,T]}|t - \lambda^{-1}(t)| < \epsilon$,
 		\item  $\sup_{t \in [0,T]}|x(\lambda (t)) - y(t)| = \sup_{t \in [0,T]}|x(t) - y(\lambda^{-1}(t))| < \epsilon$.
 	\end{enumerate}
-	And writing $\norm{x}_T = \sup_{t \in [0,T]}|x(t)|$ we can provide a more compact form: \label{I: supnorm}
+	And writing $\norm{x}_T := \sup_{t \in [0,T]}|x(t)|$ we can provide a more compact form: \label{I: supnorm}
 	\begin{equation*}
 		d(x,y) = \inf_{\lambda \in \Lambda}\{ \norm{\lambda - I}_T \vee \norm{x - y(\lambda)}_T \},
 	\end{equation*}
@@ -241,6 +241,8 @@ We present a $\DT$-equivalent.
 	\end{enumerate}
 \end{theorem}
 
+Here the first condition provides a general boundedness of the set and can be found in the $\CT$ Arzelà-Ascoli theorem as well, 
+while the second condition is unique to the space $\DT$.
 Using this result one may prove the following theorem on tightness of series of random variables in $\DT$.
 
 \begin{theorem}[Tightness in $\DT$, {\cite[Theorem 13.2, p.139]{Billingsley.1999}}] \label{T: tightness in DT}
