@@ -143,9 +143,9 @@ We summarize this theorem and our considerations above in the following lemma.
 \begin{lemma} \label{L: tightness and fidi}
 	Let $X, X_n$ be stochastic processes with distributions $P, P_n$.
 	If $\{X_n\}$  is tight and
-	\begin{equation*}
+	\begin{math}
 		P_n\pi^{-1}_{t_1, \dots, t_k} \Rightarrow P\pi^{-1}_{t_1, \dots, t_k},
-	\end{equation*}
+	\end{math}
 	for all $k$ and $t_1, \dots, t_k \in \Rplus$,
 	then $X_n \Rightarrow X$.
 \end{lemma}
@@ -172,11 +172,10 @@ This section will deal with the issue of proving tightness and thus convergence 
 \end{definition}
 
 Considering topology and convergence on $\DT$, 
-we quickly observe that the known notion of distance known in $C(I)$,
-the space of continuous functions on $I$,
-where
+we quickly observe that the notion of convergence known in $\CT$,
+the space of continuous functions on $[0,T]$ where
 \begin{equation*}
-	f_n \rightarrow f \iff \sup_{t \in I} |f_n(t) - f(t)| \rightarrow 0,
+	f_n \rightarrow f \iff \sup_{t \in [0,T]} |f_n(t) - f(t)| \rightarrow 0,
 \end{equation*}
 is not sufficient for $\DT$.
 Consider the functions
@@ -196,7 +195,6 @@ Consider the functions
 \end{equation*}
 For $x_n \rightarrow x$ we would expect $f_n$ to converge to $f$,
 however $\sup_{t \in I}|f_n(t) - f(t)| = 1$ whenever $x_n \neq x$.
-
 Thinking of the previous convergence as allowing small shifts on the y-axis,
 we need a convergence that additionally allows small shifts on the x-axis.
 
@@ -289,7 +287,6 @@ This section will provide an overview of the needed theory.
 		\{ m \in M_p(S) \cond m(A) \in B \}
 	\end{equation*}
 	for some $A \in \Bo(S)$ and $B \in \Bo(\Rplus)$.
-	
 	A \emph{point process} $N$ is a measurable map from a probability space
 	$\ProbSpace$ into $(M_p(S), \mathscr{M}_p(S))$.
 \end{definition}
