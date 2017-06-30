@@ -560,20 +560,18 @@ The following statement proves a similar decomposition of the squared martingale
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{proof} \label{P: decomp Mn}
 	Similar to the proof of the previous Lemma, we will show that $\Mn^2 - \Bn$ is a martingale.
-	
-	By \cite[Theorem 21.70, p.471]{Klenke.2006}, 
-	for all martingales $M$ there exists a unique process $[M] = ([M]_t)_{t\geq 0}$ with $[M]_0 = 0$ such that
-	$M^2 - [M]$	is a martingale.
-	This process is called the quadratic variation of $M$ and can be calculated as follows:
-	Let $\Pi_n = \{ t_{n,0}, \dots, t_{n,k_n} \}$ be a sequence of partitions of $[0,t]$
-	with $\norm{\Pi_n} \rightarrow 0$ as $n \rightarrow \infty$, 
-	where $\norm{\Pi} := \max_{t_i, t_{i-1} \in \Pi} (t_i - t_{i-1})$ is the mesh of the partition.
-	Then
+	We first have to introduce the quadratic variation of $\Mn$.
+	Let $\Pi_n = \{ t_{n,0}, \dots, t_{n,k_n} \}$ be a sequence of partitions of the interval $[0,t]$
+	with $|\Pi_n| \rightarrow 0$ as $n \rightarrow \infty$,
+	where $|\Pi| := \max_{t_i, t_{i-1} \in \Pi} (t_i - t_{i-1})$ is the mesh of the partition.
+	Then, by \cite[Theorem 21.70, p.471]{Klenke.2006}, we have
 	\begin{equation*} \label{E: def quadratic variation}
-		\sum_{t_i, t_{i-1} \in \Pi_n}(M_{t_i} - M_{t_{i-1}})^2 \rightarrow_p [M]_t.
+		\sum_{t_i, t_{i-1} \in \Pi_n}\left(\Mn(t_i) - \Mn(t_{i-1})\right)^2 \rightarrow_p [\Mn]_t
 	\end{equation*}
+	as $n \rightarrow \infty$, where $[\Mn]_t$ is the so-called quadratic variation of $\Mn$ and $\Mn^2 - [\Mn]$ is a martingale.
+	By \cite[Remark 21.59, p.468]{Klenke.2006}, 
+	for any continuous process of bounded variation $X(t)$ we have $[X]_t = 0$ for all $t$.
 	
-	If $M_t$ is a continuous process of bounded variation, then $[M]_t = 0$ for all $t$.
 	The process $\Mn$ is right-continuous and of bounded variation.
 	Therefore the quadratic variation vanishes on intervals where $\Mn$ is continuous, 
 	which leaves the jumps as the only discontinuities:
@@ -581,7 +579,7 @@ The following statement proves a similar decomposition of the squared martingale
 	\Mnq{t} = \sum_{0 \leq s \leq t} (\Delta \Mn(s))^2,
 	\end{equation*}
 	where $\Delta \Mn(s) := \Mn(s) - \Mn(s-)$ are the jumps of $\Mn$. \label{I: DeltaX}
-	Thus
+	Therefore
 	\begin{equation*}
 	\Mn^2 - \Bn = (\underbrace{\Mn^2 - [\Mn]}_{\text{martingale}}) + ([\Mn] - \Bn),
 	\end{equation*}
