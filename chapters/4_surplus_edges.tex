@@ -354,9 +354,11 @@ On these, $\nnt$ is stochastically dominated by $\sum_{j = 1}^{\delta \n{2}{3}} 
 Therefore
 \begin{equation*}
 \begin{aligned}
-&\Prob\left( \text{$\exists$ $\delta\n{2}{3}$-interval with $\geq 2$ points} \right) \\
-&\quad\leq \frac{2T}{\delta} \Prob\left( \sum_{j = 1}^{\delta \n{2}{3}} Y_j \geq 2 \right) \\
-&\quad=  \frac{2T}{\delta} \Prob( Z \geq 2 ),
+&\Prob\left( \text{$\exists$ interval with $\geq 2$ points} \right) \\
+&\quad \leq \Prob\left( \text{$\exists$ interval with $\sum_{j = 1}^{\delta \n{2}{3}} Y_j \geq 2$} \right) \\
+&\quad = 1 - \Prob\left( \text{$\sum_{j = 1}^{\delta \n{2}{3}} Y_j \leq 1$ for every interval} \right) \\
+&\quad =  1 - \prod_{i=1}^{T/\delta}\Prob\left( \sum_{j = 1}^{\delta \n{2}{3}} Y_j \leq 1 \right) \\
+&\quad = 1 - \Prob\left( Z \leq 1 \right)^{T/\delta}
 \end{aligned}
 \end{equation*}
 where $Z \sim \Binom(A\n{1}{3}\delta\n{2}{3}, \p) = \Binom(A\delta n, \p).$
@@ -365,29 +367,27 @@ To analyse \eqref{E: tightness cond 2} we substitute $w'_{\rnnt}(\delta)$ using 
 \begin{equation*}
 \begin{aligned}
 &\limsup_{n \in \Nat}\Prob\left(w'_{\rnnt}(\delta) \geq \epsilon \right) \\
-&\quad\leq \limsup_{n \in \Nat}\frac{2T}{\delta} \Prob\left( Z \geq 2 \right) \\
-&\quad= \frac{2T}{\delta} \limsup_{n \in \Nat}\left(1 - \Prob( Z = 0 ) - \Prob( Z = 1 )\right) \\
-&\quad= \frac{2T}{\delta} \limsup_{n \in \Nat}\left(1 - (1- \p)^{A\delta n} - A\delta n \p (1 - \p)^{A\delta n - 1}\right) \\
-&\quad= \frac{2T}{\delta} \left(1 - \exp(-A\delta) - A\delta\exp(-A\delta) \right) \\
-&\quad= \frac{2T}{\delta}\left(  1 - \left(1- A\delta + \frac{(A\delta)^2}{2} + \BigO{\delta^3}\right)(1 + A\delta ) \right) \\
-&\quad= \frac{2T}{\delta} \frac{3(A\delta)^2}{2} + \BigO{\delta^2} \\
-&\quad= 3TA^2\delta + \BigO{\delta^2}.
+&\quad\leq \limsup_{n \in \Nat}\left( 1 - \Prob\left( Z \leq 1 \right)^{T/\delta}\right) \\
+&\quad= 1 - \limsup_{n \in \Nat} \left(\Prob( Z = 0 ) + \Prob( Z = 1 )\right)^{T/\delta} \\
+&\quad= 1 - \limsup_{n \in \Nat}\left((1- \p)^{A\delta n} + A\delta n \p (1 - \p)^{A\delta n - 1}\right)^{T/\delta} \\
+&\quad= 1 - \left(\exp(-A\delta) + A\delta\exp(-A\delta) \right)^{T/\delta} \\
+&\quad= 1 - \exp(-A\delta)^{T/\delta}(1 + A\delta)^{T/\delta} \\
+&\quad= 1 - \exp(-TA)(1 + A\delta)^{T/\delta}.
 \end{aligned}
 \end{equation*}
-Since $T$ and $A$ are constant we have
+Since $T$ and $A$ are constant and $\lim_{\delta \rightarrow 0}(1 + A\delta)^{T/\delta} = \exp(TA)$ we have
 \begin{equation*}
 	\lim_{\delta \rightarrow 0} \limsup_{n \in \Nat}\Prob(w'_{\rnnt}(\delta) \geq \epsilon ) 
-	= \lim_{\delta \rightarrow 0} ( 3TA^2\delta + \BigO{\delta^2} )
+	= \lim_{\delta \rightarrow 0} ( 1 - \exp(-TA)(1 + A\delta)^{T/\delta} )
 	= 0
 \end{equation*}
 which proves $\rnnt$ to satisfy the second condition of Theorem~\ref{T: tightness in DT}
 and therefore $\rnnt$ to be a tight process in $\DT$.
-
 Since both $\rznt$ and $\rnnt$ are tight, $(\rznt, \rnnt)$ is tight.
-Thus there is a compact subset $C \subset \DT^2$ such that
-\begin{equation*}
+Therefore there exists a compact subset $C \subset \DT^2$ such that
+\begin{math}
 	\Prob\left( (\rznt, \rnnt) \in C\right) > 1 - \epsilon.
-\end{equation*}
+\end{math}
 \end{proof}
 
 
