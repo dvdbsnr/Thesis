@@ -13,18 +13,18 @@
 \fxnote{Update title.}
 
 The study of randomly generated graphs started in 1959,
-when Paul Erd\H{o}s and Alfréd Rényis paper "On random graphs", \cite{Erdos.1959},
-and Edgar Gilberts paper "Random graphs", \cite{Gilbert.1959},
+when Paul Erd\H{o}s and Alfréd Rényis paper "On random graphs" \cite{Erdos.1959},
+and Edgar Gilberts paper "Random graphs" \cite{Gilbert.1959},
 introduced what is now known as the \emph{Erd\H{o}s-Rényi model} of random graphs.
 
 Starting with the original papers,
 the examination of sizes of connected components in such graphs was of great interest.
-David Aldous 1997 paper "Brownian excursions, critical random graphs and the multiplicative coalescent", \cite{Aldous.1997},
+David Aldous 1997 paper "Brownian excursions, critical random graphs and the multiplicative coalescent" \cite{Aldous.1997},
 which provides the basis for this thesis,
 examines component sizes in the so-called critical Erd\H{o}s-Rényi random graph as the number of vertices $n$ grows to infinity.
 
 This thesis will provide a strict proof of one of the main results of this paper.
-If no other reference is given, each result (or an equivalent thereof) can be found in Chapters 1 and 2 of \cite{Aldous.1997}.
+If no other reference is given, each result (or an equivalent thereof) can be found in Chapters~1 and 2 of \cite{Aldous.1997}.
 
 
 \section{The Erd\H{o}s-Rényi random graph}
@@ -33,10 +33,9 @@ If no other reference is given, each result (or an equivalent thereof) can be fo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In their paper, Erd\H{o}s and Rényi proposed a model of random graph that is now known as the Erd\H{o}s-Rényi random graph.
-\fxnote{random graph/s?}
-There are several ways to construct this random graph which we will briefly introduce,
-starting with the historic models used in this first paper 
-and continuing with the equivalent model which provides the basis for Aldous' paper and consequently this thesis.
+There are two distinct but very similar models of this name, which we both briefly introduce.
+We start with the model used in this first paper 
+and continue with the model which provides the basis for Aldous' paper and consequently this thesis.
 
 We denote by $G_{n,M}$ the set of graphs on $n$ vertices with $M$ edges that are
 \begin{enumerate}
@@ -248,6 +247,7 @@ if for all $k \in \Nat$
 	(x^{(n)}_1, \dots, x^{(n)}_k) \rightarrow (x_1, \dots,  x_k)
 \end{equation*}
 by $x^{(n)}_i \rightarrow x_i$ for all $1 \leq i \leq k$ as $n \rightarrow \infty$.
+
 Note that in our theorem the $x^{(n)}_i = ( \n{-2}{3} \Cnt(i), \n{-2}{3} \sigmant(i))$ and $x_i = (\Ct(i), \sigmat(i))$ are pairs of values themselves,
 so for $x^{(n)}_i \rightarrow x_i$ to hold we require 
 $\n{-2}{3}  \Cnt(i) \rightarrow \Ct(i)$ and $\n{-2}{3} \sigmant(i) \rightarrow \sigmat(i)$ 
@@ -349,12 +349,11 @@ We now state the main theorem of this thesis, which we will prove gradually in t
 	\end{enumerate}
 \end{theorem}
 \begin{note}
-	The Folk Theorem~\ref{T: folk theorem} is contained in the first statement of Theorem~\ref{T: Main}.
+	Folk Theorem~\ref{T: folk theorem} is contained in the first statement of Theorem~\ref{T: Main}.
 \end{note}
 
 
 We conclude this chapter with an overview of the remaining chapters and the structure of the proof of Theorem~\ref{T: Main}.
-
 Chapter~\ref{C: preliminaries} will introduce some preliminary theory on convergence of probability measures,
 the space of \cadlag~functions $\DT$, counting processes and Brownian motion.
 
