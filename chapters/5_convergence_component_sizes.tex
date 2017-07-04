@@ -592,9 +592,9 @@ In this section we analyse the behaviour of $\znt$ and its excursions after time
 	\begin{aligned}
 	\Prob(\ExcursionEvent) 
 	&\leq \Exp{ \text{Number of excursions $\gamma_n: \; |\gamma_n| \geq \delta\n{2}{3},l(\gamma_n) \geq C\n{2}{3}$ } } \\
-	&= \Exp{ \sum_{\gamma_n: \; l(\gamma_n) \geq C\n{2}{3}} \Ind{\{|\gamma_n| \geq \delta\n{2}{3} \} } } \\
-	&\leq \Exp{ \sum_{\gamma_n: \; l(\gamma_n) \geq C\n{2}{3}} \frac{|\gamma_n|^2}{\delta^2\n{4}{3}} } \\
-	&= \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\gamma_n: \; l(\gamma_n) \geq C\n{2}{3}}  |\gamma_n|^2 }.
+	&= \mathbb{E}\Bigg[ \sum_{\gamma_n: \; l(\gamma_n) \geq C\n{2}{3}} \Ind{\{|\gamma_n| \geq \delta\n{2}{3} \} } \Bigg] \\
+	&\leq \mathbb{E}\Bigg[ \sum_{\gamma_n: \; l(\gamma_n) \geq C\n{2}{3}} \frac{|\gamma_n|^2}{\delta^2\n{4}{3}} \Bigg] \\
+	&= \frac{1}{\delta^2\n{4}{3}} \mathbb{E}\Bigg[ \sum_{\gamma_n: \; l(\gamma_n) \geq C\n{2}{3}}  |\gamma_n|^2 \Bigg].
 	\end{aligned}
 	\end{equation}
 	
@@ -607,17 +607,17 @@ In this section we analyse the behaviour of $\znt$ and its excursions after time
 	\begin{equation} \label{E: P(ExcEvent) 2}
 	\begin{aligned}
 	\Prob(\ExcursionEvent) 
-	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-T, \p)}  |\Ccal|^2  } \\
-	&\leq \frac{1}{\delta^2\n{4}{3}} \Exp{ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, \p)}  |\Ccal|^2  }.
+	&\leq \frac{1}{\delta^2\n{4}{3}} \mathbb{E}\Bigg[ \sum_{\Ccal \in \Gcal(n-T, \p)}  |\Ccal|^2  \Bigg] \\
+	&\leq \frac{1}{\delta^2\n{4}{3}} \mathbb{E}\Bigg[ \sum_{\Ccal \in \Gcal(n-C\n{2}{3}, \p)}  |\Ccal|^2  \Bigg].
 	\end{aligned}
 	\end{equation}
 	For ease of notation we consider the graph $\Gcal(k,\p)$ and calculate
 	\begin{equation} \label{E: P(ExcEvent) 3}
 	\begin{aligned}
-	\Exp{\sum_{\Ccal \in \Gcal(k, \p)} |\Ccal|^2 } 
-	&= \Exp{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \sum_{v \in \Ccal} 1} \\
-	&= \Exp{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \sum_{v \in \Gcal(k, \p)} \Ind{\{v \in \Ccal\}} } \\
-	&= \sum_{v \in \Gcal(k, \p)} \Exp{ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \Ind{\{v \in \Ccal\}} } \\ 
+	\mathbb{E}\Bigg[\sum_{\Ccal \in \Gcal(k, \p)} |\Ccal|^2 \Bigg] 
+	&= \mathbb{E}\Bigg[ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \sum_{v \in \Ccal} 1\Bigg] \\
+	&= \mathbb{E}\Bigg[ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \sum_{v \in \Gcal(k, \p)} \Ind{\{v \in \Ccal\}} \Bigg] \\
+	&= \sum_{v \in \Gcal(k, \p)} \mathbb{E}\Bigg[ \sum_{\Ccal \in \Gcal(k, \p)} |\Ccal| \Ind{\{v \in \Ccal\}} \Bigg] \\ 
 	&= \sum_{v \in \Gcal(k, \p)} \Exp{|\Ccal(v)|} \\
 	&= k \Exp{|\Ccal(1)|},
 	\end{aligned}
@@ -707,14 +707,14 @@ Aldous' paper provides a complete proof using stochastic calculus methods.
 	Let $\Gamma^{\pp}$ be the set of excursions of $\Bt$ and let $|\gamma|$ be the length of an excursion $\gamma$.
 	Then
 	\begin{equation*}
-		\Exp{\sum_{\gamma \in \Gamma^{\pp}} |\gamma|^2} < \infty.
+		\mathbb{E}\Bigg[\sum_{\gamma \in \Gamma^{\pp}} |\gamma|^2\Bigg] < \infty.
 	\end{equation*}
 \end{lemma}
 
 Since $\sum_{\gamma \in \Gamma^{\pp}} |\gamma|^2$ is a convergent series almost surely,
 for all $\epsilon > 0$ we can find $\delta > 0$ such that
 \begin{equation} \label{E: gamma delta epsilon}
-	\Exp{\sum_{|\gamma| < \delta} |\gamma|^2} < \epsilon.
+	\mathbb{E}\Bigg[\sum_{|\gamma| < \delta} |\gamma|^2\Bigg] < \epsilon.
 \end{equation}
 Then by Markov's inequality for all $\epsilon_0 > 0$ and $\epsilon_1 > 0$ there exists $\delta > 0$ such that
 \begin{equation} \label{E: sum gamma < delta}
@@ -764,7 +764,7 @@ We state and prove a result similar to \eqref{E: gamma delta epsilon} on excursi
 	&= 4C\delta.
 	\end{aligned}
 	\end{equation*}
-	By Lemma~\ref{L: late excursions} for all $\epsilon > 0$ we can choose $C > 0$ such that 
+	From the proof of Lemma~\ref{L: late excursions} we know for all $\epsilon > 0$ we can choose $C > 0$ such that 
 	\begin{equation*}
 		\mathbb{E}\Bigg[ \sum_{l(\rgamman_n) > C} |\rgamman_n|^2 \Bigg] < \epsilon / 2.
 	\end{equation*}
@@ -778,6 +778,7 @@ We state and prove a result similar to \eqref{E: gamma delta epsilon} on excursi
 	\sup_{n \in \Nat} \mathbb{E}\Bigg[\sum_{|\rgamman_n| < \delta} |\rgamman_n|^2\Bigg] < \epsilon.
 	\end{equation*}
 \end{proof}
+
 
 
 \section{Finishing the proofs} \label{S: proofs}
@@ -838,7 +839,8 @@ After all these technical considerations we are now ready to prove our main theo
 	\begin{equation*}
 		\Prob( d(\Ynk, \Yk) > \alpha) \rightarrow 0
 	\end{equation*}
-	as $n \rightarrow \infty$.
+	as $n \rightarrow \infty$, 
+	where $d$ is a distance on $\Real^{2, k}$ compatible with the description of convergence in the product topology in Folk Theorem~\ref{T: folk theorem}.
 	Denote by $\Event{\Yk}, \Event{\rgamman_n}, \Event{\gamma}, \Event{\beta}$ the events in 
 	\eqref{E: folk theorem cond bm1}, \eqref{E: folk theorem cond znt}, \eqref{E: folk theorem cond bm2} and \eqref{E: folk theorem cond sup} respectively.
 	Then
