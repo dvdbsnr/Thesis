@@ -766,7 +766,11 @@ We state and prove a result similar to \eqref{E: gamma delta epsilon} on excursi
 	\end{equation*}
 	From the proof of Lemma~\ref{L: late excursions} we know for all $\epsilon > 0$ we can choose $C > 0$ such that 
 	\begin{equation*}
-		\mathbb{E}\Bigg[ \sum_{l(\rgamman_n) > C} |\rgamman_n|^2 \Bigg] < \epsilon / 2.
+	\begin{aligned}
+	\mathbb{E}\Bigg[ \sum_{l(\rgamman_n) > C} |\rgamman_n|^2 \Bigg] 
+	&= \n{-4}{3}\mathbb{E}\Bigg[ \sum_{l(\gamma_n) > C\n{2}{3}} |\gamma_n|^2 \Bigg] \\
+	&\leq \epsilon / 2.
+	\end{aligned}
 	\end{equation*}
 	For this $C$ choose $\delta > 0$ such that $4C\delta < \epsilon/2$.
 	Then
@@ -775,17 +779,17 @@ We state and prove a result similar to \eqref{E: gamma delta epsilon} on excursi
 	\end{equation*}
 	Since $\delta$ and $C$ are independent of $n$ we have
 	\begin{equation*}
-	\sup_{n \in \Nat} \mathbb{E}\Bigg[\sum_{|\rgamman_n| < \delta} |\rgamman_n|^2\Bigg] < \epsilon.
+	\sup_{n \in \Nat} \mathbb{E}\Bigg[\sum_{|\rgamman_n| < \delta} |\rgamman_n|^2\Bigg] < \epsilon. 
 	\end{equation*}
 \end{proof}
 
-
+\newpage
 
 \section{Finishing the proofs} \label{S: proofs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTION: Finishing the proofs
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-After all these technical considerations we are now ready to prove our main theorem.
+After these technical considerations we are now ready to prove our main theorem.
 
 \begin{proof}[Proof of Theorem~\ref{T: Main}]
 	We first prove the convergence of component sizes and surplus edges to excursions and mark counts of $\Bt$ in the product topology
