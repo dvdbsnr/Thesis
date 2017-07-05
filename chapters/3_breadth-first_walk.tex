@@ -39,7 +39,6 @@ $w_1, w_2, \dots$, the vertices with the smallest label in the corresponding com
 are ordered $w_1 < w_2 < \dots$. 
 Call $w_i$ the root of $\Ci{i}$.
 Now order by levels (distance from the root) and within levels order by original vertex label.
-See Figure~\ref{F: bf-walk discrete} for an example of the new ordering.
 
 For a more mathematically concise definition,
 consider the set of vertices $\{ v_1,\dots, v_i \}$
@@ -124,13 +123,12 @@ We search for neighbours of $v_1$ and assign them labels to mark as discovered.
 The next vertex to explore is the vertex already discovered with the smallest label
 and each vertex switches from neutral to discovered once it gets assigned a new label.
 Once we found all its neighbours, it switches to explored.
-\fxnote{This whole paragraph}
 After traversing every vertex of one component
 there are no discovered vertices left and we continue the exploration with the neutral vertex with the smallest original label.
 
 The walk $z$ decreases by $1$ for each vertex explored
 and increases by the number of new neighbours discovered in each step.
-
+In Figure~\ref{F: bf-walk discrete} we see this discrete walk applied to the components of the sample graph.
 Note that surplus edges, like $(v_8, v_{10})$ in Figure~\ref{F: bf-walk discrete}, are ignored by the breadth-first walk.
 We count their occurrence with another counting process in Chapter~\ref{C: surplus edges}.
 
@@ -146,7 +144,6 @@ We write
 \zeta(j) &:= |\Ci{1}| + \dots + |\Ci{j}|, \label{E: zeta}\\ 
 \zeta^{-1}(i) &:= \min \{ j \; | \; \zeta(j) \geq i \}, \label{E: zeta-1}
 \end{align}
-
 for the index of the last vertex in the $j$-th component and the index of the component containing $v_i$,
 respectively.
 Now we can provide a definition of the breadth-first walk equivalent to \eqref{E: def bf-walk z}:
@@ -163,11 +160,10 @@ We have
 \begin{aligned} 
 &\hspace{33pt} z(i) - z(i-1) = z^*(i)  -z^*(i-1) \\
 &\iff \hspace{33pt} c(i) - 1  = |\Ni{i}| - \zeta^{-1}(i) - |\Ni{i-1}| + \zeta^{-1}(i-1) \\
-&\iff \hspace{8pt} |\Ni{i}| - |\Ni{i-1}| = c(i) + \zeta^{-1}(i) - \zeta^{-1}(i-1) - 1
+&\iff \hspace{8pt} |\Ni{i}| - |\Ni{i-1}| = c(i) + \zeta^{-1}(i) - \zeta^{-1}(i-1) - 1.
 \end{aligned}
 \end{equation}
-
-We divide the proof into two cases.
+Divide the proof into two cases.
 First, assume $v_{i-1}$ is not the last vertex in its component.
 Then $v_i$ belongs to the same component and
 $\zeta^{-1}(i) = \zeta^{-1}(i-1)$.
